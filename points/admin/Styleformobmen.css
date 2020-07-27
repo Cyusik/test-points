@@ -72,15 +72,8 @@ a.button15:active {
 	margin-right:10px;
 	width: auto;
 	margin-left: 200px;
-	background:#BCEBDD;
-	border-radius:10px;
 }
-.importb1_2 {
-	margin-right:10px;
-	width: auto;
-	background:#BCEBDD;
-	border-radius:10px;
-}
+
 
 .add_message1  {
 	text-decoration: none;
@@ -144,7 +137,10 @@ h3 {
 	padding-top:5px;
 	padding-bottom:5px;
 }
-/*-----таблица итогов----------*/
+.importb1 {
+	background:#BCEBDD;
+	border-radius:10px;
+}
 .table_dark2 {
 	width:100%;
 	margin-left:3px;
@@ -157,16 +153,7 @@ h3 {
 	text-align:center;
 	color:black;
 }
-.table_dark2 th:nth-child(4),td:nth-child(4) {
-	word-break: break-all;
-}
-.table_dark2 th:nth-child(2),td:nth-child(2) {
-	width: 140px;
-}
-.table_dark2 th:nth-child(5),td:nth-child(5) {
-	width: 180px;
-}
-/*--------окно----------*/
+
 .modal {
 	display:none;
 	position:fixed;

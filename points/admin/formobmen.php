@@ -111,7 +111,7 @@ else {
 	</div>
 </div>
 	<br>
-	<div class="importb1_2">
+	<div class="importb1">
 		<a href="" class="add_message1" id="click_mes_form1">
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Список заявок</h3>
 		</a>
