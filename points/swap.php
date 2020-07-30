@@ -56,26 +56,22 @@
 				?>
 						<script>
 							$(document).ready(function() {
-								$('#nick1').oninput(function() {
-									var txt = $(this).val();
-									if(txt !== '')
+								$("#nick1").oninput(function() {
+									let val = this.value.trim();
+									if(val != '')
 									{
-
+										alert([hyi]);
 									} else {
-										$('#resultdiv_search').html('');
 										$.ajax({
-											url:"form_search.php",
-											method:"post",
-											data:{search:txt},
-											datdType:"text",
-											succes: function(data) {
-												$('#resultdiv_search').html(data);
-											}
+											type: "POST",
+											url: "form_search.php",
+											data: $("#nick1").serialize(),
+											success: function (result) {
+												$("#resultdiv_search").html(result);
+											},
 										});
 									}
-
 								});
-							});
 						</script>
 				<?php
 				echo "<tr>
@@ -136,7 +132,7 @@
 		</tr>
 		</table>";
 					}
-				}$result->free();
+				}
 				?>
 			</div>
 			<div id="nav-balls">
