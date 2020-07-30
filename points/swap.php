@@ -82,7 +82,7 @@
 				<td>
 					Укажите логин вашего аккаунта:<br>
 					<p style='font-size:12px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль.</p> 
-					<input  id = \"login\" onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" size=\"40\" maxlength='100' required/>
+					<input  id = \"login\" onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" size=\"40\" required/>
 				</td>
 				</tr>
 				<tr>
@@ -98,7 +98,7 @@
 					<option>Двойной нитро 100 шт</option>
 					<option>Усиленный сканер 100 шт</option>
 					<option>Усиленные батареи 100 шт</option>
-					<option>Дымовой заслон 100шт</option>
+					<option>Дымовой заслон 100 шт</option>
 					<option>Циклотрон IV+ 1 шт</option>
 					<option>Катушка V+ 1 шт</option>
 					<option>Накопитель IV+ 1 шт</option>
@@ -110,7 +110,7 @@
 					<option>Усилитель руля V+ 1 шт</option>
 					<option>Подшипник V+ 1 шт</option>
 					<option>Локатор V+ 1 шт</option>
-					<option>Атирадар V+ 1 шт</option>
+					<option>Антирадар V+ 1 шт</option>
 					<option>Хищник на 30 дней</option>
 					<option>Борей на 30 дней</option>
 					<option>Титан на 30 дней</option>
@@ -167,7 +167,7 @@
 				Сайт любезно разработан игроком Cyusik. О <a href="/points/about.php">сайте</a>
 			</li>
 			<li>
-				Copyright (c) GDT Limited. http://gdteam.com
+				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
 			</li>
 		</ul>
 	</div>

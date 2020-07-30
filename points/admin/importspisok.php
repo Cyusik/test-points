@@ -253,7 +253,8 @@ else {
 							}
 						}
 						?>
-					</td>				</tr>
+					</td>
+				</tr>
 			</table>
 		</div>
 	</div>

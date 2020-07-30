@@ -61,7 +61,7 @@
 				Сайт любезно разработан игроком Cyusik. О <a href="/points/about.php">сайте</a>
 			</li>
 			<li>
-				Copyright (c) GDT Limited. http://gdteam.com
+				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
 			</li>
 		</ul>
 	</div>
