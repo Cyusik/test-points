@@ -36,7 +36,7 @@
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
 				echo "<table class='table_dark2'>
-				<form id= \"foms\" method=\"POST\" action=\"/points/script/swapform.php\">";
+				<!--<form id= \"foms\" method=\"POST\" action=\"/points/script/swapform.php\">-->";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];
@@ -49,9 +49,36 @@
 				<td>
 					Укажите ваше игровое имя (никнейм):<br><br>
 					<input id = \"nickname\" onkeyup=\"checkParams()\" name=\"nicknames5\" type=\"text\" size=\"40\" required/>
+					<input id='nick1' name='nick1' class='nick1' type='text'>
+					<td><div id='resultdiv_search'></div></td>
 				</td>	
-				</tr>
-				<tr>
+				</tr>";
+				?>
+						<script>
+							$(document).ready(function() {
+								$('#nick1').oninput(function() {
+									var txt = $(this).val();
+									if(txt !== '')
+									{
+
+									} else {
+										$('#resultdiv_search').html('');
+										$.ajax({
+											url:"form_search.php",
+											method:"post",
+											data:{search:txt},
+											datdType:"text",
+											succes: function(data) {
+												$('#resultdiv_search').html(data);
+											}
+										});
+									}
+
+								});
+							});
+						</script>
+				<?php
+				echo "<tr>
 				<td>
 					Укажите логин вашего аккаунта:<br>
 					<p style='font-size:12px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль.</p> 
@@ -62,6 +89,7 @@
 				<td>
 					Выберите приз:<br><br>
 				<select name=\"priz5\" form=\"foms\">
+					<option disabled='disabled' selected>Выберите приз</option>
 					<option>Супер-Выстрел 50000 шт</option>
 					<option>Усиленная мина 100 шт</option>
 					<option>Большая аптечка 100 шт</option>
@@ -97,7 +125,7 @@
 					<input  class=\"searhpoisk\" type=\"submit\" id=\"submit\" value=\"Отправить\" disabled>
 					</td>
 					</tr>
-				</form>
+				<!--</form>-->
 				</table>";
 					} else if ($open == '2') {
 						echo "<table class='table_dark2'>
