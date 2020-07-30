@@ -19,6 +19,7 @@
   <component name="ProjectId" id="1fOrAPGtqxYP206dNTjvHZb8ADs" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -47,6 +48,7 @@
       <workItem from="1596099894631" duration="32000" />
       <workItem from="1596099928304" duration="156000" />
       <workItem from="1596100086184" duration="66000" />
+      <workItem from="1596100154283" duration="12710000" />
     </task>
     <servers />
   </component>

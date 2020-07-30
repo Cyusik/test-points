@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru" prefix="og: http://ogp.me/ns#">
 <head>
@@ -48,30 +47,45 @@
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br><br>
-					<input id = \"nickname\" onkeyup=\"checkParams()\" name=\"nicknames5\" type=\"text\" size=\"40\" required/>
-					<input id='nick1' name='nick1' class='nick1' type='text'>
+					<input id = \"nicknames5\" onkeyup=\"checkParams()\" name=\"nicknames5\" type=\"text\" size=\"40\" required/>
+					<input id='search' name='nick1' class='nick1' type='text' maxlength='21'>
 					<td><div id='resultdiv_search'></div></td>
 				</td>	
 				</tr>";
 				?>
 						<script>
 							$(document).ready(function() {
-								$("#nick1").oninput(function() {
-									let val = this.value.trim();
-									if(val != '')
-									{
-										alert([hyi]);
-									} else {
-										$.ajax({
-											type: "POST",
-											url: "form_search.php",
-											data: $("#nick1").serialize(),
-											success: function (result) {
-												$("#resultdiv_search").html(result);
-											},
-										});
+								var timeout;
+								$("#search").keyup(function (I) {
+									switch(I.keyCode) {
+										case 13:
+										case 27:
+										case 38:
+										case 40:
+											break;
+										default:
+											var name = $("#search").val();
+											name = name.replace(/ +/g, ' ').trim();
+											if (name === '') {
+												$("#resultdiv_search").html('');
+											} else {
+												clearTimeout(timeout);
+												timeout = setTimeout(function () {
+													$.ajax({
+														type: "POST",
+														url: "form_search.php",
+														data: {
+															search: name
+														},
+														success: function (respone) {
+															$("#resultdiv_search").html(respone).show();
+														},
+													});
+												}, 330);
+											}
 									}
 								});
+							});
 						</script>
 				<?php
 				echo "<tr>
