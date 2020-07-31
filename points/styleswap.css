@@ -273,10 +273,9 @@ li {
 .table_dark2 td:last-child {
 	border-right: none;
 }
-.table_dark2 tr:hover td {
-	/* text-decoration: underline;*/
+/*.table_dark2 tr:hover td {
 	background:#a5c3cd;
-}
+}*/
 .table_dark2 td.one {
 	width:54px;
 	height:54px;
@@ -430,4 +429,15 @@ select:focus {
 
 }
 /*-----test-valid-------*/
-
+.input-requirements {
+	margin:0;
+}
+.input-requirements li{
+	list-style:none;
+	font-size:12px;
+	font-style:italic;
+	opacity:0.5;
+}
+.input-requirements li.one{
+	margin-left:-15px;
+}

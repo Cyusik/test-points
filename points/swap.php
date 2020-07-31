@@ -47,13 +47,30 @@
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br><br>
-					<input id='search' name='nickname' class='form_input' type='text' maxlength='21' onkeyup='checkParams()' required>
+					<input minlength='3' id='search' name='nickname' class='form_input' type='text' maxlength='21' onkeyup='checkParams()' required>
+					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
+					<li>не менее 3 символов...</li></ul>
 					<td><div id='resultdiv_search'></div></td>
 				</td>	
 				</tr>";
 				?>
 						<script>
 							$(document).ready(function() {
+								$("#search").focus(function () {
+									$("#ul_stop1").stop().animate({
+										height: "20px",
+										opacity: 1,
+									}, 500, function() {
+										$("#ul_stop1").add("ul_stop1").css("display", "block");
+									});
+								});
+								$("#search").blur(function() {
+									$("#ul_stop1").stop().animate({
+										height: "0px",
+										opacity: 0,
+									}, 500, function() {
+									});
+								});
 								var timeout;
 								$("#search").keyup(function (I) {
 									switch(I.keyCode) {
@@ -67,7 +84,7 @@
 											name = name.replace(/ +/g, ' ').trim();
 											if (name === '') {
 												$("#resultdiv_search").html('');
-											} else {
+											} else if (name.length > 2) {
 												clearTimeout(timeout);
 												timeout = setTimeout(function () {
 													$.ajax({
@@ -91,10 +108,39 @@
 				<td>
 					Укажите логин вашего аккаунта:<br>
 					<p style='font-size:12px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль.</p> 
-					<input  id = \"login\" onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" size=\"40\" required/>
+					<input  id = 'login' onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" size=\"40\" required/>
+					<ul id='ul_stop2' class='input-requirements' style='height:0px; opacity:0'>
+						<li class='one'>Примеры:</li>
+						<li>login123@mail.ru</li>
+						<li>vk.com/id23456789...</li>
+						<li>steamcommunity.com/profiles/12345678910...</li>
+						<li>ok.ru/profile/123456789...</li>
+					</ul>
 				</td>
-				</tr>
-				<tr>
+				</tr>";
+				?>
+				<script>
+					$(document).ready(function() {
+						 $("#login").focus(function () {
+						 	$("#ul_stop2").stop().animate({
+								height: "83px",
+								opacity: 1,
+							 }, 800, function() {
+								$("#ul_stop2").add("ul_stop2").css("display", "block");
+							});
+						});
+						$("#login").blur(function() {
+							$("#ul_stop2").stop().animate({
+								height: "0px",
+								opacity: 0,
+							}, 800, function() {
+								//$("#ul_stop2").remove();
+							});
+						});
+					});
+				</script>
+				<?php
+				echo "<tr>
 				<td>
 					Выберите приз:<br><br>
 				<select name=\"priz5\" form=\"foms\">
