@@ -13,7 +13,7 @@
 	<meta property="og:image" content="http://mwogame.com/uploads/images/Gallery/wallpapers/IMG_14062012_192128.png">
 	<link rel="shortcut icon" href="/points/favicon.ico" type="image/x-icon">
 	<link href="/points/normalize.css" rel="stylesheet">
-	<link href="/points/styleobmen.css" rel="stylesheet">
+	<link href="/points/styleswap.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="form.js"></script>
@@ -47,8 +47,7 @@
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br><br>
-					<input id = \"nicknames5\" onkeyup=\"checkParams()\" name=\"nicknames5\" type=\"text\" size=\"40\" required/>
-					<input id='search' name='nick1' class='nick1' type='text' maxlength='21'>
+					<input id='search' name='nickname' class='form_input' type='text' maxlength='21' onkeyup='checkParams()' required>
 					<td><div id='resultdiv_search'></div></td>
 				</td>	
 				</tr>";
