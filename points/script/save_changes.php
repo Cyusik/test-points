@@ -5,8 +5,8 @@ if (isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['poin
 	$nick_user = $_POST['nick_user'];
 	$point_user = $_POST['point_user'];
 	$history_user = $_POST['history_user'];
-	if($nick_user == true) {
-		if($point_user == true) {
+	if($nick_user != "") {
+		if($point_user != "") {
 			$query = "UPDATE tablballs SET nickname='$nick_user', balls='$point_user', history='$history_user' WHERE id='$id_user'";
 			$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
 			if($result) {

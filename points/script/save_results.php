@@ -6,8 +6,8 @@ if (isset($_POST['id_results']) && isset($_POST['dates_results']) && isset($_POS
 	$nick_results = $_POST['nick_results'];
 	$result_results = $_POST['result_results'];
 	$cause_results = $_POST['cause_results'];
-	if($nick_results == true) {
-		if($result_results == true) {
+	if($nick_results != "") {
+		if($result_results != "") {
 			$query = "UPDATE itogobmen SET nickname='$nick_results', itog='$result_results', prichina='$cause_results' WHERE id='$id_results'";
 			$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
 			if($result) {

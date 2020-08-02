@@ -6,11 +6,10 @@ if (isset($_POST['dates']) && isset($_POST['nickname'])  && isset($_POST['itog']
 	$nickname = $_POST['nickname'];
 	$itog = $_POST['itog'];
 	$prichina = $_POST ['prichina'];
-	if ($dates == true) {
-		if($nickname == true) {
-			  if($itog == true) {
+		if($nickname != "") {
+			  if($itog != "") {
 					  $result = $link->query("INSERT INTO ".$db_table." (dates,nickname,itog,prichina) VALUES ('$dates','$nickname','$itog','$prichina')");
-					  if($result == true) {
+					  if($result) {
 						  echo "<div class='modal_div_content' data-title='Строка добавлена...'></div>";
 					  }
 					  else {
@@ -21,9 +20,6 @@ if (isset($_POST['dates']) && isset($_POST['nickname'])  && isset($_POST['itog']
 			  }
 			  }else {
 			echo "<div class='modal_div_content' data-title='Заполни поле никнейм'></div>";
-		}
-			} else {
-		echo "<div class='modal_div_content' data-title='Заполни поле даты'></div>";
-	} $link->close();
+		}$link->close();
 }
 ?>
