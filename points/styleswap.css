@@ -441,3 +441,21 @@ select:focus {
 .input-requirements li.one{
 	margin-left:-15px;
 }
+/*----add-and-del-prizes------*/
+.add {
+	width:20px;
+	height:20px;
+	display:block;
+	text-align:center;
+	border:1px solid black;
+	margin-top: 10px;
+	transition: .3s;
+}
+.add:hover {
+	display:block;
+	text-align:center;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+	background-color: #a5c3cd;
+}

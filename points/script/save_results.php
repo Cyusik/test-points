@@ -3,8 +3,8 @@ if (isset($_POST['id_results']) && isset($_POST['dates_results']) && isset($_POS
 	include_once 'connect.php';
 	$id_results = $_POST['id_results'];
 	$dates_results = $_POST['dates_results'];
-	$nick_results = $_POST['nick_results'];
-	$result_results = $_POST['result_results'];
+	$nick_results = trim($_POST['nick_results']);
+	$result_results = trim($_POST['result_results']);
 	$cause_results = $_POST['cause_results'];
 	if($nick_results != "") {
 		if($result_results != "") {

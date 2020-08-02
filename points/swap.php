@@ -35,7 +35,7 @@
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
 				echo "<table class='table_dark2'>
-				<!--<form id= \"foms\" method=\"POST\" action=\"/points/script/swapform.php\">-->";
+				<form id= 'forms' method= 'POST' action=\"/points/script/swapform.php\">";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];
@@ -47,7 +47,7 @@
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br><br>
-					<input minlength='3' id='search' name='nickname' class='form_input' type='text' maxlength='21' onkeyup='checkParams()' required>
+					<input minlength='3' id='search' name='nickname' class='form_input' type='text' maxlength='21' onkeyup=\"checkParams()\" required>
 					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
 					<li>не менее 3 символов...</li></ul>
 					<td><div id='resultdiv_search'></div></td>
@@ -56,7 +56,8 @@
 				?>
 						<script>
 							$(document).ready(function() {
-								$("#search").focus(function () {
+								var search = $("#search");
+								search.focus(function () {
 									$("#ul_stop1").stop().animate({
 										height: "20px",
 										opacity: 1,
@@ -64,7 +65,7 @@
 										$("#ul_stop1").add("ul_stop1").css("display", "block");
 									});
 								});
-								$("#search").blur(function() {
+								search.blur(function() {
 									$("#ul_stop1").stop().animate({
 										height: "0px",
 										opacity: 0,
@@ -72,7 +73,7 @@
 									});
 								});
 								var timeout;
-								$("#search").keyup(function (I) {
+								search.keyup(function (I) {
 									switch(I.keyCode) {
 										case 13:
 										case 27:
@@ -108,7 +109,7 @@
 				<td>
 					Укажите логин вашего аккаунта:<br>
 					<p style='font-size:12px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль.</p> 
-					<input  id = 'login' onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" size=\"40\" required/>
+					<input  id = 'login' onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" required/>
 					<ul id='ul_stop2' class='input-requirements' style='height:0px; opacity:0'>
 						<li class='one'>Примеры:</li>
 						<li>login123@mail.ru</li>
@@ -121,7 +122,8 @@
 				?>
 				<script>
 					$(document).ready(function() {
-						 $("#login").focus(function () {
+						var login =  $("#login");
+						login.focus(function () {
 						 	$("#ul_stop2").stop().animate({
 								height: "83px",
 								opacity: 1,
@@ -129,7 +131,7 @@
 								$("#ul_stop2").add("ul_stop2").css("display", "block");
 							});
 						});
-						$("#login").blur(function() {
+						login.blur(function() {
 							$("#ul_stop2").stop().animate({
 								height: "0px",
 								opacity: 0,
@@ -143,7 +145,7 @@
 				echo "<tr>
 				<td>
 					Выберите приз:<br><br>
-				<select name=\"priz5\" form=\"foms\">
+				<select name='priz5' form='form'>
 					<option disabled='disabled' selected>Выберите приз</option>
 					<option>Супер-Выстрел 50000 шт</option>
 					<option>Усиленная мина 100 шт</option>
@@ -173,14 +175,58 @@
 					<option>Левиафан на 30 дней</option>
 					<option>VIP-аккаунт на 30 дней</option>
 					</select>
+					<div id='select0'></div>
+					<div class='add' onclick='addSelect()' title='Хочу ещё'>+</div>
 					</td>			
 					</tr>
 					<tr>
 					<td>
 					<input  class=\"searhpoisk\" type=\"submit\" id=\"submit\" value=\"Отправить\" disabled>
 					</td>
-					</tr>
-				<!--</form>-->
+					</tr>";
+				?>
+				<script>
+					var x = 0;
+					function addSelect() {
+						if (x < 10) {
+							var newstr = '<select name=\'priz5\' form=\'form\'>\n' +
+								'\t\t\t\t\t<option disabled=\'disabled\' selected>Выберите приз</option>\n' +
+								'\t\t\t\t\t<option>Супер-Выстрел 50000 шт</option>\n' +
+								'\t\t\t\t\t<option>Усиленная мина 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Большая аптечка 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Усиленное поле 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Усиленный щит 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Двойной нитро 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Усиленный сканер 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Усиленные батареи 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Дымовой заслон 100 шт</option>\n' +
+								'\t\t\t\t\t<option>Циклотрон IV+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Катушка V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Накопитель IV+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Турбонаддув IV+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Обшивка IV+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Стабилизатор V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Дальнометр V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Целеуказатель V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Усилитель руля V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Подшипник V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Локатор V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Антирадар V+ 1 шт</option>\n' +
+								'\t\t\t\t\t<option>Хищник на 30 дней</option>\n' +
+								'\t\t\t\t\t<option>Борей на 30 дней</option>\n' +
+								'\t\t\t\t\t<option>Титан на 30 дней</option>\n' +
+								'\t\t\t\t\t<option>Тень на 30 дней</option>\n' +
+								'\t\t\t\t\t<option>Левиафан на 30 дней</option>\n' +
+								'\t\t\t\t\t<option>VIP-аккаунт на 30 дней</option>\n' +
+								'\t\t\t\t\t</select> <div id="select' + (x + 1) + '"></div>';
+							document.getElementById('select' + x).innerHTML = newstr;
+							x++;
+						}
+						
+					}
+				</script>
+				<?php
+				echo "</form>
 				</table>";
 					} else if ($open == '2') {
 						echo "<table class='table_dark2'>

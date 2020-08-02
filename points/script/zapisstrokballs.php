@@ -2,8 +2,8 @@
 if(isset($_POST['nickname']) && isset($_POST['balls']) && isset($_POST['history'])) {
 		include_once '../script/connect.php';
 		$db_table = "tablballs";
-		$nickname = $_POST['nickname'];
-		$balls = $_POST['balls'];
+		$nickname = trim($_POST['nickname']);
+		$balls = trim($_POST['balls']);
 		$history = $_POST ['history'];
 		if($nickname != "") {
 			if($balls != "") {

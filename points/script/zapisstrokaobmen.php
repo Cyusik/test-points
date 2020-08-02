@@ -3,8 +3,8 @@ if (isset($_POST['dates']) && isset($_POST['nickname'])  && isset($_POST['itog']
 	include_once '../script/connect.php';
 	$db_table = "itogobmen";
 	$dates = $_POST['dates'];
-	$nickname = $_POST['nickname'];
-	$itog = $_POST['itog'];
+	$nickname = trim($_POST['nickname']);
+	$itog = trim($_POST['itog']);
 	$prichina = $_POST ['prichina'];
 		if($nickname != "") {
 			  if($itog != "") {

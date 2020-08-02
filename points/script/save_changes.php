@@ -2,8 +2,8 @@
 if (isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['point_user']) && isset($_POST['history_user'])) {
 	include_once 'connect.php';
 	$id_user = $_POST['id_user'];
-	$nick_user = $_POST['nick_user'];
-	$point_user = $_POST['point_user'];
+	$nick_user = trim($_POST['nick_user']);
+	$point_user = trim($_POST['point_user']);
 	$history_user = $_POST['history_user'];
 	if($nick_user != "") {
 		if($point_user != "") {

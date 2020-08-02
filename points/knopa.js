@@ -2,7 +2,7 @@ function checkParams() {
 	var nickname = $('#nickname').val();
 	var login = $('#login').val();
 
-	if(nickname.length != 0 && login.length != 0) {
+	if(nickname.length != "" && login.length != "") {
 		$('#submit').removeAttr('disabled');
 	} else {
 		$('#submit').attr('disabled', 'disabled');
