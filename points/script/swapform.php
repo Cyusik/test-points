@@ -1,16 +1,25 @@
 <?php
+print '<pre>';
+print_r($_POST);
+exit;
 include_once 'connect.php';
 $query = "SELECT * FROM formobmen WHERE `open`";
 $link->set_charset("utf8");
 $result = mysqli_query($link, $query);
 if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['priz5'])){
+	foreach($_POST['priz5'] as $k=>$m) {
+		if (!empty($m)) {
+			$mass[$k] = $m;
+		}
+	} print '<pre>';
+	print_r($_POST);
 	while($row = $result->fetch_assoc()) {
 		$open = $row['open'];
 		if($open == '1') {
 			//$result->free();
 			$nicknames5 = mysqli_real_escape_string($link, $_POST['nicknames5']);
 			$login5 = mysqli_real_escape_string($link, $_POST['login5']);
-			$priz5 = mysqli_real_escape_string($link, $_POST['priz5']);
+			//$priz5 = mysqli_real_escape_string($link, $_POST['priz5']);
 
 			$link->query("INSERT INTO zapisform (nickname,account,priz) VALUES ('$nicknames5','$login5','$priz5')");
 			if($result == true) {

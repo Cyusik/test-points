@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('form').submit(function(event) {
+	$('#forms').submit(function(event) {
 		event.preventDefault();
 
 		$.ajax({
@@ -11,7 +11,7 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				$('#resultdiv').html(data);
-				$('#nickname').val('');
+				$('#search').val('');
 				$('#login').val('');
 				},
 		});

@@ -47,7 +47,7 @@
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br><br>
-					<input minlength='3' id='search' name='nickname' class='form_input' type='text' maxlength='21' onkeyup=\"checkParams()\" required>
+					<input minlength='3' id='search' name='nicknames5' class='form_input' type='text' maxlength='21' onkeyup=\"checkParams()\" required>
 					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
 					<li>не менее 3 символов...</li></ul>
 					<td><div id='resultdiv_search'></div></td>
@@ -147,7 +147,7 @@
 			<div id='list'>
 					Выберите приз:<br><br>
 					<div id='select0'></div>
-				<select name='priz5' form='form'>
+				<select type='text' name='priz5[]' form='forms'>
 					<option disabled='disabled' selected>Выберите приз</option>
 					<option>Супер-Выстрел 50000 шт</option>
 					<option>Усиленная мина 100 шт</option>
@@ -183,7 +183,7 @@
 					</tr>
 					<tr>
 					<td>
-					<input  class=\"searhpoisk\" type=\"submit\" id=\"submit\" value=\"Отправить\" disabled>
+					<input  class=\"searhpoisk\" type=\"submit\" id=\"submit\" value=\"Отправить\">
 					</td>
 					</tr>";
 				?>
@@ -194,7 +194,7 @@
 							var list = document.getElementById('list');
 							var div = document.createElement('div');
 							div.id = 'select' + ++x;
-							div.innerHTML = '<select name=\'priz5\' form=\'form\'>\n' +
+							div.innerHTML = '<select type="text" name=\'priz5[]\' form=\'form\'>\n' +
 								'<option disabled=\'disabled\' selected>Выберите приз</option>\n' +
 								'<option>Супер-Выстрел 50000 шт</option>\n' +
 								'<option>Усиленная мина 100 шт</option>\n' +
