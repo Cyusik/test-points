@@ -144,7 +144,9 @@
 				<?php
 				echo "<tr>
 				<td>
+			<div id='list'>
 					Выберите приз:<br><br>
+					<div id='select0'></div>
 				<select name='priz5' form='form'>
 					<option disabled='disabled' selected>Выберите приз</option>
 					<option>Супер-Выстрел 50000 шт</option>
@@ -175,8 +177,8 @@
 					<option>Левиафан на 30 дней</option>
 					<option>VIP-аккаунт на 30 дней</option>
 					</select>
-					<div id='select0'></div>
-					<div class='add' onclick='addSelect()' title='Хочу ещё'>+</div>
+			</div>
+					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
 					</td>			
 					</tr>
 					<tr>
@@ -189,40 +191,47 @@
 					var x = 0;
 					function addSelect() {
 						if (x < 10) {
-							var newstr = '<select name=\'priz5\' form=\'form\'>\n' +
-								'\t\t\t\t\t<option disabled=\'disabled\' selected>Выберите приз</option>\n' +
-								'\t\t\t\t\t<option>Супер-Выстрел 50000 шт</option>\n' +
-								'\t\t\t\t\t<option>Усиленная мина 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Большая аптечка 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Усиленное поле 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Усиленный щит 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Двойной нитро 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Усиленный сканер 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Усиленные батареи 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Дымовой заслон 100 шт</option>\n' +
-								'\t\t\t\t\t<option>Циклотрон IV+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Катушка V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Накопитель IV+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Турбонаддув IV+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Обшивка IV+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Стабилизатор V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Дальнометр V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Целеуказатель V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Усилитель руля V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Подшипник V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Локатор V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Антирадар V+ 1 шт</option>\n' +
-								'\t\t\t\t\t<option>Хищник на 30 дней</option>\n' +
-								'\t\t\t\t\t<option>Борей на 30 дней</option>\n' +
-								'\t\t\t\t\t<option>Титан на 30 дней</option>\n' +
-								'\t\t\t\t\t<option>Тень на 30 дней</option>\n' +
-								'\t\t\t\t\t<option>Левиафан на 30 дней</option>\n' +
-								'\t\t\t\t\t<option>VIP-аккаунт на 30 дней</option>\n' +
-								'\t\t\t\t\t</select> <div id="select' + (x + 1) + '"></div>';
-							document.getElementById('select' + x).innerHTML = newstr;
-							x++;
+							var list = document.getElementById('list');
+							var div = document.createElement('div');
+							div.id = 'select' + ++x;
+							div.innerHTML = '<select name=\'priz5\' form=\'form\'>\n' +
+								'<option disabled=\'disabled\' selected>Выберите приз</option>\n' +
+								'<option>Супер-Выстрел 50000 шт</option>\n' +
+								'<option>Усиленная мина 100 шт</option>\n' +
+								'<option>Большая аптечка 100 шт</option>\n' +
+								'<option>Усиленное поле 100 шт</option>\n' +
+								'<option>Усиленный щит 100 шт</option>\n' +
+								'<option>Двойной нитро 100 шт</option>\n' +
+								'<option>Усиленный сканер 100 шт</option>\n' +
+								'<option>Усиленные батареи 100 шт</option>\n' +
+								'<option>Дымовой заслон 100 шт</option>\n' +
+								'<option>Циклотрон IV+ 1 шт</option>\n' +
+								'<option>Катушка V+ 1 шт</option>\n' +
+								'<option>Накопитель IV+ 1 шт</option>\n' +
+								'<option>Турбонаддув IV+ 1 шт</option>\n' +
+								'<option>Обшивка IV+ 1 шт</option>\n' +
+								'<option>Стабилизатор V+ 1 шт</option>\n' +
+								'<option>Дальнометр V+ 1 шт</option>\n' +
+								'<option>Целеуказатель V+ 1 шт</option>\n' +
+								'<option>Усилитель руля V+ 1 шт</option>\n' +
+								'<option>Подшипник V+ 1 шт</option>\n' +
+								'<option>Локатор V+ 1 шт</option>\n' +
+								'<option>Антирадар V+ 1 шт</option>\n' +
+								'<option>Хищник на 30 дней</option>\n' +
+								'<option>Борей на 30 дней</option>\n' +
+								'<option>Титан на 30 дней</option>\n' +
+								'<option>Тень на 30 дней</option>\n' +
+								'<option>Левиафан на 30 дней</option>\n' +
+								'<option>VIP-аккаунт на 30 дней</option>\n' +
+								'</select>';
+							list.appendChild(div);
 						}
-						
+					}
+						function delSelect() {
+						if (x > 0) {var div = document.getElementById('select' + x);
+							div.remove();
+							--x;
+						}
 					}
 				</script>
 				<?php

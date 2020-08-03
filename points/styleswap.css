@@ -393,9 +393,12 @@ hr {
 	right: 0;
 	border-radius:10px;
 	cursor:pointer;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+	transition: .3s;
 }
-.searhpoisk:focus {
+.searhpoisk:hover {
 	background:#52a3bc;
+	box-shadow:none;
 }
 
 
@@ -441,21 +444,36 @@ select:focus {
 .input-requirements li.one{
 	margin-left:-15px;
 }
+select, .ul_stop2 {
+	position:relative;
+}
+.ul_stop2 {
+	z-index:1;
+}
+select {
+	z-index:2;
+}
+select:hover {
+	cursor:pointer;
+}
 /*----add-and-del-prizes------*/
 .add {
-	width:20px;
-	height:20px;
-	display:block;
 	text-align:center;
-	border:1px solid black;
-	margin-top: 10px;
+	margin: 7px;
 	transition: .3s;
+	width: 100px;
+	height: 30px;
+	line-height:30px;
+	background: #52a3bc;
+	border:#52a3bc;
+	border-radius:10px;
+	float:left;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
 }
 .add:hover {
 	display:block;
 	text-align:center;
-	width:25px;
-	height:25px;
 	cursor:pointer;
-	background-color: #a5c3cd;
+	background-color:#52a3bc;
+	box-shadow:none;
 }
