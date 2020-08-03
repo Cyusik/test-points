@@ -142,6 +142,7 @@ h3 {
 	border-radius:10px;
 }
 .table_dark2 {
+	font-size:13px;
 	width:100%;
 	margin-left:3px;
 	margin-right:3px;
@@ -152,6 +153,15 @@ h3 {
 	background:#f1f1f1;
 	text-align:center;
 	color:black;
+}
+.table_dark2 th:nth-child(4),td:nth-child(4) {
+	word-break: break-all;
+}
+.table_dark2 th:nth-child(2),td:nth-child(2) {
+	width: 140px;
+}
+.table_dark2 th:nth-child(5),td:nth-child(5) {
+	width: 180px;
 }
 
 .modal {

@@ -146,18 +146,18 @@
 				<td>
 			<div id='list'>
 					Выберите приз:<br><br>
-					<div id='select0'></div>
-				<select type='text' name='priz5[]' form='forms'>
-					<option disabled='disabled' selected>Выберите приз</option>
-					<option>Супер-Выстрел 50000 шт</option>
-					<option>Усиленная мина 100 шт</option>
-					<option>Большая аптечка 100 шт</option>
-					<option>Усиленное поле 100 шт</option>
-					<option>Усиленный щит 100 шт</option>
-					<option>Двойной нитро 100 шт</option>
-					<option>Усиленный сканер 100 шт</option>
-					<option>Усиленные батареи 100 шт</option>
-					<option>Дымовой заслон 100 шт</option>
+					<div id='select0'>
+				<!--<select id='prizes' type='text' name='priz5[]' form='forms' required>
+					<option value='нет' disabled='disabled' selected></option>
+					<option value='100'>Супер-Выстрел 50000 шт</option>
+					<option value='100'>Усиленная мина 100 шт</option>
+					<option value='100'>Большая аптечка 100 шт</option>
+					<option value='100'>Усиленное поле 100 шт</option>
+					<option value='100'>Усиленный щит 100 шт</option>
+					<option value='100'>Двойной нитро 100 шт</option>
+					<option value='100'>Усиленный сканер 100 шт</option>
+					<option value='100'>Усиленные батареи 100 шт</option>
+					<option value='100'>Дымовой заслон 100 шт</option>
 					<option>Циклотрон IV+ 1 шт</option>
 					<option>Катушка V+ 1 шт</option>
 					<option>Накопитель IV+ 1 шт</option>
@@ -176,9 +176,13 @@
 					<option>Тень на 30 дней</option>
 					<option>Левиафан на 30 дней</option>
 					<option>VIP-аккаунт на 30 дней</option>
-					</select>
+					</select>-->
+					</div>
 			</div>
 					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
+					</td>
+					<td>
+					<div id='prizes-result'></div>
 					</td>			
 					</tr>
 					<tr>
@@ -189,22 +193,23 @@
 				?>
 				<script>
 					var x = 0;
+					var y = 1;
 					function addSelect() {
 						if (x < 10) {
 							var list = document.getElementById('list');
 							var div = document.createElement('div');
 							div.id = 'select' + ++x;
-							div.innerHTML = '<select type="text" name=\'priz5[]\' form=\'form\'>\n' +
-								'<option disabled=\'disabled\' selected>Выберите приз</option>\n' +
-								'<option>Супер-Выстрел 50000 шт</option>\n' +
-								'<option>Усиленная мина 100 шт</option>\n' +
-								'<option>Большая аптечка 100 шт</option>\n' +
-								'<option>Усиленное поле 100 шт</option>\n' +
-								'<option>Усиленный щит 100 шт</option>\n' +
-								'<option>Двойной нитро 100 шт</option>\n' +
-								'<option>Усиленный сканер 100 шт</option>\n' +
-								'<option>Усиленные батареи 100 шт</option>\n' +
-								'<option>Дымовой заслон 100 шт</option>\n' +
+							div.innerHTML = '<select id="prizes1' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
+								'<option disabled=\'disabled\' selected></option>\n' +
+								'<option value=\'100\'>Супер-Выстрел 50000 шт</option>\n' +
+								'<option value=\'100\'>Усиленная мина 100 шт</option>\n' +
+								'<option value=\'100\'>Большая аптечка 100 шт</option>\n' +
+								'<option value=\'100\'>Усиленное поле 100 шт</option>\n' +
+								'<option value=\'100\'>Усиленный щит 100 шт</option>\n' +
+								'<option value=\'100\'>Двойной нитро 100 шт</option>\n' +
+								'<option value=\'100\'>Усиленный сканер 100 шт</option>\n' +
+								'<option value=\'100\'>Усиленные батареи 100 шт</option>\n' +
+								'<option value=\'100\'>Дымовой заслон 100 шт</option>\n' +
 								'<option>Циклотрон IV+ 1 шт</option>\n' +
 								'<option>Катушка V+ 1 шт</option>\n' +
 								'<option>Накопитель IV+ 1 шт</option>\n' +
@@ -225,14 +230,26 @@
 								'<option>VIP-аккаунт на 30 дней</option>\n' +
 								'</select>';
 							list.appendChild(div);
+							++y;
+							$(document).ready(function() {
+								var bal = $('#prizes-result');
+								$('select').click(function(event) {
+								var prizeId = $(this).attr('id');
+								//$('#prizes12').click(function() {
+									var value = $(prizeId).val();
+									bal.html('Результат: ' + value);
+								});
+							});
 						}
 					}
+
 						function delSelect() {
 						if (x > 0) {var div = document.getElementById('select' + x);
 							div.remove();
 							--x;
 						}
 					}
+
 				</script>
 				<?php
 				echo "</form>

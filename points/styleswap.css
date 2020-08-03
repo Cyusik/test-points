@@ -153,7 +153,9 @@ li {
 /* -------------------------------------------------------------------------
 -------------------ДАЛЬШЕ СПЕЦИАЛЬНО ДЛЯ СПИСКА ПРИЗОВ ---------------------
  -----------------------------------------------------------------------*/
-
+input {
+	outline:none;
+}
 .spisok-priz {
 	padding-bottom:5px;
 	float:left;
@@ -384,7 +386,8 @@ hr {
 	background:#d0e7ed;
 }
 .searhpoisk {
-	width: 100px;
+	padding-left: 10px;
+	padding-right: 10px;
 	height: 30px;
 	background: #52a3bc;
 	float:right;
@@ -397,7 +400,11 @@ hr {
 	transition: .3s;
 }
 .searhpoisk:hover {
-	background:#52a3bc;
+	background-color:#52a3bc;
+	box-shadow: 4px 4px 7px rgba(0,0,0,0.5)
+}
+.searhpoisk:active {
+	background: #d0e7ed;
 	box-shadow:none;
 }
 
@@ -461,7 +468,8 @@ select:hover {
 	text-align:center;
 	margin: 7px;
 	transition: .3s;
-	width: 100px;
+	padding-left: 10px;
+	padding-right: 10px;
 	height: 30px;
 	line-height:30px;
 	background: #52a3bc;
@@ -475,5 +483,9 @@ select:hover {
 	text-align:center;
 	cursor:pointer;
 	background-color:#52a3bc;
+	box-shadow: 4px 4px 7px rgba(0,0,0,0.5)
+}
+.add:active {
+	background: #d0e7ed;
 	box-shadow:none;
 }
