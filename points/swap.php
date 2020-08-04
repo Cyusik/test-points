@@ -17,6 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="form.js"></script>
+
 </head>
 <body>
 <div class="main">
@@ -194,6 +195,7 @@
 				<script>
 					var x = 0;
 					var y = 1;
+					var i = 1;
 					function addSelect() {
 						if (x < 10) {
 							var list = document.getElementById('list');
@@ -233,19 +235,23 @@
 							++y;
 							$(document).ready(function() {
 								var bal = $('#prizes-result');
-								$('select').click(function(event) {
-								var prizeId = $(this).attr('id');
-								//$('#prizes12').click(function() {
-									var value = $(prizeId).val();
-									bal.html('Результат: ' + value);
+								$('div > select').hover(function(event) {
+									//var prizeId = $(this);
+									//$('#prizes12').click(function() {
+									var add = 1+i;
+									var arr.add = [$(this).val()];
+									bal.html('Стоимость: ' + arr.add);
 								});
-							});
+							}); ++arr;
 						}
 					}
 
 						function delSelect() {
-						if (x > 0) {var div = document.getElementById('select' + x);
+						if (x > 0) {
+							var div = document.getElementById('select' + x);
+							var result = document.getElementById('prizes-result');
 							div.remove();
+							result.innerHTML = '';
 							--x;
 						}
 					}
@@ -286,6 +292,7 @@
 	</div>
 </div>
 <script src="knopa.js"></script>
+
 </body>
 <footer>
 	<div class="foot">
