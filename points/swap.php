@@ -147,43 +147,12 @@
 				<td>
 			<div id='list'>
 					Выберите приз:<br><br>
-					<div id='select0'>
-				<!--<select id='prizes' type='text' name='priz5[]' form='forms' required>
-					<option value='нет' disabled='disabled' selected></option>
-					<option value='100'>Супер-Выстрел 50000 шт</option>
-					<option value='100'>Усиленная мина 100 шт</option>
-					<option value='100'>Большая аптечка 100 шт</option>
-					<option value='100'>Усиленное поле 100 шт</option>
-					<option value='100'>Усиленный щит 100 шт</option>
-					<option value='100'>Двойной нитро 100 шт</option>
-					<option value='100'>Усиленный сканер 100 шт</option>
-					<option value='100'>Усиленные батареи 100 шт</option>
-					<option value='100'>Дымовой заслон 100 шт</option>
-					<option>Циклотрон IV+ 1 шт</option>
-					<option>Катушка V+ 1 шт</option>
-					<option>Накопитель IV+ 1 шт</option>
-					<option>Турбонаддув IV+ 1 шт</option>
-					<option>Обшивка IV+ 1 шт</option>
-					<option>Стабилизатор V+ 1 шт</option>
-					<option>Дальнометр V+ 1 шт</option>
-					<option>Целеуказатель V+ 1 шт</option>
-					<option>Усилитель руля V+ 1 шт</option>
-					<option>Подшипник V+ 1 шт</option>
-					<option>Локатор V+ 1 шт</option>
-					<option>Антирадар V+ 1 шт</option>
-					<option>Хищник на 30 дней</option>
-					<option>Борей на 30 дней</option>
-					<option>Титан на 30 дней</option>
-					<option>Тень на 30 дней</option>
-					<option>Левиафан на 30 дней</option>
-					<option>VIP-аккаунт на 30 дней</option>
-					</select>-->
-					</div>
+					<div id='select0'></div>
+					<span id='prizes-result0'></span>
 			</div>
 					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
 					</td>
 					<td>
-					<div id='prizes-result'></div>
 					</td>			
 					</tr>
 					<tr>
@@ -200,11 +169,14 @@
 						if (x < 10) {
 							var list = document.getElementById('list');
 							var div = document.createElement('div');
+							var span = document.createElement('span');
 							div.id = 'select' + ++x;
+							span.id = 'prizes-result' + ++i;
+							span.innerHTML = '<span id="priv">колхоз</span>';
 							div.innerHTML = '<select id="prizes1' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
 								'<option disabled=\'disabled\' selected></option>\n' +
 								'<option value=\'100\'>Супер-Выстрел 50000 шт</option>\n' +
-								'<option value=\'100\'>Усиленная мина 100 шт</option>\n' +
+								'<option value=\'200\'>Усиленная мина 100 шт</option>\n' +
 								'<option value=\'100\'>Большая аптечка 100 шт</option>\n' +
 								'<option value=\'100\'>Усиленное поле 100 шт</option>\n' +
 								'<option value=\'100\'>Усиленный щит 100 шт</option>\n' +
@@ -231,18 +203,18 @@
 								'<option>Левиафан на 30 дней</option>\n' +
 								'<option>VIP-аккаунт на 30 дней</option>\n' +
 								'</select>';
-							list.appendChild(div);
-							++y;
 							$(document).ready(function() {
-								var bal = $('#prizes-result');
-								$('div > select').hover(function(event) {
+								var bal = $('span');
+								$('div > select').change(function(event) {
 									//var prizeId = $(this);
 									//$('#prizes12').click(function() {
-									var add = 1+i;
-									var arr.add = [$(this).val()];
-									bal.html('Стоимость: ' + arr.add);
+									var arr = [$(this).val()];
+									bal.html('<input id="onearr1'+ i +'" type="text" value="'+ arr +'">');
 								});
-							}); ++arr;
+							});
+							list.appendChild(div);
+							list.appendChild(span);
+							++y;
 						}
 					}
 
