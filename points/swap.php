@@ -175,15 +175,15 @@
 							span.innerHTML = '<span id="priv">колхоз</span>';
 							div.innerHTML = '<select id="prizes1' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
 								'<option disabled=\'disabled\' selected></option>\n' +
-								'<option value=\'100\'>Супер-Выстрел 50000 шт</option>\n' +
-								'<option value=\'200\'>Усиленная мина 100 шт</option>\n' +
-								'<option value=\'100\'>Большая аптечка 100 шт</option>\n' +
-								'<option value=\'100\'>Усиленное поле 100 шт</option>\n' +
-								'<option value=\'100\'>Усиленный щит 100 шт</option>\n' +
-								'<option value=\'100\'>Двойной нитро 100 шт</option>\n' +
-								'<option value=\'100\'>Усиленный сканер 100 шт</option>\n' +
-								'<option value=\'100\'>Усиленные батареи 100 шт</option>\n' +
-								'<option value=\'100\'>Дымовой заслон 100 шт</option>\n' +
+								'<option>Супер-Выстрел 50000 шт</option>\n' +
+								'<option>Усиленная мина 100 шт</option>\n' +
+								'<option>Большая аптечка 100 шт</option>\n' +
+								'<option>Усиленное поле 100 шт</option>\n' +
+								'<option>Усиленный щит 100 шт</option>\n' +
+								'<option>Двойной нитро 100 шт</option>\n' +
+								'<option>Усиленный сканер 100 шт</option>\n' +
+								'<option>Усиленные батареи 100 шт</option>\n' +
+								'<option>Дымовой заслон 100 шт</option>\n' +
 								'<option>Циклотрон IV+ 1 шт</option>\n' +
 								'<option>Катушка V+ 1 шт</option>\n' +
 								'<option>Накопитель IV+ 1 шт</option>\n' +
