@@ -56,7 +56,7 @@
 				</tr>";
 				?>
 						<script>
-							$(document).ready(function() {
+						$(document).ready(function() {
 								var search = $("#search");
 								search.focus(function () {
 									$("#ul_stop1").stop().animate({
@@ -148,12 +148,12 @@
 			<div id='list'>
 					Выберите приз:<br><br>
 					<div id='select0'></div>
-					<span id='prizes-result0'></span>
 			</div>
 					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
 					</td>
 					<td>
-					</td>			
+					<div id='resultdiv10'></div>
+					</td>		
 					</tr>
 					<tr>
 					<td>
@@ -171,9 +171,7 @@
 							var div = document.createElement('div');
 							var span = document.createElement('span');
 							div.id = 'select' + ++x;
-							span.id = 'prizes-result' + ++i;
-							span.innerHTML = '<span id="priv">колхоз</span>';
-							div.innerHTML = '<select id="prizes1' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
+							div.innerHTML = '<select id="test' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
 								'<option disabled=\'disabled\' selected></option>\n' +
 								'<option>Супер-Выстрел 50000 шт</option>\n' +
 								'<option>Усиленная мина 100 шт</option>\n' +
@@ -203,18 +201,32 @@
 								'<option>Левиафан на 30 дней</option>\n' +
 								'<option>VIP-аккаунт на 30 дней</option>\n' +
 								'</select>';
+							list.appendChild(div);
+							++y;
 							$(document).ready(function() {
-								var bal = $('span');
-								$('div > select').change(function(event) {
-									//var prizeId = $(this);
-									//$('#prizes12').click(function() {
-									var arr = [$(this).val()];
-									bal.html('<input id="onearr1'+ i +'" type="text" value="'+ arr +'">');
+								var select = $("#list");
+								select.change(function () {
+									var values ='';
+									$.each($("#list select"), function() {
+										values+=[this.value];
+									var names = values;
+									if (names === '') {
+										$("#resultdiv10").html('');
+									} else {
+										$.ajax({
+											type: "POST",
+											url: "select_calc.php",
+											data: {
+												testt: names
+											},
+											success: function (respone) {
+												$("#resultdiv10").html(respone).show();
+											},
+										});
+									}
+									});
 								});
 							});
-							list.appendChild(div);
-							list.appendChild(span);
-							++y;
 						}
 					}
 
@@ -223,7 +235,7 @@
 							var div = document.getElementById('select' + x);
 							var result = document.getElementById('prizes-result');
 							div.remove();
-							result.innerHTML = '';
+							//result.innerHTML = '';
 							--x;
 						}
 					}

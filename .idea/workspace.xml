@@ -21,6 +21,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -55,6 +56,7 @@
       <workItem from="1596958567386" duration="2631000" />
       <workItem from="1596964969514" duration="3590000" />
       <workItem from="1597096808960" duration="1960000" />
+      <workItem from="1597220515417" duration="14422000" />
     </task>
     <servers />
   </component>
