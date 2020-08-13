@@ -248,7 +248,7 @@ hr {
 	text-decoration: none;
 }
 /*------Акции-----------*/
-.table_dark td:nth-child(4) {
+/*.table_dark td:nth-child(4) {
 	color:red;
 	font-weight:bolder;
 }
@@ -259,4 +259,4 @@ hr {
 s {
 	color:black;
 	font-weight:normal;
-}
+}*/

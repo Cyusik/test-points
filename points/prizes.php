@@ -197,7 +197,7 @@
 								</td>
 								<td>"Усиленная мина"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 							<tr>
 								<td class="one">
@@ -205,7 +205,7 @@
 								</td>
 								<td>"Большая аптечка"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 							<tr>
 								<td class="one">
@@ -213,7 +213,7 @@
 								</td>
 								<td>"Усиленное поле"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 							<tr>
 								<td class="one">
@@ -221,7 +221,7 @@
 								</td>
 								<td>"Усиленный щит"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 							<tr>
 								<td class="one">
@@ -229,7 +229,7 @@
 								</td>
 								<td>"Двойной нитро"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 							<tr>
 								<td class="one">
@@ -237,14 +237,14 @@
 								</td>
 								<td>"Усиленный сканер"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							<tr>
 								<td class="one">
 									<img src="object2/Battery.png" alt="no">
 								</td>
 								<td>"Усиленные батареи"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 							<tr>
 								<td class="one">
@@ -252,7 +252,7 @@
 								</td>
 								<td>"Дымовой заслон"</td>
 								<td>100</td>
-								<td><s>100</s> 80</td>
+								<td style="color:black; font-weight:normal">100</td>
 							</tr>
 						</table>
 					</div>
@@ -282,42 +282,42 @@
 									<img src="object3/predator.png" alt="no">
 								</td>
 								<td>"Хищник" на 30 дней</td>
-								<td class="shares"><s>250</s> 220</td>
+								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
 									<img src="object3/borya.png" alt="no">
 								</td>
 								<td>"Борей" на 30 дней</td>
-								<td class="shares"><s>250</s> 220</td>
+								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
 									<img src="object3/titan.png" alt="no">
 								</td>
 								<td>"Титан" на 30 дней</td>
-								<td class="shares"><s>250</s> 220</td>
+								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
 									<img src="object3/ten.png" alt="no">
 								</td>
 								<td>"Тень" на 30 дней</td>
-								<td class="shares"><s>250</s> 220</td>
+								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
 									<img src="object3/leva.png" alt="no">
 								</td>
 								<td>"Левиафан" на 30 дней</td>
-								<td class="shares"><s>250</s> 220</td>
+								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
 									<img src="object3/vip.png" alt="no">
 								</td>
 								<td>VIP-аккаунт на 30 дней</td>
-								<td class="shares"><s>250</s> 220</td>
+								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 						</table>
 					</div>

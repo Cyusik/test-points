@@ -20,7 +20,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/mwo-points" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
@@ -57,6 +57,7 @@
       <workItem from="1596964969514" duration="3590000" />
       <workItem from="1597096808960" duration="1960000" />
       <workItem from="1597220515417" duration="14422000" />
+      <workItem from="1597348377748" duration="864000" />
     </task>
     <servers />
   </component>
