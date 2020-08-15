@@ -203,12 +203,13 @@
 								'</select>';
 							list.appendChild(div);
 							++y;
-							$(document).ready(function() {
+						/*	$(document).ready(function() {
 								var select = $("#list");
 								select.change(function () {
 									var values ='';
 									$.each($("#list select"), function() {
-										values+=[this.value];
+										values+=this.value;
+										alert(values);
 									var names = values;
 									if (names === '') {
 										$("#resultdiv10").html('');
@@ -226,7 +227,7 @@
 									}
 									});
 								});
-							});
+							});*/
 						}
 					}
 
