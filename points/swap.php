@@ -36,7 +36,7 @@
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
 				echo "<table class='table_dark2'>
-				<form id= 'forms' method= 'POST' action=\"/points/script/swapform.php\">";
+				<form id= 'forms' method= 'POST' action=''>";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];
@@ -152,7 +152,9 @@
 					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
 					</td>
 					<td>
-					<div id='resultdiv10'></div>
+					<div>Необходимо баллов:<br><br> 
+						<input id='resultdiv10' style='color:black' type='text' value='' name='points_required' disabled />
+					</div>
 					</td>		
 					</tr>
 					<tr>
@@ -173,71 +175,78 @@
 							div.id = 'select' + ++x;
 							div.innerHTML = '<select id="test' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
 								'<option disabled=\'disabled\' selected></option>\n' +
-								'<option>Супер-Выстрел 50000 шт</option>\n' +
-								'<option>Усиленная мина 100 шт</option>\n' +
-								'<option>Большая аптечка 100 шт</option>\n' +
-								'<option>Усиленное поле 100 шт</option>\n' +
-								'<option>Усиленный щит 100 шт</option>\n' +
-								'<option>Двойной нитро 100 шт</option>\n' +
-								'<option>Усиленный сканер 100 шт</option>\n' +
-								'<option>Усиленные батареи 100 шт</option>\n' +
-								'<option>Дымовой заслон 100 шт</option>\n' +
-								'<option>Циклотрон IV+ 1 шт</option>\n' +
-								'<option>Катушка V+ 1 шт</option>\n' +
-								'<option>Накопитель IV+ 1 шт</option>\n' +
-								'<option>Турбонаддув IV+ 1 шт</option>\n' +
-								'<option>Обшивка IV+ 1 шт</option>\n' +
-								'<option>Стабилизатор V+ 1 шт</option>\n' +
-								'<option>Дальнометр V+ 1 шт</option>\n' +
-								'<option>Целеуказатель V+ 1 шт</option>\n' +
-								'<option>Усилитель руля V+ 1 шт</option>\n' +
-								'<option>Подшипник V+ 1 шт</option>\n' +
-								'<option>Локатор V+ 1 шт</option>\n' +
-								'<option>Антирадар V+ 1 шт</option>\n' +
-								'<option>Хищник на 30 дней</option>\n' +
-								'<option>Борей на 30 дней</option>\n' +
-								'<option>Титан на 30 дней</option>\n' +
-								'<option>Тень на 30 дней</option>\n' +
-								'<option>Левиафан на 30 дней</option>\n' +
-								'<option>VIP-аккаунт на 30 дней</option>\n' +
+								'<option value="100">Супер-Выстрел 50000 шт</option>\n' +
+								'<option value="100">Усиленная мина 100 шт</option>\n' +
+								'<option value="100">Большая аптечка 100 шт</option>\n' +
+								'<option value="100">Усиленное поле 100 шт</option>\n' +
+								'<option value="100">Усиленный щит 100 шт</option>\n' +
+								'<option value="100">Двойной нитро 100 шт</option>\n' +
+								'<option value="100">Усиленный сканер 100 шт</option>\n' +
+								'<option value="100">Усиленные батареи 100 шт</option>\n' +
+								'<option value="100">Дымовой заслон 100 шт</option>\n' +
+								'<option value="410">Циклотрон IV+ 1 шт</option>\n' +
+								'<option value="350">Катушка V+ 1 шт</option>\n' +
+								'<option value="340">Накопитель IV+ 1 шт</option>\n' +
+								'<option value="320">Турбонаддув IV+ 1 шт</option>\n' +
+								'<option value="260">Обшивка IV+ 1 шт</option>\n' +
+								'<option value="220">Стабилизатор V+ 1 шт</option>\n' +
+								'<option value="220">Дальнометр V+ 1 шт</option>\n' +
+								'<option value="210">Целеуказатель V+ 1 шт</option>\n' +
+								'<option value="180">Усилитель руля V+ 1 шт</option>\n' +
+								'<option value="170">Подшипник V+ 1 шт</option>\n' +
+								'<option value="160">Локатор V+ 1 шт</option>\n' +
+								'<option value="110">Антирадар V+ 1 шт</option>\n' +
+								'<option value="250">Хищник на 30 дней</option>\n' +
+								'<option value="250">Борей на 30 дней</option>\n' +
+								'<option value="250">Титан на 30 дней</option>\n' +
+								'<option value="250">Тень на 30 дней</option>\n' +
+								'<option value="250">Левиафан на 30 дней</option>\n' +
+								'<option value="250">VIP-аккаунт на 30 дней</option>\n' +
 								'</select>';
 							list.appendChild(div);
 							++y;
-						/*	$(document).ready(function() {
-								var select = $("#list");
-								select.change(function () {
-									var values ='';
-									$.each($("#list select"), function() {
-										values+=this.value;
-										alert(values);
-									var names = values;
-									if (names === '') {
-										$("#resultdiv10").html('');
-									} else {
-										$.ajax({
-											type: "POST",
-											url: "select_calc.php",
-											data: {
-												testt: names
-											},
-											success: function (respone) {
-												$("#resultdiv10").html(respone).show();
-											},
-										});
-									}
+							$(document).ready(function() {
+								$('#list').change(sum);
+								function sum(){
+									let result=0;
+									$('#list').find('select').each(function(){
+										let value = 0;
+										if (typeof $(this).val() == 'object'){
+											$.each($(this).val(), function(index, val) {
+												value += val*1;
+											});
+										} else {
+											value = $(this).val()
+										}
+										result+=value*1;
 									});
-								});
-							});*/
+									$('#resultdiv10').val(result);
+								}
+							});
 						}
 					}
-
 						function delSelect() {
 						if (x > 0) {
 							var div = document.getElementById('select' + x);
 							var result = document.getElementById('prizes-result');
 							div.remove();
-							//result.innerHTML = '';
 							--x;
+									$('#list').find('select').each(function(){
+										let value = 0;
+										if (typeof $(this).val() == 'object'){
+											$.each($(this).val(), function(index, val) {
+												value += val*1;
+											});
+										} else {
+											value = $(this).val()
+										}
+										result+=value*1;
+									});
+									if (result <= 0) {
+										$('#resultdiv10').val('');
+									} else {
+										$('#resultdiv10').val(result);
+									}
 						}
 					}
 

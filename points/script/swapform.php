@@ -9,6 +9,7 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 		if($open == '1') {
 			//$result->free();
 			$nicknames5 = trim(mysqli_real_escape_string($link, $_POST['nicknames5']));
+			echo $nicknames5;
 			$login5 = trim(mysqli_real_escape_string($link, $_POST['login5']));
 			foreach($_POST['priz5'] as $k=>$m) {
 				if (!empty($m)) {

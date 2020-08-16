@@ -1,6 +1,7 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$('#forms').submit(function(event) {
 		event.preventDefault();
+		//alert('pidor');
 
 		$.ajax({
 			type: $(this).attr('method'),
@@ -17,30 +18,27 @@ $(document).ready(function() {
 		});
 	});
 });
-
-/*-------------------*/
+*/
 $(document).ready(function() {
-	$('#list').change(function() {
-		var values = '';
-		$.each($("#list select"), function () {
-			values += this.value;
-			var names = values;
-			$('#resultdiv10').html('Вывод: ' + names);
-			//$.ajax({
-			//	type:'POST',
-			//	url:'select_calc.php',
-			//	data: {
-			//		testt: names
-			//	},
-				//contentType: false,
-				//cache: false,
-				//processData: false,
-			//	success: function (respone) {
-			//		$('#resultdiv10').html(respone).show();
-					//$('#search').val('');
-					//$('#login').val('');
-			//	},
-			//});
+	$('#submit').on('click',function() {
+		//alert('pidor');
+		//e.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: '/points/script/swapform.php',
+			data: {
+				'nicknames5': name,
+				'login5': name,
+				'priz5': name,
+			},
+			//contentType: false,
+			//cache: false,
+			//processData: false,
+			success: function(respone) {
+				$('#resultdiv').html(respone).show();
+				$('#search').val('');
+				$('#login').val('');
+			},
 		});
 	});
 });
