@@ -36,7 +36,7 @@
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
 				echo "<table class='table_dark2'>
-				<form id= 'forms' method= 'POST'>";
+				<form id= 'forms' name='forms' method= 'POST' action='/points/script/swapform.php'>";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];
@@ -161,9 +161,17 @@
 					<td>
 					<input  class=\"searhpoisk\" type=\"submit\" id=\"submit\" value=\"Отправить\">
 					</td>
-					</tr>";
+					</tr></form>";
 				?>
 				<script>
+					$(document).ready(function() {
+						$("#submit").click(function() {
+							$("select[name='priz5[]'] > option").each(function() {
+								var content = $(this).text();
+								$(this).val(content);
+							});
+						});
+						});
 					var x = 0;
 					var y = 1;
 					var i = 1;
@@ -249,10 +257,9 @@
 									}
 						}
 					}
-
 				</script>
 				<?php
-				echo "</form>
+				echo "
 				</table>";
 					} else if ($open == '2') {
 						echo "<table class='table_dark2'>
@@ -286,7 +293,9 @@
 	</div>
 </div>
 <script src="knopa.js"></script>
+<script>
 
+</script>
 </body>
 <footer>
 	<div class="foot">
