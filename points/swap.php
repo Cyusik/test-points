@@ -36,7 +36,7 @@
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
 				echo "<table class='table_dark2'>
-				<form id= 'forms' method= 'POST' action=''>";
+				<form id= 'forms' method= 'POST'>";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];

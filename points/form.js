@@ -1,6 +1,12 @@
 /*$(document).ready(function() {
 	$('#forms').submit(function(event) {
-		event.preventDefault();
+
+		$("select[name='priz5[]'] > option").each(function(){
+			var content = $(this).text(),
+				val = $(this).val();
+			$(this).val(val + '|' + content);
+			//var serializeFormData = $('#forms').serialize();
+			event.preventDefault();
 		//alert('pidor');
 
 		$.ajax({
@@ -16,10 +22,35 @@
 				$('#login').val('');
 				},
 		});
+		});
 	});
-});
-*/
+});*/
 $(document).ready(function() {
+$('#submit').click(function() {
+	//var serializeFormData = $('#forms').serialize();
+	$("#list")("select[name='priz5[]'] > option").each(function() {
+		var content = $(this).text(),
+			val = $(this).val();
+		$(this).val(val + '|' + content);
+		alert(val);
+	});
+		$.ajax({
+			type: 'POST',
+			url: '/points/script/swapform.php',
+			data: serializeFormData,
+			success: function (data) {
+				//console.log(data);
+				$('#resultdiv').html(data);
+			},
+			error: function (data) {
+				console.log('Внимание! произошла ошибка:' + data);
+			}
+		});
+
+  });
+});
+
+/*$(document).ready(function() {
 	$('#submit').on('click',function() {
 		//alert('pidor');
 		//e.preventDefault();
@@ -41,4 +72,4 @@ $(document).ready(function() {
 			},
 		});
 	});
-});
+});*/
