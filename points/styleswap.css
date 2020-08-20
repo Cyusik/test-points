@@ -257,14 +257,11 @@ input {
 	margin-left: 5px;
 }
 .table_dark2 th {
-	border-bottom: 1px solid #a5c3cd;
 	padding: 12px 17px;
 	text-align:center;
 }
 .table_dark2 td {
 	color: #000000;
-	border-bottom:3px solid #a5c3cd;
-	border-right:3px solid #a5c3cd;
 	padding: 12px 17px;
 	text-align:left;
 }
@@ -451,7 +448,7 @@ select:focus {
 .input-requirements li.one{
 	margin-left:-15px;
 }
-select, .ul_stop2 {
+select, .add, .ul_stop2 {
 	position:relative;
 }
 .ul_stop2 {
@@ -462,6 +459,9 @@ select {
 }
 select:hover {
 	cursor:pointer;
+}
+.add {
+	z-index:2;
 }
 /*----add-and-del-prizes------*/
 .add {

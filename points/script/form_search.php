@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['search'])) {
-	include_once 'script/connect.php';
+	include_once 'connect.php';
 	$search = trim(strip_tags(stripcslashes(htmlspecialchars($_POST['search']))));
 	$mb_str_len = mb_strlen($search, 'utf-8');
 	if($mb_str_len < 3) {
@@ -15,16 +15,16 @@ if (isset($_POST['search'])) {
 			if($rows > 0) {
 				for($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result);
-					echo "баллы равны ".$row[2];
+					echo $row[2];
 				}
 			}
 			else {
-				echo "Такого ника нет в таблице";
+				echo "Нет совпадений";
 			}
 		}
 		else {
 			echo "Data Not found";
 		}
-	}
+	} $link->close();
 }
 ?>

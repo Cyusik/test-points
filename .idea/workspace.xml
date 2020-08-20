@@ -13,6 +13,13 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -22,6 +29,12 @@
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/mwo-points" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\openserver2019\OSPanel\domains\test-point\points\script" />
+      <recent name="F:\openserver2019\OSPanel\domains\test-point\points\jsjq" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -60,6 +73,7 @@
       <workItem from="1597348377748" duration="864000" />
       <workItem from="1597748687616" duration="3069000" />
       <workItem from="1597780660260" duration="8586000" />
+      <workItem from="1597939340323" duration="6968000" />
     </task>
     <servers />
   </component>
