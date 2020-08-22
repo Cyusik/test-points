@@ -262,7 +262,7 @@ input {
 }
 .table_dark2 td {
 	color: #000000;
-	padding: 12px 17px;
+	padding: 12px 35px;
 	text-align:left;
 }
 .table_dark2 tr:last-child td {
@@ -389,7 +389,7 @@ hr {
 	background: #52a3bc;
 	float:right;
 	border:#52a3bc;
-	margin-top:5px;
+	margin-bottom:13px;
 	right: 0;
 	border-radius:10px;
 	cursor:pointer;
@@ -417,12 +417,27 @@ input[type=text] {
 	border-bottom: 2px solid #2f9ca4;
 	padding:7px 10px;
 }
+.points_search {
+	color:black;
+	width:70px;
+	font-size:12px;
+	height:0;
+	text-align:center;
+}
+.div_points_search {
+	margin-top:5px;
+	font-size:12px;
+}
+.form_input {
+	margin-top:10px;
+}
 select {
 	width: 50%;
 	padding: 7px 10px;
 	background: #d0e7ed;
 	border: none;
 	border-bottom: 2px solid #2f9ca4;
+	outline:none;
 }
 select:focus {
 	background-color: #a5c3cd;
@@ -448,7 +463,7 @@ select:focus {
 .input-requirements li.one{
 	margin-left:-15px;
 }
-select, .add, .ul_stop2 {
+select, .add, .ul_stop2, .div_points_search {
 	position:relative;
 }
 .ul_stop2 {
@@ -461,6 +476,9 @@ select:hover {
 	cursor:pointer;
 }
 .add {
+	z-index:2;
+}
+.div_points_search {
 	z-index:2;
 }
 /*----add-and-del-prizes------*/

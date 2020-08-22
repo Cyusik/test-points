@@ -47,12 +47,12 @@
 				</tr>
 				<tr>
 				<td>
-					Укажите ваше игровое имя (никнейм):<br><br>
+					Укажите ваше игровое имя (никнейм):<br>
+					<div class='div_points_search'>На счету баллов:
+					<input style='width:100px' class='points_search' id='resultdiv_search' name='points_search' type='text' value='' disabled /></div>
 					<input minlength='3' id='search' name='nicknames5' class='form_input' type='text' maxlength='21' onkeyup=\"checkParams()\" required>
 					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
 					<li>не менее 3 символов...</li></ul>
-					<td>На счету баллов:<br><br>
-					<input id='resultdiv_search' name='points_search' type='text' style='color:black' value='' disabled /></td>
 				</td>	
 				</tr>";
 				?>
@@ -61,7 +61,7 @@
 				echo "<tr>
 				<td>
 					Укажите логин вашего аккаунта:<br>
-					<p style='font-size:12px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль.</p> 
+					<div class='div_points_search' style='margin-bottom:10px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль</div> 
 					<input  id = 'login' onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" required/>
 					<ul id='ul_stop2' class='input-requirements' style='height:0px; opacity:0'>
 						<li class='one'>Примеры:</li>
@@ -78,15 +78,13 @@
 				echo "<tr>
 				<td>
 			<div id='list'>
-					Выберите приз:<br><br>
+					Выберите приз:<br>
+					<div class='div_points_search' style='margin-bottom:10px'>Необходимо баллов:
+						<input class='points_search' id='resultdiv10' style='width:100px' type='text' value='' name='points_required' disabled />
+					</div>
 					<div id='select0'></div>
 			</div>
 					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
-					</td>
-					<td>
-					<div>Необходимо баллов:<br><br> 
-						<input id='resultdiv10' style='color:black' type='text' value='' name='points_required' disabled />
-					</div>
 					</td>
 					</tr>
 					<tr>
