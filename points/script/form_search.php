@@ -19,7 +19,7 @@ if (isset($_POST['search'])) {
 				}
 			}
 			else {
-				echo "Нет совпадений";
+				echo "Никнейм не найден";
 			}
 		}
 		else {

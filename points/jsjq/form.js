@@ -10,8 +10,8 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				$('#resultdiv').html(data);
-				$('#search').val('');
-				$('#login').val('');
+				//$('#search').val('');
+				//$('#login').val('');
 				},
 		//});
 		});
