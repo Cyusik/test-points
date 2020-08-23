@@ -1,4 +1,4 @@
-function checkParams() {
+/*function checkParams() {
 	var nickname = $('#nickname').val();
 	var login = $('#login').val();
 
@@ -7,4 +7,4 @@ function checkParams() {
 	} else {
 		$('#submit').attr('disabled', 'disabled');
 	}
-}
+}*/

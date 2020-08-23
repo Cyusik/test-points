@@ -48,9 +48,9 @@
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br>
-					<div class='div_points_search'>На счету баллов:
-				    <input style='width:100px' class='points_search' id='resultdiv_search' name='points_search' type='text' value='' disabled /></div>
-					<input minlength='3' id='search' name='nicknames5' class='form_input' type='text' maxlength='21' onkeyup=\"checkParams()\" required>
+					<div class='div_points_search'><span>На счету баллов:</span>
+				    <input style='width:100px; border:none' class='points_search' id='resultdiv_search' name='points_search' type='text' value='' /></div>
+					<input minlength='3' id='search' name='nicknames5' class='form_input' type='text' maxlength='21' required>
 					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
 					<li>не менее 3 символов...</li></ul>
 				</td>	
@@ -62,7 +62,7 @@
 				<td>
 					Укажите логин вашего аккаунта:<br>
 					<div class='div_points_search' style='margin-bottom:10px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль</div> 
-					<input  id = 'login' onkeyup=\"checkParams()\" name=\"login5\" type=\"text\" required/>
+					<input minlength='3'  id = 'login' name=\"login5\" type=\"text\" required/>
 					<ul id='ul_stop2' class='input-requirements' style='height:0px; opacity:0'>
 						<li class='one'>Примеры:</li>
 						<li>login123@mail.ru</li>
@@ -80,7 +80,7 @@
 			<div id='list'>
 					Выберите приз:<br>
 					<div class='div_points_search' style='margin-bottom:10px'>Необходимо баллов:
-						<input class='points_search' id='resultdiv10' style='width:100px' type='text' value='' name='points_required' disabled />
+						<input class='points_search' id='resultdiv10' style='width:100px; border: none' type='text' value='' name='points_required' />
 					</div>
 					<div id='select0'></div>
 			</div>

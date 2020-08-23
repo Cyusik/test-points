@@ -420,13 +420,13 @@ input[type=text] {
 .points_search {
 	color:black;
 	width:70px;
-	font-size:12px;
+	font-size:13px;
 	height:0;
-	text-align:center;
+	border:none;
 }
 .div_points_search {
 	margin-top:5px;
-	font-size:12px;
+	font-size:13px;
 }
 .form_input {
 	margin-top:10px;

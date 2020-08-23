@@ -3,7 +3,10 @@ include_once 'connect.php';
 $query = "SELECT * FROM formobmen WHERE `open`";
 $link->set_charset("utf8");
 $result = mysqli_query($link, $query);
-if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['priz5'])){
+if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['priz5']) && isset($_POST['points_search']) && isset($_POST['points_required'])){
+	$a = $_POST['points_search'];
+	$b = $_POST['points_required'];
+	echo $a.' :переменная: '.$b;
 	while($row = $result->fetch_assoc()) {
 		$open = $row['open'];
 		if($open == '1') {
@@ -14,13 +17,6 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 					$mass[$k] = $m;
 				}
 			}
-			/*$data = array();
-			foreach($_POST['priz5'] as $item){
-				$item = explode('|', $item);
-				$data[$item[0]] = $item[1];
-			}
-			$priz5 = implode("\r",$data);
-			echo $priz5;*/
 			$priz5 = implode("\r",$mass);
 			$link->query("INSERT INTO zapisform (nickname,account,priz) VALUES ('$nicknames5','$login5','$priz5')");
 			if($result) {
