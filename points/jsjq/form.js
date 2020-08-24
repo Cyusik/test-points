@@ -10,10 +10,13 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				$('#resultdiv').html(data);
-				//$('#search').val('');
-				//$('#login').val('');
+				$('#search').val('');
+				$('#login').val('');
 				},
-		//});
 		});
+			var div =$('select');
+			div.remove();
+			$('#resultdiv10').val('');
+			$('#resultdiv_search').val('');
 	});
 });

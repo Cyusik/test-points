@@ -12,7 +12,7 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 			$points_search = strip_tags($_POST['points_search']);
 			$points_search = htmlspecialchars($points_search);
 			$points_search = mysqli_real_escape_string($link, $points_search);
-			//--------------фильтрация призов--------------------------
+			//--------------фильтрация баллов призов--------------------------
 			$points_required = intval(trim(mysqli_real_escape_string($link, $_POST['points_required'])));
 			//-------------фильтрация ника и логина----------------------
 			$nicknames5 = trim(stripcslashes(mysqli_real_escape_string($link, $_POST['nicknames5'])));
@@ -33,6 +33,9 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 							$points_bd = $row[2];
 							$points_nickname = $row[1];
 							if (($points_bd == $points_search) AND ($points_nickname == $nicknames5)) { //----сравниваем баллы из бд с баллами искомого---------
+								//-------------проверка списка призов и баллов необходимых--------------
+								$array_priz5 = array("Супер-Выстрел 50000 шт", "Усиленная мина 100 шт", "Большая аптечка 100 шт", "Усиленное поле 100 шт",
+									"Усиленный щит 100 шт", "Двойной нитро 100 шт", "Усиленный сканер 100 шт", "Усиленные батареи 100 шт", "Дымовой заслон 100 шт", "Циклотрон IV+ 1 шт", "Катушка V+ 1 шт", "Накопитель IV+ 1 шт", "Турбонаддув IV+ 1 шт", "Обшивка IV+ 1 шт", "Стабилизатор V+ 1 шт", "Дальнометр V+ 1 шт", "Целеуказатель V+ 1 шт", "Усилитель руля V+ 1 шт", "Подшипник V+ 1 шт", "Локатор V+ 1 шт", "Антирадар V+ 1 шт", "Хищник на 30 дней", "Борей на 30 дней", "Титан на 30 дней", "Тень на 30 дней", "Левиафан на 30 дней", "VIP-аккаунт на 30 дней");
 								if ($points_search >= $points_required) { // -------если баллов больше или равно то одобрено------
 									// ------обработка массива-------------
 									foreach($_POST['priz5'] as $k=>$m) {
@@ -40,9 +43,12 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 											$mass[$k] = $m;
 										}
 									}
-									$priz5 = implode("\r",$mass);
+									$itog_array = array_intersect($array_priz5, $mass); //-----занесутся только те значения, что равны array_priz5----
+									//print_r($itog_array);
+									$priz5 = mysqli_real_escape_string($link, implode(", ", $itog_array));
+									//echo $priz5;
 									//-------конец обработки---------------
-									$link->query("INSERT INTO zapisform (nickname,account,priz) VALUES ('$nicknames5','$login5','$priz5')");
+									$link->query("INSERT INTO zapisform (nickname,account,priz,points) VALUES ('$nicknames5','$login5','$priz5','$points_required')");
 									if($result) {
 										echo "<table class='table_dark2'>
 						<tr>
@@ -86,6 +92,14 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 					<meta http-equiv=\"refresh\" content=\"5;url=swap.php\">";
 		}
 	}
+} else {
+	echo "<table class='table_dark2'>
+						<tr>
+						<td>
+						<b style='color:red; text-align:center; display:block;'>Необходимо заполнить все данные!</b>
+						</td>
+						</tr>
+						</table>";
 }
 
 ?>

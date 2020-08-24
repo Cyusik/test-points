@@ -89,7 +89,7 @@
 					</tr>
 					<tr>
 					<td colspan='2'>
-					<input  class=\"searhpoisk\" type=\"submit\" id=\"submit\" value=\"Отправить\">
+					<input  class='searhpoisk' type='submit' id='submit' value='Отправить'>
 					</td>
 					</tr></form>";
 				?>

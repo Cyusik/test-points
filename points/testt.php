@@ -1,5 +1,5 @@
 <?php
-//header("Content-type: text/html; Charset=utf-8");
+header("Content-type: text/html; Charset=utf-8");
 
 //function print_arr($arr){
 //	echo "<pre>" . print_r($arr, true) . "</pre>";
