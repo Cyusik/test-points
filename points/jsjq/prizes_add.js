@@ -6,7 +6,7 @@ function addSelect() {
 		var list = document.getElementById('list');
 		var div = document.createElement('div');
 		div.id = 'select' + ++x;
-		div.innerHTML = '<select id="test' + y + '" type="text" name=\'priz5[]\' form=\'forms\' required>\n' +
+		div.innerHTML = '<select id="test' + y + '" type="text" name=\'priz5[]\' form=\'forms\'>\n' +
 			'<option disabled=\'disabled\' selected></option>\n' +
 			'<option value="100">Супер-Выстрел 50000 шт</option>\n' +
 			'<option value="100">Усиленная мина 100 шт</option>\n' +
@@ -64,6 +64,7 @@ function delSelect() {
 		var result = document.getElementById('prizes-result');
 		div.remove();
 		--x;
+		alert(x);
 		$('#list').find('select').each(function(){
 			let value = 0;
 			if (typeof $(this).val() == 'object'){

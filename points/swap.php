@@ -77,13 +77,14 @@
 				<?php
 				echo "<tr>
 				<td>
-			<div id='list'>
+			
 					Выберите приз:<br>
 					<div class='div_points_search' style='margin-bottom:10px'>Необходимо баллов:
 						<input class='points_search' id='resultdiv10' style='width:100px; border: none' type='text' value='' name='points_required' readonly/>
 					</div>
+				<div id='list'>
 					<div id='select0'></div>
-			</div>
+				</div>
 					<div class='add' onclick='addSelect()'>+ Добавить</div><div class='add' onclick='delSelect()'>- Удалить</div>
 					</td>
 					</tr>

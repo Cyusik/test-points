@@ -14,9 +14,12 @@ $(document).ready(function() {
 				$('#login').val('');
 				},
 		});
-			var div =$('select');
-			div.remove();
+			var div3 =$('#list > div');
+			div3.innerHTML = "";
+			div3.remove();
 			$('#resultdiv10').val('');
 			$('#resultdiv_search').val('');
+			x = 0;
 	});
 });
+x = null;
