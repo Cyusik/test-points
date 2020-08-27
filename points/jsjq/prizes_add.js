@@ -64,7 +64,6 @@ function delSelect() {
 		var result = document.getElementById('prizes-result');
 		div.remove();
 		--x;
-		alert(x);
 		$('#list').find('select').each(function(){
 			let value = 0;
 			if (typeof $(this).val() == 'object'){
