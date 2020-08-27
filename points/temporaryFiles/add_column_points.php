@@ -15,7 +15,7 @@ header("Content-type: text/html; Charset=utf-8");
 </div>
 <?php
 if (isset($_POST['addColumn'])) {
-	include_once 'connect.php';
+	include_once '../script/connect.php';
 	$link->query("ALTER TABLE `zapisform` ADD `points` INT(10) NOT NULL AFTER `priz`");
 	$result = mysqli_query($link, "SHOW COLUMNS FROM `zapisform`");
 	if (mysqli_num_rows($result) > 0) {
@@ -27,7 +27,7 @@ if (isset($_POST['addColumn'])) {
 	$result->free();
 }
 if (isset($_POST['delfile'])) {
-	include_once 'connect.php';
+	//include_once 'connect.php';
 	unlink('add_column_points.php');
 	echo 'файл удален';
 }
