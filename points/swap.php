@@ -107,7 +107,14 @@
 				<script type="text/javascript" src="jsjq/prizes_add.js"></script>
 				<?php
 				echo "
-				</table>";
+				</table>
+				<div class='mainwindow'>
+					<div class='openwindow'>
+						<h3>Ошибка</h3>
+						<span id='spanwidow'></span><br><br>
+						<div class='add' id='closewidow'>Закрыть</div>
+						</div>
+					</div>";
 					} else if ($open == '2') {
 						echo "<table class='table_dark2'>
 			<tr>
