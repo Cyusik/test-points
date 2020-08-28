@@ -29,7 +29,12 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 							$row = mysqli_fetch_row($result);
 							$points_bd = $row[2];
 							$points_nickname = $row[1];
-							if (($points_bd == $points_search) AND ($points_nickname == $nicknames5)) { //----сравниваем баллы из бд с баллами искомого---------
+							echo $points_bd.' балллы из бд<br>';
+							echo $points_search.' балллы игрока из формы<br>';
+							echo $points_nickname.' никнейм из бд<br>';
+							echo $nicknames5.' Никнейм из формы<br>';
+							if (($points_bd == $points_search) AND (strtolower($points_nickname) == strtolower($nicknames5))) {
+								//----сравниваем баллы из бд с баллами искомого---------
 								//-------------проверка списка призов и баллов необходимых--------------
 	$goodvalues = ["Супер-Выстрел 50000 шт",
 		"Усиленная мина 100 шт",

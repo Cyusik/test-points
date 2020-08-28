@@ -5,7 +5,8 @@ $(document).ready(function() {
 			var pointsnecessary = $('#resultdiv10');
 			var xone = pointsnick.val();
 			var xtwo = pointsnecessary.val();
-			if (xone === 'Никнейм не найден') {
+			alert(xone, xtwo);
+			if (pointsnick.val() === 'Никнейм не найден') {
 				$('.mainwindow').fadeIn();
 				$('.mainwindow').addClass('disabled');
 				$('#spanwidow').html('Такого никнейма нет в таблице');
@@ -13,7 +14,7 @@ $(document).ready(function() {
 					$('.mainwindow').fadeOut();
 					$('#spanwidow').html('');
 				});
-			} else if (xtwo > xone){
+			} else if (pointsnecessary.val() > pointsnick.val()){
 				$('.mainwindow').fadeIn();
 				$('.mainwindow').addClass('disabled');
 				$('#spanwidow').html('У вас недостаточно баллов');

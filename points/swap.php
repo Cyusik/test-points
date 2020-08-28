@@ -49,7 +49,7 @@
 				<td>
 					Укажите ваше игровое имя (никнейм):<br>
 					<div class='div_points_search'><span>На счету баллов:</span>
-				    <input style='width:140px; border:none' class='points_search' id='resultdiv_search' name='points_search' type='text' value='' readonly/></div>
+				    <input style='width:140px; border:none' class='points_search' id='resultdiv_search' name='points_search' type='text' readonly/></div>
 					<input minlength='3' id='search' name='nicknames5' class='form_input' type='text' maxlength='21' required>
 					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
 					<li>не менее 3 символов...</li></ul>
