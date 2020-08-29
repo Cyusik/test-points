@@ -30,7 +30,7 @@ if (isset($_POST['names2'])) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
 				for($j = 0; $j < 5; ++$j)
-					echo nl2br("<td>$row[$j]</td>");
+					echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
 				echo "</tr>";
 			}
 		}$link->close();

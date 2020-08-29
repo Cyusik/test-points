@@ -10,6 +10,9 @@ body {
 	background: #e8e8e8;
 	font-family:Arial;
 }
+h3 {
+	text-align:center;
+}
 .fon {
 	background: white;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -64,17 +67,80 @@ a.button15:active {
 	height:500px;
 	margin-left:150px;
 }
-/*.kartinka {
-	margin-top:70px;
-	margin-left:245px;
-}*/
+.info_player {
+
+}
+
 .importb1 {
 	margin-right:10px;
 	width: auto;
 	margin-left: 200px;
 }
+/*--------стили ввода------------*/
+.input {
+	border: none;
+	background:#f1f1f1;
+	width: 99%;
+	height: 99%;
+	padding: 6px 0;
+	text-align: center;
+	font-size: 13px;
+}
+.input_checkbox {
+	height: 20px;
+	border: none;
+	background:#f1f1f1;
+	width: 99%;
+	padding: 6px 0;
+	text-align: center;
+	font-size: 13px;
+}
+.textarea {
+	border:none;
+	background:#f1f1f1;
+	width:99%;
+	height:99%;
+	margin-top:2px;
+	margin:auto;
+	font-size:13px;
+	resize:vertical;
+}
+.block_button {
+	display:block;
+	text-align:right;
+	margin-top: -15px;
+}
+.button10 {
+	display: inline-block;
+	font-family: arial, c, serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: rgb(68,68,68);
+	text-decoration: none;
+	user-select: none;
+	padding: 10px 15px;
+	outline: none;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 2px;
+	background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+	transition: all .218s ease 0s;
+	margin: 0 0;
+}
+.button10:hover {
+	color: rgb(24,24,24);
+	border: 1px solid rgb(198,198,198);
+	background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	cursor:pointer;
+}
+.button10:active {
+	color:rgb(51, 51, 51);
+	border:1px solid rgb(204, 204, 204);
+	background:rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
+	box-shadow:0 1px 2px rgba(0, 0, 0, .1) inset;
+}
 
-
+/*--------стили ввода------------*/
 .add_message1  {
 	text-decoration: none;
 }
@@ -88,7 +154,6 @@ a.button15:active {
 .table_import1 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 14px;
-	border-radius: 10px;
 	border-spacing: 0;
 	width:100%;
 }
@@ -98,36 +163,31 @@ a.button15:active {
 	text-shadow: 0 1px 1px gainsboro;
 	padding: 10px 20px;
 }
-/*.table_import1 td, th {
-	border: 1px solid black;
-	padding:3px;
-}*/
+
 .table_import1 th, td {
 	border-style: solid;
-	border-width: 0 1px 1px 0;
-	border-color: white;
+	border-width: 0 0 0 0;
+	border-color:white;
+	height:0;
+}
+.table_import1 th:nth-child(4), td:nth-child(4) {
+	width:260px;
+}
+.table_import1 th:nth-child(5), td:nth-child(5) {
+	width:120px;
 }
 .table_import1 th:first-child, td:first-child {
 	text-align: left;
 }
 .table_import1 th:first-child {
-	border-top-left-radius: 10px;
 	text-align:center;
 }
 .table_import1 th:last-child {
-	border-top-right-radius: 10px;
 	border-right: none;
 	text-align:center;
 }
 .table_import1 td {
 	padding: 10px 20px;
-	background: #F8E391;
-}
-.table_import1 tr:last-child td:first-child {
-	border-radius: 0 0 0 10px;
-}
-.table_import1 tr:last-child td:last-child {
-	border-radius: 0 0 10px 0;
 }
 .table_import1 tr td:last-child {
 	border-right: none;
@@ -138,12 +198,14 @@ h3 {
 	padding-bottom:5px;
 }
 .importb1 {
-	background:#BCEBDD;
-	border-radius:10px;
+	background:linear-gradient(90deg, #ffd877, #fbffdf);
+	box-shadow: inset 0 0 6px 6px white;
 }
 .table_dark2 {
-	font-size:13px;
+	box-shadow: 0 0 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	width:100%;
+	font-size:13px;
+	margin-bottom:20px;
 	margin-left:3px;
 	margin-right:3px;
 	border-collapse:collapse;
@@ -154,16 +216,9 @@ h3 {
 	text-align:center;
 	color:black;
 }
-.table_dark2 th:nth-child(4),td:nth-child(4) {
+.table_dark2 th:nth-child(4), td:nth-child(4) {
 	word-break: break-all;
 }
-.table_dark2 th:nth-child(2),td:nth-child(2) {
-	width: 140px;
-}
-.table_dark2 th:nth-child(5),td:nth-child(5) {
-	width: 180px;
-}
-
 .modal {
 	display:none;
 	position:fixed;
@@ -270,3 +325,34 @@ h3 {
 		font-size: 15px;
 	}
 }
+
+/*-----test modal windows--------*/
+.modal_div_interior {
+	position:absolute;
+	z-index:0;
+}
+/*-----js close------ */
+#hideMe {
+	display:none;
+}
+/*#hideMetwo {
+	display:none;
+}*/
+/*--end js---------*/
+
+.modal_div_content::after {
+	content:attr(data-title);
+}
+.modal_div_external {
+	position:relative;
+	z-index: 100;
+	left:70px;
+	margin-top:-20px;
+	background: #fffafa;
+	border-left: 5px solid #bcebdd;
+	border-top: 5px solid #bcebdd;
+	padding: 7px 60px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.25), 0 6px 5px rgba(0,0,0,0.22);
+}
+
+/*----end----------*/

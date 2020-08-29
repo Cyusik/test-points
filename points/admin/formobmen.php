@@ -44,9 +44,9 @@ else {
 		</nav>
 	</div>
 	<div class="importb1">
-		<a href="" class="add_message2" id="click_mes_form2">
+		<!--<a href="" class="add_message2" id="click_mes_form2">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Экспорт/просмотр/очистка заявок</h3>
-		</a>
+		<!--</a>-->
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$(".add_message2").click(function(){
@@ -57,9 +57,6 @@ else {
 		</script>
 		<div class="importb2" id="popup_message_form2" style="display:block;">
 			<table class="table_import1">
-				<tr>
-					<th><b style="color:red">Обязательно к прочтению!</b></th>
-				</tr>
 			<tr>
 				<td>
 					<div>
@@ -69,8 +66,8 @@ else {
 						include_once '../script/statusform.php'
 						?>
 						<form method="POST" action="../script/openclickform.php">
-							<input class="button14" type="submit" name="open" value="Открыть опрос">
-							<input class="button14" type="submit" name="close" value="Закрыть опрос">
+							<input class="button10" type="submit" name="open" value="Открыть опрос">
+							<input class="button10" type="submit" name="close" value="Закрыть опрос">
 						</form>
 					</div>
 				</td>
@@ -82,7 +79,7 @@ else {
 								include_once '../script/exportformopros.php';
 								?>
 								<form method="POST" action="../script/exportformopros.php">
-									<input type="submit" name="export2" value="CSV Экспорт">
+									<input class="button10" type="submit" name="export2" value="CSV Экспорт">
 								</form>
 					</td>
 				</tr>
@@ -112,9 +109,9 @@ else {
 </div>
 	<br>
 	<div class="importb1">
-		<a href="" class="add_message1" id="click_mes_form1">
+		<!--<a href="" class="add_message1" id="click_mes_form1">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Список заявок</h3>
-		</a>
+		<!--</a>-->
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$(".add_message1").click(function(){
@@ -126,16 +123,32 @@ else {
 		<div class="importb2" id="popup_message_form1" style="display:block;">
 			<table class="table_import1">
 				<tr>
-					<th><b style="color:red">Обязательно к прочтению!</b></th>
-				</tr>
-				<tr>
 					<td>
 						<b>Поиск заявок по никнейму</b><br>
 						Выводится последние 250 заявок. Сортировка по дате.
 						Если таблица пустая - то ник неверный или нет в заявке.<br><br>
 						<form id="poiskobmennick" method="POST" action="../script/poiskadminform.php">
-							<input id="obmennick" name="names2" type="text" placeholder="Никнейм" size="20"/>
-							<input class="button14" type="submit" value="Поиск"/>
+							<table class="table_dark2" style="width:250px">
+								<tr>
+									<th>От (дата)</th>
+									<th>До (дата)</th>
+									<th colspan="2">Найти заявки</th>
+								</tr>
+								<tr>
+									<td>
+										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+									</td>
+									<td>
+										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+									</td>
+									<td>
+										<input style="width:150px" placeholder="Введите ник" class="input" id="obmennick" name="names2" type="text" size="20"/>
+									</td>
+									<td>
+										<input class="button10" type="submit" value="Поиск"/>
+									</td>
+								</tr>
+							</table>
 						</form>
 						<br>
 						<div id="resultdiv1"></div>
@@ -146,8 +159,25 @@ else {
 						<b>Просмотр всех заявок</b><br>
 						Выводится последние 250 заявок. Сортировка по дате.<br><br>
 						<form id="poiskall" method="POST" action="../script/poiskadminformall.php">
-							<input type="hidden" name="output1" value="all">
-							<input class="button14" type="submit" name="output" value="Просмотр">
+							<table class="table_dark2" style="width:250px">
+								<tr>
+									<th>От (дата)</th>
+									<th>До (дата)</th>
+									<th></th>
+								</tr>
+								<tr>
+									<td>
+										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+									</td>
+									<td>
+										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+									</td>
+									<td>
+										<input type="hidden" name="output1" value="all">
+										<input class="button10" type="submit" name="output" value="Просмотр">
+									</td>
+								</tr>
+							</table>
 						</form> <br>
 						<div id="resultdiv2"></div>
 					</td>

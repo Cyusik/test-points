@@ -10,7 +10,7 @@ while ($row = $result->fetch_assoc())
 		echo "<b style='color:red'>Опрос открыт</b><br>";
 		$link->close();
 	} else if ($open == '2') {
-		echo "<b style='color:red'>Опрос закрыт</b><br>";
+		echo "<b style='color:red; margin-left:130px;'>Опрос закрыт</b><br>";
 		//$link->close();
 	}
 }$result->free();
