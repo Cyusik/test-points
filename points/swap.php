@@ -80,7 +80,7 @@
 			
 					Выберите приз:<br>
 					<div class='div_points_search' style='margin-bottom:10px'>Необходимо баллов:
-						<input class='points_search' id='resultdiv10' style='width:100px; border: none' type='text' value='' name='points_required' readonly/>
+						<input class='points_search' id='resultdiv10' style='width:100px; border: none' type='text' name='points_required' readonly/>
 					</div>
 				<div id='list'>
 					<div id='select0'></div>
@@ -110,7 +110,7 @@
 				</table>
 				<div class='mainwindow'>
 					<div class='openwindow'>
-						<h3>Ошибка</h3>
+						<h3 id='heading'></h3>
 						<span id='spanwidow'></span><br><br>
 						<div class='add' id='closewidow'>Закрыть</div>
 						</div>
@@ -119,7 +119,7 @@
 						echo "<table class='table_dark2'>
 			<tr>
 			<td><br>
-			Опрос будет доступен для заполнения с 13 по 15 и с 28 по 30 число каждого месяца.<br> Выдача наград будет производиться в течение 3-х дней после закрытия опроса.
+			Опрос будет доступен для заполнения с 13 по 15 и с 28 по 30 число каждого месяца.<br> Выдача наград будет производиться в течении 3-х дней после закрытия опроса.
 			<br><br></td>
 		</tr>
 		</table>";

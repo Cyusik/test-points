@@ -17,6 +17,47 @@ if(isset($_POST['podarok'])){
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>TEST</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<form method="post" id="forms">
+	Значение 1 <br>
+	<input type="text" id="numone">
+	<br>Значение 2<br>
+	<input type="text" id="numtwo">
+	<br><br>
+	<input type="submit" id="button">
+	<br><br>
+	<div>
+		<span id="itog"></span>
+	</div>
+</form>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#forms').submit(function(event) {
+			event.preventDefault();
+			var numone = document.getElementById('numone').value;
+			var numtwo = document.getElementById('numtwo').value;
+			var a = parseInt(numone);
+			var b = parseInt(numtwo);
+			if (isNaN(a)) {
+				$('#itog').html('значение 1 не число');
+			} else if (a<b) {
+				$('#itog').html('итог: ' + numone + ' < ' + numtwo);
+			} else {
+				$('#itog').html('другое');
+			}
+		});
+	});
+</script>
+
+
+
+
+<br><br><br><br>
 <form method="post">
 	<select name="podarok[]">
 		<option value="0">Содержимое 0</option>
@@ -129,3 +170,6 @@ echo '<br>mass: '.$priz5;
 	</select>
 	<button>Отправить</button>
 </form>
+
+
+</html>

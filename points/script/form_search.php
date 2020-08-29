@@ -15,7 +15,7 @@ if (isset($_POST['search'])) {
 			if($rows > 0) {
 				for($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result);
-					echo $row[2];
+					echo intval($row[2]);
 				}
 			}
 			else {

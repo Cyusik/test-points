@@ -26,7 +26,7 @@ $(document).ready(function() {
 			default:
 				var name = $("#search").val();
 				name = name.replace(/ +/g, ' ').trim();
-				if (name.length < 3) {
+				if (name.length === 0) {
 					$("#resultdiv_search").val('');
 				} else if (name.length > 2) {
 					clearTimeout(timeout);

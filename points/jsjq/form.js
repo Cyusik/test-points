@@ -1,25 +1,28 @@
 $(document).ready(function() {
 	$('#forms').submit(function(event) {
 			event.preventDefault();
-			var pointsnick = $('#resultdiv_search');
-			var pointsnecessary = $('#resultdiv10');
-			var xone = pointsnick.val();
-			var xtwo = pointsnecessary.val();
-			alert(xone, xtwo);
-			if (pointsnick.val() === 'Никнейм не найден') {
+			var pointsnick = document.getElementById('resultdiv_search').value;
+			var pointsnecessary = document.getElementById('resultdiv10').value;
+			var nick = parseInt(pointsnick);
+			var necessary = parseInt(pointsnecessary);
+			if (isNaN(nick)) {
 				$('.mainwindow').fadeIn();
 				$('.mainwindow').addClass('disabled');
+				$('#heading').html('Ошибка');
 				$('#spanwidow').html('Такого никнейма нет в таблице');
 				$('#closewidow').click(function() {
 					$('.mainwindow').fadeOut();
+					$('#heading').html('');
 					$('#spanwidow').html('');
 				});
-			} else if (pointsnecessary.val() > pointsnick.val()){
+			} else if (nick < necessary) {
 				$('.mainwindow').fadeIn();
 				$('.mainwindow').addClass('disabled');
-				$('#spanwidow').html('У вас недостаточно баллов');
+				$('#heading').html('Ошибка');
+				$('#spanwidow').html('Недостаточно баллов для обмена');
 				$('#closewidow').click(function() {
 					$('.mainwindow').fadeOut();
+					$('#heading').html('');
 					$('#spanwidow').html('');
 				});
 			}
@@ -32,14 +35,22 @@ $(document).ready(function() {
 					cache: false,
 					processData: false,
 					success: function(data) {
-						$('#resultdiv').html(data);
+						$('.mainwindow').fadeIn();
+						$('.mainwindow').addClass('disabled');
+						$('#heading').html('Обмен баллов');
+						$('#spanwidow').html(data);
+						$('#closewidow').click(function() {
+							$('.mainwindow').fadeOut();
+							$('#heading').html('');
+							$('#spanwidow').html('');
+						});
 						$('#search').val('');
 						$('#login').val('');
 						var div3 =$('#list > div');
 						div3.innerHTML = "";
 						div3.remove();
-						pointsnecessary.val('');
-						pointsnick.val('');
+						$('#resultdiv10').val('');
+						$('#resultdiv_search').val('');
 						x = 0;
 					},
 				});
@@ -49,8 +60,8 @@ $(document).ready(function() {
 			div3.remove();
 		    $('#search').val('');
 		    $('#login').val('');
-		    pointsnecessary.val('');
-			pointsnick.val('');
+			$('#resultdiv10').val('');
+			$('#resultdiv_search').val('');
 			x = 0;
 	});
 });
