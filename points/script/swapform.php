@@ -29,10 +29,6 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 							$row = mysqli_fetch_row($result);
 							$points_bd = $row[2];
 							$points_nickname = $row[1];
-							echo $points_bd.' балллы из бд<br>';
-							echo $points_search.' балллы игрока из формы<br>';
-							echo $points_nickname.' никнейм из бд<br>';
-							echo $nicknames5.' Никнейм из формы<br>';
 							if (($points_bd == $points_search) AND (strtolower($points_nickname) == strtolower($nicknames5))) {
 								//----сравниваем баллы из бд с баллами искомого---------
 								//-------------проверка списка призов и баллов необходимых--------------
@@ -111,58 +107,40 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5'])  && isset($_POST['pri
 								if ($points_search >= $points_required) { // -------если баллов больше или равно то одобрено------
 									$link->query("INSERT INTO zapisform (nickname,account,priz,points) VALUES ('$nicknames5','$login5','$priz5','$points_required')");
 									if($result) {
-										echo "<table class='table_dark2'>
-						<tr>
-						<td>
-						<b style='color:red; text-align:center; display:block;'>Заявка успешно отправлена!</b>
-						</td>
-						</tr>
-						</table>";
+										echo "<span style='text-align:center;'>Заявка успешно отправлена!<br><br>Призы будут выданы в течении 3-х дней после закрытия опроса</span>";
 									} else {
-										echo "<div class='block'><b style='color:red;'>Упс! К сожалению опрос уже закрыт.</b></div>";
+										echo "<span style='text-align:center;'>Упс! К сожалению опрос уже закрыт.</span>";
 									}
 								} else {
-									echo 'баллов меньше = не одобрено';
+									echo "<span style='text-align:center;'>Недостаточно баллов для обмена на призы</span>";
 								}
 								} else {
-									echo "Error(4)...";//----баллы необходимые на призы не равны сумме проверки----
+									echo "Error(4)...<br>Обратитесь к Администратору";//----баллы необходимые на призы не равны сумме проверки----
 								}
 							} else {
-								echo 'Error(1)...'; //------баллы из бд не совпадают с баллами в таблице--------
+								echo 'Error(1)...<br>Обратитесь к Администратору'; //------баллы из бд не совпадают с баллами в таблице--------
 							}
 							}
 						} else {
-						echo "Error(2)...";//-------изменил ник и баллы---------
+						echo "Error(2)...<br>Обратитесь к Администратору";//-------изменил ник и баллы---------
 					}
 					}
 					else {
 						echo "Not bd..."; //------нет результата-------
 					}
 				} else {
-				echo "Error(3)...";// ---"не найдено" изменено на муть---------
+				echo "Error(3)...<br>Обратитесь к Администратору";// ---"не найдено" изменено на муть---------
 			}
 		}
 		else if($open == '2') {
 
-			echo "<table class='table_dark2'>
-						<tr>
-						<td>
-						<b style='color:red; text-align:center; display:block;'>К сожалению, на момент отправки, опрос был закрыт.<br>
-						Заявка не отправлена.</b>
-						</td>
-						</tr>
-						</table>
+			echo "<span style='text-align:center;'>К сожалению, на момент отправки, опрос был закрыт.<br>
+						Заявка не отправлена</span>
 					<meta http-equiv=\"refresh\" content=\"5;url=swap.php\">";
 		}
 	}
 } else {
-	echo "<table class='table_dark2'>
-						<tr>
-						<td>
-						<b style='color:red; text-align:center; display:block;'>Необходимо заполнить все данные!</b>
-						</td>
-						</tr>
-						</table>";
+	echo "<span style='text-align:center;'>Необходимо заполнить все данные!</span>";
 }
 
 ?>
