@@ -146,7 +146,7 @@
 		</div>
 	</div>
 </div>
-<script src="knopa.js"></script>
+<!--<script src="knopa.js"></script>-->
 <script>
 
 </script>
