@@ -25,11 +25,12 @@ if (isset($_POST['names2'])) {
 					<th>Никнейм</th>
 					<th>Логин</th>
 					<th>Приз</th>
+					<th>Баллы</th>
 				</tr>";
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
-				for($j = 0; $j < 5; ++$j)
+				for($j = 0; $j < 6; ++$j)
 					echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
 				echo "</tr>";
 			}
