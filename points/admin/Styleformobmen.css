@@ -219,6 +219,9 @@ h3 {
 .table_dark2 th:nth-child(4), td:nth-child(4) {
 	word-break: break-all;
 }
+.table_dark2 th:nth-child(5), td:nth-child(5) {
+	width: 180px;
+}
 .modal {
 	display:none;
 	position:fixed;

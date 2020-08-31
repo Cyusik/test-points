@@ -25,6 +25,7 @@ else {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../jquery-3.4.1.min.js"></script>
 	<script src="jsadmin/formobmen.js"></script>
+	<script src="jsadmin/modaldiv.js"></script>
 </head>
 <body>
 <div class="fon">
@@ -57,6 +58,35 @@ else {
 		</script>
 		<div class="importb2" id="popup_message_form2" style="display:block;">
 			<table class="table_import1">
+			<tr>
+				<td>
+					<b>Добавить заявку</b><br>
+					Дата добавления фиксируется автоматически. Призы и баллы писать вручную. Баллы - пишем необходимое количество баллов для обмена<br><br>
+					<form id="addexchange" method="POST" action="../script/add_string_exchange.php">
+						<table class="table_dark2">
+							<tr>
+								<th style="width:20%;">Никнейм</th>
+								<th style="width:25%;">Логин</th>
+								<th style="width:40%;">Призы</th>
+								<th style="width:15%;">Баллы</th>
+							</tr>
+							<tr>
+								<td style="width:20%;"><input type="text" name="nicknames" id="nicknames" class="input" required></td>
+								<td style="width:30%;"><input type="text" name="login" id="login" class="input" required></td>
+								<td style="width:40%;"><textarea type="text" rows="1" cols="50" name="prizes" id="prizes" class="textarea" required></textarea></td>
+								<td style="width:10%;"><input type="number" class="input" name="points" id="points" required></td>
+							</tr>
+						</table>
+						<div id="hideMe" class="modal_div_interior">
+							<div id="resultdiv5" class="modal_div_external"></div>
+						</div>
+						<br>
+						<div class="block_button">
+							<button id="addclick" class="button10" type="submit">Добавить</button>
+						</div>
+					</form>
+				</td>
+			</tr>
 			<tr>
 				<td>
 					<div>
@@ -125,8 +155,7 @@ else {
 				<tr>
 					<td>
 						<b>Поиск заявок по никнейму</b><br>
-						Выводится последние 250 заявок. Сортировка по дате.
-						Если таблица пустая - то ник неверный или нет в заявке.<br><br>
+						Лимит 500 заявок. Сортировка по дате.<br><br>
 						<form id="poiskobmennick" method="POST" action="../script/poiskadminform.php">
 							<table class="table_dark2" style="width:250px">
 								<tr>
@@ -136,10 +165,10 @@ else {
 								</tr>
 								<tr>
 									<td>
-										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+										<input style="height:auto; width:150px" class="input" name="monthFrom" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
 									</td>
 									<td>
-										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+										<input style="height:auto; width:150px" class="input" name="monthTo" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
 									</td>
 									<td>
 										<input style="width:150px" placeholder="Введите ник" class="input" id="obmennick" name="names2" type="text" size="20"/>
@@ -157,7 +186,7 @@ else {
 				<tr>
 					<td>
 						<b>Просмотр всех заявок</b><br>
-						Выводится последние 250 заявок. Сортировка по дате.<br><br>
+						Лимит 500 заявок. Сортировка по дате.<br><br>
 						<form id="poiskall" method="POST" action="../script/poiskadminformall.php">
 							<table class="table_dark2" style="width:250px">
 								<tr>
@@ -167,10 +196,10 @@ else {
 								</tr>
 								<tr>
 									<td>
-										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+										<input style="height:auto; width:150px" class="input" name="monthFromAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
 									</td>
 									<td>
-										<input style="height:auto; width:150px" class="input" name="month" type="month" min="2000-01" max="2099-12" placeholder="Выбери дату">
+										<input style="height:auto; width:150px" class="input" name="monthToAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
 									</td>
 									<td>
 										<input type="hidden" name="output1" value="all">

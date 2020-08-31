@@ -1,21 +1,16 @@
 <?php
-if (isset($_POST['output1'])) {
+if (isset($_POST['output1']) && !empty($_POST['monthFromAll']) && !empty($_POST['monthToAll'])) {
+	include_once '../script/connect.php';
 	$output1 = $_POST['output1'];
-	if($output1 == true) {
-		include_once '../script/connect.php';
+	$monthFromAll = trim(mysqli_real_escape_string($link, $_POST['monthFromAll']));
+	$monthToAll = trim(mysqli_real_escape_string($link, $_POST['monthToAll']));
+	if($monthFromAll < $monthToAll) {
 		mysqli_query($link, "SET NAMES 'utf8'");
-		if(isset($_GET['page'])) {
-			$page = $_GET['page'];
-		}
-		else {
-			$page = 1;
-		}
-		$notesOnPage = 250;
-		$from = ($page - 1) * $notesOnPage;
-		$query = "SELECT * FROM zapisform WHERE id > 0 ORDER BY dates DESC LIMIT $from,$notesOnPage";
+		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$monthFromAll%' AND '$monthToAll%' ORDER BY dates DESC LIMIT 500";
 		$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
+			if ($rows > 0) {
 			echo "<table class='table_dark2'><tr>
 			<th>id</th>
 			<th>Дата заявки</th>
@@ -31,9 +26,34 @@ if (isset($_POST['output1'])) {
 					echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
 				echo "</tr>";
 			}
+			} else {
+				echo "<table class='table_dark2'>
+				<tr>
+					<th>Ошибка</th>
+				</tr>
+				<tr>
+					<td>Нет заявок за выбранный период</td>
+				</tr>";
+			}
 		}
 		$link->close();
-	}
-}
 	echo "</table>";
+	} else {
+		echo "<table class='table_dark2'>
+				<tr>
+					<th>Ошибка</th>
+				</tr>
+				<tr>
+					<td>Дата ОТ не может быть больше ДО</td>
+				</tr>";
+	}
+} else {
+	echo "<table class='table_dark2'>
+				<tr>
+					<th>Ошибка</th>
+				</tr>
+				<tr>
+					<td>Необходимо указать даты</td>
+				</tr>";
+}
 ?>

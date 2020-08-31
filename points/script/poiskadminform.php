@@ -1,24 +1,16 @@
 <?php
-if (isset($_POST['names2'])) {
-	$names2 = $_POST['names2'];
-	if($names2 == false) {
-		echo "<br><b style='color:red'>Введи никнейм</b>";
-	}
-	else {
+if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['monthTo'])) {
 		include_once '../script/connect.php';
+		$names2 =trim(mysqli_real_escape_string($link, $_POST['names2']));
+		$monthFrom = trim(mysqli_real_escape_string($link, $_POST['monthFrom']));
+		$monthTo = trim(mysqli_real_escape_string($link, $_POST['monthTo']));
+		if ($monthFrom < $monthTo) {
 		mysqli_query($link, "SET NAMES 'utf8'");
-		if(isset($_GET['page'])) {
-			$page = $_GET['page'];
-		}
-		else {
-			$page = 1;
-		}
-		$notesOnPage = 20;
-		$from = ($page - 1) * $notesOnPage;
-		$query = "SELECT * FROM zapisform WHERE nickname='$names2' ORDER BY dates DESC LIMIT $from,$notesOnPage";
+		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$monthFrom%' AND '$monthTo%' AND nickname='$names2' ORDER BY dates DESC LIMIT 500";
 		$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
 		if($result) {
 			$rows = mysqli_num_rows($result);
+			if ($rows > 0) {
 			echo "<table class='table_dark2'><tr>
 					<th>id</th>
 					<th>Дата заявки</th>
@@ -33,9 +25,34 @@ if (isset($_POST['names2'])) {
 				for($j = 0; $j < 6; ++$j)
 					echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
 				echo "</tr>";
+				}
+			} else {
+				echo "<table class='table_dark2'>
+				<tr>
+					<th>Ошибка</th>
+				</tr>
+				<tr>
+					<td>Ничего не найдено</td>
+				</tr>";
 			}
 		}$link->close();
-	}
-	echo "</table>";
+			echo "</table>";
+		} else {
+			echo "<table class='table_dark2'>
+				<tr>
+					<th>Ошибка</th>
+				</tr>
+				<tr>
+					<td>Дата ОТ не может быть больше ДО</td>
+				</tr>";
+		}
+} else {
+	echo "<table class='table_dark2'>
+				<tr>
+					<th>Ошибка</th>
+				</tr>
+				<tr>
+					<td>Необходимо указать даты и никнейм</td>
+				</tr>";
 }
 ?>
