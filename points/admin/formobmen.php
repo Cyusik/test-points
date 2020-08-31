@@ -196,7 +196,7 @@ else {
 								</tr>
 								<tr>
 									<td>
-										<input style="height:auto; width:150px" class="input" name="monthFromAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
+										<input style="height:auto; width:150px" class="input" name="monthFromAll"type="date" min="2000-01" max="2099-12">
 									</td>
 									<td>
 										<input style="height:auto; width:150px" class="input" name="monthToAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
