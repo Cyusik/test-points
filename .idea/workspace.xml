@@ -17,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -28,6 +29,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/mwo-points" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -82,6 +84,7 @@
       <workItem from="1598682151935" duration="19687000" />
       <workItem from="1598824059552" duration="9646000" />
       <workItem from="1598895514537" duration="2513000" />
+      <workItem from="1599044984625" duration="14930000" />
     </task>
     <servers />
   </component>

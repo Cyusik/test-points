@@ -17,7 +17,7 @@ if (isset($_POST['submit']))
 	{
 		$login_user = $_POST['login_user'];
 		$password_user = md5($_POST['password_user']);
-		$user = mysqli_query($link, "SELECT id FROM users WHERE login_user = '$login_user' AND password_user = '$password_user'");
+		$user = mysqli_query($link, "SELECT * FROM users WHERE login_user = '$login_user' AND password_user = '$password_user'");
 		$id_user = mysqli_fetch_array($user);
 
 		if (empty($id_user['id']))
@@ -26,10 +26,10 @@ if (isset($_POST['submit']))
 		}
 		else
 		{
+			$_SESSION['role'] = $id_user['role'];
 			$_SESSION['password'] = $password_user;
 			$_SESSION['login'] = $login_user;
 			$_SESSION['id'] = $id_user['id'];
-
 			header('Location:../admin/mainballs.php');
 		}
 	}

@@ -46,9 +46,9 @@ else {
 		</nav>
 	</div>
 	<div class="importb1">
-		<!--<a href="" class="add_message2" id="click_mes_form2">-->
+		<a href="" class="add_message2" id="click_mes_form2">
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Добавить/удалить/редактировать строки</h3>
-		<!--</a>-->
+		</a>
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$(".add_message2").click(function(){
