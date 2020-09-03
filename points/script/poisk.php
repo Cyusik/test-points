@@ -27,7 +27,7 @@ if($search == false) {
 	$notesOnPage = 50;
 	$from = ($page - 1) * $notesOnPage;
 	$id = 0;
-	if($from >= 0 AND $from <= 999) {
+	if($from >= 0) {
 		$sql = "SELECT * FROM tablballs WHERE id > %d ORDER BY nickname LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $id), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
 		$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));

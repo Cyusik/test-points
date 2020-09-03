@@ -13,7 +13,7 @@ if($search == false) {
 	$notesOnPage = 50;
 	$id = 0;
 	$from = ($page - 1) * $notesOnPage;
-	if ($from >= 0 AND $from <= 999) {
+	if ($from >= 0) {
 	$sql = "SELECT * FROM itogobmen WHERE id > %d ORDER BY dates DESC LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $id), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
 	$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
