@@ -38,7 +38,7 @@ exit;
 				<li><a href="../admin/importspisok.php" class="button15">Управление обменом</a></li>
 				<li><a href="../admin/formobmen.php" class="button15">Заявки на призы</a></li>
 				<?php
-				if($_SESSION['login'] && $_SESSION['role'] == 2){
+				if($_SESSION['login'] && $_SESSION['role'] == 1){
 					$log = $_SESSION['login'];
 					echo '<li><a href="../admin/control.php" class="button15" style="background: rgb(245,245,245) linear-gradient(#f4f4f4, #fd7a7a); border:none">Управление</a></li>';
 				}

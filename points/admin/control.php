@@ -6,7 +6,7 @@ if($_GET['do'] == 'logout'){
 	unset($_SESSION['role']);
 	session_destroy();
 }
-if($_SESSION['login'] && $_SESSION['role'] == 2){
+if($_SESSION['login'] && $_SESSION['role'] == 1){
 }
 else {
 	header("Location: ../admin/index.php");
@@ -25,6 +25,8 @@ else {
 	<link href="../admin/Stylecontrol.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="jsadmin/control.js"></script>
+	<script type="text/javascript" src="jsadmin/modaldiv.js"></script>
 </head>
 <body>
 <div class="fon">
@@ -47,7 +49,7 @@ else {
 				<tr>
 					<td>
 						<b>Запрос списка пользователей</b><br>
-						Просмотр пользователей, дать права к управлению, где 0 = пользователь, 2 = админ: <br><br>
+						Просмотр пользователей, дать права к управлению, где 0 = пользователь, 1 = админ: <br><br>
 						<a href="" class="add_message2" id="click_mes_form2">
 							<button class="button10">Показать/Скрыть</button>
 						</a>
@@ -63,7 +65,6 @@ else {
 							<br><br>
 							<?php
 								include_once '../script/connect.php';
-								$id = 0;
 								mysqli_query($link, "SET NAMES 'utf8'");
 								$query = "SELECT * FROM users WHERE id > 0";
 								$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
@@ -74,7 +75,7 @@ else {
 									<th style='padding:0; width:0'></th>
 									<th style='width:30px'>id</th>
 									<th style='width:200px'>Логин</th>
-									<th style='width:250px'>Пароль (MD5)</th>
+									<th style='width:250px'>Новый пароль</th>
 									<th style='width:0'>Приоритет</th>
 									<th style='width: 150px;'>Действие</th>
 									</tr>";
@@ -84,16 +85,16 @@ else {
 										$id_button_delet = 'delet_click1'.$i;
 										$div_result = 'result_div1'.$i;
 										$hideME = 'hide_Me1'.$i;
-										$id_form = 'form'.$i;
+										$id_form = 'form1'.$i;
 										$id_tr = 'tr1'.$i;
 										echo "<tr id='$id_tr'>";
 										echo "<form id='$id_form' name='form' method='POST' action=''>";
 										echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
-								<div id='$div_result' class='modal_div_external' ></div>
+								<div id='$div_result' class='modal_div_external'></div>
 							</div></td>";
 										echo nl2br("<td style='width:30px'><input id='id_test' class='input' name='id_user' value='$row[0]' readonly='readonly'></td>");
-										echo nl2br("<td style='width:150px'><input id='login_test' class='input' name='login_user' value='$row[1]'></td>");
-										echo nl2br("<td style='width:30px'><input id='password_test' class='input' name='password_user' value='$row[2]'></td>");
+										echo nl2br("<td style='width:150px'><input id='login_test' class='input' name='login_user' value='$row[1]' readonly='readonly'></td>");
+										echo nl2br("<td style='width:30px'><input id='password_test' class='input' name='password_user' placeholder='введите пароль'></td>");
 										echo nl2br("<td style='width:0'><input id='priority_user' name='priority_user' class='input' value='$row[3]'>");
 										echo "<td style='width: 150px;'>";
 										echo "<button id='$id_button_save' type='submit' class='button10'>Сохранить</button>";
@@ -147,25 +148,41 @@ else {
 								});
 							</script>
 							<?
-									}
+									 echo '</form></td></tr>';
+									} echo '</table>';
 								}
 							}
-							echo '</td></tr></table>';
 							?>
 						</div>
-						<div>
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текст
-							Тут текстТут текст
-
-						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>Добавить пользователя</b><br><br>
+						<form id="form_add_user" method="POST" action="../script/add_control_user.php">
+							<table class="table_dark2">
+								<tr>
+									<th>Логин</th>
+									<th>Пароль</th>
+									<th>Приоритет</th>
+								</tr>
+								<tr>
+									<td><input id="add_login" type="text" class="input" name="add_login" required></td>
+									<td><input id="add_password" type="text" class="input" name="add_password" required></td>
+									<td><select style="text-align:center; text-align-last:center" class="input" name="add_priorty" required>
+											<option value="0">0</option>
+											<option value="1">1</option>
+										</select></td>
+								</tr>
+							</table>
+							<div id="hideMe" class="modal_div_interior">
+								<div id="result_add" class="modal_div_external"></div>
+							</div>
+							<br>
+							<div class="block_button">
+								<button id="addclick" class="button10" type="submit">Добавить</button>
+							</div>
+						</form>
 					</td>
 				</tr>
 			</table>
