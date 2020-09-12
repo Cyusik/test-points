@@ -6,6 +6,13 @@ if($_GET['do'] == 'logout'){
 	session_destroy();
 }
 if($_SESSION['login']){
+	$login = $_SESSION['login'];
+	$file_login = "../logfiles/points_log.log";
+	$fw = fopen($file_login, "a+");
+	$date = date('Y-m-d h:i:s');
+	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	fwrite($fw, $newdate.' '.$login.' Вошел importspisok.php'.' Логин: '. $login."\r\n");
+	fclose($fw);
 }
 else {
 	header("Location: ../admin/index.php");
@@ -150,9 +157,14 @@ else {
 												</table>";
 							}
 							} else {
+								$login = $_SESSION['login'];
+								$file_login = $_SERVER["DOCUMENT_ROOT"] . "/points/logfiles/results_log.log";
+								$fw = fopen($file_login, "a+");
+								$date = date('Y-m-d h:i:s');
+								$newdate = date('Y-m-d h:i:s A', strtotime($date));
 								mysqli_query($link, "SET NAMES 'utf8'");
 								$query = "SELECT * FROM itogobmen WHERE dates LIKE'$month%' AND nickname='$names' ORDER by dates DESC LIMIT 50";
-								$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+								$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка importspisok.php(167): '.mysqli_error($link)."\n"));
 								if($result) {
 						$rows = mysqli_num_rows($result);
 						if($rows > 0) {
@@ -173,6 +185,7 @@ else {
 						$div_result = 'result_div1'.$i;
 						$hideME = 'hide_Me1'.$i;
 							$id_tr = 'tr1'.$i;
+							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
 						echo "<tr id='$id_tr'>";
 						echo "<form id='$id_form' name='form' method='POST' action=''>";
 						echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
@@ -240,6 +253,7 @@ else {
 						echo "</form></td></tr>";
 						} echo "</table>";
 						} else {
+							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' false'."\r\n");
 							echo "<table class='table_dark2'>
 												<tr>
 													<th>Ошибка</th>
@@ -250,7 +264,7 @@ else {
 												</table>";
 						}
 								}
-							}
+							} fclose($fw);
 						}
 						?>
 					</td>

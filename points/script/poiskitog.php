@@ -1,7 +1,10 @@
 <?php
 $search = mb_strimwidth($_GET['search'], 0, 21);
+$fw = fopen('logfiles/search_log.log', "a+");
+date_default_timezone_set('Europe/Moscow');
+$date = date('Y-m-d h:i:s');
+$newdate = date('Y-m-d h:i:s A', strtotime($date));
 if($search == false) {
-	//echo "Вы не ввели никнейм. Вывод общего списка";
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -16,7 +19,7 @@ if($search == false) {
 	if ($from >= 0) {
 	$sql = "SELECT * FROM itogobmen WHERE id > %d ORDER BY dates DESC LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $id), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-	$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(24): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);// количество полученных строк
 		echo "<table id='range1' class='table_dark'><tr>
@@ -35,19 +38,16 @@ if($search == false) {
 			}
 		}
 	} else {
+		fwrite($fw, $newdate." Ошибка условия poiskitog.php(21) ".$from.' >=0'."\n");
 		echo "<table class='table_dark2'>
 					<tr>
 						<th style='display:block; text-align:center'>Ошибка</th>
 					</tr>
 					</table>";
 	}
-
-
 	echo "</table>";
-	// очищаем результат
-	//mysqli_free_result($result);
 	$query = "SELECT COUNT(*) as count FROM itogobmen";
-	$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(52): '.mysqli_error($link)."\n"));
 	$res = mysqli_fetch_assoc($result);
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
@@ -92,6 +92,8 @@ if($search == false) {
 		</ul>";
 }}
 else {
+	$search = trim($search);
+	fwrite($fw, $newdate.' Запрос поиск итогов: '.$search."\n");
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -104,10 +106,11 @@ else {
 	$from = ($page - 1) * $notesOnPage;
 	$sql = "SELECT * FROM itogobmen WHERE nickname='%s' ORDER BY dates DESC LIMIT %s,%s";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $search), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-	$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(111): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);
 		if($rows > 0) {
+			fwrite($fw, $newdate.' Запрос: '.'true'."\n");
 			echo "<table class='table_dark2'><tr>
 					<th>id</th>
 					<th style='width:140px'>Дата и время заявки</th>
@@ -126,13 +129,14 @@ else {
 			echo "</table>";
 		}
 		else {
+			fwrite($fw, $newdate.' Запрос: '.'false'."\n");
 			echo "<table class='table_dark2'>
 					<tr>
 						<td style='display:block; text-align:center'>Такого никнейма нет в таблице</td>
 					</tr>
 					</table>";
 		}
-
 	}
 }
+fclose($fw);
 ?>

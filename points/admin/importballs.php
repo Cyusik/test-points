@@ -6,6 +6,13 @@ if($_GET['do'] == 'logout'){
 	session_destroy();
 }
 if($_SESSION['login']){
+	$login = $_SESSION['login'];
+	$file_login = "../logfiles/login_to_admin.log";
+	$fw = fopen($file_login, "a+");
+	$date = date('Y-m-d h:i:s');
+	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	fwrite($fw, $newdate.' '.$login.' Вошел importballs.php'.' Логин: '. $login."\r\n");
+	fclose($fw);
 }
 else {
 	header("Location: ../admin/index.php");
@@ -46,9 +53,9 @@ else {
 		</nav>
 	</div>
 	<div class="importb1">
-		<a href="" class="add_message2" id="click_mes_form2">
+		<!--<a href="" class="add_message2" id="click_mes_form2">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Добавить/удалить/редактировать строки</h3>
-		</a>
+		<!--</a>-->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$(".add_message2").click(function(){
@@ -130,9 +137,13 @@ else {
 												</table>";
 							}
 							else {
+								$file_login = $_SERVER["DOCUMENT_ROOT"] . "/points/logfiles/points_log.log";
+								$fw = fopen($file_login, "a+");
+								$date = date('Y-m-d h:i:s');
+								$newdate = date('Y-m-d h:i:s A', strtotime($date));
 								mysqli_query($link, "SET NAMES 'utf8'");
 								$query = "SELECT * FROM tablballs WHERE nickname='$names'";
-								$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+								$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка importballs.php(146): '.mysqli_error($link)."\n"));
 								if($result) {
 									$rows = mysqli_num_rows($result);
 									if ($rows > 0) {
@@ -152,7 +163,8 @@ else {
 							$hideME = 'hide_Me1'.$i;
 							$id_form = 'form'.$i;
 							$id_tr = 'tr1'.$i;
-
+							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
+							fwrite($fw, $newdate.' '.$login.' Запись баллов=>'.$names.' id=>'.$row[0].' nick=>'.$row[1].' points=>'.$row[2].' true'."\r\n");
 						echo "<tr id='$id_tr'>";
 							echo "<form id='$id_form' name='form' method='POST' action=''>";
 							echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
@@ -217,8 +229,8 @@ else {
 							echo "</form></td>";
 						echo "</tr>";}
 						echo "</table><br>";
-
 								} else {
+										fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' false'."\r\n");
 										echo "<table class='table_dark2'>
 												<tr>
 													<th>Ошибка</th>
@@ -229,6 +241,7 @@ else {
 												</table>";
 									}
 								}
+								fclose($fw);
 							}
 						}
 						?>
@@ -257,7 +270,7 @@ else {
 								<tr>
 								<?php
 								$query = "SELECT * FROM formobmen WHERE id=2";
-								$result = mysqli_query($link, $query);
+								$result = mysqli_query($link, $query) or die('Ошибка importballs.php(277): '.mysqli_error($link));
 								$row = mysqli_fetch_row($result);
 								$dates = $row [1];
 								echo "<th>Дата последнего обновления:</th><th>$dates</th>";

@@ -20,7 +20,6 @@ $(document).ready(function() {
 		});
 	});
 });
-
 //----------поиск по нику-----
 $(document).ready(function() {
 	$('#poiskobmennick').submit(function(event) {
@@ -53,6 +52,23 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				$('#resultdiv2').html(data);
+			},
+		});
+	});
+});
+//-------------------------------------------
+$(document).ready(function() {
+	$('#delexchange').submit(function(event) {
+		event.preventDefault();
+		$.ajax({
+			type: $(this).attr('method'),
+			url: $(this).attr('action'),
+			data: new FormData(this),
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function(data) {
+				$('#resultdiv10').html(data);
 			},
 		});
 	});

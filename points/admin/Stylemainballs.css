@@ -59,7 +59,6 @@ a.button15:active {
 .text {
 	margin-top:10px;
 	padding-top:10px;
-
 	margin-left: 180px;
 	margin-right: 10px;
 }
@@ -67,16 +66,16 @@ a.button15:active {
 	margin-top:70px;
 	margin-left:245px;
 }
-
 .table_import1 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 14px;
 	border-radius: 10px;
 	border-spacing: 0;
 	width:100%;
+	background:linear-gradient(90deg, #ffd877, #fbffdf);
+	box-shadow: inset 0 0 6px 6px white;
 }
 .table_import1 th {
-	background: #BCEBDD;
 	color: black;
 	text-shadow: 0 1px 1px gainsboro;
 	padding: 10px 20px;
@@ -86,32 +85,12 @@ a.button15:active {
 	padding:3px;
 }*/
 .table_import1 th, td {
-	border-style: solid;
+	/*border-style: solid;
 	border-width: 0 1px 1px 0;
-	border-color: white;
-}
-.table_import1 th:first-child, td:first-child {
-	text-align: left;
-}
-.table_import1 th:first-child {
-	border-top-left-radius: 10px;
-}
-.table_import1 th:last-child {
-	border-top-right-radius: 10px;
-	border-right: none;
+	border-color: white;*/
 }
 .table_import1 td {
 	padding: 10px 20px;
-	background: #F8E391;
-}
-.table_import1 tr:last-child td:first-child {
-	border-radius: 0 0 0 10px;
-}
-.table_import1 tr:last-child td:last-child {
-	border-radius: 0 0 10px 10px;
-}
-.table_import1 tr td:last-child {
-	border-right: none;
 }
 h3 {
 	margin-left:10px;

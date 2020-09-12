@@ -1,16 +1,26 @@
 <?php
 if (isset($_POST['output1']) && !empty($_POST['monthFromAll']) && !empty($_POST['monthToAll'])) {
 	include_once '../script/connect.php';
+	//---------------------------------------------------
+	session_start();
+	$login = $_SESSION['login'];
+	$file_login = "../logfiles/exchange_log.log";
+	$fw = fopen($file_login, "a+");
+	$date = date('Y-m-d h:i:s');
+	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	fwrite($fw, $newdate.' '.$login.' Вывод всех заявок'."\r\n");
+	//---------------------------------------------------
 	$output1 = $_POST['output1'];
 	$monthFromAll = trim(mysqli_real_escape_string($link, $_POST['monthFromAll']));
 	$monthToAll = trim(mysqli_real_escape_string($link, $_POST['monthToAll']));
 	if($monthFromAll < $monthToAll) {
 		mysqli_query($link, "SET NAMES 'utf8'");
 		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$monthFromAll%' AND '$monthToAll%' ORDER BY dates DESC LIMIT 500";
-		$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskadminformall.php(19): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			if ($rows > 0) {
+				fwrite($fw, $newdate.' result=>true'."\r\n");
 			echo "<table class='table_dark2'><tr>
 			<th>id</th>
 			<th>Дата заявки</th>
@@ -27,6 +37,7 @@ if (isset($_POST['output1']) && !empty($_POST['monthFromAll']) && !empty($_POST[
 				echo "</tr>";
 			}
 			} else {
+				fwrite($fw, $newdate.' result=>false'."\r\n");
 				echo "<table class='table_dark2'>
 				<tr>
 					<th>Ошибка</th>
@@ -36,6 +47,7 @@ if (isset($_POST['output1']) && !empty($_POST['monthFromAll']) && !empty($_POST[
 				</tr>";
 			}
 		}
+		fclose($fw);
 		$link->close();
 	echo "</table>";
 	} else {

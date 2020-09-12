@@ -12,6 +12,15 @@ if(isset($_POST['but_import'])){
 		$uploadOk = 0;
 	}
 	if ($uploadOk != 0) {
+		//------------------------------
+		$login = $_SESSION['login'];
+		$file_login = "../logfiles/results_log.log";
+		$fw = fopen($file_login, "a+");
+		$date = date('Y-m-d h:i:s');
+		$newdate = date('Y-m-d h:i:s A', strtotime($date));
+		fwrite($fw, $newdate.' '.$login.' Импортировал таблицу results(itogobmen)'."\r\n");
+		fclose($fw);
+		//-------------------------------
 		if (move_uploaded_file($_FILES["importfile"]["tmp_name"], $target_dir.'importfile.csv')) {
 			$target_file = $target_dir . 'importfile.csv';
 			$fileexists = 0;

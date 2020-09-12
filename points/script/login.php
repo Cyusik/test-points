@@ -17,6 +17,13 @@ if (isset($_POST['submit']))
 	{
 		$login_user = $_POST['login_user'];
 		$password_user = md5($_POST['password_user']);
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$file_login = "../logfiles/login_to_admin.log";
+		$fw = fopen($file_login, "a+");
+		$date = date('Y-m-d h:i:s');
+		$newdate = date('Y-m-d h:i:s A', strtotime($date));
+		fwrite($fw, $newdate .' ip=>'.$ip.' Вход в админку'.' Логин: '. $login_user. ' Пароль: '.$password_user."\r\n");
+		fclose($fw);
 		$user = mysqli_query($link, "SELECT * FROM users WHERE login_user = '$login_user' AND password_user = '$password_user'");
 		$id_user = mysqli_fetch_array($user);
 

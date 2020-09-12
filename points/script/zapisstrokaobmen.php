@@ -6,10 +6,20 @@ if (isset($_POST['dates']) && isset($_POST['nickname'])  && isset($_POST['itog']
 	$nickname = trim($_POST['nickname']);
 	$itog = trim($_POST['itog']);
 	$prichina = $_POST ['prichina'];
+	//---------------------------------------
+	session_start();
+	$login = $_SESSION['login'];
+	$file_login = "../logfiles/results_log.log";
+	$fw = fopen($file_login, "a+");
+	$date = date('Y-m-d h:i:s');
+	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nickname.'; result=>'.$itog.' cause=>'.$prichina."\r\n");
+	//---------------------------------------
 		if($nickname != "") {
 			  if($itog != "") {
 					  $result = $link->query("INSERT INTO ".$db_table." (dates,nickname,itog,prichina) VALUES ('$dates','$nickname','$itog','$prichina')");
 					  if($result) {
+						  fwrite($fw, $newdate.' result=>true'."\r\n");
 						  echo "<div class='modal_div_content' data-title='Строка добавлена...'></div>";
 					  }
 					  else {
@@ -20,6 +30,8 @@ if (isset($_POST['dates']) && isset($_POST['nickname'])  && isset($_POST['itog']
 			  }
 			  }else {
 			echo "<div class='modal_div_content' data-title='Заполни поле никнейм'></div>";
-		}$link->close();
+		}
+		fclose($fw);
+		$link->close();
 }
 ?>

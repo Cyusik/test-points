@@ -3,7 +3,6 @@ set_time_limit(380);
 ini_set('memory_limit', '128M');
 
         include_once "../script/connect.php";
-
         if(isset($_POST['but_import'])){
             $target_dir = "../script/uploads/";
             $target_file = $target_dir . basename($_FILES["importfile"]["name"]);
@@ -14,6 +13,15 @@ ini_set('memory_limit', '128M');
             }
 //            var_dump($uploadOk, $target_file); die;
             if ($uploadOk != 0) {
+				//------------------------------
+				$login = $_SESSION['login'];
+				$file_login = "../logfiles/points_log.log";
+				$fw = fopen($file_login, "a+");
+				$date = date('Y-m-d h:i:s');
+				$newdate = date('Y-m-d h:i:s A', strtotime($date));
+				fwrite($fw, $newdate.' '.$login.' Импортировал таблицу points(tablballs)'."\r\n");
+				fclose($fw);
+				//-------------------------------
                 if (move_uploaded_file($_FILES["importfile"]["tmp_name"], $target_dir.'importfile.csv')) {
                     $target_file = $target_dir . 'importfile.csv';
                     $fileexists = 0;
@@ -49,7 +57,6 @@ ini_set('memory_limit', '128M');
                         }
                     }
 					$link->close();
-
                 }
             }
         }

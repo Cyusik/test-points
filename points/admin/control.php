@@ -7,6 +7,14 @@ if($_GET['do'] == 'logout'){
 	session_destroy();
 }
 if($_SESSION['login'] && $_SESSION['role'] == 1){
+	$login = $_SESSION['login'];
+	$role = $_SESSION['role'];
+	$file_login = "../logfiles/login_to_admin.log";
+	$fw = fopen($file_login, "a+");
+	$date = date('Y-m-d h:i:s');
+	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	fwrite($fw, $newdate.' '.$login.' Вошел в control.php'.' Логин: '. $login."\r\n");
+	fclose($fw);
 }
 else {
 	header("Location: ../admin/index.php");
@@ -44,7 +52,7 @@ else {
 		</nav>
 	</div>
 	<div class="importb1">
-		<h3>Управление</h3>
+		<h3>Пользователи</h3>
 			<table class="table_import1">
 				<tr>
 					<td>
@@ -186,6 +194,147 @@ else {
 					</td>
 				</tr>
 			</table>
+	</div>
+	<div class="importb1">
+		<h3>Логи</h3>
+		<table class="table_import1">
+			<tr>
+				<td>
+					<b>Очистить содержимое логов</b><br>
+					<a href="" class="add_message1" id="click_mes_form1">
+						<button class="button10">Показать/Скрыть</button>
+					</a>
+					<script type="text/javascript">
+						$(document).ready(function(){
+							$(".add_message1").click(function(){
+								$("#popup_message_form1").slideToggle("slow");
+								$(this).toggleClass("active"); return false;
+							});
+						});
+					</script>
+					<div class="importb2" id="popup_message_form1" style="display:none;">
+						<br>
+						<form id="admin_clear_log" method="POST" action="../script/clear_log.php" style="float:left; margin-right:5px">
+							<input type="hidden" name="admin_clear_log" value="admin_clear_log">
+							<input class="button10" type="submit" value="Очистить перемещений по админке">
+						</form>
+						<form id="search_clear_log" method="POST" action="../script/clear_log.php" style="float:left; margin-right:5px">
+							<input type="hidden" name="search_clear_log" value="search_clear_log">
+							<input class="button10" type="submit" value="Очистить поиск по таблицам">
+						</form>
+						<form id="swap_clear_log" method="POST" action="../script/clear_log.php" style="float:left; margin-right:5px">
+							<input type="hidden" name="swap_clear_log" value="swap_clear_log">
+							<input class="button10" type="submit" value="Очистить форму для обмена">
+						</form>
+						<form id="points_clear_log" method="POST" action="../script/clear_log.php" style="margin-right:5px">
+							<input type="hidden" name="points_clear_log" value="points_clear_log">
+							<input class="button10" type="submit" value="Очистить управление баллами">
+						</form>
+						<br>
+						<form id="results_clear_log" method="POST" action="../script/clear_log.php" style="float:left; margin-right:5px">
+							<input type="hidden" name="results_clear_log" value="results_clear_log">
+							<input class="button10" type="submit" value="Очистить управление обменом">
+						</form>
+						<form id="exchange_clear_log" method="POST" action="../script/clear_log.php" style="margin-right:5px">
+							<input type="hidden" name="exchange_clear_log" value="exchange_clear_log">
+							<input class="button10" type="submit" value="Очистить управление заявками">
+						</form><br>
+						<div id="resultclear"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Скачать логи</b><br>
+					<ul>
+						<li><div class="button10"><a href="../logfiles/login_to_admin.log" download="">Скачать лог перемещений по админке</a></div></li>
+						<li><div class="button10"><a href="../logfiles/search_log.log" download="">Скачать лог поиска по таблицам</a></div></li>
+						<li><div class="button10"><a href="../logfiles/swap_log.log" download="">Скачать лог формы обмена</a></div></li>
+						<li><div class="button10"><a href="../logfiles/points_log.log" download="">Скачать лог управления баллами</a></div></li>
+						<li><div class="button10"><a href="../logfiles/results_log.log" download="">Скачать лог управления итогами</a></div></li>
+						<li><div class="button10"><a href="../logfiles/exchange_log.log" download="">Скачать лог управления заявками</a></div></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Вывод логов страницы юзеров</b><br><br>
+					<form id="logswap" method="POST" action="../script/control_log.php">
+						<table class="table_dark2" style="width:200px; float:left">
+							<tr>
+								<th colspan="2">Форма для обмена</th>
+							</tr>
+							<tr>
+								<td><input id="monthlogswap" name="monthlogswap" style="height:auto;" class="input" type="month" min="2000-01" max="2099-12"></td>
+								<td><button class="button10" type="submit">Вывод</button></td>
+							</tr>
+						</table>
+					</form>
+					<form id="logsearch" method="POST" action="../script/control_log.php">
+						<table class="table_dark2" style="width:200px;">
+							<tr>
+								<th colspan="2">Поиск по таблицам</th>
+							</tr>
+							<tr>
+								<td><input id="monthlogsearch" name="monthlogsearch" style="height:auto;" class="input" type="month" min="2000-01" max="2099-12"></td>
+								<td><button class="button10" type="submit">Вывод</button></td>
+							</tr>
+						</table>
+					</form>
+					<b>Вывод логов страниц админки</b><br><br>
+					<form id="logadmin" method="POST" action="../script/control_log.php">
+						<table class="table_dark2" style="width:200px; float:left">
+							<tr>
+								<th colspan="2">Перемещение по админке</th>
+							</tr>
+							<tr>
+								<td><input id="monthlogadmin" style="height:auto;" class="input" name="monthlogadmin" type="month" min="2000-01" max="2099-12"></td>
+								<td><button class="button10" type="submit">Вывод</button></td>
+							</tr>
+						</table>
+					</form>
+					<form id="logresults" method="POST" action="../script/control_log.php">
+						<table class="table_dark2" style="width:200px; float:left">
+							<tr>
+								<th colspan="2">Управление обменом</th>
+							</tr>
+							<tr>
+								<td><input id="monthlogresults" name="monthlogresults" style="height:auto;" class="input" type="month" min="2000-01" max="2099-12"></td>
+								<td><button class="button10" type="submit">Вывод</button></td>
+							</tr>
+						</table>
+					</form>
+					<form id="logpoints" method="POST" action="../script/control_log.php">
+						<table class="table_dark2" style="width:200px; float:left">
+							<tr>
+								<th colspan="2">Управление баллами</th>
+							</tr>
+							<tr>
+								<td><input id="monthlogpoints" name="monthlogpoints" style="height:auto;" class="input" type="month" min="2000-01" max="2099-12"></td>
+								<td><button class="button10" type="submit">Вывод</button></td>
+							</tr>
+						</table>
+					</form>
+					<form id="logexchange" method="POST" action="../script/control_log.php">
+						<table class="table_dark2" style="width:200px;">
+							<tr>
+								<th colspan="2">Управление заявками</th>
+							</tr>
+							<tr>
+								<td><input id="monthlogexchange" name="monthlogexchange" style="height:auto;" class="input" type="month" min="2000-01" max="2099-12"></td>
+								<td><button class="button10" type="submit">Вывод</button></td>
+							</tr>
+						</table>
+					</form>
+					<div class="divresult" id="resultlogadmin"></div>
+					<div class="divresult" id="resultlogswap"></div>
+					<div class="divresult" id="resultlogsearch"></div>
+					<div class="divresult" id="resultlogresults"></div>
+					<div class="divresult" id="resultlogpoints"></div>
+					<div class="divresult" id="resultlogexchange"></div>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
 </body>

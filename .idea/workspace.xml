@@ -28,11 +28,14 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/mwo-points" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/points/script" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Plan_A\OSPanel\domains\test-points\points\script" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\openserver2019\OSPanel\domains\test-point\points\script" />
       <recent name="F:\openserver2019\OSPanel\domains\test-point\points\jsjq" />
@@ -86,11 +89,18 @@
       <workItem from="1598895514537" duration="2513000" />
       <workItem from="1599044984625" duration="14930000" />
       <workItem from="1599124464722" duration="689000" />
+      <workItem from="1599150589005" duration="4469000" />
+      <workItem from="1599206643189" duration="5514000" />
+      <workItem from="1599289269451" duration="74831000" />
+      <workItem from="1599756377042" duration="14786000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

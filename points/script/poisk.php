@@ -1,12 +1,15 @@
 <?php
 $search = mb_strimwidth($_GET['search'], 0, 21);
+$fw = fopen('logfiles/search_log.log', "a+");
+date_default_timezone_set('Europe/Moscow');
+$date = date('Y-m-d h:i:s');
+$newdate = date('Y-m-d h:i:s A', strtotime($date));
 if($search == false) {
-	//echo "Вы не ввели никнейм. Вывод общего списка";
 	require_once 'script/connect.php';
 	$id2 = 2;
 	$sql = "SELECT * FROM formobmen WHERE id=%d";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $id2));
-	$result = mysqli_query($link, $query);
+	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(14): '.mysqli_error($link)."\n"));
 	$row = mysqli_fetch_row($result);
 	$dates = $row [1];
 	echo "<table class='table_dark2'>
@@ -30,7 +33,7 @@ if($search == false) {
 	if($from >= 0) {
 		$sql = "SELECT * FROM tablballs WHERE id > %d ORDER BY nickname LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $id), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-		$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(37): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			echo "<table class='table_dark'><tr>
@@ -41,7 +44,6 @@ if($search == false) {
 				</tr>";
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
-
 				echo "<tr>";
 				for($j = 0; $j < 4; ++$j)
 					echo "<td>$row[$j]</td>";
@@ -50,6 +52,7 @@ if($search == false) {
 		}
 	}
 	else {
+		fwrite($fw, $newdate." Ошибка условия poisk.php(35): ".$from.'>= 0'."\n");
 		echo "<table class='table_dark2'>
 					<tr>
 						<th style='display:block; text-align:center'>Ошибка</th>
@@ -60,7 +63,7 @@ if($search == false) {
 	// очищаем результат
 	//mysqli_free_result($result);
 	$query = "SELECT COUNT(*) as count FROM tablballs";
-	$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(67): '.mysqli_error($link)."\n"));
 	$res = mysqli_fetch_assoc($result);
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
@@ -104,6 +107,8 @@ if($search == false) {
 		</ul>";
 	}
 }else {
+	$search = trim($search);
+	fwrite($fw, $newdate.' Запрос поиск баллов: '.$search."\n");
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -116,10 +121,11 @@ if($search == false) {
 	$from = ($page - 1) * $notesOnPage;
 	$sql = "SELECT * FROM tablballs WHERE nickname='%s' ORDER BY nickname LIMIT %s,%s";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $search), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-	$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(124): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);
 		if($rows > 0) {
+			fwrite($fw, $newdate.' Запрос: '.'true'."\n");
 			echo "<table class='table_dark2'><tr>
 					<!--<th style='display: none;'>Номер</th>-->
 					<th>Никнейм</th>
@@ -141,6 +147,7 @@ if($search == false) {
 			}
 		}
 		else {
+			fwrite($fw, $newdate.' Запрос: '.'false'."\n");
 			echo "<table class='table_dark2'>
 					<tr>
 						<th style='text-align:center'>Ошибка поиска</th>
@@ -152,6 +159,5 @@ if($search == false) {
 		}
 	}
 }
-
-
+fclose($fw);
 ?>

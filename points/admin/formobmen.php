@@ -6,6 +6,13 @@ if($_GET['do'] == 'logout'){
 	session_destroy();
 }
 if($_SESSION['login']){
+	$login = $_SESSION['login'];
+	$file_login = "../logfiles/login_to_admin.log";
+	$fw = fopen($file_login, "a+");
+	$date = date('Y-m-d h:i:s');
+	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	fwrite($fw, $newdate.' '.$login.' Вошел formobmen.php'.' Логин: '. $login."\r\n");
+	fclose($fw);
 }
 else {
 	header("Location: ../admin/index.php");
@@ -123,13 +130,12 @@ else {
 								<h2>Внимание!</h2>
 								Очистить заявки?<br>
 								Данные нельзя будет восстановить. Экспортируйте заявки перед очисткой.
-								<?php
-								include_once '../script/deltablform.php';
-								echo '<br><form action="../admin/formobmen.php" method="POST">
-						<input class="button10" type="submit" name="truncate2" value="ОЧИСТИТЬ">
-						</form>';
-								?>
+								<br><form id="delexchange" action="../script/deltablform.php" method="POST">
+									<input class="button10" type="hidden" name="truncate2" value="1">
+									<input class="button10" type="submit" value="ОЧИСТИТЬ">
+								</form>
 								<div class="close-popup js-close-campaign"></div>
+								<div id="resultdiv10"></div>
 							</div>
 						</div>
 					</td>
@@ -196,7 +202,7 @@ else {
 								</tr>
 								<tr>
 									<td>
-										<input style="height:auto; width:150px" class="input" name="monthFromAll"type="date" min="2000-01" max="2099-12">
+										<input style="height:auto; width:150px" class="input" name="monthFromAll" type="date" min="2000-01" max="2099-12">
 									</td>
 									<td>
 										<input style="height:auto; width:150px" class="input" name="monthToAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">

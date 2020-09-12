@@ -10,20 +10,37 @@ if (isset($_POST['id_user']) && isset($_POST['login_user']) && isset($_POST['pas
 		exit();
 	}
 	if($id_user != 0) {
-		if($password_user != "") {
-			$query = "UPDATE users SET password_user=MD5('$password_user'), role='$priority_user' WHERE id='$id_user'";
+			$query = "SELECT * FROM users WHERE role = 1";
 			$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
-			if($result) {
-				echo "<div class='modal_div_content' data-title='Пароль и приоритет $login_user обновлен'></div>";
-			}
-		}
-		else if ($password_user == "") {
-			$query = "UPDATE users SET role='$priority_user' WHERE id='$id_user'";
-			$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
-			if($result) {
-				echo "<div class='modal_div_content' data-title='Приоритет $login_user обновлен'></div>";
-			}
-		}
+			if ($result) {
+				$check = mysqli_num_rows($result);
+				if ($check == 1) {
+					if($password_user != "") {
+						$query = "UPDATE users SET password_user=MD5('$password_user') WHERE id='$id_user'";
+						$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+						if($result) {
+							echo "<div class='modal_div_content' data-title='Пароль $login_user обновлен'></div>";
+						}
+					} else if ($password_user == "") {
+							echo "<div class='modal_div_content' data-title='Должен быть как минимум 1 админ'></div>";
+						}
+					} else {
+					if($password_user != "") {
+						$query = "UPDATE users SET password_user=MD5('$password_user'), role='$priority_user' WHERE id='$id_user'";
+						$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+						if($result) {
+							echo "<div class='modal_div_content' data-title='Пароль и приоритет $login_user обновлен'></div>";
+						}
+					}
+					else if ($password_user == "") {
+						$query = "UPDATE users SET role='$priority_user' WHERE id='$id_user'";
+						$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+						if($result) {
+							echo "<div class='modal_div_content' data-title='Приоритет $login_user обновлен'></div>";
+						}
+					}
+				}
+				} $link->close();
 	} else {
 		echo "<div style='color:#ff0505' class='modal_div_content' data-title='без id не сработает'></div>";
 	}
