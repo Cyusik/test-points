@@ -137,7 +137,7 @@ else {
 												</table>";
 							}
 							else {
-								$file_login = $_SERVER["DOCUMENT_ROOT"] . "/points/logfiles/points_log.log";
+								$file_login = "../logfiles/points_log.log";
 								$fw = fopen($file_login, "a+");
 								$date = date('Y-m-d h:i:s');
 								$newdate = date('Y-m-d h:i:s A', strtotime($date));

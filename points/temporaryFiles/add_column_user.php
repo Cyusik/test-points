@@ -46,7 +46,7 @@ if (isset($_POST['adduser'])) {
 	$result->free();
 	}
 if (isset($_POST['delfile'])) {
-	unlink('add_column_points.php');
+	unlink('add_column_user.php');
 	echo 'файл удален';
 }
 ?>
