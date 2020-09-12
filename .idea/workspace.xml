@@ -28,9 +28,10 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/points/script" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -93,6 +94,7 @@
       <workItem from="1599206643189" duration="5514000" />
       <workItem from="1599289269451" duration="74831000" />
       <workItem from="1599756377042" duration="16519000" />
+      <workItem from="1599950444869" duration="1803000" />
     </task>
     <servers />
   </component>
