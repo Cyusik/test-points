@@ -9,6 +9,10 @@ if($search == false) {
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
 		$page = intval($_GET['page']);
+		$page = abs($page);
+		if($page == 0) {
+			$page = intval(1);
+		}
 	}
 	else {
 		$page =intval(1);
@@ -96,16 +100,8 @@ else {
 	fwrite($fw, $newdate.' Запрос поиск итогов: '.$search."\n");
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
-	if(isset($_GET['page'])) {
-		$page = $_GET['page'];
-	}
-	else {
-		$page = 1;
-	}
-	$notesOnPage = 50;
-	$from = ($page - 1) * $notesOnPage;
-	$sql = "SELECT * FROM itogobmen WHERE nickname='%s' ORDER BY dates DESC LIMIT %s,%s";
-	$query = sprintf($sql, mysqli_real_escape_string($link, $search), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
+	$sql = "SELECT * FROM itogobmen WHERE nickname='%s' ORDER BY dates DESC";
+	$query = sprintf($sql, mysqli_real_escape_string($link, $search));
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(111): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);

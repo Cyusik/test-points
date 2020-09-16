@@ -23,6 +23,10 @@ if($search == false) {
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
 		$page = intval($_GET['page']);
+		$page = abs($page);
+		if($page == 0) {
+			$page = intval(1);
+		}
 	}
 	else {
 		$page = intval(1);
@@ -111,26 +115,16 @@ if($search == false) {
 	fwrite($fw, $newdate.' Запрос поиск баллов: '.$search."\n");
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
-	if(isset($_GET['page'])) {
-		$page = $_GET['page'];
-	}
-	else {
-		$page = 1;
-	}
-	$notesOnPage = 20;
-	$from = ($page - 1) * $notesOnPage;
-	$sql = "SELECT * FROM tablballs WHERE nickname='%s' ORDER BY nickname LIMIT %s,%s";
-	$query = sprintf($sql, mysqli_real_escape_string($link, $search), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
+	$sql = "SELECT * FROM tablballs WHERE nickname='%s' ORDER BY nickname";
+	$query = sprintf($sql, mysqli_real_escape_string($link, $search));
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(124): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);
 		if($rows > 0) {
 			fwrite($fw, $newdate.' Запрос: '.'true'."\n");
 			echo "<table class='table_dark2'><tr>
-					<!--<th style='display: none;'>Номер</th>-->
 					<th>Никнейм</th>
 					<th>Баллы</th>
-					<!--<th>История</th>-->
 				</tr>";
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);

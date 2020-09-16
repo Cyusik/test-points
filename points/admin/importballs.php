@@ -332,10 +332,18 @@ else {
 					</tr>
 					<tr>
 						<td>
-							<b>Выбираем файл импорта:</b>
 							<?php
+							$query = ("SELECT COUNT(*) as count FROM tablballs WHERE id > 0");
+							$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+							if($result){
+								$strokballs = $result->fetch_assoc();
+								$nb = $strokballs['count'];
+								echo 'Строк в таблице баллов: <b style="color:green">'.$nb.'</b>';
+								echo '<br><br>';
+							}
 							include_once '../script/importtabl.php';
 							?>
+							<b>Выбираем файл импорта:</b>
 							<div class="popup_import">
 								<form method="post" action="" enctype="multipart/form-data" id="import_form">
 									<input type="file" name="importfile" id="importfile">
