@@ -183,6 +183,8 @@ li {
 	font: 14px/37px Tahoma, Arial, Helvetica, sans-serif;
 	color: #feffff;
 	text-transform: uppercase;
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
 	-webkit-border-top-left-radius: 20px;
 	-webkit-border-top-right-radius: 20px;
 	-moz-border-radius-topleft: 20px;
@@ -325,7 +327,7 @@ img {
 .foot {
 	margin-bottom:15px;
 	margin-top:10px;
-	text-align:-webkit-center;
+	text-align:center;
 	margin-left:40px;
 }
 /* ОПЫТЫ С КНОПКОЙ -------------------------------------------------*/
