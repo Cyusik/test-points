@@ -186,7 +186,6 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5']) && isset($_POST['priz
     ini_alter('date.timezone','Europe/Moscow');
     $date = date('Y-m-d h:i:s');
     fwrite($fw, $newdate.' Результат: '.'Заполнил не все поля'."\n");
-    //$post = print_r($_POST);
     fwrite($fw, $newdate.' Содержимое: '.json_encode($_POST)."\n");
     echo "<span style='text-align:center;'>Необходимо заполнить все данные!</span>";
 }
