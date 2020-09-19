@@ -7,7 +7,6 @@ body {
 	font-weight: normal;
 	line-height: 18px;
 }
-
 .main {
 	width: 1168px;
 	margin: 0 auto;
@@ -47,7 +46,6 @@ h1 {
 	min-height: 890px;
 	padding: 53px 103px 0;
 }
-
 #nav-balls {
 	float: right;
 	width: 260px;
@@ -91,7 +89,6 @@ li {
 	display: list-item;
 	text-align: -webkit-match-parent;
 }
-
 .tabl {
 	width:100%;
 }
@@ -101,14 +98,8 @@ li {
 	height:auto;
 }
 /* -------------------------------------------------------------------------
----------------ГУГУЛ ТАБЛИЦА------------------------------------------------
-*/
-
-
-/* -------------------------------------------------------------------------
 -------------------ДАЛЬШЕ СПЕЦИАЛЬНО ДЛЯ СПИСКА ПРИЗОВ ---------------------
  -----------------------------------------------------------------------*/
-
 .spisok-priz {
 	float:left;
 	width:675px;
@@ -173,7 +164,6 @@ li {
 	border-right: none;
 }
 .table_dark tr:hover td {
-	/* text-decoration: underline;*/
 	background:#a5c3cd;
 }
 .table_dark td.one {
@@ -237,9 +227,7 @@ hr {
 	background-color: #155563;
 	height: 2px;
 }
-
 /* ВЫПАДАЮЩИЙ ДИВ-------------------------------------------------*/
-
 .add_message1  {
 	text-decoration: none;
 }
@@ -249,16 +237,3 @@ hr {
 .add_message3 {
 	text-decoration: none;
 }
-/*------Акции-----------*/
-/*.table_dark td:nth-child(4) {
-	color:red;
-	font-weight:bolder;
-}
-.table_dark td.shares {
-	color:red;
-	font-weight:bolder;
-}
-s {
-	color:black;
-	font-weight:normal;
-}*/

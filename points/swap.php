@@ -130,16 +130,16 @@
 			<div id="nav-balls">
 				<ul class="nav-bottom">
 					<li depth="1">
-						<a href="/points/prizes.php">Призы за баллы</a>
+						<a href="/points/prizes">Призы за баллы</a>
 					</li>
 					<li depth="1">
-						<a href="/points/index.php">Таблица с баллами</a>
+						<a href="/points/index">Таблица с баллами</a>
 					</li>
 					<li depth="1">
-						<a href="/points/results.php">Итоги обмена баллов на призы</a>
+						<a href="/points/results">Итоги обмена баллов на призы</a>
 					</li>
 					<li class="active" depth="1">
-						<a href="/points/swap.php">Обмен баллов на призы</a>
+						<a href="/points/swap">Обмен баллов на призы</a>
 					</li>
 				</ul>
 			</div>
@@ -155,7 +155,7 @@
 	<div class="foot">
 		<ul class="ulfoot">
 			<li>
-				Сайт любезно разработан игроком Cyusik. О <a href="/points/about.php">сайте</a>
+				Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
 			</li>
 			<li>
 				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>

@@ -13,14 +13,16 @@ if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mo
 	$newdate = date('Y-m-d h:i:s A', strtotime($date));
 	fwrite($fw, $newdate.' '.$login.' Вывод заявок по нику: '.$names2."\r\n");
 		//---------------------------------------------------
-		if ($monthFrom < $monthTo) {
-		mysqli_query($link, "SET NAMES 'utf8'");
-		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$monthFrom%' AND '$monthTo%' AND nickname='$names2' ORDER BY dates DESC LIMIT 500";
+		if ($monthFrom <= $monthTo) {
+			$datesfrom = $monthFrom.' 00:00:00';
+			$datesbefore = $monthTo.' 23:59:59';
+		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$datesfrom' AND '$datesbefore' AND nickname='$names2' ORDER BY dates DESC LIMIT 500";
 		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskadminform.php(19): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);
 			if ($rows > 0) {
 				fwrite($fw, $newdate.' result=>true'."\r\n");
+				echo "<div id='applications'>";
 			echo "<table class='table_dark2'><tr>
 					<th>id</th>
 					<th>Дата заявки</th>
@@ -35,7 +37,15 @@ if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mo
 				for($j = 0; $j < 6; ++$j)
 					echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
 				echo "</tr>";
-				}
+				} echo "</table>
+						<br>
+					<button style='float:right' class='button10' type='submit' id='closeapplications'>Закрыть</button> 
+					</div>
+					<script type='text/javascript'>
+					$('#closeapplications').click(function(){
+					  $('#applications').remove();
+					})
+					</script>";
 			} else {
 				fwrite($fw, $newdate.' result=>false'."\r\n");
 				echo "<table class='table_dark2'>
@@ -49,7 +59,6 @@ if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mo
 		}
 		fclose($fw);
 		$link->close();
-			echo "</table>";
 		} else {
 			echo "<table class='table_dark2'>
 				<tr>

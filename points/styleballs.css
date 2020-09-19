@@ -7,7 +7,6 @@ body {
 	font-weight: normal;
 	line-height: 18px;
 }
-
 .main {
 	width: 1168px;
 	margin: 0 auto;
@@ -47,7 +46,6 @@ h1 {
 	min-height: 890px;
 	padding: 53px 103px 0;
 }
-
 #nav-balls {
 	float: right;
 	width: 260px;
@@ -91,7 +89,6 @@ li {
 	display: list-item;
 	text-align: -webkit-match-parent;
 }
-
 .tabl {
 	width:100%;
 }
@@ -101,16 +98,6 @@ li {
 	height:auto;
 	float:left;
 }
-/*a.disabled {
-	pointer-events:none;
-	cursor:default;
-	color:#888888;
-
-}*/
-/*a {
-	text-decoration:none;
-	color:black;
-}*/
 .pagination {
 	display:block;
 	text-align:left;
@@ -124,13 +111,15 @@ li {
 	margin-left:3px;
 	margin-right:3px;
 	color:black;
-	padding:5px;
+	padding-bottom: 5px;
+	padding-top: 5px;
 	border-radius:3px;
 	text-decoration:none;
 }
 .pagination li a {
 	text-decoration:none;
 	color:black;
+	padding:5px;
 }
 .pagination li a.disabled {
 	text-decoration:none;
@@ -138,22 +127,18 @@ li {
 	cursor:default;
 	color:#888888;
 }
-
 .pagination li:hover {
 	background:#d0e7ed;
 }
 .pagination li:active {
 	background:#a5c3cd;
 }
-
-/* -------------------------------------------------------------------------
----------------ГУГУЛ ТАБЛИЦА------------------------------------------------
-*/
-
+.currentpage {
+	padding:5px;
+}
 /* -------------------------------------------------------------------------
 -------------------ДАЛЬШЕ СПЕЦИАЛЬНО ДЛЯ СПИСКА ПРИЗОВ ---------------------
  -----------------------------------------------------------------------*/
-
 .spisok-priz {
 	padding-bottom:5px;
 	float:left;
@@ -221,7 +206,6 @@ li {
 	border-right: none;
 }
 .table_dark tr:hover td {
-	/* text-decoration: underline;*/
 	background:#a5c3cd;
 }
 .table_dark td.one {
@@ -236,9 +220,6 @@ li {
 	margin:0 0;
 	padding:2px 2px;
 }
-/*table tr > *:nth-child(1) {
-	display: none;
-}*/
 .table_dark tr > *:nth-child(1) {
 	display: none;
 }
@@ -276,7 +257,6 @@ li {
 	border-right: none;
 }
 .table_dark2 tr:hover td {
-	/* text-decoration: underline;*/
 	background:#a5c3cd;
 }
 .table_dark2 td.one {
@@ -291,10 +271,6 @@ li {
 	margin:0 0;
 	padding:2px 2px;
 }
-/*table tr > *:nth-child(1) {
-	display: none;
-}*/
-
 /*--------------КОНЕЦ---------------------*/
 .novak {
 	background: url(/novak_1.png) no-repeat;
@@ -343,28 +319,7 @@ hr {
 	background-color: #155563;
 	height: 2px;
 }
-
-/* ВЫПАДАЮЩИЙ ДИВ-------------------------------------------------*/
-
-.add_message1  {
-	text-decoration: none;
-}
-.add_message2 {
-	text-decoration: none;
-}
-.add_message3 {
-	text-decoration: none;
-}
-
 /*-------ПОИСК НИКНЕЙМА----------------*/
-/*.poisk {
-	float:right;
-	height:100px;
-	width:280px;
-	margin-right:-22px;
-	background:#18292b;
-}*/
-
 .searh {
 	width: auto;
 	float: right;
@@ -399,4 +354,3 @@ hr {
 .searhpoisk:focus {
 	background:#52a3bc;
 }
-

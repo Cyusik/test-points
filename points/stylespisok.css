@@ -124,13 +124,15 @@ li {
 	margin-left:3px;
 	margin-right:3px;
 	color:black;
-	padding:5px;
+	padding-bottom: 5px;
+	padding-top: 5px;
 	border-radius:3px;
 	text-decoration:none;
 }
 .pagination li a {
 	text-decoration:none;
 	color:black;
+	padding:5px;
 }
 .pagination li a.disabled {
 	text-decoration:none;
@@ -145,15 +147,12 @@ li {
 .pagination li:active {
 	background:#a5c3cd;
 }
-
-/* -------------------------------------------------------------------------
----------------ГУГУЛ ТАБЛИЦА------------------------------------------------
-*/
-
+.currentpage {
+	padding:5px;
+}
 /* -------------------------------------------------------------------------
 -------------------ДАЛЬШЕ СПЕЦИАЛЬНО ДЛЯ СПИСКА ПРИЗОВ ---------------------
  -----------------------------------------------------------------------*/
-
 .spisok-priz {
 	padding-bottom:5px;
 	float:left;

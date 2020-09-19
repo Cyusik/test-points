@@ -16,6 +16,9 @@
 	<link rel="shortcut icon" href="/points/favicon.ico" type="image/x-icon">
 	<link href="/points/normalize.css" rel="stylesheet">
 	<link href="styleprizes.css" rel="stylesheet">
+	<link href="sprite-equipment.css" rel="stylesheet">
+	<link href="sprite-supplies.css" rel="stylesheet">
+	<link href="sprite-premium.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 </head>
@@ -50,7 +53,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Cyclotron.png" alt="no">
+									<div class="icon-Cyclotron"></div>
 								</td>
 								<td>"Циклотрон IV+"</td>
 								<td>1</td>
@@ -58,7 +61,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Coil.png" alt="no">
+									<div class="icon-Coil"></div>
 								</td>
 								<td>"Катушка V+"</td>
 								<td>1</td>
@@ -66,7 +69,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Storage-device.png" alt="no">
+									<div class="icon-Storage-device"></div>
 								</td>
 								<td>"Накопитель IV+"</td>
 								<td>1</td>
@@ -74,7 +77,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Turbocharging.png" alt="no">
+									<div class="icon-Turbocharging"></div>
 								</td>
 								<td>"Турбонаддув IV+"</td>
 								<td>1</td>
@@ -82,7 +85,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Sheating.png" alt="no">
+									<div class="icon-Sheating"></div>
 								</td>
 								<td>"Обшивка IV+"</td>
 								<td>1</td>
@@ -90,14 +93,14 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Stabilizer.png" alt="no">
+									<div class="icon-Stabilizer"></div>
 								</td>
 								<td>"Стабилизатор V+"</td>
 								<td>1</td>
 								<td style="color:black; font-weight:normal">220</td>
 							<tr>
 								<td class="one">
-									<img src="object1/Rangefinder.png" alt="no">
+									<div class="icon-Rangefinder"></div>
 								</td>
 								<td>"Дальномер V+"</td>
 								<td>1</td>
@@ -105,7 +108,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Designator.png" alt="no">
+									<div class="icon-Designator"></div>
 								</td>
 								<td>"Целеуказатель V+"</td>
 								<td>1</td>
@@ -113,7 +116,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Amplifier.png" alt="no">
+									<div class="icon-Amplifier"></div>
 								</td>
 								<td>"Усилитель руля V+"</td>
 								<td>1</td>
@@ -121,7 +124,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Bearing.png" alt="no">
+									<div class="icon-Bearing"></div>
 								</td>
 								<td>"Подшипники V+"</td>
 								<td>1</td>
@@ -129,7 +132,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Locator.png" alt="no">
+									<div class="icon-Locator"></div>
 								</td>
 								<td>"Локатор V+"</td>
 								<td>1</td>
@@ -137,7 +140,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object1/Radar-detector.png" alt="no">
+									<div class="icon-Radar-detector"></div>
 								</td>
 								<td>"Антирадар V+"</td>
 								<td>1</td>
@@ -150,16 +153,16 @@
 			<div id="nav-balls">
 				<ul class="nav-bottom">
 					<li class="active" depth="1">
-						<a href="/points/prizes.php">Призы за баллы</a>
+						<a href="/points/prizes">Призы за баллы</a>
 					</li>
 					<li depth="1">
-						<a href="/points/index.php">Таблица с баллами</a>
+						<a href="/points/index">Таблица с баллами</a>
 					</li>
 					<li depth="1">
-						<a href="/points/results.php">Итоги обмена баллов на призы</a>
+						<a href="/points/results">Итоги обмена баллов на призы</a>
 					</li>
 					<li depth="1">
-						<a href="/points/swap.php">Обмен баллов на призы</a>
+						<a href="/points/swap">Обмен баллов на призы</a>
 					</li>
 				</ul>
 			</div>
@@ -185,7 +188,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Shots.png" alt="no">
+									<div class="icon-Shots"></div>
 								</td>
 								<td>"Супер-Выстрел"</td>
 								<td>50000</td>
@@ -193,7 +196,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Mine.png" alt="no">
+									<div class="icon-Mine"></div>
 								</td>
 								<td>"Усиленная мина"</td>
 								<td>100</td>
@@ -201,7 +204,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Pharmacy.png" alt="no">
+									<div class="icon-Pharmacy"></div>
 								</td>
 								<td>"Большая аптечка"</td>
 								<td>100</td>
@@ -209,7 +212,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Field.png" alt="no">
+									<div class="icon-Field"></div>
 								</td>
 								<td>"Усиленное поле"</td>
 								<td>100</td>
@@ -217,7 +220,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Shield.png" alt="no">
+									<div class="icon-Shield"></div>
 								</td>
 								<td>"Усиленный щит"</td>
 								<td>100</td>
@@ -225,7 +228,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Nitro.png" alt="no">
+									<div class="icon-Nitro"></div>
 								</td>
 								<td>"Двойной нитро"</td>
 								<td>100</td>
@@ -233,14 +236,14 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Scanner.png" alt="no">
+									<div class="icon-Scanner"></div>
 								</td>
 								<td>"Усиленный сканер"</td>
 								<td>100</td>
 								<td style="color:black; font-weight:normal">100</td>
 							<tr>
 								<td class="one">
-									<img src="object2/Battery.png" alt="no">
+									<div class="icon-Battery"></div>
 								</td>
 								<td>"Усиленные батареи"</td>
 								<td>100</td>
@@ -248,7 +251,7 @@
 							</tr>
 							<tr>
 								<td class="one">
-									<img src="object2/Smoke.png" alt="no">
+									<div class="icon-Smoke"></div>
 								</td>
 								<td>"Дымовой заслон"</td>
 								<td>100</td>
@@ -279,42 +282,42 @@
 							</tr>
 							<tr>
 								<td class="two">
-									<img src="object3/predator.png" alt="no">
+									<div class="icon-predator"></div>
 								</td>
 								<td>"Хищник" на 30 дней</td>
 								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
-									<img src="object3/borya.png" alt="no">
+									<div class="icon-borya"></div>
 								</td>
 								<td>"Борей" на 30 дней</td>
 								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
-									<img src="object3/titan.png" alt="no">
+									<div class="icon-titan"></div>
 								</td>
 								<td>"Титан" на 30 дней</td>
 								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
-									<img src="object3/ten.png" alt="no">
+									<div class="icon-ten"></div>
 								</td>
 								<td>"Тень" на 30 дней</td>
 								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
-									<img src="object3/leva.png" alt="no">
+									<div class="icon-leva"></div>
 								</td>
 								<td>"Левиафан" на 30 дней</td>
 								<td style="color:black; font-weight:normal">250</td>
 							</tr>
 							<tr>
 								<td class="two">
-									<img src="object3/vip.png" alt="no">
+									<div class="icon-vip"></div>
 								</td>
 								<td>VIP-аккаунт на 30 дней</td>
 								<td style="color:black; font-weight:normal">250</td>
@@ -331,7 +334,7 @@
 	<div class="foot">
 		<ul class="ulfoot">
 			<li>
-				Сайт любезно разработан игроком Cyusik. О <a href="/points/about.php">сайте</a>
+				Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
 			</li>
 			<li>
 				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>

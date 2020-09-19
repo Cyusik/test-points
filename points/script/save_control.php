@@ -21,9 +21,15 @@ if (isset($_POST['id_user']) && isset($_POST['login_user']) && isset($_POST['pas
 						if($result) {
 							echo "<div class='modal_div_content' data-title='Пароль $login_user обновлен'></div>";
 						}
-					} else if ($password_user == "") {
+					} else if ($password_user == "" && $priority_user == 0) {
 							echo "<div class='modal_div_content' data-title='Должен быть как минимум 1 админ'></div>";
+						} else if ($priority_user == 1){
+						$query = "UPDATE users SET role='$priority_user' WHERE id='$id_user'";
+						$result = mysqli_query($link, $query) or die("Ошибка ".mysqli_error($link));
+						if($result) {
+							echo "<div class='modal_div_content' data-title='Приоритет $login_user обновлен'></div>";
 						}
+					}
 					} else {
 					if($password_user != "") {
 						$query = "UPDATE users SET password_user=MD5('$password_user'), role='$priority_user' WHERE id='$id_user'";

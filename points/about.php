@@ -1,6 +1,3 @@
-<?php
-//test GIT 2 
-?>
 <!DOCTYPE html>
 <html lang="ru" prefix="og: http://ogp.me/ns#">
 <head>
@@ -24,7 +21,7 @@
 <div class="main">
 	<div id="logos" class="clearfix">
 		<h1 class="logomwo">
-			<a href="/points/index.php">metal war online</a>
+			<a href="/points/index">metal war online</a>
 		</h1>
 	</div>
 	<div id="table" class="clearfix">
@@ -58,7 +55,7 @@
 	<div class="foot">
 		<ul class="ulfoot">
 			<li>
-				Сайт любезно разработан игроком Cyusik. О <a href="/points/about.php">сайте</a>
+				Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
 			</li>
 			<li>
 				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>

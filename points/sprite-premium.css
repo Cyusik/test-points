@@ -1,0 +1,36 @@
+.icon-borya {
+  background-image: url(object3/sprite.png);
+  background-position: 0px 0px;
+  width: 133px;
+  height: 87px;
+}
+.icon-leva {
+  background-image: url(object3/sprite.png);
+  background-position: -133px 0px;
+  width: 133px;
+  height: 87px;
+}
+.icon-predator {
+  background-image: url(object3/sprite.png);
+  background-position: 0px -87px;
+  width: 133px;
+  height: 87px;
+}
+.icon-ten {
+  background-image: url(object3/sprite.png);
+  background-position: -133px -87px;
+  width: 133px;
+  height: 87px;
+}
+.icon-titan {
+  background-image: url(object3/sprite.png);
+  background-position: 0px -174px;
+  width: 133px;
+  height: 87px;
+}
+.icon-vip {
+  background-image: url(object3/sprite.png);
+  background-position: -133px -174px;
+  width: 133px;
+  height: 87px;
+}

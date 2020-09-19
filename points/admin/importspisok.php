@@ -44,7 +44,7 @@ else {
 	<div>
 		<nav>
 			<ul class="menu">
-				<li><a href="../results.php" class="button15" target="_blank">Таблица итогов обмена</a></li>
+				<li><a href="../results" class="button15" target="_blank">Таблица итогов обмена</a></li>
 				<li><a href="../admin/importballs.php" class="button15">Управление баллами</a></li>
 				<li><a href="../admin/formobmen.php" class="button15">Заявки на призы</a></li>
 				<li><a href="../admin/mainballs.php" class="button15">Назад</a></li>

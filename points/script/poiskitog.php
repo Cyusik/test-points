@@ -60,37 +60,37 @@ if($search == false) {
 		echo "</table>";
 	} else {
 	if($page != 1) {
-		$pervpage = '<a href= ../points/results.php?page=1><<</a>';
-		$perv1page = '<a href= ./results.php?page='.($page - 1).'>Назад</a>';
+		$pervpage = '<a href= ../points/results?page=1><<</a>';
+		$perv1page = '<a href= ./results?page='.($page - 1).'>Назад</a>';
 	}
 	else {
-		$pervpage = '<a href= ./points/results.php?page=1 class="disabled"><<</a>';
-		$perv1page = '<a href= ./results.php?page= class="disabled" '.($page - 1).'>Назад</a>';
+		$pervpage = '<a href= ./points/results?page=1 class="disabled"><<</a>';
+		$perv1page = '<a href= ./results?page= class="disabled" '.($page - 1).'>Назад</a>';
 	}
 	if($page != $pagesCount) {
-		$nextpage1 = '<a href= ./results.php?page='.($page + 1).'>Далее</a>';
-		$nextpage = '<a href= ./results.php?page='.$pagesCount.'>>></a>';
+		$nextpage1 = '<a href= ./results?page='.($page + 1).'>Далее</a>';
+		$nextpage = '<a href= ./results?page='.$pagesCount.'>>></a>';
 	}
 	else {
-		$nextpage1 = '<a href= ./results.php?page= class="disabled" '.($page + 1).'>Далее</a>';
-		$nextpage = '<a href= ./results.php?page= class="disabled" '.$pagesCount.'>>></a>';
+		$nextpage1 = '<a href= ./results?page= class="disabled" '.($page + 1).'>Далее</a>';
+		$nextpage = '<a href= ./results?page= class="disabled" '.$pagesCount.'>>></a>';
 	}
 	if($page - 3 > 0)
-		$page3left = '<li><a href= ./results.php?page='.($page - 3).'>'.($page - 3).'</a></li>';
+		$page3left = '<li><a href= ./results?page='.($page - 3).'>'.($page - 3).'</a></li>';
 	if($page - 2 > 0)
-		$page2left = '<li><a href= ./results.php?page='.($page - 2).'>'.($page - 2).'</a></li>';
+		$page2left = '<li><a href= ./results?page='.($page - 2).'>'.($page - 2).'</a></li>';
 	if($page - 1 > 0)
-		$page1left = '<li><a href= ./results.php?page='.($page - 1).'>'.($page - 1).'</a></li>';
+		$page1left = '<li><a href= ./results?page='.($page - 1).'>'.($page - 1).'</a></li>';
 	if($page + 3 <= $pagesCount)
-		$page3right = '<li><a href= ./results.php?page='.($page + 3).'>'.($page + 3).'</a></li>';
+		$page3right = '<li><a href= ./results?page='.($page + 3).'>'.($page + 3).'</a></li>';
 	if($page + 2 <= $pagesCount)
-		$page2right = '<li><a href= ./results.php?page='.($page + 2).'>'.($page + 2).'</a></li>';
+		$page2right = '<li><a href= ./results?page='.($page + 2).'>'.($page + 2).'</a></li>';
 	if($page + 1 <= $pagesCount)
-		$page1right = '<li><a href= ./results.php?page='.($page + 1).'>'.($page + 1).'</a></li>';
+		$page1right = '<li><a href= ./results?page='.($page + 1).'>'.($page + 1).'</a></li>';
 	echo "<ul class='pagination'>
 			<li>$pervpage</li>
 			<li>$perv1page</li>".$page3left.$page2left.$page1left.
-		"<li><b>$page</b></li>".$page1right.$page2right.$page3right.
+		"<li><b class='currentpage'>$page</b></li>".$page1right.$page2right.$page3right.
 		"<li>$nextpage1</li>
 			<li>$nextpage</li>
 		</ul>";
