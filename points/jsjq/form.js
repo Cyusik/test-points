@@ -47,7 +47,13 @@ $(document).ready(function() {
 						$('#search').val('');
 						$('#login').val('');
 						var div3 =$('#list > div');
-						div3.innerHTML = "";
+						if (!('remove' in Element.prototype)) {
+							Element.prototype.remove = function() {
+								if (this.parentNode) {
+									this.parentNode.removeChild(this);
+								}
+							};
+						}
 						div3.remove();
 						$('#resultdiv10').val('');
 						$('#resultdiv_search').val('');
@@ -56,7 +62,13 @@ $(document).ready(function() {
 				});
 			}
 			var div3 =$('#list > div');
-			div3.innerHTML = "";
+			if (!('remove' in Element.prototype)) {
+			Element.prototype.remove = function() {
+				if (this.parentNode) {
+					this.parentNode.removeChild(this);
+					}
+				};
+			}
 			div3.remove();
 		    $('#search').val('');
 		    $('#login').val('');

@@ -17,7 +17,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="jsjq/form.js"></script>
-
 </head>
 <body>
 <div class="main">
@@ -35,30 +34,30 @@
 				include_once 'script/connect.php';
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
-				echo "<table class='table_dark2'>
-				<form id= 'forms' name='forms' method= 'POST' action='/points/script/swapform.php'>";
+				echo "<form id='forms' method='POST' action='/points/script/swapform.php'>
+						<table class='table_dark2'>";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];
 					if( $open == '1')
 					{
-						echo "<tr>
+							echo "<tr>
 				<th colspan='2'>Выдача наград будет производиться в течении 3-х дней после закрытия опроса</th>
 				</tr>
 				<tr>
 				<td>
 					Укажите ваше игровое имя (никнейм):<br>
 					<div class='div_points_search'><span>На счету баллов:</span>
-				    <input style='width:140px; border:none' class='points_search' id='resultdiv_search' name='points_search' type='text' readonly/></div>
+				    <input style='width:140px; border:none' class='points_search' id='resultdiv_search' name='points_search' type='text' readonly></div>
 					<input minlength='3' id='search' name='nicknames5' class='form_input' type='text' maxlength='21' required>
 					<ul id='ul_stop1' class='input-requirements' style='height:0px; opacity:0'>
 					<li>не менее 3 символов...</li></ul>
 				</td>	
 				</tr>";
-				?>
-						<script type="text/javascript" src="jsjq/live_search.js"></script>
-				<?php
-				echo "<tr>
+							?>
+							<script type="text/javascript" src="jsjq/live_search.js"></script>
+						<?php
+						echo "<tr>
 				<td>
 					Укажите логин вашего аккаунта:<br>
 					<div class='div_points_search' style='margin-bottom:10px'>Для игроков из социальных сетей и steam необходимо указать ссылку на ваш профиль</div> 
@@ -72,12 +71,11 @@
 					</ul>
 				</td>
 				</tr>";
-				?>
-				<script type="text/javascript" src="jsjq/help_login.js"></script>
-				<?php
-				echo "<tr>
+						?>
+							<script type="text/javascript" src="jsjq/help_login.js"></script>
+						<?php
+						echo "<tr>
 				<td>
-			
 					Выберите приз:<br>
 					<div class='div_points_search' style='margin-bottom:10px'>Необходимо баллов:
 						<input class='points_search' id='resultdiv10' style='width:100px; border: none' type='text' name='points_required' readonly/>
@@ -92,22 +90,21 @@
 					<td colspan='2'>
 					<input  class='searhpoisk' type='submit' id='submit' value='Отправить'>
 					</td>
-					</tr></form>";
-				?>
-						<script>
-							$(document).ready(function() {
-								$("#submit").click(function() {
-									$("select[name='priz5[]'] > option").each(function() {
-										var content = $(this).text();
-										$(this).val(content);
+					</tr>";
+						?>
+							<script type="text/javascript">
+								$(document).ready(function() {
+									$("#submit").click(function() {
+										$("select[name='priz5[]'] > option").each(function() {
+											var content = $(this).text();
+											$(this).val(content);
+										});
 									});
 								});
-							});
-						</script>
-				<script type="text/javascript" src="jsjq/prizes_add.js"></script>
-				<?php
-				echo "
-				</table>
+							</script>
+							<script type="text/javascript" src="jsjq/prizes_add.js"></script>
+							<?php
+							echo "</table></form>
 				<div class='mainwindow'>
 					<div class='openwindow'>
 						<h3 id='heading'></h3>
@@ -146,10 +143,6 @@
 		</div>
 	</div>
 </div>
-<!--<script src="knopa.js"></script>-->
-<script>
-
-</script>
 </body>
 <footer>
 	<div class="foot">
@@ -167,5 +160,3 @@
 	</div>
 </footer>
 </html>
-
-

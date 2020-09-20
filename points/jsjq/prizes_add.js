@@ -6,8 +6,8 @@ function addSelect() {
 		var list = document.getElementById('list');
 		var div = document.createElement('div');
 		div.id = 'select' + ++x;
-		div.innerHTML = '<select id="test' + y + '" type="text" name=\'priz5[]\' form=\'forms\'>\n' +
-			'<option disabled=\'disabled\' selected></option>\n' +
+		div.innerHTML = '<select id="test' + y + '" name="priz5[]" form="forms">\n' +
+			'<option disabled="disabled" selected></option>\n' +
 			'<option value="100">Супер-Выстрел 50000 шт</option>\n' +
 			'<option value="100">Усиленная мина 100 шт</option>\n' +
 			'<option value="100">Большая аптечка 100 шт</option>\n' +
@@ -62,6 +62,13 @@ function delSelect() {
 	if (x > 0) {
 		var div = document.getElementById('select' + x);
 		var result = document.getElementById('prizes-result');
+		if (!('remove' in Element.prototype)) {
+			Element.prototype.remove = function() {
+				if (this.parentNode) {
+					this.parentNode.removeChild(this);
+				}
+			};
+		}
 		div.remove();
 		--x;
 		$('#list').find('select').each(function(){

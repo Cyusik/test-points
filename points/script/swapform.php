@@ -8,7 +8,7 @@ $newdate = date('Y-m-d h:i:s A', strtotime($date));
 $query = "SELECT * FROM formobmen WHERE `open`";
 $link->set_charset("utf8");
 $result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.'Ошибка swapform.php(5): '.mysqli_error($link)."\n"));
-if (isset($_POST['nicknames5']) && isset($_POST['login5']) && isset($_POST['priz5']) && isset($_POST['points_search']) && isset($_POST['points_required']))
+if (isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz5']) && isset($_POST['points_search']) && isset($_POST['points_required']))
 {
     fwrite($fw, $newdate .' '.'Запрос в форму: '."\n\t");
     while ($row = $result->fetch_assoc())
@@ -26,7 +26,7 @@ if (isset($_POST['nicknames5']) && isset($_POST['login5']) && isset($_POST['priz
             $nicknames5 = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['nicknames5']))));
             fwrite($fw, $newdate.' Никнейм: '.$nicknames5."\n\t");
             $login5 = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['login5']))));
-            fwrite($fw, $newdate.' Логин: '.$nicknames5."\n\t");
+            fwrite($fw, $newdate.' Логин: '.$login5."\n\t");
             //-----------разница баллы игрока и призы------------------------
             if (strpos($points_search, 'Никнейм не найден') !== FALSE)
             {
