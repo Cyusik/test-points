@@ -4,3 +4,5 @@ points/logfiles/search_log.log
 points/logfiles/points_log.log
 .idea/workspace.xml
 points/logfiles/exchange_log.log
+points/script/uploads/importfile.csv
+points/logfiles/results_log.log

@@ -4,14 +4,14 @@ ini_set('memory_limit', '128M');
 
         include_once "../script/connect.php";
         if(isset($_POST['but_import'])){
-            $target_dir = "../script/uploads/";
+            $target_dir = '../script/uploads/';
             $target_file = $target_dir . basename($_FILES["importfile"]["name"]);
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
             $uploadOk = 1;
             if($imageFileType != "csv" ) {
                 $uploadOk = 0;
             }
-//            var_dump($uploadOk, $target_file); die;
+ //          var_dump($uploadOk, $target_file); die;
             if ($uploadOk != 0) {
 				//------------------------------
 				$login = $_SESSION['login'];
@@ -34,11 +34,16 @@ ini_set('memory_limit', '128M');
                         $importData_arr = array();
                         while (($data = fgetcsv($file, 3000, ";")) !== FALSE) {
                             $num = count($data);
-                            for ($c=0; $c < $num; $c++) {
-                                $importData_arr[$i][] = $data[$c];
+                           for ($c=4; $c < 5; $c++) {
+							   $importData_arr[$i][] = $data[$c];
                             }
-                            $i++;
+							$i++;
                         }
+						$new_arr = array_diff($importData_arr, array(array(''), NULL, false));
+                        echo '<pre>';
+                        print_r($new_arr);
+                        exit;
+
                         fclose($file);
                         $dataForSql = array();
                         foreach($importData_arr as $data) {
