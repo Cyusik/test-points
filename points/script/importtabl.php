@@ -35,14 +35,25 @@ ini_set('memory_limit', '128M');
                         while (($data = fgetcsv($file, 3000, ";")) !== FALSE) {
                             $num = count($data);
                            for ($c=4; $c < 5; $c++) {
-							   $importData_arr[$i][] = $data[$c];
+                           			$importData_arr[$i][] = $data[$c];
+                           		for ($c=7; $c < 8; $c++) {
+									$importData_arr[$i][] = $data[$c];
+								}
                             }
 							$i++;
                         }
-						$new_arr = array_diff($importData_arr, array(array(''), NULL, false));
-                        echo '<pre>';
-                        print_r($new_arr);
-                        exit;
+
+                        foreach($importData_arr as $k => $array) {
+                        	if ($array[0] == '' || NULL || false) {
+									unset($importData_arr[$k]);
+                        	}
+							if (stripos($array[1], 'Boss') !== false) {
+								$importData_arr[$k][1] = '20';
+							}
+                        }
+						echo '<pre>';
+						print_r($importData_arr);
+	                     exit;
 
                         fclose($file);
                         $dataForSql = array();
