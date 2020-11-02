@@ -293,6 +293,21 @@ else {
 						</td>
 					</tr>
 					<tr>
+						<td><b>Подсчет баллов:</b></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="upload_count">
+								<form method="POST" action="../script/count_points.php" id="count_points">
+									<input type="file" name="countfile" id="countfile" class="countfile">
+									<label for="countfile" class="button10">Выберите файл</label>
+									<button class="button10" type="submit">Отправить</button>
+								</form>
+							</div>
+							<div id="resultcount"></div>
+						</td>
+					</tr>
+					<tr>
 						<td>Перед обновлением таблицы в базе необходимо сделать следующее:
 							<br>
 							<br>1. Экспортировать таблицу (кнопка экспорта). И считаем балллы.

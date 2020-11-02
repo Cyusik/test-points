@@ -42,7 +42,7 @@ ini_set('memory_limit', '128M');
                             }
 							$i++;
                         }
-
+						//echo 'сначала Босс<br>';
                         foreach($importData_arr as $k => $array) {
                         	if ($array[0] == '' || NULL || false) {
 									unset($importData_arr[$k]);
@@ -51,15 +51,30 @@ ini_set('memory_limit', '128M');
 								$importData_arr[$k][1] = '20';
 							}
                         }
-						echo '<pre>';
-						print_r($importData_arr);
-	                     exit;
-
+						//echo 'Теперь обычные<br>';
+                        foreach($importData_arr as $k => $array) {
+							if (stripos($array[1], 'Courier') !== false) {
+								$importData_arr[$k][1] = '15';
+							}
+						}
+						// удалляем дубликаты, складываем значения
+						$unique_array = array();
+						foreach($importData_arr as $data) {
+							$hash = $data[0];
+							if (isset($unique_array[$hash])) {
+								$data[1] += $unique_array[$hash][1];
+							}
+							$unique_array[$hash] = $data;
+						}
                         fclose($file);
+						// формируем в строки
                         $dataForSql = array();
-                        foreach($importData_arr as $data) {
-                                $dataForSql[] = "('". $data[0] ."','" . $data[1] . "','" . $data[2] . "')";
+                        foreach($unique_array as $data) {
+                                $dataForSql[] = "('". $data[0] ."','" . $data[1] . "')";
                         }
+						echo '<pre>';
+						print_r($dataForSql);
+						exit;
 
 	                    if (!empty($dataForSql)) {
 		                    $insert_query = " insert into tablballs (nickname, balls, history) values " . implode(",", $dataForSql);

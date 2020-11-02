@@ -56,3 +56,20 @@ $(document).ready(function() {
 		});
 	});
 });
+//-----------------------------------------
+$(document).ready(function() {
+	$('#count_points').submit(function (event) {
+		event.preventDefault();
+		$.ajax({
+			type: $(this).attr('method'),
+			url: $(this).attr('action'),
+			data: new FormData(this),
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				$('#resultcount').html(data);
+			},
+		});
+	});
+});
