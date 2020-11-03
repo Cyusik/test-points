@@ -56,43 +56,15 @@ if (!empty($_FILES['countfile'])) {
 					$unique_array[$hash] = $data;
 				}
 				fclose($file);
-				//$dataForSql = array();
 				foreach($unique_array as $data) { // формируем в строки
-					//$nicknamess = $data[0];
-					//$search_query = "SELECT id,nickname,balls,exclude FROM tablballs WHERE nickname='$data[0]'";
-					//$result = mysqli_query($link, $search_query) or die('Error: '.mysqli_error($link));
-					//$row = mysqli_fetch_row($result);
-					//$id = $row[0];
-					//$points = $row[2];
-					//$exclude = $row[3];
-					//if ($row[3] == '0') {
-						//$sum_points = $row[2] + $data[1];
 						$update_count = "UPDATE tablballs SET balls=`balls`+'$data[1]' WHERE nickname='$data[0]'";
 						$result = mysqli_query($link, $update_count) or die('Error: '.mysqli_error($link));
-					//} else {
-					//	$ignore_list = 1;
-					//}
-					//$dataForSql[] = "('". $data[0] ."','" . $data[1] . "')";
 				}
-				unset($unique_array);
 				$nums = count($unique_array);
-				echo '<pre>';
-				//print_r($row);
 				echo 'sucsess<br>'.$nums.' строк<br>';
 				echo 'Время выполнения скрипта: '.round(microtime(true) - $start, 4).' сек.';
 				exit();
 
-				$num_strings = count($unique_array);
-				//echo $num_strings.'<br>';
-				//$aaa = 0;
-				for($i = 0; $i < $num_strings; $i++) {
-					$search_query = ("SELECT nickname FROM tablballs WHERE nickname = ");
-				}
-				//echo $aaa.'<br>'.$num_strings;
-
-				//echo '<pre>';
-				//print_r($strok);
-				//exit;
 			} else {
 				echo 'Ошибка загрузки файла в папку uploads';
 			}
