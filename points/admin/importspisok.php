@@ -7,7 +7,7 @@ if($_GET['do'] == 'logout'){
 }
 if($_SESSION['login']){
 	$login = $_SESSION['login'];
-	$file_login = "../logfiles/points_log.log";
+	$file_login = "../logfiles/login_to_admin.log";
 	$fw = fopen($file_login, "a+");
 	$date = date('Y-m-d h:i:s');
 	$newdate = date('Y-m-d h:i:s A', strtotime($date));

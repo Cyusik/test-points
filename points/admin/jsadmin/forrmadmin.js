@@ -58,8 +58,14 @@ $(document).ready(function() {
 });
 //-----------------------------------------
 $(document).ready(function() {
-	$('#count_points').submit(function (event) {
+	$('#countfile').on('change', function() {
+		var splittedFakePath = this.value.split('\\');
+		$('#countfileON').text(splittedFakePath[splittedFakePath.length - 1]);
+	});
+	$('#count_points').submit(function(event) {
 		event.preventDefault();
+		//var uploadfile = $('#uploadfile');
+		$('#loadgif').css('display','initial');
 		$.ajax({
 			type: $(this).attr('method'),
 			url: $(this).attr('action'),
@@ -68,7 +74,10 @@ $(document).ready(function() {
 			cache: false,
 			processData: false,
 			success: function (data) {
+				$('#loadgif').css('display','none');
 				$('#resultcount').html(data);
+				$('#countfile').val('');
+				$('#countfileON').text('Выберите файл');
 			},
 		});
 	});

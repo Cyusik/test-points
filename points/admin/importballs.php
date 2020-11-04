@@ -300,10 +300,12 @@ else {
 							<div class="upload_count">
 								<form method="POST" action="../script/count_points.php" id="count_points">
 									<input type="file" name="countfile" id="countfile" class="countfile">
-									<label for="countfile" class="button10">Выберите файл</label>
-									<button class="button10" type="submit">Отправить</button>
+									<label id="countfileON" for="countfile" class="button10">Выберите файл</label>
+									<button id="buttonfile" class="button10" type="submit">Отправить</button>
+									<img src="../object1/load.gif" alt="load_gif" class="load_gif" id="loadgif" style="display:none">
 								</form>
 							</div>
+							<div id="uploadfile"></div>
 							<div id="resultcount"></div>
 						</td>
 					</tr>
