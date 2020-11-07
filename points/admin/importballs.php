@@ -153,6 +153,7 @@ else {
 									<th style='width:150px'>Никнейм</th>
 									<th style='width:30px'>Баллы</th>
 									<th style='width:0'>История обмена баллов</th>
+									<th style='width:15px'>Игнор</th>
 									<th style='width:150px'>Действие</th>
 									</tr>";
 						for($i = 0; $i < $rows; ++$i) {
@@ -174,6 +175,7 @@ else {
 							echo nl2br("<td style='width:150px'><input id='nick_test' class='input' name='nick_user' value='$row[1]'></td>");
 							echo nl2br("<td style='width:30px'><input id='point_test' class='input' name='point_user' value='$row[2]'></td>");
 							echo "<td style='width:0'><textarea id='history_test' class='textarea' name='history_user'>$row[3]</textarea>";
+							echo nl2br("<td style='width:15px'><input id='ignor_test' class='input' name='ignor_user' value='$row[4]'></td>");
 							echo "<td style='width: 150px;'>";
 							echo "<button id='$id_button_save' type='submit' class='button10'>Сохранить</button>";
 							?>
@@ -198,30 +200,53 @@ else {
 								});
 							</script>
 							<?php
-							echo "<button id='$id_button_delet' class='button10' type='submit'>Удалить</button>";
+							echo "<span id='$id_button_delet' class='button10'>Удалить</span>";
+							echo "<div class='mainwindow'>
+					<div class='openwindow'>
+						<h3 id='heading'></h3>
+						<span id='spanwidow'></span><br><br>
+						<div class='button10' id='closewidow'>Удалить</div>
+						<div class='button10' id='canceling'>Отмена</div>
+						</div>
+					</div>";;
 							?>
 							<script>
 								$(document).ready(function() {
 									$('#<?=$id_button_delet?>').click(function () {
-										$(this).attr('disabled', true);
-										$('#<?=$hideME?>').fadeIn(800);
-										$.ajax({
-											type: "POST",
-											url: "../../points/script/delet_user.php",
-											data: $("#<?=$id_form?>").serialize(),
-											success: function (result) {
-												$().html(result);
-											},
+										var nick = $('#nick_test').val();
+										$('.mainwindow').fadeIn();
+										$('.mainwindow').addClass('disabled');
+										$('#heading').html('Внимание');
+										$('#spanwidow').html('Удалить строку ' + nick + ' из БД ?');
+										$('#closewidow').click(function() {
+											$('.mainwindow').fadeOut();
+											$('#heading').html('');
+											$('#spanwidow').html('');
+											$(this).attr('disabled', true);
+											$('#<?=$hideME?>').fadeIn(800);
+											$.ajax({
+												type: "POST",
+												url: "../../points/script/delet_user.php",
+												data: $("#<?=$id_form?>").serialize(),
+												success: function (result) {
+													$().html(result);
+												},
+											});
+											$("#<?=$id_tr?>").empty();
+											$("#<?=$id_tr?>").stop().animate({
+													height: "0px",
+													opacity: 0,
+												}, 800, function() {
+													$(this).remove();
+												}
+											);
+											return false;
 										});
-										$("#<?=$id_tr?>").empty();
-										$("#<?=$id_tr?>").stop().animate({
-												height: "0px",
-												opacity: 0,
-											}, 800, function() {
-												$(this).remove();
-											}
-										);
-										return false;
+										$('#canceling').click(function() {
+											$('.mainwindow').fadeOut();
+											$('#heading').html('');
+											$('#spanwidow').html('');
+										});
 									});
 								});
 							</script>
@@ -310,6 +335,79 @@ else {
 						</td>
 					</tr>
 					<tr>
+						<td>
+							<b>Просмотр начислений в игнор листе (limit 100)</b><br><br>
+							<form id="poiskall" method="GET" action="">
+								<table class="table_dark2" style="width:250px">
+									<tr>
+										<th>От (дата)</th>
+										<th>До (дата)</th>
+										<th></th>
+									</tr>
+									<tr>
+										<td>
+											<input style="height:auto; width:150px" class="input" name="monthFromAll" type="date" min="2000-01" max="2099-12">
+										</td>
+										<td>
+											<input style="height:auto; width:150px" class="input" name="monthToAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
+										</td>
+										<td>
+											<button class="button10" type="submit" name="output">Просмотр</button>
+										</td>
+									</tr>
+								</table>
+							</form><br>
+							<?php
+							if(!empty($_GET['monthFromAll']) && !empty($_GET['monthToAll'])) {
+								$monthFromAll = trim(mysqli_real_escape_string($link, $_GET['monthFromAll']));
+								$monthToAll = trim(mysqli_real_escape_string($link, $_GET['monthToAll']));
+								if($monthFromAll <= $monthToAll) {
+									$datesfrom = $monthFromAll.' 00:00:00';
+									$datesbefore = $monthToAll.' 23:59:59';
+									$file_login = "../logfiles/points_log.log";
+									$fw = fopen($file_login, "a+");
+									$date = date('Y-m-d h:i:s');
+									$newdate = date('Y-m-d h:i:s A', strtotime($date));
+									fwrite($fw, $newdate.' '.$login.' Вывод истории игнор листа. Период '.$datesfrom.' - '.$datesbefore."\r\n");
+									mysqli_query($link, "SET NAMES 'utf8'");
+									$get_ignory = "SELECT * FROM ignoresstory WHERE date BETWEEN '$datesfrom' AND '$datesbefore' ORDER BY date DESC LIMIT 100";
+									$result = mysqli_query($link, $get_ignory) or die(fwrite($fw, $newdate.' Ошибка importballs.php (374): '.mysqli_error($link)."\n"));
+									$rows = mysqli_num_rows($result);// количество полученных строк
+									if ($rows > 0) {
+										fwrite($fw, $newdate.' result=>true'."\r\n");
+										echo "<div id='allapplications'>";
+										echo "<table class='table_dark2'><tr>
+												<th>id</th>
+												<th>Дата</th>
+												<th>Никнейм</th>
+												<th>Баллы</th></tr>";
+										for($i = 0; $i < $rows; ++$i) {
+											$row = mysqli_fetch_row($result);
+											$id_ignore_tr = 'ignore_tr'.$i;
+											echo "<tr id='$id_ignore_tr'>";
+												echo "<td><input id='' class='input' type='text' name='id_ignore' value='$row[0]' readonly></td>
+													<td><input id='' class='input' type='text' name='date_ignore' value='$row[1]' readonly></td>
+													  <td><input id='' class='input' type='text' name='nick_ignore' value='$row[2]' readonly></td>
+													  <td><input id='' class='input' type='text' name='points_ignore' value='$row[3]' readonly></td>";
+
+											echo "</tr>";
+										}
+										echo "</table>";
+									}
+								} else {
+									echo "<table class='table_dark2'>
+										<tr>
+											<th>Ошибка</th>
+										</tr>
+										<tr>
+											<td>Дата ОТ не может быть больше ДО</td>
+										</tr></table>";
+								}
+							}
+							?>
+						</td>
+					</tr>
+					<tr>
 						<td>Перед обновлением таблицы в базе необходимо сделать следующее:
 							<br>
 							<br>1. Экспортировать таблицу (кнопка экспорта). И считаем балллы.
@@ -383,4 +481,3 @@ else {
 	<br>
 </footer>
 </html>
-

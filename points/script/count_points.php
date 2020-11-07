@@ -48,53 +48,68 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 					$i++;
 				}
 				fclose($file);
-				if (!empty($importData_arr)) {
-					$check_ignore =  "SELECT nickname FROM tablballs WHERE exclude = '1'";
-					$result = mysqli_query($link, $check_ignore) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
-					$rows = mysqli_num_rows($result);
-					if ($rows > 0) {
-						for($i = 0; $i < $rows; ++$i) {
-							$row = mysqli_fetch_row($result);
-							$ignore_list[] = $row;
-						}
-						//создать бд игнора
-						function compare_ignoreList($a, $b) {
-							return strcmp($a[0], $b[0]);
-						}
-						$white_array = array_udiff($importData_arr, $ignore_list, 'compare_ignoreList'); // удалляем из массива список тех кто есть в листе игнора
-					} else {
-						$emptyignore = 'Игнор лист пуст';
-						$white_array = $importData_arr; // если игнор лист пуст
-					}
-				} else {
-					echo '<div class="modal_div_external count_result">Error, array is empty..</div>';
-					fwrite($fw, $newdate.' '.$login.' Не сформирован массив из файла'."\r\n");
-					fclose($fw);
-					exit;
-				}
-
-				foreach($white_array as $k => $array) {
+				foreach($importData_arr as $k => $array) {
 					if ($array[0] == '' || NULL || false) { //удаляем пустые строки
-						unset($white_array[$k]);
+						unset($importData_arr[$k]);
 					}
 					if (stripos($array[1], 'Boss') !== false) { // поиск содержания boss
-						$white_array[$k][1] = '20';
+						$importData_arr[$k][1] = '20';
 					}
 				}
-				foreach($white_array as $k => $array) {
+				foreach($importData_arr as $k => $array) {
 					if (stripos($array[1], 'Courier') !== false) { // поиск обычных
-						$white_array[$k][1] = '15';
+						$importData_arr[$k][1] = '15';
 					}
 				}
 				$unique_array = array();
-				foreach($white_array as $data) { // удалляем дубликаты, складываем значения
+				foreach($importData_arr as $data) { // удалляем дубликаты, складываем значения
 					$hash = $data[0];
 					if (isset($unique_array[$hash])) {
 						$data[1] += $unique_array[$hash][1];
 					}
 					$unique_array[$hash] = $data;
 				}
-				foreach($unique_array as $data) { // более путного способа не придумал и не нашел
+		//--------------инор лист-------------------------------------------
+					if (!empty($unique_array)) {
+					$check_ignore =  "SELECT nickname FROM tablballs WHERE exclude = '1'";
+					$result = mysqli_query($link, $check_ignore) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
+					$rows = mysqli_num_rows($result);
+					if ($rows > 0) {
+						$ignore_array = array();
+						for($i = 0; $i < $rows; ++$i) {
+							$row = mysqli_fetch_row($result);
+							$ignore_list[] = $row;
+						}
+						function compare_ignoreList($a, $b) {
+							return strcmp($a[0], $b[0]);
+						}
+						$black_array = array_uintersect($unique_array, $ignore_list, 'compare_ignoreList'); // формируем ник-баллы для игнора
+						$white_array = array_udiff($unique_array, $ignore_list, 'compare_ignoreList'); // удалляем из массива список тех кто есть в листе игнора
+						$blackForSql = array();
+						if(!empty($black_array)) {
+							foreach($black_array as $data) {
+								$blackForSql[] = "('". $data[0] ."','" . $data[1] . "')";
+							}
+						}
+						if(!empty($blackForSql)) {
+							$black_query = " insert into ignoresstory (nickname, points) values " . implode(",", $blackForSql);
+							$result = mysqli_query($link, $black_query) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
+							fwrite($fw, $newdate.' '.$login.' $blackForSql => true, insert'."\r\n");
+						} else {
+							fwrite($fw, $newdate.' '.$login.' Ошибка формирования листа игнора, 94 строка'."\r\n");
+						}
+					} else {
+						$emptyignore = 'Игнор лист пуст';
+						$white_array = $unique_array; // если игнор лист пуст
+					}
+				} else {
+					echo '<div class="modal_div_external count_result">Error, array is empty..</div>';
+					fwrite($fw, $newdate.' '.$login.' Ошибка формирования консолидации баллов'."\r\n");
+					fclose($fw);
+					exit;
+				}
+		//--END--------------инор лист-------------------------------------------
+				foreach($white_array as $data) { // более путного способа не придумал и не нашел
 						$update_count = "UPDATE tablballs SET balls=`balls`+'$data[1]' WHERE nickname='$data[0]'";
 						$result = mysqli_query($link, $update_count) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
 				}
@@ -111,8 +126,10 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 			}
 		}
 		$link->close();
-		unset($unique_array);
 		unset($white_array);
+		unset($importData_arr);
+		unset($unique_array);
+		unset($black_array);
 	}
 	else
 	{

@@ -17,7 +17,7 @@ if(isset($_POST['nickname']) && isset($_POST['balls']) && isset($_POST['history'
 	//---------------------------------------
 		if($nickname != "") {
 			if($balls != "") {
-				$result = $link->query("INSERT INTO ".$db_table." (nickname,balls,history) VALUES ('$nickname','$balls','$history')");
+				$result = $link->query("INSERT INTO ".$db_table." (nickname,balls,history,exclude) VALUES ('$nickname','$balls','$history', 0)");
 				if($result) {
 					fwrite($fw, $newdate.' result=>true'."\r\n");
 					echo "<div class='modal_div_content' data-title='Строка добавлена...'></div>";
