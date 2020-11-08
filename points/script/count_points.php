@@ -88,18 +88,20 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 						$blackForSql = array();
 						if(!empty($black_array)) {
 							foreach($black_array as $data) {
-								$blackForSql[] = "('". $data[0] ."','" . $data[1] . "')";
+								$data[2] = 0;
+								$blackForSql[] = "('". $data[0] ."','" . $data[1] . "','" . $data[2] . "')";
 							}
 						}
 						if(!empty($blackForSql)) {
-							$black_query = " insert into ignoresstory (nickname, points) values " . implode(",", $blackForSql);
+							$black_query = " insert into ignoresstory (nickname, points, accrued) values " . implode(",", $blackForSql);
 							$result = mysqli_query($link, $black_query) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
 							fwrite($fw, $newdate.' '.$login.' $blackForSql => true, insert'."\r\n");
+							$emptyignore = 'Игнор лист сформирован.';
 						} else {
 							fwrite($fw, $newdate.' '.$login.' Ошибка формирования листа игнора, 94 строка'."\r\n");
 						}
 					} else {
-						$emptyignore = 'Игнор лист пуст';
+						$emptyignore = 'Игнор лист пуст.';
 						$white_array = $unique_array; // если игнор лист пуст
 					}
 				} else {
@@ -113,11 +115,10 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 						$update_count = "UPDATE tablballs SET balls=`balls`+'$data[1]' WHERE nickname='$data[0]'";
 						$result = mysqli_query($link, $update_count) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
 				}
-
 				$delet_files = $count_files;
 				if (file_exists($delet_files)) {
 					unlink($delet_files);
-					echo '<div class="modal_div_external count_result">Загрузка завершена</div>';
+					echo '<div class="modal_div_external count_result">Загрузка завершена. '.$emptyignore.'</div>';
 					fwrite($fw, $newdate.' '.$login.' Баллы подсчитаны, файл удален.'."\r\n");
 				}
 			} else {

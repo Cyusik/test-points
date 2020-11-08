@@ -362,7 +362,7 @@ h3 {
 	position:initial;
 	z-index:0;
 	margin-top:20px;
-	width:30%;
+	width:40%;
 	background: #f1f1f1;
 }
 .mainwindow {
@@ -395,5 +395,28 @@ h3 {
 	width: 100px;
 	margin: auto;
 	margin-top: 10px;
+}
+.disable {
+	outline:none;
+}
+.disable:hover {
+	cursor:auto;
+}
+.butnone {
+	color: #cdcdcd;
+	cursor:auto;
+}
+.butnone:hover {
+	cursor:auto;
+	color: #cdcdcd;
+	border: 1px solid rgba(0,0,0,.1);
+	box-shadow:none;
+	background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+}
+.listIg {
+	text-align:left;
+	padding:5px;
+	border:solid 1px #cdcdcd;
+	line-height: 1.5;
 }
 /*----end----------*/

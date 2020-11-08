@@ -201,14 +201,6 @@ else {
 							</script>
 							<?php
 							echo "<span id='$id_button_delet' class='button10'>Удалить</span>";
-							echo "<div class='mainwindow'>
-					<div class='openwindow'>
-						<h3 id='heading'></h3>
-						<span id='spanwidow'></span><br><br>
-						<div class='button10' id='closewidow'>Удалить</div>
-						<div class='button10' id='canceling'>Отмена</div>
-						</div>
-					</div>";;
 							?>
 							<script>
 								$(document).ready(function() {
@@ -323,6 +315,23 @@ else {
 					<tr>
 						<td>
 							<div class="upload_count">
+								<div>
+									<?php
+									$ignore_check = "SELECT nickname, exclude FROM tablballs WHERE exclude = '1'";
+									$result = mysqli_query($link, $ignore_check) or die ('Error: '.mysqli_error($link));
+									$counts = mysqli_num_rows($result);
+									if ($counts > 0) {
+										$list = array();
+										for($q = 0; $q < $counts; ++$q) {
+											$list_ignor = mysqli_fetch_row($result);
+											$list[] = $list_ignor[0];
+										}
+										echo '<div class="input listIg">Начисляется всем, кроме: '.implode("; ", $list).'</div><br>';
+									} else {
+										echo '<div class="input listIg">Начисляется всем игрокам</div><br>';
+									}
+									?>
+								</div>
 								<form method="POST" action="../script/count_points.php" id="count_points">
 									<input type="file" name="countfile" id="countfile" class="countfile">
 									<label id="countfileON" for="countfile" class="button10">Выберите файл</label>
@@ -358,6 +367,14 @@ else {
 								</table>
 							</form><br>
 							<?php
+							echo "<div class='mainwindow'>
+					<div class='openwindow'>
+						<h3 id='heading'></h3>
+						<span id='spanwidow'></span><br><br>
+						<div class='button10' id='closewidow'>Удалить</div>
+						<div class='button10' id='canceling'>Отмена</div>
+						</div>
+					    </div>";
 							if(!empty($_GET['monthFromAll']) && !empty($_GET['monthToAll'])) {
 								$monthFromAll = trim(mysqli_real_escape_string($link, $_GET['monthFromAll']));
 								$monthToAll = trim(mysqli_real_escape_string($link, $_GET['monthToAll']));
@@ -370,30 +387,121 @@ else {
 									$newdate = date('Y-m-d h:i:s A', strtotime($date));
 									fwrite($fw, $newdate.' '.$login.' Вывод истории игнор листа. Период '.$datesfrom.' - '.$datesbefore."\r\n");
 									mysqli_query($link, "SET NAMES 'utf8'");
-									$get_ignory = "SELECT * FROM ignoresstory WHERE date BETWEEN '$datesfrom' AND '$datesbefore' ORDER BY date DESC LIMIT 100";
+									$get_ignory = "SELECT * FROM ignoresstory WHERE date BETWEEN '$datesfrom' AND '$datesbefore' ORDER BY `date` DESC LIMIT 100";
 									$result = mysqli_query($link, $get_ignory) or die(fwrite($fw, $newdate.' Ошибка importballs.php (374): '.mysqli_error($link)."\n"));
 									$rows = mysqli_num_rows($result);// количество полученных строк
 									if ($rows > 0) {
 										fwrite($fw, $newdate.' result=>true'."\r\n");
 										echo "<div id='allapplications'>";
 										echo "<table class='table_dark2'><tr>
-												<th>id</th>
-												<th>Дата</th>
-												<th>Никнейм</th>
-												<th>Баллы</th></tr>";
+												<th style='padding:0; width:0'></th>
+												<th style='width:10%'>id</th>
+												<th style='width:21%'>Дата</th>
+												<th style='width:30%'>Никнейм</th>
+												<th style='width:18%'>Баллы</th>
+												<th style='width:21%'>Действие</th></tr>";
 										for($i = 0; $i < $rows; ++$i) {
 											$row = mysqli_fetch_row($result);
 											$id_ignore_tr = 'ignore_tr'.$i;
+											$id_button_accrued = 'save_accrued'.$i;
+											$id_button_deletIg = 'delet_Ig'.$i;
+											$div_result_ignore = 'result_div1_Ig'.$i;
+											$hideME = 'hide_Me1'.$i;
+											$id_form_ignore = 'formIg'.$i;
+											$nick_ignore = 'nick_ignore'.$i;
 											echo "<tr id='$id_ignore_tr'>";
-												echo "<td><input id='' class='input' type='text' name='id_ignore' value='$row[0]' readonly></td>
-													<td><input id='' class='input' type='text' name='date_ignore' value='$row[1]' readonly></td>
-													  <td><input id='' class='input' type='text' name='nick_ignore' value='$row[2]' readonly></td>
-													  <td><input id='' class='input' type='text' name='points_ignore' value='$row[3]' readonly></td>";
-
-											echo "</tr>";
+											echo "<form id='$id_form_ignore' name='form' method='POST' action=''>";
+											echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
+													<div id='$div_result_ignore' class='modal_div_external' ></div>
+													</div></td>";
+												echo "<td style='width:10%'><input id='' class='input disable' type='text' name='id_ignore' value='$row[0]' readonly></td>
+													  <td style='width:21%'><input id='' class='input disable' type='text' name='date_ignore' value='$row[1]' readonly></td>
+													  <td style='width:30%'><input id='$nick_ignore' class='input disable' type='text' name='nick_ignore' value='$row[2]' readonly></td>
+													  <td style='width:18%'><input id='' class='input disable' type='text' name='points_ignore' value='$row[3]' readonly></td>";
+							echo "<td style='width:21%'><button id='$id_button_accrued' type='submit' class='button10'>Начислить</button>";
+							?>
+							<script>
+								$(document).ready(function() {
+									if (<?=$row[4]?> === 1) {
+										$('#<?=$id_button_accrued?>').addClass('butnone');
+										$('#<?=$id_button_accrued?>').prop("disabled", true);
+									} else
+									{
+										$('#<?=$id_button_accrued?>').click(function () {
+											$('#<?=$hideME?>').fadeIn(800);
+											function Out() {
+												$('#<?=$hideME?>').fadeOut(800);
+											}
+											setTimeout(Out, 5000);
+											$.ajax({
+												type: "POST",
+												url: "../../points/script/accrued_ignore.php",
+												data: $("#<?=$id_form_ignore?>").serialize(),
+												success: function (result) {
+													$("#<?=$div_result_ignore?>").html(result);
+													$('#<?=$id_button_accrued?>').addClass('butnone');
+													$('#<?=$id_button_accrued?>').prop("disabled", true);
+												},
+											});
+											return false;
+										});
+									}
+									});
+							</script>
+							<?php
+							echo "<span id='$id_button_deletIg' class='button10'>Удалить</span>";
+							?>
+							<script>
+								$(document).ready(function() {
+									$('#<?=$id_button_deletIg?>').click(function () {
+										$('.mainwindow').fadeIn();
+										$('.mainwindow').addClass('disabled');
+										$('#heading').html('Внимание');
+										$('#spanwidow').html('Удалить строку ' + $('#<?=$nick_ignore?>').val() + ' из БД ?');
+										$('#closewidow').click(function() {
+											$('.mainwindow').fadeOut();
+											$('#heading').html('');
+											$('#spanwidow').html('');
+											$(this).attr('disabled', true);
+											$('#<?=$hideME?>').fadeIn(800);
+											$.ajax({
+												type: "POST",
+												url: "../../points/script/delet_listIg.php",
+												data: $("#<?=$id_form_ignore?>").serialize(),
+												success: function (result) {
+													$().html(result);
+												},
+											});
+											$("#<?=$id_ignore_tr?>").empty();
+											$("#<?=$id_ignore_tr?>").stop().animate({
+													height: "0px",
+													opacity: 0,
+												}, 800, function() {
+													$(this).remove();
+												}
+											);
+											return false;
+										});
+										$('#canceling').click(function() {
+											$('.mainwindow').fadeOut();
+											$('#heading').html('');
+											$('#spanwidow').html('');
+										});
+									});
+								});
+							</script>
+										<?php	echo "</td></form></tr>";
 										}
 										echo "</table>";
-									}
+									} else {
+										echo "<table class='table_dark2'>
+										<tr>
+											<th>Ошибка</th>
+										</tr>
+										<tr>
+											<td>За выбранный период ничего нет</td>
+										</tr></table>";
+									} fclose($fw);
 								} else {
 									echo "<table class='table_dark2'>
 										<tr>
