@@ -129,7 +129,7 @@ else {
 						</form>
 						<?php
 						if (isset($_GET['names'])) {
-							$names = $_GET['names'];
+							$names = trim($_GET['names']);
 							if($names == false) {
 								echo "<table class='table_dark2'>
 												<tr>

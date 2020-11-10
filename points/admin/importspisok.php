@@ -134,9 +134,17 @@ else {
 							</table>
 						</form>
 						<?php
+						echo "<div class='mainwindow'>
+						<div class='openwindow'>
+						<h3 id='heading'></h3>
+						<span id='spanwidow'></span><br><br>
+						<div class='button10' id='closewidow'>Удалить</div>
+						<div class='button10' id='canceling'>Отмена</div>
+						</div>
+					    </div>";
 						if (isset($_GET['names']) && isset($_GET ['month'])) {
 							$month = $_GET['month'];
-							$names = $_GET['names'];
+							$names = trim($_GET['names']);
 							if($names == false) {
 								if($month == false) {
 									echo "<table class='table_dark2'>
@@ -184,6 +192,7 @@ else {
 						$id_form = 'form1'.$i;
 						$div_result = 'result_div1'.$i;
 						$hideME = 'hide_Me1'.$i;
+						$nick_results = 'nick_resultsid'.$i;
 							$id_tr = 'tr1'.$i;
 							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
 						echo "<tr id='$id_tr'>";
@@ -193,7 +202,7 @@ else {
 				</div></td>";
 						echo nl2br("<td style='width:30px'><input class='input' name='id_results' value='$row[0]' readonly='readonly'></td>");
 						echo nl2br("<td style='width:140px'><input class='input' name='dates_results' value='$row[1]' readonly='readonly'></td>");
-						echo nl2br("<td><input class='input' name='nick_results' value='$row[2]'></td>");
+						echo nl2br("<td><input id='$nick_results' class='input' name='nick_results' value='$row[2]'></td>");
 						echo nl2br("<td style='width:100px'><input class='input' name='result_results' value='$row[3]'></td>");
 						echo nl2br("<td style='width:225px'><input class='input' name='cause_results' value='$row[4]'></td>");
 						echo "<td style='width:215px'>";
@@ -222,30 +231,44 @@ else {
 							});
 						</script>
 						<?php
-						echo "<button id='$id_button_delet' class='button10' type='submit'>Удалить</button>";
+						echo "<span id='$id_button_delet' class='button10'>Удалить</span>";
 						?>
 						<script>
 							$(document).ready(function () {
 								$('#<?=$id_button_delet?>').click(function () {
-									$(this).attr('disabled', true);
-									$('#<?=$hideME?>').fadeIn(800);
-									$.ajax({
-										type: "POST",
-										url: "../../points/script/delet_results.php",
-										data: $("#<?=$id_form?>").serialize(),
-										success: function (result) {
-											$("#<?=$div_result?>").html(result);
-										},
+									$('.mainwindow').fadeIn();
+									$('.mainwindow').addClass('disabled');
+									$('#heading').html('Внимание');
+									$('#spanwidow').html('Удалить строку ' + $('#<?=$nick_results?>').val() + ' из БД ?');
+									$('#closewidow').click(function () {
+										$('.mainwindow').fadeOut();
+										$('#heading').html('');
+										$('#spanwidow').html('');
+										$(this).attr('disabled', true);
+										$('#<?=$hideME?>').fadeIn(800);
+										$.ajax({
+											type: "POST",
+											url: "../../points/script/delet_results.php",
+											data: $("#<?=$id_form?>").serialize(),
+											success: function (result) {
+												$().html(result);
+											},
+										});
+										$("#<?=$id_tr?>").empty();
+										$("#<?=$id_tr?>").stop().animate({
+												height: "0px",
+												opacity: 0,
+											}, 800, function () {
+												$(this).remove();
+											}
+										);
+										return false;
 									});
-									$("#<?=$id_tr?>").empty();
-									$("#<?=$id_tr?>").stop().animate({
-											height: "0px",
-											opacity: 0,
-										}, 800, function() {
-											$(this).remove();
-										}
-									);
-									return false;
+									$('#canceling').click(function () {
+										$('.mainwindow').fadeOut();
+										$('#heading').html('');
+										$('#spanwidow').html('');
+									});
 								});
 							});
 						</script>

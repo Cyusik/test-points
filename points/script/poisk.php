@@ -120,26 +120,37 @@ if($search == false) {
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(124): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);
-		if($rows > 0) {
-			fwrite($fw, $newdate.' Запрос: '.'true'."\n");
-			echo "<table class='table_dark2'><tr>
+		$row = mysqli_fetch_row($result);
+		if (!empty($row[2])) {
+			if($rows > 0) {
+				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
+				echo "<table class='table_dark2'><tr>
 					<th>Никнейм</th>
 					<th>Баллы</th>
 				</tr>";
-			for($i = 0; $i < $rows; ++$i) {
-				$row = mysqli_fetch_row($result);
-				echo "<tr>";
-				for($j = 1; $j < 3; ++$j)
-					if (!empty($row[2])) {
-						echo nl2br("<td>$row[$j]</td>");
-				echo "</tr>";
-				echo "<th colspan='2'>История обмена баллов</th>";
-				echo "<tr>";
-				for($j = 3; $j < 4; ++$j)
-					echo nl2br("<td colspan='2'>$row[$j]</td>");
-				echo "</tr>";
-					}
-				echo "</table>";
+				for($i = 0; $i < $rows; ++$i) {
+					//$row = mysqli_fetch_row($result);
+					echo "<tr>";
+					for($j = 1; $j < 3; ++$j)
+							echo nl2br("<td>$row[$j]</td>");
+							echo "</tr>";
+							echo "<th colspan='2'>История обмена баллов</th>";
+							echo "<tr>";
+							for($j = 3; $j < 4; ++$j)
+								echo nl2br("<td colspan='2'>$row[$j]</td>");
+							echo "</tr>";
+					echo "</table>";
+				}
+			} else {
+				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
+				echo "<table class='table_dark2'>
+					<tr>
+						<th style='text-align:center'>Ошибка поиска</th>
+					</tr>
+					<tr>
+						<td style='text-align:center'>Такого никнейма нет в таблице</td>
+					</tr>
+					</table>";
 			}
 		}
 		else {
