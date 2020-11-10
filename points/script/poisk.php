@@ -50,7 +50,9 @@ if($search == false) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
 				for($j = 0; $j < 4; ++$j)
-					echo "<td>$row[$j]</td>";
+					if (!empty($row[2])) { // если balls пусто то не выводим
+						echo "<td>$row[$j]</td>";
+					}
 				echo "</tr>";
 			}
 		}
@@ -128,13 +130,15 @@ if($search == false) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
 				for($j = 1; $j < 3; ++$j)
-					echo nl2br("<td>$row[$j]</td>");
+					if (!empty($row[2])) {
+						echo nl2br("<td>$row[$j]</td>");
 				echo "</tr>";
 				echo "<th colspan='2'>История обмена баллов</th>";
 				echo "<tr>";
 				for($j = 3; $j < 4; ++$j)
 					echo nl2br("<td colspan='2'>$row[$j]</td>");
 				echo "</tr>";
+					}
 				echo "</table>";
 			}
 		}

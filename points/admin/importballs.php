@@ -72,11 +72,12 @@ else {
 						Перед добавлением новой строки, убедиться что строки с таким никнеймом в таблице нет.
 						Добавить строку в таблицу (если истроии нет, оставляем поле пустым. Окно можно расширить, правый нижний угол, клавиша Enter - перевод на новую строку): <br><br>
 						<form id="zapvis" method="POST" action="../script/zapisstrokballs.php">
-						<table class="table_dark2">
+						<table class="table_dark2 widthIg">
 							<tr>
 								<th>Никнейм</th>
 								<th>Баллы</th>
 								<th>История</th>
+								<th>Игнор</th>
 							</tr>
 								<tr>
 									<td>
@@ -87,6 +88,9 @@ else {
 									</td>
 									<td>
 										<textarea class="textarea" id="history" rows="1" cols="50" name="history"></textarea>
+									</td>
+									<td>
+										<input class="input" id="ignory" name="ignory" type="text" size="20" value="0"/>
 									</td>
 								</tr>
 						</table>

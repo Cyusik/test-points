@@ -419,4 +419,7 @@ h3 {
 	border:solid 1px #cdcdcd;
 	line-height: 1.5;
 }
+.widthIg th:nth-child(4), td:nth-child(4) {
+	width:50px;
+}
 /*----end----------*/
