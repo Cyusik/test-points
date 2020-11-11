@@ -50,7 +50,7 @@ if($search == false) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
 				for($j = 0; $j < 4; ++$j)
-					if (!empty($row[2])) { // если balls пусто то не выводим
+					if ($row[2] != "") { // если balls пусто то не выводим
 						echo "<td>$row[$j]</td>";
 					}
 				echo "</tr>";
@@ -121,7 +121,7 @@ if($search == false) {
 	if($result) {
 		$rows = mysqli_num_rows($result);
 		$row = mysqli_fetch_row($result);
-		if (!empty($row[2])) {
+		if ($row[2] != "") {
 			if($rows > 0) {
 				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
 				echo "<table class='table_dark2'><tr>
