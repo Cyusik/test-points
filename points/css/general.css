@@ -1,0 +1,22 @@
+.searhpoisk {
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 30px;
+	background: #52a3bc;
+	float:right;
+	border:#52a3bc;
+	margin-bottom:13px;
+	right: 0;
+	border-radius:10px;
+	cursor:pointer;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+	transition: .3s;
+}
+.searhpoisk:hover {
+	background-color:#52a3bc;
+	box-shadow: 4px 4px 7px rgba(0,0,0,0.5)
+}
+.searhpoisk:active {
+	background: #d0e7ed;
+	box-shadow:none;
+}
