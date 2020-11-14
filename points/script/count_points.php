@@ -111,14 +111,31 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 					exit;
 				}
 		//--END--------------инор лист-------------------------------------------
-				foreach($white_array as $data) { // более путного способа не придумал и не нашел
-						$update_count = "UPDATE tablballs SET balls=`balls`+'$data[1]' WHERE nickname='$data[0]'";
-						$result = mysqli_query($link, $update_count) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
+		//-запрос UPDATE-----
+				$update_count = "UPDATE tablballs SET balls=`balls`+? WHERE nickname=?";
+				$stmt = mysqli_prepare($link, $update_count);
+				$false_update = array();
+				foreach ($white_array as  $row) {
+					mysqli_stmt_bind_param($stmt,"ss", $row[1], $row[0]);
+					mysqli_stmt_execute($stmt);
+					if(mysqli_stmt_affected_rows($stmt) == false) {// кидаем в массив ник/баллы если update их не затронул
+						$row[2] = "";
+						$row[3] = 0;
+						$false_update[] = "('". $row[0] ."','" . $row[1] . "','" . $row[2] . "','" . $row[3] . "')";
+					}
+				}
+				mysqli_stmt_close($stmt);
+		//-END-----
+				if(!empty($false_update)) { // добавляем, если update false----------
+					$false_query = " insert into tablballs (nickname, balls, history, exclude) values " . implode(",", $false_update);
+					$result = mysqli_query($link, $false_query) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
+					fwrite($fw, $newdate.' '.$login.' $false_update => true, insert'."\r\n");
+					$emptynicknames = 'Новые никнеймы добавлены.';
 				}
 				$delet_files = $count_files;
 				if (file_exists($delet_files)) {
 					unlink($delet_files);
-					echo '<div class="modal_div_external count_result">Загрузка завершена. '.$emptyignore.'</div>';
+					echo '<div class="modal_div_external count_result">Загрузка завершена. '.$emptyignore.' '.$emptynicknames.'</div>';
 					fwrite($fw, $newdate.' '.$login.' Баллы подсчитаны, файл удален.'."\r\n");
 				}
 			} else {
@@ -131,6 +148,7 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 		unset($importData_arr);
 		unset($unique_array);
 		unset($black_array);
+		unset($false_update);
 	}
 	else
 	{
