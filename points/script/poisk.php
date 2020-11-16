@@ -6,7 +6,7 @@ $date = date('Y-m-d h:i:s');
 $newdate = date('Y-m-d h:i:s A', strtotime($date));
 if($search == false) {
 	require_once 'script/connect.php';
-	$id2 = 2;
+	/*$id2 = 2;
 	$sql = "SELECT * FROM formobmen WHERE id=%d";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $id2));
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(14): '.mysqli_error($link)."\n"));
@@ -19,7 +19,7 @@ if($search == false) {
 							</td>
 							</tr>
 						</table>";
-	$result->free();
+	$result->free();*/
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
 		$page = intval($_GET['page']);

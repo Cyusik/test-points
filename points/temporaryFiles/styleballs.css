@@ -41,13 +41,10 @@ h1 {
 	display:block;
 	height:50%;
 }
-#table {
-	background:url("/points/bg-main.gif") repeat-y;
-}
 .table-t {
 	background:url("/points/bg-main.jpg") no-repeat;
 	min-height: 890px;
-	padding: 120px 130px 0;
+	padding: 53px 103px 0;
 }
 #nav-balls {
 	float: right;
@@ -146,11 +143,12 @@ li {
 	padding-bottom:5px;
 	float:left;
 	width:675px;
-	/*background:url("/points/bgg.jpg") repeat;*/
-	background:none repeat;
+	background:url("/points/bgg.jpg") repeat;
 	margin-top:25px;
 	margin-left:-20px;
-	/*border: 2px solid #3d7c81;*/
+	border-top-left-radius:21px;
+	border-top-right-radius:21px;
+	border: 2px solid #3d7c81;
 }
 .spisok-priz1 {
 	float:left;
@@ -184,26 +182,20 @@ li {
 	font-size: 14px;
 	width: 665px;
 	text-align: left;
-	/*border-collapse: collapse;*/
+	border-collapse: collapse;
+	background: #d0e7ed;
 	margin-top: 5px;
 	margin-left: 5px;
-/*	box-shadow: inset 0 0 8px -3px rgb(94 152 154);*/
-	box-shadow: 15px 0 8px -3px rgb(94 152 154), -15px 0 8px 0px rgb(94 152 154);
 }
 .table_dark th {
-	background: #d0e7ed;
-	/*box-shadow: inset 0 0 8px -3px rgb(94 152 154);*/
-	/*border-bottom: 3px solid rgba(0, 0, 0, 0.80);
-	border-right: 3px solid #a5c3cd;*/
+	border-bottom: 3px solid #a5c3cd;
 	padding: 12px 17px;
 	text-align:center;
 }
 .table_dark td {
-	background: #d0e7ed;
 	color: #000000;
-	/*border-bottom:3px solid #a5c3cd;
-	border-right:3px solid #a5c3cd;*/
-	/*border:transparent;*/
+	border-bottom:3px solid #a5c3cd;
+	border-right:3px solid #a5c3cd;
 	padding: 5px 17px;
 	text-align:center;
 }
@@ -290,17 +282,11 @@ li {
 img {
 	float:left;
 }
-.end {
-	margin:0;
-	padding:0;
-}
 .foot {
-	height:120px;
+	margin-bottom:15px;
+	margin-top:10px;
 	text-align:center;
-	background:url("/points/footer-main.jpg") no-repeat scroll 0 0;
-}
-.foot_ul {
-	padding: 50px
+	margin-left: 40px;
 }
 /* ОПЫТЫ С КНОПКОЙ -------------------------------------------------*/
 #button-up{
@@ -323,8 +309,8 @@ img {
 	list-style-type: none;
 	margin:0;
 	padding:0;
-	color:#001319;
-	font: 13px Tahoma, Arial, Helvetica, sans-serif;
+	color:#52a3bc;
+	font: 12px Tahoma, Arial, Helvetica, sans-serif;
 }
 hr {
 	margin-top:30px;

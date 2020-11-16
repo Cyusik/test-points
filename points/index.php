@@ -35,34 +35,50 @@ require_once 'script/connect.php';
 				include_once 'script/poisk.php';
 				?>
 			</div>
-			<div id="nav-balls">
-				<ul class="nav-bottom">
-					<li depth="1">
-						<a href="/points/prizes">Призы за баллы</a>
-					</li>
-					<li class="active" depth="1">
-						<a href="/points/index">Таблица с баллами</a>
-					</li>
-					<li depth="1">
-						<a href="/points/results">Итоги обмена баллов на призы</a>
-					</li>
-					<li depth="1">
-						<a href="/points/swap">Обмен баллов на призы</a>
-					</li>
-				</ul>
-				<div class="poisk">
-					<form class="searh" method="get" action="index.php">
-						<input class="searhnik" type="text" name="search" placeholder="Введите никнейм..." minlength="3" maxlength="21">
-						<br>
-						<button class="searhpoisk" type="submit">Найти...</button>
-					</form>
+
+		<!--	<div id="nav-balls">
+					<ul class="nav-bottom">
+						<li depth="1">
+							<a href="/points/prizes">Призы за баллы</a>
+						</li>
+						<li class="active" depth="1">
+							<a href="/points/index">Таблица с баллами</a>
+						</li>
+						<li depth="1">
+							<a href="/points/results">Итоги обмена баллов на призы</a>
+						</li>
+						<li depth="1">
+							<a href="/points/swap">Обмен баллов на призы</a>
+						</li>
+					</ul>
+					<div class="poisk">
+						<form class="searh" method="get" action="index.php">
+							<input class="searhnik" type="text" name="search" placeholder="Введите никнейм..." minlength="3" maxlength="21">
+							<br>
+							<button class="searhpoisk" type="submit">Найти...</button>
+						</form>
+					</div>
 				</div>
-			</div>
+			-->
+		</div>
+	</div>
+	<div class="end"></div>
+	<div class="foot">
+		<div class="foot_ul">
+			<ul class="ulfoot">
+				<li>
+					Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
+				</li>
+				<li>
+					Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>
-<footer>
-	<div class="foot">
+<!--
+<div class="end"></div>
+<div class="foot">
 		<ul class="ulfoot">
 			<li>
 				Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
@@ -71,10 +87,10 @@ require_once 'script/connect.php';
 				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
 			</li>
 		</ul>
-	</div>
+</div>
+-->
 	<div id="button-up">
 		<img src="top.png" alt="no" title="Вжух!">
 	</div>
-</footer>
 </body>
 </html>
