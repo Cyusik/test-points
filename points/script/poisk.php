@@ -42,8 +42,8 @@ if($search == false) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			echo "<table class='table_dark'>
 				<tr>
-					<td></td>
-					<td colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена 18.11.20</span></td>
+					<th></th>
+					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена 18.11.20</span></th>
 				</tr>
 				<tr>
 					<th>Номер</th>

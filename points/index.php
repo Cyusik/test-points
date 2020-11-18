@@ -35,13 +35,26 @@ require_once 'script/connect.php';
 					<div class="apan"><div class="bpan">Дата последнего обновления: 16.11.20</div></div>
 				</div>
 			</div>   -->
-			<div class="spisok-priz">
+			<div class="spisok-priz clearfix">
 			<!--	<h3 class="heding">Общая таблица баллов</h3>-->
 				<?php
 				include_once 'script/poisk.php';
 				?>
 			</div>
+			<div class="nav-points clearfix">
+				<div class="heding clearfix">
+					<span>Навигация</span>
+				</div>
+					<div class="nav-bottom clearfix">
+						<ul>
+							<li>Призы за баллы</li>
+							<li>Таблица с баллами</li>
+							<li>Итоги обмена баллов на призы</li>
+							<li>Обмен баллов на призы</li>
+						</ul>
+					</div>
 
+			</div>
 		<!--	<div id="nav-balls">
 					<ul class="nav-bottom">
 						<li depth="1">
