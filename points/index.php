@@ -29,6 +29,12 @@ require_once 'script/connect.php';
 	</div>
 	<div id="table" class="clearfix">
 		<div class="table-t">
+	<!--		<div class="panel">
+				<div class="date-panel">
+					<div class="line"></div>
+					<div class="apan"><div class="bpan">Дата последнего обновления: 16.11.20</div></div>
+				</div>
+			</div>   -->
 			<div class="spisok-priz">
 				<h3 class="heding">Общая таблица баллов</h3>
 				<?php
