@@ -40,7 +40,12 @@ if($search == false) {
 		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(37): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
-			echo "<table class='table_dark'><tr>
+			echo "<table class='table_dark'>
+				<tr>
+					<td></td>
+					<td colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена 18.11.20</span></td>
+				</tr>
+				<tr>
 					<th>Номер</th>
 					<th>Никнейм</th>
 					<th>Баллы</th>

@@ -36,7 +36,7 @@ require_once 'script/connect.php';
 				</div>
 			</div>   -->
 			<div class="spisok-priz">
-				<h3 class="heding">Общая таблица баллов</h3>
+			<!--	<h3 class="heding">Общая таблица баллов</h3>-->
 				<?php
 				include_once 'script/poisk.php';
 				?>

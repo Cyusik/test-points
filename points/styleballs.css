@@ -84,7 +84,6 @@ h1 {
 	text-align: center;
 	background-position: 31px -126px;
 }
-}
 #nav-balls {
 	float: right;
 	width: 260px;
@@ -198,14 +197,15 @@ li {
 	border-top-right-radius:21px;
 	border: 2px solid #3d7c81;
 }
-.heding {
+.table_dark td.heding {
 	position: relative;
 	height: 37px;
 	padding: 0 16px;
 	background: url("/points/object1/bg-ttl2.gif") repeat-x;
-	font: 14px/37px Tahoma, Arial, Helvetica, sans-serif;
+	font: 15px/36px 'archangelsk-webfont';
 	color: #feffff;
 	text-transform: uppercase;
+	text-align:left;
 /*	border-top-left-radius:20px;
 	border-top-right-radius:20px;
 	-webkit-border-top-left-radius: 20px;
