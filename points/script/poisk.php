@@ -42,19 +42,19 @@ if($search == false) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			echo "<table class='table_dark'>
 				<tr>
-					<th></th>
+				<!--	<th></th> -->
 					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена 18.11.20</span></th>
 				</tr>
 				<tr>
-					<th>Номер</th>
+				<!--	<th>Номер</th>-->
 					<th>Никнейм</th>
 					<th>Баллы</th>
-					<th>История</th>
+				<!--	<th>История</th>-->
 				</tr>";
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
-				for($j = 0; $j < 4; ++$j)
+				for($j = 1; $j < 3; ++$j)
 					if ($row[2] != "") { // если balls пусто то не выводим
 						echo "<td>$row[$j]</td>";
 					}

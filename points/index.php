@@ -42,18 +42,19 @@ require_once 'script/connect.php';
 				?>
 			</div>
 			<div class="nav-points clearfix">
-				<div class="heding clearfix">
+				<div class="nav-heding clearfix">
 					<span>Навигация</span>
 				</div>
 					<div class="nav-bottom clearfix">
 						<ul>
-							<li>Призы за баллы</li>
+							<li>
+								<a href="#">Призы за баллы</a>
+							</li>
 							<li>Таблица с баллами</li>
 							<li>Итоги обмена баллов на призы</li>
 							<li>Обмен баллов на призы</li>
 						</ul>
 					</div>
-
 			</div>
 		<!--	<div id="nav-balls">
 					<ul class="nav-bottom">
