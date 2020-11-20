@@ -50,9 +50,15 @@ require_once 'script/connect.php';
 							<li>
 								<a href="#">Призы за баллы</a>
 							</li>
-							<li>Таблица с баллами</li>
-							<li>Итоги обмена баллов на призы</li>
-							<li>Обмен баллов на призы</li>
+							<li class="active">
+								<a href="/points/index">Таблица с баллами</a>
+							</li>
+							<li>
+								<a href="#">Итоги обмена баллов на призы</a>
+							</li>
+							<li>
+								<a href="#">Обмен баллов на призы</a>
+							</li>
 						</ul>
 					</div>
 			</div>
