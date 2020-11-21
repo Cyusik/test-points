@@ -45,7 +45,7 @@ require_once 'script/connect.php';
 				<div class="nav-heding clearfix">
 					<span>Навигация</span>
 				</div>
-					<div class="nav-bottom clearfix">
+				<!--	<div class="nav-bottom clearfix">
 						<ul>
 							<li>
 								<a href="#">Призы за баллы</a>
@@ -60,9 +60,9 @@ require_once 'script/connect.php';
 								<a href="#">Обмен баллов на призы</a>
 							</li>
 						</ul>
-					</div>
-			</div>
-		<!--	<div id="nav-balls">
+					</div> -->
+		<!--	</div>-->
+			<div id="nav-balls">
 					<ul class="nav-bottom">
 						<li depth="1">
 							<a href="/points/prizes">Призы за баллы</a>
@@ -77,7 +77,7 @@ require_once 'script/connect.php';
 							<a href="/points/swap">Обмен баллов на призы</a>
 						</li>
 					</ul>
-					<div class="poisk">
+			<!--		<div class="poisk">
 						<form class="searh" method="get" action="index.php">
 							<input class="searhnik" type="text" name="search" placeholder="Введите никнейм..." minlength="3" maxlength="21">
 							<br>
@@ -85,9 +85,10 @@ require_once 'script/connect.php';
 						</form>
 					</div>
 				</div>
-		</div> -->
+			-->
+		</div>
 	</div>
-		<!--</div>-->
+		</div>
 	</div>
 	<div class="end"></div>
 	<div class="foot">

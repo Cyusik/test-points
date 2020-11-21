@@ -82,95 +82,54 @@ h1 {
 .nav-points {
 	margin-top: 2px;
 	float: right;
-	width: 260px;
+	width: 240px;
 	margin-right: 9px;
-	/*box-shadow: 7px 0 8px -3px rgb(94 152 154), -5px 0 8px 0px rgb(85 145 146);*/
+	box-shadow: 7px 0 8px -3px rgb(94 152 154), -5px 0 8px 0px rgb(85 145 146);
 }
 /*-------------------------------------------*/
+#nav-balls {
+	float: right;
+	width: 260px;
+	margin-top: 10px;
+}
 .nav-bottom {
-	margin-top: -8px;
-	border-radius: 5px;
-}
-.nav-bottom ul {
-	margin-block-start: 0px;
-	margin-block-end: 0px;
-	margin-top: 0px;
-	padding-inline-start: 0;
-}
-.nav-bottom ul li {
-	/*	border: 1px solid #BBB;
-		border-top: 1px solid #D0D0D0;
-		border-bottom: 1px solid #A5A5A5;*/
-	/*border: 1px solid #ced1d2;*/
-	outline: none;
-	position: relative;
-	display: block;
-	border-radius: 8px;
-	cursor: pointer;
-	/*transition: box-shadow 0.7s ease, color 0.7s ease;*/
-	margin: 10px 0px;
+	margin: 0;
+	padding: 13px 0 10px;
 	list-style: none;
 }
-.nav-bottom ul li a {
-	background: url("/points/object1/btn-nav-2.gif") repeat-y, rgb(245,245,245) linear-gradient(#c53d45, #5d1720);
-/*	background:url("/points/object1/btn-nav.gif") no-repeat;*/
-	border-radius: 8px;
-	/*	border: 1px solid #BBB;
-		border-top: 1px solid #D0D0D0;
-		border-bottom: 1px solid #A5A5A5;*/
+.nav-bottom li {
+	padding-bottom: 3px;
+	height: 54px;
+	vertical-align: top;
+	line-height: 17px;
+}
+.nav-bottom li a{
 	display: block;
-	transition: box-shadow 0.2s ease, color 0.2s ease;
-	padding: 12px 0px 14px 48px;
+	width: 215px;
+	height: 35px;
+	padding: 19px 33px 0;
+	overflow: hidden;
+	background: url("/points/bg-add-nav.png") no-repeat;
+	color: #ebe3e3;
 	text-decoration: none;
-	color: #ffffff;
-	/*box-shadow: 0 3px 7px rgba(0, 0, 0, .1);*/
-	box-shadow: inset 0 1px #c53d45, inset 1px 0 #5d1720, inset -1px 0 #5d1720, inset 0 -1px #54141d, 0 2px #461118, 0 3px #1f080b, 0 4px 5px rgba(0,0,0,0.4);
 }
-.nav-bottom ul li a:hover{
-	background: url("/points/object1/btn-nav-2.gif") repeat-y, rgb(245,245,245) linear-gradient(#d24048, #7d1c28);
+.nav-bottom li a:hover, .nav-bottom li.active a {
+	text-decoration:none;
+	background-position:0 -54px;
 }
-.nav-bottom ul li.active a{
-	top: 3px;
-	cursor:default;
-	/*	border: 1px solid #B9B9B9;
-		border-top: 1px solid #959595;
-		border-bottom: 1px solid #CACACA;*/
-	/*background: rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));*/
-	background: url("/points/object1/btnv2.png") repeat-y, rgb(245,245,245) linear-gradient(#ec5926, #771a03);
-	box-shadow: inset 0 1px 2px #791b02;
-	background-position: -4px 0px;
+ul {
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	padding-inline-start: 40px;
 }
-/*.nav-bottom ul li:active {
-	top: 3px;
-	border: 1px solid #B9B9B9;
-	border-top: 1px solid #959595;
-	border-bottom: 1px solid #CACACA;
-	color: rgb(51, 51, 51);
-	background: rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
-	box-shadow: inset 0 1px 2px #B9B9B9;
-}*/
-.nav-bottom ul li a:active {
-	top: 3px;
-	/*	border: 1px solid #B9B9B9;
-		border-top: 1px solid #959595;
-		border-bottom: 1px solid #CACACA;*/
-	/*color: #000000;*/
-	background: url("/points/object1/btnv2.png") repeat-y, rgb(245,245,245) linear-gradient(#ec5926, #771a03);
-	box-shadow: inset 0 1px 2px #791b02;
-	background-position: -4px 0px;
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
 }
-/*.nav-bottom ul li.active a {
-	box-shadow:none;
-}*/
-/*.nav-bottom ul li.active a:hover {
-	color: #000000;
-}
-.nav-bottom ul li a:hover {
-	color: #000000;
-}*/
-/*.nav-bottom ul li:active {
-	box-shadow: inset 0 1px #F5F5F5, inset 1px 0 #EDEDED, inset -1px 0 #EDEDED, inset 0 -1px #E7E7E7, 0 2px #B2B1B1, 0 3px #A5A5A5, 0 4px 2px rgba(0,0,0,0.4);
-}*/
 /*------------------------------------------------------*/
 .tabl {
 	width:100%;
@@ -279,7 +238,7 @@ h1 {
 --------------НАЧАЛО----------------------------*/
 .table_dark {
 	font-size: 14px;
-	width: 625px;
+	width: 640px;
 	text-align: left;
 	/*border-collapse: collapse;*/
 /*	margin-top: 5px;*/
