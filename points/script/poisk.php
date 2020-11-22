@@ -64,7 +64,7 @@ if($search == false) {
 	}
 	else {
 		fwrite($fw, $newdate." Ошибка условия poisk.php(35): ".$from.'>= 0'."\n");
-		echo "<table class='table_dark2'>
+		echo "<table class='table_dark'>
 					<tr>
 						<th style='display:block; text-align:center'>Ошибка</th>
 					</tr>
@@ -109,11 +109,11 @@ if($search == false) {
 			$page2right = '<li><a href= ./index?page='.($page + 2).'>'.($page + 2).'</a></li>';
 		if($page + 1 <= $pagesCount)
 			$page1right = '<li><a href= ./index?page='.($page + 1).'>'.($page + 1).'</a></li>';
-		echo "<ul class='pagination'>
+		echo "<div class='ul-pagination'><ul class='pagination'>
 			<li>$pervpage</li>
 			<li>$perv1page</li>".$page3left.$page2left.$page1left."<li><b class='currentpage'>$page</b></li>".$page1right.$page2right.$page3right."<li>$nextpage1</li>
 			<li>$nextpage</li>
-		</ul>";
+		</ul></div>";
 	}
 }else {
 	$search = trim($search);
@@ -129,7 +129,9 @@ if($search == false) {
 		if ($row[2] != "") {
 			if($rows > 0) {
 				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
-				echo "<table class='table_dark2'><tr>
+				echo "<table class='table_dark'><tr>
+					<tr>
+					<th colspan='2' class='heding'>&nbsp;</th></tr>
 					<th>Никнейм</th>
 					<th>Баллы</th>
 				</tr>";
@@ -142,30 +144,38 @@ if($search == false) {
 							echo "<th colspan='2'>История обмена баллов</th>";
 							echo "<tr>";
 							for($j = 3; $j < 4; ++$j)
-								echo nl2br("<td colspan='2'>$row[$j]</td>");
+								echo nl2br("<td colspan='2' style='text-align:left'>$row[$j]</td>");
 							echo "</tr>";
 					echo "</table>";
 				}
 			} else {
 				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
-				echo "<table class='table_dark2'>
+				echo "<table class='table_dark'>
 					<tr>
-						<th style='text-align:center'>Ошибка поиска</th>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
 					</tr>
 					<tr>
-						<td style='text-align:center'>Такого никнейма нет в таблице</td>
+						<td style='padding:15px 7px'><b>Такого никнейма нет в таблице</b></td>
 					</tr>
 					</table>";
 			}
 		}
 		else {
 			fwrite($fw, $newdate.' Запрос: '.'false'."\n");
-			echo "<table class='table_dark2'>
+			echo "<table class='table_dark'>
 					<tr>
-						<th style='text-align:center'>Ошибка поиска</th>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
 					</tr>
 					<tr>
-						<td style='text-align:center'>Такого никнейма нет в таблице</td>
+						<td style='padding:15px 7px'><b>Такого никнейма нет в таблице</b></td>
+					</tr>
+					<tr>
+						<td>Пожалуйста, проверьте правильно ли введен никнейм.<br>
+							Возможно баллы начислятся при следующем обновлении таблицы.<br>
+							</td>
+					</tr>
+					<tr>
+						<td>КАРТИНКА</td>
 					</tr>
 					</table>";
 		}

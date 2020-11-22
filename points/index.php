@@ -21,6 +21,7 @@ require_once 'script/connect.php';
 	<script src="/points/jquery-3.4.1.min.js"></script>
 </head>
 <body>
+<!--<div class="snow">-->
 <div class="main">
 	<div id="logos" class="clearfix">
 		<h1 class="logomwo">
@@ -28,7 +29,7 @@ require_once 'script/connect.php';
 		</h1>
 	</div>
 	<div id="table" class="clearfix">
-		<div class="table-t">
+			<div class="table-t">
 	<!--		<div class="panel">
 				<div class="date-panel">
 					<div class="line"></div>
@@ -58,7 +59,7 @@ require_once 'script/connect.php';
 									<a href="#">Итоги обмена баллов на призы</a>
 								</li>
 								<li>
-									<a href="#">Обмен баллов на призы</a>
+									<a href="swap">Обмен баллов на призы</a>
 								</li>
 							</ul>
 						</div>
@@ -73,7 +74,7 @@ require_once 'script/connect.php';
 								<input class="user-search" id="user-search" type="text" name="search" minlength="3" maxlength="21" required autocomplete="off">
 								<label for="user-search">Введите никнейм...</label>
 							</div>
-							<button class="btn-search" type="submit">Найти</button>
+							<button class="searhpoisk" type="submit">НАЙТИ</button>
 					</div>
 				</div>
 			</div>
@@ -102,8 +103,10 @@ require_once 'script/connect.php';
 					</div>
 				</div>
 		</div> -->
-	</div>
-		<!--</div>-->
+
+			</div>
+			<!--</div>-->
+
 	</div>
 	<div class="end"></div>
 	<div class="foot">
@@ -135,5 +138,6 @@ require_once 'script/connect.php';
 	<div id="button-up">
 		<img src="top.png" alt="no" title="Вжух!">
 	</div>
+</div>
 </body>
 </html>
