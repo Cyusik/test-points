@@ -79,12 +79,63 @@ h1 {
 	text-align: center;
 	background-position: 31px -126px;
 }
+.right-content {
+	float: right;
+}
 .nav-points {
 	margin-top: 2px;
-	float: right;
 	width: 260px;
 	margin-right: 9px;
 	/*box-shadow: 7px 0 8px -3px rgb(94 152 154), -5px 0 8px 0px rgb(85 145 146);*/
+}
+.nav-search {
+	margin-top: 40px;
+	width:260px;
+}
+* {
+	box-sizing: border-box;
+}
+/*.box-search {
+	box-sizing:border-box;
+} */
+.form-row {
+	position: relative;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+.form-row input {
+	display: block;
+	width: 100%;
+	padding: 5px 10px;
+	line-height: 25px;
+	font: 14px 'TeX Gyre Heros';
+	background: #d0e7ed;
+	border-width: 0;
+	border-bottom: 2px solid #00565b;
+	transition: all 0.2s ease;
+}
+.form-row label {
+	position: absolute;
+	left: 10px;
+	color: #403f40;
+	font-size: 16px;
+	font-weight: 300;
+	transform: translateY(-25px);
+	transition: all 0.2s ease;
+}
+.form-row input:focus {
+	outline: 0;
+	border-color: #8f2a32;
+}
+.form-row input:focus + label,
+.form-row input:valid + label {
+	transform: translateY(-50px);
+	margin-left: -5px;
+	font-size: 14px;
+	font-weight: 400;
+	outline: 0;
+	border-color: #8f2a32;
+	color: #8f2a32;
 }
 /*-------------------------------------------*/
 .nav-bottom {

@@ -41,27 +41,43 @@ require_once 'script/connect.php';
 				include_once 'script/poisk.php';
 				?>
 			</div>
-			<div class="nav-points clearfix">
-				<div class="nav-heding clearfix">
-					<span>Навигация</span>
-				</div>
-					<div class="nav-bottom clearfix">
-						<ul>
-							<li>
-								<a href="#">Призы за баллы</a>
-							</li>
-							<li class="active">
-								<a href="/points/index">Таблица с баллами</a>
-							</li>
-							<li>
-								<a href="#">Итоги обмена баллов на призы</a>
-							</li>
-							<li>
-								<a href="#">Обмен баллов на призы</a>
-							</li>
-						</ul>
+			<div class="right-content clearfix">
+				<div class="nav-points clearfix">
+					<div class="nav-heding clearfix">
+						<span>Навигация</span>
 					</div>
+						<div class="nav-bottom clearfix">
+							<ul>
+								<li>
+									<a href="#">Призы за баллы</a>
+								</li>
+								<li class="active">
+									<a href="/points/index">Таблица с баллами</a>
+								</li>
+								<li>
+									<a href="#">Итоги обмена баллов на призы</a>
+								</li>
+								<li>
+									<a href="#">Обмен баллов на призы</a>
+								</li>
+							</ul>
+						</div>
+				</div>
+				<div class="nav-search clearfix">
+					<div class="nav-heding clearfix">
+						<span>Поиск</span>
+					</div>
+					<div class="box-search">
+						<form class="form-search" method="get" action="index.php">
+							<div class="form-row">
+								<input class="user-search" id="user-search" type="text" name="search" minlength="3" maxlength="21" required autocomplete="off">
+								<label for="user-search">Введите никнейм...</label>
+							</div>
+							<button class="btn-search" type="submit">Найти</button>
+					</div>
+				</div>
 			</div>
+
 		<!--	<div id="nav-balls">
 					<ul class="nav-bottom">
 						<li depth="1">
