@@ -14,67 +14,91 @@ require_once 'script/connect.php';
 	<meta property="og:title" content="Итоги обмена баллов на призы">
 	<meta property="og:description" content="Итоги обмена баллов на призы">
 	<meta property="og:image" content="http://mwogame.com/uploads/images/Gallery/wallpapers/IMG_14062012_192128.png">
-	<link rel="shortcut icon" href="/points/favicon.ico" type="image/x-icon">
-	<link href="/points/normalize.css" rel="stylesheet">
-	<link href="/points/stylespisok.css" rel="stylesheet">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
+	<link href="/points/css/normalize.css" rel="stylesheet">
+	<link href="/points/css/general.css" rel="stylesheet">
+	<link href="/points/css/results.css" rel="stylesheet">
+	<link href="/points/css/pagination.css" rel="stylesheet">
+	<link href="/points/css/fonts.css" rel="stylesheet">
+	<link href="/points/css/snow.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-<div class="main">
-	<div id="logos" class="clearfix">
-		<h1 class="logomwo">
-			<a href="/">metal war online</a>
-		</h1>
-	</div>
-	<div id="table" class="clearfix">
-		<div class="table-t">
-			<div class="spisok-priz">
-				<h3 class="heding">Итоги обмена баллов на призы</h3>
-				<?php
-				include_once 'script/poiskitog.php';
-				?>
-			</div>
-			<div id="nav-balls">
-				<ul class="nav-bottom">
-					<li depth="1">
-						<a href="/points/prizes">Призы за баллы</a>
-					</li>
-					<li depth="1">
-						<a href="/points/index">Таблица с баллами</a>
-					</li>
-					<li class="active" depth="1">
-						<a href="/points/results">Итоги обмена баллов на призы</a>
-					</li>
-					<li depth="1">
-						<a href="/points/swap">Обмен баллов на призы</a>
-					</li>
-				</ul>
-				<div class="poisk">
-					<form class="searh" method="get" action="results.php">
-						<input class="searhnik" type="text" name="search" placeholder="Введите никнейм..." minlength="3" maxlength="21">
-						<br>
-						<button class="searhpoisk" type="submit">Найти...</button>
-					</form>
+<div class="snow">
+	<div class="main">
+		<div id="logos" class="clearfix">
+			<h1 class="logomwo">
+				<a href="/">metal war online</a>
+			</h1>
+		</div>
+		<div id="table" class="clearfix">
+			<div class="table-t">
+				<div class="left-content clearfix">
+					<?php
+					include_once 'script/poiskitog.php';
+					?>
+				</div>
+				<div class="right-content clearfix">
+					<div class="fixed-div">
+						<div class="nav-points clearfix">
+							<div class="nav-heding clearfix">
+								<span>Навигация</span>
+							</div>
+							<div class="nav-bottom clearfix">
+								<ul>
+									<li>
+										<a href="/points/prizes">Призы за баллы</a>
+									</li>
+									<li>
+										<a href="/points/index">Таблица с баллами</a>
+									</li>
+									<li class="active">
+										<a href="/points/results">Итоги обмена баллов на призы</a>
+									</li>
+									<li>
+										<a href="/points/swap">Обмен баллов на призы</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="nav-search clearfix">
+							<div class="nav-heding clearfix">
+								<span>Поиск</span>
+							</div>
+							<div class="box-search">
+								<form class="form-search" method="get" action="results.php">
+									<div class="form-row">
+										<input class="user-search" id="user-search" type="text" name="search"
+											   minlength="3" maxlength="21" required autocomplete="off">
+										<label for="user-search">Введите никнейм...</label>
+									</div>
+									<button class="searhpoisk" type="submit">НАЙТИ</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<footer>
-	<div class="foot">
-		<ul class="ulfoot">
-			<li>
-				Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
-			</li>
-			<li>
-				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
-			</li>
-		</ul>
+		<div class="end"></div>
+		<div class="foot">
+			<div class="foot_ul">
+				<ul class="ulfoot">
+					<li>
+						Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
+					</li>
+					<li>
+						Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<div id="button-up">
-		<img src="top.png" alt="no" title="Вжух!">
+		<img src="/points/img/general/top.png" alt="no" title="Вжух!">
 	</div>
-</footer>
+</div>
+<script type="text/javascript" src="jsjq/fixed-div.js"></script>
 </body>
 </html>

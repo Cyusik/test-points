@@ -11,14 +11,18 @@
 	<meta property="og:title" content="Обмен баллов на призы">
 	<meta property="og:description" content="Обмен баллов на призы">
 	<meta property="og:image" content="http://mwogame.com/uploads/images/Gallery/wallpapers/IMG_14062012_192128.png">
-	<link rel="shortcut icon" href="/points/favicon.ico" type="image/x-icon">
-	<link href="/points/normalize.css" rel="stylesheet">
-	<link href="/points/styleswap.css" rel="stylesheet">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
+	<link href="/points/css/normalize.css" rel="stylesheet">
+	<link href="/points/css/general.css" rel="stylesheet">
+	<link href="/points/css/swap.css" rel="stylesheet">
+	<link href="/points/css/fonts.css" rel="stylesheet">
+	<link href="/points/css/snow.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="jsjq/form.js"></script>
 </head>
 <body>
+<div class="snow">
 <div class="main">
 	<div id="logos" class="clearfix">
 		<h1 class="logomwo">
@@ -27,22 +31,21 @@
 	</div>
 	<div id="table" class="clearfix">
 		<div class="table-t">
-			<div class="spisok-priz">
-				<h3 class="heding">Форма для обмена баллов на призы</h3>
-				<div id="resultdiv"></div>
+			<div class="left-content clearfix">
 				<?php
 				include_once 'script/connect.php';
 				$query = "SELECT * FROM formobmen WHERE `open`";
 				$result = mysqli_query($link, $query);
-				echo "<form id='forms' method='POST' action='/points/script/swapform.php'>
-						<table class='table_dark2'>";
 				while ($row = $result->fetch_assoc())
 				{
 					$open = $row['open'];
 					if( $open == '1')
 					{
+						echo "<form id='forms' method='POST' action='/points/script/swapform.php'>
+						<table class='table_dark'>
+						<tr><th class='heding'>Форма для обмена баллов на призы</th></tr>";
 							echo "<tr>
-				<th colspan='2'>Выдача наград будет производиться в течении 3-х дней после закрытия опроса</th>
+				<th>Выдача наград будет производиться в течении 3-х дней после закрытия опроса</th>
 				</tr>
 				<tr>
 				<td>
@@ -87,7 +90,7 @@
 					</td>
 					</tr>
 					<tr>
-					<td colspan='2'>
+					<td>
 					<input  class='searhpoisk' type='submit' id='submit' value='Отправить'>
 					</td>
 					</tr>";
@@ -107,56 +110,67 @@
 							echo "</table></form>
 				<div class='mainwindow'>
 					<div class='openwindow'>
-						<h3 id='heading'></h3>
+						<h2 id='heading'></h2>
 						<span id='spanwidow'></span><br><br>
 						<div class='add' id='closewidow'>Закрыть</div>
 						</div>
 					</div>";
 					} else if ($open == '2') {
-						echo "<table class='table_dark2'>
+						echo "<table class='table_dark close_table'><tr><th class='heding'>Форма для обмена баллов на призы</th></tr>
 			<tr>
-			<td><br>
-			Опрос будет доступен для заполнения с 13 по 15 и с 28 по 30 число каждого месяца.<br> Выдача наград будет производиться в течении 3-х дней после закрытия опроса.
-			<br><br></td>
+			<td><b>Опрос будет доступен для заполнения с 13 по 15 и с 28 по 30 число каждого месяца.<br> Выдача наград будет производиться в течении 3-х дней после закрытия опроса.</b></td>
 		</tr>
 		</table>";
 					}
 				}
 				?>
+				<div id="resultdiv"></div>
 			</div>
-			<div id="nav-balls">
-				<ul class="nav-bottom">
-					<li depth="1">
-						<a href="/points/prizes">Призы за баллы</a>
-					</li>
-					<li depth="1">
-						<a href="/points/index">Таблица с баллами</a>
-					</li>
-					<li depth="1">
-						<a href="/points/results">Итоги обмена баллов на призы</a>
-					</li>
-					<li class="active" depth="1">
-						<a href="/points/swap">Обмен баллов на призы</a>
-					</li>
-				</ul>
+			<div class="right-content clearfix">
+				<div class="fixed-div">
+					<div class="nav-points clearfix">
+						<div class="nav-heding clearfix">
+							<span>Навигация</span>
+						</div>
+						<div class="nav-bottom clearfix">
+							<ul>
+								<li>
+									<a href="/points/prizes">Призы за баллы</a>
+								</li>
+								<li>
+									<a href="/points/index">Таблица с баллами</a>
+								</li>
+								<li>
+									<a href="/points/results">Итоги обмена баллов на призы</a>
+								</li>
+								<li class="active">
+									<a href="/points/swap">Обмен баллов на призы</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</body>
-<footer>
+	<div class="end"></div>
 	<div class="foot">
-		<ul class="ulfoot">
-			<li>
-				Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
-			</li>
-			<li>
-				Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
-			</li>
-		</ul>
+		<div class="foot_ul">
+			<ul class="ulfoot">
+				<li>
+					Сайт любезно разработан игроком Cyusik. О <a href="/points/about">сайте</a>
+				</li>
+				<li>
+					Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div id="button-up">
-		<img src="top.png" alt="no" title="Вжух!">
-	</div>
-</footer>
+</div>
+<div id="button-up">
+	<img src="/points/img/general/top.png" alt="no" title="Вжух!">
+</div>
+</div>
+<script type="text/javascript" src="jsjq/fixed-div.js"></script>
+</body>
 </html>

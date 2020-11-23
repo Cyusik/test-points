@@ -1,0 +1,13 @@
+.table_dark {
+	width:900px;
+}
+.table_dark th.heding {
+	background-position: -1px 0;
+	background: url("/points/img/general/h3head-about.png") no-repeat;
+	text-align: left;
+}
+.table_dark td {
+	font-size: 15px;
+	padding: 10px 17px;
+	text-align: justify;
+}

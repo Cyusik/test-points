@@ -1,0 +1,176 @@
+.padding-content {
+	margin-bottom: 30px;
+}
+.table_dark {
+	box-shadow: 7px 8px 8px -3px rgb(94 152 154), -5px 3px 8px -3px rgb(85 145 146);
+}
+.table_dark th.heding {
+	text-align:left;
+}
+/*--sprites----------------*/
+/*----equipment----*/
+.icon-Amplifier {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -54px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Bearing {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: 0px -108px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Coil {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: 0px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Cyclotron {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -54px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Designator {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -108px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Locator {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -108px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Radar-detector {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: 0px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Rangefinder {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -54px -108px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Sheating {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -108px -108px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Stabilizer {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -162px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Storage-device {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -162px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Turbocharging {
+	background-image: url("/points/img/prizes/sprite-equipment.png");
+	background-position: -162px -108px;
+	width: 54px;
+	height: 54px;
+}
+/*----supplies----*/
+.icon-Battery {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: 0px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Field {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: -54px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Mine {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: 0px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Nitro {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: -54px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Pharmacy {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: -108px 0px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Scanner {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: -108px -54px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Shield {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: 0px -108px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Shots {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: -54px -108px;
+	width: 54px;
+	height: 54px;
+}
+.icon-Smoke {
+	background-image: url("/points/img/prizes/sprite-consumable.png");
+	background-position: -108px -108px;
+	width: 54px;
+	height: 54px;
+}
+/*-------premium------*/
+.icon-borya {
+	background-image: url("/points/img/prizes/sprite-vip.png");
+	background-position: 0px 0px;
+	width: 133px;
+	height: 87px;
+}
+.icon-leva {
+	background-image: url("/points/img/prizes/sprite-vip.png");
+	background-position: -133px 0px;
+	width: 133px;
+	height: 87px;
+}
+.icon-predator {
+	background-image: url("/points/img/prizes/sprite-vip.png");
+	background-position: 0px -87px;
+	width: 133px;
+	height: 87px;
+}
+.icon-ten {
+	background-image: url("/points/img/prizes/sprite-vip.png");
+	background-position: -133px -87px;
+	width: 133px;
+	height: 87px;
+}
+.icon-titan {
+	background-image: url("/points/img/prizes/sprite-vip.png");
+	background-position: 0px -174px;
+	width: 133px;
+	height: 87px;
+}
+.icon-vip {
+	background-image: url("/points/img/prizes/sprite-vip.png");
+	background-position: -133px -174px;
+	width: 133px;
+	height: 87px;
+}
+/*--end---sprites----------------*/

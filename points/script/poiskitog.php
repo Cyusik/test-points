@@ -26,26 +26,32 @@ if($search == false) {
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(24): '.mysqli_error($link)."\n"));
 	if($result) {
 		$rows = mysqli_num_rows($result);// количество полученных строк
-		echo "<table id='range1' class='table_dark'><tr>
-					<th>id</th>
-					<th style='width:140px'>Дата и время заявки</th>
-					<th style='width:145px'>Никнейм</th>
+		echo "<table id='range1' class='table_dark'>
+					<tr>
+						<th colspan='4' class='heding'>Итоги обмена баллов на призы</th>
+					</tr>
+					<tr>
+					<th style='width:135px'>Дата и время заявки</th>
+					<th style='width:140px'>Никнейм</th>
 					<th>Выдача</th>
 					<th>Причина отклонения заявки</th>
 				</tr>";
 		for($i = 0; $i < $rows; ++$i) {
 			$row = mysqli_fetch_row($result);
 			echo "<tr>";
-			for($j = 0; $j < 5; ++$j)
+			for($j = 1; $j < 5; ++$j)
 				echo nl2br("<td>$row[$j]</td>");
 			echo "</tr>";
 			}
 		}
 	} else {
 		fwrite($fw, $newdate." Ошибка условия poiskitog.php(21) ".$from.' >=0'."\n");
-		echo "<table class='table_dark2'>
+		echo "<table class='table_dark'>
 					<tr>
-						<th style='display:block; text-align:center'>Ошибка</th>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
+					</tr>
+					<tr>
+						<td style='padding:15px 7px; font-size:14px'><b>Неизвестная ошибка</b></td>
 					</tr>
 					</table>";
 	}
@@ -56,8 +62,7 @@ if($search == false) {
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
 	if($page > $pagesCount) {
-		echo "<table class='table_dark'><tr><td></td><td colspan='2'>Таблица итогов обмена баллов на призы обновляется или такой страницы не существует</td></tr>";
-		echo "</table>";
+		echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с баллами обновляется или такой страницы не существует</b></td></tr></table>";
 	} else {
 	if($page != 1) {
 		$pervpage = '<a href= ../points/results?page=1><<</a>';
@@ -87,13 +92,13 @@ if($search == false) {
 		$page2right = '<li><a href= ./results?page='.($page + 2).'>'.($page + 2).'</a></li>';
 	if($page + 1 <= $pagesCount)
 		$page1right = '<li><a href= ./results?page='.($page + 1).'>'.($page + 1).'</a></li>';
-	echo "<ul class='pagination'>
+	echo "<div class='ul-pagination'><ul class='pagination'>
 			<li>$pervpage</li>
 			<li>$perv1page</li>".$page3left.$page2left.$page1left.
 		"<li><b class='currentpage'>$page</b></li>".$page1right.$page2right.$page3right.
 		"<li>$nextpage1</li>
 			<li>$nextpage</li>
-		</ul>";
+		</ul></div>";
 }}
 else {
 	$search = trim($search);
@@ -107,17 +112,20 @@ else {
 		$rows = mysqli_num_rows($result);
 		if($rows > 0) {
 			fwrite($fw, $newdate.' Запрос: '.'true'."\n");
-			echo "<table class='table_dark2'><tr>
-					<th>id</th>
-					<th style='width:140px'>Дата и время заявки</th>
-					<th style='width:145px'>Никнейм</th>
+			echo "<table class='table_dark'>
+					<tr>
+						<th colspan='4' class='heding'>&nbsp;</th>
+					</tr>
+					<tr>
+					<th style='width:135px'>Дата и время заявки</th>
+					<th style='width:140px'>Никнейм</th>
 					<th>Выдача</th>
 					<th>Причина отклонения заявки</th>
 				</tr>";
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
-				for($j = 0; $j < 5; ++$j)
+				for($j = 1; $j < 5; ++$j)
 					echo nl2br("<td>$row[$j]</td>");
 				echo "</tr>";
 
@@ -126,9 +134,12 @@ else {
 		}
 		else {
 			fwrite($fw, $newdate.' Запрос: '.'false'."\n");
-			echo "<table class='table_dark2'>
+			echo "<table class='table_dark'>
 					<tr>
-						<td style='display:block; text-align:center'>Такого никнейма нет в таблице</td>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
+					</tr>
+					<tr>
+						<td style='padding:15px 7px; font-size:14px'><b>Такого никнейма нет в таблице</b></td>
 					</tr>
 					</table>";
 		}

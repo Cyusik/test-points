@@ -6,20 +6,13 @@ $date = date('Y-m-d h:i:s');
 $newdate = date('Y-m-d h:i:s A', strtotime($date));
 if($search == false) {
 	require_once 'script/connect.php';
-	/*$id2 = 2;
+	$id2 = 2;
 	$sql = "SELECT * FROM formobmen WHERE id=%d";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $id2));
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(14): '.mysqli_error($link)."\n"));
 	$row = mysqli_fetch_row($result);
 	$dates = $row [1];
-	echo "<table class='table_dark2'>
-							<tr>
-							<td>
-							Дата последнего обновления: $dates
-							</td>
-							</tr>
-						</table>";
-	$result->free();*/
+	$result->free();
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
 		$page = intval($_GET['page']);
@@ -42,14 +35,11 @@ if($search == false) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			echo "<table class='table_dark'>
 				<tr>
-				<!--	<th></th> -->
-					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена 18.11.20</span></th>
+					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена $dates</span></th>
 				</tr>
 				<tr>
-				<!--	<th>Номер</th>-->
 					<th>Никнейм</th>
 					<th>Баллы</th>
-				<!--	<th>История</th>-->
 				</tr>";
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
@@ -66,7 +56,10 @@ if($search == false) {
 		fwrite($fw, $newdate." Ошибка условия poisk.php(35): ".$from.'>= 0'."\n");
 		echo "<table class='table_dark'>
 					<tr>
-						<th style='display:block; text-align:center'>Ошибка</th>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
+					</tr>
+					<tr>
+						<td style='padding:15px 7px'><b>Неизвестная ошибка</b></td>
 					</tr>
 					</table>";
 	}
@@ -77,8 +70,7 @@ if($search == false) {
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
 	if($page > $pagesCount) {
-		echo "<table class='table_dark'><tr><td></td><td colspan='2'>Таблица с баллами обновляется или такой страницы не существует</td></tr>";
-		echo "</table>";
+		echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с баллами обновляется или такой страницы не существует</b></td></tr></table>";
 	}
 	else {
 		if($page != 1) {
@@ -168,14 +160,6 @@ if($search == false) {
 					</tr>
 					<tr>
 						<td style='padding:15px 7px'><b>Такого никнейма нет в таблице</b></td>
-					</tr>
-					<tr>
-						<td>Пожалуйста, проверьте правильно ли введен никнейм.<br>
-							Возможно баллы начислятся при следующем обновлении таблицы.<br>
-							</td>
-					</tr>
-					<tr>
-						<td>КАРТИНКА</td>
 					</tr>
 					</table>";
 		}

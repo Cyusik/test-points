@@ -1,0 +1,12 @@
+@font-face{
+	font-family: 'a_FuturaRound Bold';
+	src: url("/points/fonts/a_futuraround-bold.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face{
+	font-family: 'TeX Gyre Heros';
+	src: url("/points/fonts/texgyreheros.woff") format("woff");
+	font-style: normal;
+	font-weight: normal;
+}

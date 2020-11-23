@@ -340,7 +340,7 @@ else {
 									<input type="file" name="countfile" id="countfile" class="countfile">
 									<label id="countfileON" for="countfile" class="button10">Выберите файл</label>
 									<button id="buttonfile" class="button10" type="submit">Отправить</button>
-									<img src="../object1/load.gif" alt="load_gif" class="load_gif" id="loadgif" style="display:none">
+									<img src="/points/admin/load.gif" alt="load_gif" class="load_gif" id="loadgif" style="display:none">
 								</form>
 							</div>
 							<div id="uploadfile"></div>
