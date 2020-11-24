@@ -131,7 +131,7 @@ h1 {
 	position: relative;
 	padding: 0 16px;
 	background: url("/points/img/general/h3head.png") no-repeat;
-	font: 15px/45px 'a_FuturaRound Bold';
+	font: 15px/45px 'Junegull-Regular';
 	text-transform: uppercase;
 	color: #feffff;
 	letter-spacing:1px;
@@ -209,4 +209,10 @@ img {
 	position: fixed;
 	z-index: 9999;
 	top: 0;
+}
+/*---IE-11----------------*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.nav-bottom ul {
+		margin-left:-40px;
+	}
 }
