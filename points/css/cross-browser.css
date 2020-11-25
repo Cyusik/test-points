@@ -1,0 +1,12 @@
+/*---IE-11----------------*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.nav-bottom ul {
+		margin-left:-40px;
+	}
+	.table_dark {
+		box-shadow:7px 0px 8px -3px #5e989a, -7px 0px 8px -3px #5e989a;
+	}
+	.table_dark th {
+		padding:12px 7px;
+	}
+}

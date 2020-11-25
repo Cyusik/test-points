@@ -17,6 +17,7 @@
 	<link href="/points/css/swap.css" rel="stylesheet">
 	<link href="/points/css/fonts.css" rel="stylesheet">
 	<link href="/points/css/snow.css" rel="stylesheet">
+	<link href="/points/css/cross-browser.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="jsjq/form.js"></script>

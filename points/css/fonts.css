@@ -1,19 +1,12 @@
 @font-face{
-	font-family: "a_futuraroundbold";
-	src: url("/points/fonts/a_futuraround-bold.woff") format("woff"),
-	     url("/points/fonts/a_futuraround-bold.woff2") format("woff2");
+	font-family: "Fulbo-Argenta";
+	src: url("/points/fonts/Fulbo-Argenta.woff") format("woff");
 	font-style: normal;
 	font-weight: normal;
 }
 @font-face{
 	font-family: 'TeX Gyre Heros';
 	src: url("/points/fonts/texgyreheros.woff") format("woff");
-	font-style: normal;
-	font-weight: normal;
-}
-@font-face{
-	font-family: 'ER Kurier 1251 Bold';
-	src: url("/points/fonts/er-kurier-1251-bold.woff") format("woff");
 	font-style: normal;
 	font-weight: normal;
 }
