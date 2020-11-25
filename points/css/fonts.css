@@ -1,6 +1,7 @@
 @font-face{
-	font-family: 'a_FuturaRound Bold';
-	src: url("/points/fonts/a_futuraround-bold.ttf") format("truetype"), url("/points/fonts/FuturaRoundBold.woff") format("woff");
+	font-family: "a_futuraroundbold";
+	src: url("/points/fonts/a_futuraround-bold.woff") format("woff"),
+	     url("/points/fonts/a_futuraround-bold.woff2") format("woff2");
 	font-style: normal;
 	font-weight: normal;
 }
@@ -11,14 +12,8 @@
 	font-weight: normal;
 }
 @font-face{
-	font-family: 'BrushType-SemiBold';
-	src: url("/points/fonts/brushtype-semibold.woff") format("woff");
-	font-style: normal;
-	font-weight: normal;
-}
-@font-face{
-	font-family: 'Junegull-Regular';
-	src: url("/points/fonts/junegull-regular.woff") format("woff");
+	font-family: 'ER Kurier 1251 Bold';
+	src: url("/points/fonts/er-kurier-1251-bold.woff") format("woff");
 	font-style: normal;
 	font-weight: normal;
 }

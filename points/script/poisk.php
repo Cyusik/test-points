@@ -35,7 +35,7 @@ if($search == false) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			echo "<table class='table_dark'>
 				<tr>
-					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span  style='float:right'>Обновлена $dates</span></th>
+					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span style='float:right'>Обновлена $dates</span></th>
 				</tr>
 				<tr>
 					<th>Никнейм</th>
