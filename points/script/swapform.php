@@ -132,6 +132,40 @@ if (isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['pri
                                 {
                                     if ($points_search >= $points_required)
                                     { // -------если баллов больше или равно то одобрено------
+                                        //----проверяем логин---
+                                            $check_login = "SELECT login_one, login_two, login_three FROM tablballs WHERE nickname='$nicknames5'";
+                                            $result = mysqli_query($link, $check_login) or die('Error: '.mysqli_error($link));
+                                            $arr_login = mysqli_fetch_row($result); // --- выводит 0,1,2 и можно цикл сделать
+                                      /*      if(in_array($login5, $arr_login) === false) { //строгий поиск логина
+                                               /* $l = 0;
+                                                while($l > '2') {
+                                                    if($arr_login[$l] == ''){
+                                                        $write_login = "UPDATE tablballs SET"
+                                               dimabrlkukushka
+                                                    }
+                                                }*/
+                                    /*           if($arr_login['login_one'] == '') {
+                                                   $logindb = "UPDATE tablballs SET login_one='$login5' WHERE nickname='$nicknames5'";
+                                                   $result = mysqli_query($link, $logindb) or die('Error: '.mysqli_error($link));
+                                                   echo 'login_one занёс';
+                                               } else if($arr_login['login_two'] == '') {
+                                                   $logindb = "UPDATE tablballs SET login_two='$login5' WHERE nickname='$nicknames5'";
+                                                   $result = mysqli_query($link, $logindb) or die('Error: '.mysqli_error($link));
+                                                   echo 'login_two занёс';
+                                               } else if($arr_login['login_three'] == '') {
+                                                   $logindb = "UPDATE tablballs SET login_three='$login5' WHERE nickname='$nicknames5'";
+                                                   $result = mysqli_query($link, $logindb) or die('Error: '.mysqli_error($link));
+                                                   echo 'login_three занёс';
+                                               } else {
+                                                   $write_login = 'все логины забиты. Совпадений нет';
+                                                   echo $write_login;
+                                               }
+                                            } */
+                                            echo '<pre><br>успех логин<br>';
+                                            print_r($arr_login);
+                                            echo '</pre>';
+                                            exit;
+                                        //----------------------
                                         $link->query("INSERT INTO zapisform (nickname,account,priz,points) VALUES ('$nicknames5','$login5','$priz5','$points_required')");
                                         if ($result)
                                         {
