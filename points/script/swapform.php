@@ -133,10 +133,48 @@ if (isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['pri
                                     if ($points_search >= $points_required)
                                     { // -------если баллов больше или равно то одобрено------
                                         //----проверяем логин---
+                                           // $arr_login = array();
                                             $check_login = "SELECT login_one, login_two, login_three FROM tablballs WHERE nickname='$nicknames5'";
                                             $result = mysqli_query($link, $check_login) or die('Error: '.mysqli_error($link));
-                                            $arr_login = mysqli_fetch_row($result); // --- выводит 0,1,2 и можно цикл сделать
-                                      /*      if(in_array($login5, $arr_login) === false) { //строгий поиск логина
+                                            $arr_login = mysqli_fetch_row($result);
+                                        if (($arr_login[0] || $arr_login[1] || $arr_login[3]) === false) // если нет логинов вообще то записываем в первый
+                                            {
+                                                $write_login_one = "UPDATE tablballs SET login_one='$login5' WHERE nickname='$nicknames5'";
+                                                $result = mysqli_query($link, $write_login_one) or die ('Error: '.mysqli_error($link));
+                                                fwrite($fw, $newdate.' Логинов нет: '.$nicknames5.' => логин 1 записан: '.$login5."\n\t");
+                                            } else if(in_array($login5, $arr_login) == false) // строгий поиск совпадений -- если нет совпадений то--
+                                            {
+                                                echo ' нет совпадений, смотрим есть ли пустые ячейки<br>';
+                                                foreach($arr_login as $k => $data) {
+                                                    if ($data[$k] == '') {
+                                                        if ($k == 0) {
+                                                            $namerow = 'login_one';
+                                                        }
+                                                        if ($k == 1) {
+                                                            $namerow = 'login_two';
+                                                        }
+                                                        if ($k == 2) {
+                                                            $namerow = 'login_three';
+                                                        }
+                                                        break;
+                                                    }
+                                                }
+                                                if(!empty($namerow)){ //--если есть свободная ячейка, то записываем в неё
+                                                    $write_login = "UPDATE tablballs SET $namerow='$login5' WHERE nickname='$nicknames5'";
+                                                    $result = mysqli_query($link, $write_login);
+                                                } else {
+                                                    echo '<br>свободных ячеек нет';
+                                                }
+                                                echo '<br>пустая ячейка '.$namerow;
+                                                echo '<br>номер '.$k;
+                                               // echo 'успех? '.$stop;
+
+                                            } else
+                                            {
+                                                echo $login5.' совпадение есть';
+                                            }
+
+                                            /*       if(in_array($login5, $arr_login) === false) { //строгий поиск логина
                                                /* $l = 0;
                                                 while($l > '2') {
                                                     if($arr_login[$l] == ''){
