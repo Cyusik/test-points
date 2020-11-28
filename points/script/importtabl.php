@@ -42,11 +42,11 @@ ini_set('memory_limit', '128M');
                         fclose($file);
                         $dataForSql = array();
                         foreach($importData_arr as $data) {
-                                $dataForSql[] = "('". $data[0] ."','" . $data[1] . "','" . $data[2] . "','" . $data[3] . "')";
+                                $dataForSql[] = "('". $data[0] ."','" . $data[1] . "','" . $data[2] . "','" . $data[3] . "','" . $data[4] . "','" . $data[5] . "','" . $data[6] . "')";
                         }
 
 	                    if (!empty($dataForSql)) {
-		                    $insert_query = " insert into tablballs (nickname, balls, history, exclude) values " . implode(",", $dataForSql);
+		                    $insert_query = " insert into tablballs (nickname, balls, history, exclude, login_one, login_two, login_three) values " . implode(",", $dataForSql);
 		                    mysqli_query($link, $insert_query);
 	                    }
 

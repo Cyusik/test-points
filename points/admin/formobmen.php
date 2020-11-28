@@ -24,10 +24,10 @@ else {
 <head>
 	<meta charset="UTF-8">
 	<title>Админка баллы</title>
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
 	<meta name="description" content="Описание страницы">
 	<meta name="keywords" content="Ключевые слова через запятую">
-	<link href="../normalize.css" rel="stylesheet">
+	<link href="../css/normalize.css" rel="stylesheet">
 	<link href="../admin/Styleformobmen.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../jquery-3.4.1.min.js"></script>
@@ -52,17 +52,7 @@ else {
 		</nav>
 	</div>
 	<div class="importb1">
-		<!--<a href="" class="add_message2" id="click_mes_form2">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Экспорт/просмотр/очистка заявок</h3>
-		<!--</a>-->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$(".add_message2").click(function(){
-					$("#popup_message_form2").slideToggle("slow");
-					$(this).toggleClass("active"); return false;
-				});
-			});
-		</script>
 		<div class="importb2" id="popup_message_form2" style="display:block;">
 			<table class="table_import1">
 			<tr>
@@ -145,17 +135,7 @@ else {
 </div>
 	<br>
 	<div class="importb1">
-		<!--<a href="" class="add_message1" id="click_mes_form1">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Список заявок</h3>
-		<!--</a>-->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$(".add_message1").click(function(){
-					$("#popup_message_form1").slideToggle("slow");
-					$(this).toggleClass("active"); return false;
-				});
-			});
-		</script>
 		<div class="importb2" id="popup_message_form1" style="display:block;">
 			<table class="table_import1">
 				<tr>
@@ -167,7 +147,9 @@ else {
 								<tr>
 									<th>От (дата)</th>
 									<th>До (дата)</th>
-									<th colspan="2">Найти заявки</th>
+									<th>Введите ник</th>
+									<th style="word-break:normal">Сортировка</th>
+									<th></th>
 								</tr>
 								<tr>
 									<td>
@@ -178,6 +160,15 @@ else {
 									</td>
 									<td>
 										<input style="width:150px" placeholder="Введите ник" class="input" id="obmennick" name="names2" type="text" size="20"/>
+									</td>
+									<td>
+										<select form="poiskobmennick" class="input" name="sorting">
+											<option></option>
+											<option value="dates">Дата</option>
+											<option value="nickname">Никнейм</option>
+											<option value="account">Логин</option>
+											<option value="status">Статус</option>
+										</select>
 									</td>
 									<td>
 										<input class="button10" type="submit" value="Поиск"/>
@@ -192,12 +183,13 @@ else {
 				<tr>
 					<td>
 						<b>Просмотр всех заявок</b><br>
-						Лимит 500 заявок. Сортировка по дате.<br><br>
+						Лимит 500 заявок. По умолчанию сортировка по дате.<br><br>
 						<form id="poiskall" method="POST" action="../script/poiskadminformall.php">
 							<table class="table_dark2" style="width:250px">
 								<tr>
 									<th>От (дата)</th>
 									<th>До (дата)</th>
+									<th>Сортировка</th>
 									<th></th>
 								</tr>
 								<tr>
@@ -206,6 +198,15 @@ else {
 									</td>
 									<td>
 										<input style="height:auto; width:150px" class="input" name="monthToAll" type="date" min="2000-01" max="2099-12" placeholder="Выбери дату">
+									</td>
+									<td>
+										<select form="poiskall" class="input" name="sorting">
+											<option></option>
+											<option value="dates">Дата</option>
+											<option value="nickname">Никнейм</option>
+											<option value="account">Логин</option>
+											<option value="status">Статус</option>
+										</select>
 									</td>
 									<td>
 										<input type="hidden" name="output1" value="all">

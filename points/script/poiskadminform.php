@@ -1,10 +1,14 @@
 <?php
-if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['monthTo'])) {
-		include_once '../script/connect.php';
-		$names2 =trim(mysqli_real_escape_string($link, $_POST['names2']));
-		$monthFrom = trim(mysqli_real_escape_string($link, $_POST['monthFrom']));
-		$monthTo = trim(mysqli_real_escape_string($link, $_POST['monthTo']));
-		//---------------------------------------------------
+if(!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['monthTo']) && isset($_POST['sorting'])) {
+	include_once '../script/connect.php';
+	$sorting = $_POST['sorting'];
+	if($sorting == '') {
+		$sorting = 'dates';
+	}
+	$names2 = trim(mysqli_real_escape_string($link, $_POST['names2']));
+	$monthFrom = trim(mysqli_real_escape_string($link, $_POST['monthFrom']));
+	$monthTo = trim(mysqli_real_escape_string($link, $_POST['monthTo']));
+	//---------------------------------------------------
 	session_start();
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/exchange_log.log";
@@ -12,32 +16,34 @@ if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mo
 	$date = date('Y-m-d h:i:s');
 	$newdate = date('Y-m-d h:i:s A', strtotime($date));
 	fwrite($fw, $newdate.' '.$login.' Вывод заявок по нику: '.$names2."\r\n");
-		//---------------------------------------------------
-		if ($monthFrom <= $monthTo) {
-			$datesfrom = $monthFrom.' 00:00:00';
-			$datesbefore = $monthTo.' 23:59:59';
-		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$datesfrom' AND '$datesbefore' AND nickname='$names2' ORDER BY dates DESC LIMIT 500";
+	//---------------------------------------------------
+	if($monthFrom <= $monthTo) {
+		$datesfrom = $monthFrom.' 00:00:00';
+		$datesbefore = $monthTo.' 23:59:59';
+		$query = "SELECT * FROM zapisform WHERE dates BETWEEN '$datesfrom' AND '$datesbefore' AND nickname='$names2' ORDER BY $sorting DESC LIMIT 500";
 		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskadminform.php(19): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);
-			if ($rows > 0) {
+			if($rows > 0) {
 				fwrite($fw, $newdate.' result=>true'."\r\n");
 				echo "<div id='applications'>";
-			echo "<table class='table_dark2'><tr>
-					<th>id</th>
-					<th>Дата заявки</th>
+				echo "<table class='table_dark2'><tr>
+				<!--	<th>id</th>-->
+					<th style='width:50px'>Дата заявки</th>
 					<th>Никнейм</th>
 					<th>Логин</th>
 					<th>Приз</th>
-					<th>Баллы</th>
+					<th style='width:45px'>Баллы</th>
+					<th>Статус</th>
 				</tr>";
-			for($i = 0; $i < $rows; ++$i) {
-				$row = mysqli_fetch_row($result);
-				echo "<tr>";
-				for($j = 0; $j < 6; ++$j)
-					echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
-				echo "</tr>";
-				} echo "</table>
+				for($i = 0; $i < $rows; ++$i) {
+					$row = mysqli_fetch_row($result);
+					echo "<tr>";
+					for($j = 1; $j < 7; ++$j)
+						echo nl2br("<td style='border-bottom:1px solid white;'>$row[$j]</td>");
+					echo "</tr>";
+				}
+				echo "</table>
 						<br>
 					<button style='float:right' class='button10' type='submit' id='closeapplications'>Закрыть</button> 
 					</div>
@@ -46,7 +52,8 @@ if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mo
 					  $('#applications').remove();
 					})
 					</script>";
-			} else {
+			}
+			else {
 				fwrite($fw, $newdate.' result=>false'."\r\n");
 				echo "<table class='table_dark2'>
 				<tr>
@@ -59,16 +66,18 @@ if (!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mo
 		}
 		fclose($fw);
 		$link->close();
-		} else {
-			echo "<table class='table_dark2'>
+	}
+	else {
+		echo "<table class='table_dark2'>
 				<tr>
 					<th>Ошибка</th>
 				</tr>
 				<tr>
 					<td>Дата ОТ не может быть больше ДО</td>
 				</tr>";
-		}
-} else {
+	}
+}
+else {
 	echo "<table class='table_dark2'>
 				<tr>
 					<th>Ошибка</th>

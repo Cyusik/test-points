@@ -15,7 +15,7 @@ if(isset($_POST["export2"])) {
 	header('Content-Disposition: attachment; filename=data.csv');
 	$output = fopen("php://output", "w");
 	$delimiter = ";";
-	fputcsv($output, array('id','dates','nickname','account','priz', 'points'), ";");
+	fputcsv($output, array('id','dates','nickname','account','priz', 'points', 'status'), ";");
 	$query = "SELECT  * FROM zapisform ORDER BY id";
 	$result = mysqli_query($link, $query);
 	while($row = mysqli_fetch_assoc($result))

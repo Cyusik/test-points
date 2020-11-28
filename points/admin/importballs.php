@@ -24,10 +24,10 @@ else {
 <head>
 	<meta charset="UTF-8">
 	<title>Админка баллы</title>
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
 	<meta name="description" content="Описание страницы">
 	<meta name="keywords" content="Ключевые слова через запятую">
-	<link href="../normalize.css" rel="stylesheet">
+	<link href="../css/normalize.css" rel="stylesheet">
 	<link href="../admin/Styleimportballs.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../jquery-3.4.1.min.js"></script>
@@ -53,17 +53,7 @@ else {
 		</nav>
 	</div>
 	<div class="importb1">
-		<!--<a href="" class="add_message2" id="click_mes_form2">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Добавить/удалить/редактировать строки</h3>
-		<!--</a>-->
-			<script type="text/javascript">
-			$(document).ready(function(){
-				$(".add_message2").click(function(){
-					$("#popup_message_form2").slideToggle("slow");
-					$(this).toggleClass("active"); return false;
-				});
-			});
-		</script>
 		<div class="importb2" id="popup_message_form2" style="display:block;">
 			<table class="table_import1">
 				<tr>
@@ -153,12 +143,12 @@ else {
 									if ($rows > 0) {
 										echo "<table class='table_dark2'><tr>
 									<th style='padding:0; width:0'></th>
-									<th style='width:30px'>id</th>
-									<th style='width:150px'>Никнейм</th>
-									<th style='width:30px'>Баллы</th>
-									<th style='width:0'>История обмена баллов</th>
-									<th style='width:15px'>Игнор</th>
-									<th style='width:150px'>Действие</th>
+									<th style='width:5%'>id</th>
+									<th style='width:30%'>Никнейм</th>
+									<th style='width:10%'>Баллы</th>
+									<th style='width:50%'>История обмена баллов</th>
+									<th style='width:5%'>Игнор</th>
+								<!--	<th style='width:150px'>Действие</th> -->
 									</tr>";
 						for($i = 0; $i < $rows; ++$i) {
 						$row = mysqli_fetch_row($result);
@@ -168,6 +158,9 @@ else {
 							$hideME = 'hide_Me1'.$i;
 							$id_form = 'form'.$i;
 							$id_tr = 'tr1'.$i;
+						//	$id_log1 = 'log1'.$i;
+						//	$id_log2 = 'log2'.$i;
+						//	$id_log3 = 'log3'.$i;
 							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
 							fwrite($fw, $newdate.' '.$login.' Запись баллов=>'.$names.' id=>'.$row[0].' nick=>'.$row[1].' points=>'.$row[2].' true'."\r\n");
 						echo "<tr id='$id_tr'>";
@@ -175,12 +168,25 @@ else {
 							echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
 								<div id='$div_result' class='modal_div_external' ></div>
 							</div></td>";
-							echo nl2br("<td style='width:30px'><input id='id_test' class='input' name='id_user' value='$row[0]' readonly='readonly'></td>");
-							echo nl2br("<td style='width:150px'><input id='nick_test' class='input' name='nick_user' value='$row[1]'></td>");
-							echo nl2br("<td style='width:30px'><input id='point_test' class='input' name='point_user' value='$row[2]'></td>");
-							echo "<td style='width:0'><textarea id='history_test' class='textarea' name='history_user'>$row[3]</textarea>";
-							echo nl2br("<td style='width:15px'><input id='ignor_test' class='input' name='ignor_user' value='$row[4]'></td>");
-							echo "<td style='width: 150px;'>";
+							echo nl2br("<td style='width:5%'><input id='id_test' class='input' name='id_user' value='$row[0]' readonly='readonly'></td>");
+							echo nl2br("<td style='width:30%'><input id='nick_test' class='input' name='nick_user' value='$row[1]'></td>");
+							echo nl2br("<td style='width:10%'><input id='point_test' class='input' name='point_user' value='$row[2]'></td>");
+							echo "<td style='width:50%'><textarea id='history_test' class='textarea' name='history_user'>$row[3]</textarea>";
+							echo nl2br("<td style='width:5%'><input id='ignor_test' class='input' name='ignor_user' value='$row[4]'></td>");
+							echo "</tr>
+								  <tr>
+								  		<th style='padding:0; width:0'></th>
+								  		<th colspan='5'></th>
+								  </tr>
+								  <tr id='$id_tr'>
+								  		<td style='padding:0; width:0'></td>
+								  		<td>login_one</td>
+								  		<td colspan='2'><input class='input' id='login_one' name='login_one' value='$row[5]'></td>
+								  		<td>login_two</td>
+								  		<td colspan='2'><input class='input' id='login_two' name='login_two' value='$row[6]'></td>
+								  		<td>login_three</td>
+								  		<td colspan='2'><input class='input' id='login_three' name='login_three' value='$row[7]'></td>";
+							echo "<td rowspan='3' style='text-align:right'>";
 							echo "<button id='$id_button_save' type='submit' class='button10'>Сохранить</button>";
 							?>
 							<script>

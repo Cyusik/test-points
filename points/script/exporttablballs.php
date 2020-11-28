@@ -15,7 +15,7 @@ if(isset($_POST["export"])) {
 	header('Content-Disposition: attachment; filename=data.csv');
 	$output = fopen("php://output", "w");
 	$delimiter = ";";
-	fputcsv($output, array('id','nickname','balls','history', 'exclude'), ";");
+	fputcsv($output, array('id','nickname','balls','history', 'exclude', 'login_one', 'login_two', 'login_three'), ";");
 	$query = "SELECT  * FROM tablballs ORDER BY id";
 	$result = mysqli_query($link, $query);
 	while($row = mysqli_fetch_assoc($result))
