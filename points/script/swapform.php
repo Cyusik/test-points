@@ -80,7 +80,10 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 											$status = 'no matches'; // - нет совпадений
 										} else
 										{
-											$status = 'success';// - совпадения есть
+											$status = 'success';// - совпадения есть, списываем баллы
+											$subtract_points = "UPDATE tablballs SET balls=`balls`-'$points_required' WHERE nickname='$nicknames5'";
+											$result_subtract = mysqli_query($link, $subtract_points) or die(fwrite($fw, $newdate.' Ошибка swapform.php(85): '.mysqli_error($link)."\n"));
+											fwrite($fw, $newdate.' auto_write-off: '.$nicknames5.' points '.$points_required."\n\t");
 										}
 				//----------------------
 										$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$priz5','$points_required','$status')";

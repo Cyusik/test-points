@@ -163,7 +163,7 @@ else {
 						//	$id_log3 = 'log3'.$i;
 							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
 							fwrite($fw, $newdate.' '.$login.' Запись баллов=>'.$names.' id=>'.$row[0].' nick=>'.$row[1].' points=>'.$row[2].' true'."\r\n");
-						echo "<tr id='$id_tr'>";
+						echo "<tr class='$id_tr'>";
 							echo "<form id='$id_form' name='form' method='POST' action=''>";
 							echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
 								<div id='$div_result' class='modal_div_external' ></div>
@@ -174,20 +174,30 @@ else {
 							echo "<td style='width:50%'><textarea id='history_test' class='textarea' name='history_user'>$row[3]</textarea>";
 							echo nl2br("<td style='width:5%'><input id='ignor_test' class='input' name='ignor_user' value='$row[4]'></td>");
 							echo "</tr>
-								  <tr>
+								  <tr class='$id_tr'>
 								  		<th style='padding:0; width:0'></th>
 								  		<th colspan='5'></th>
+								  		<!--<th rowspan='3'>действие</th>-->
 								  </tr>
-								  <tr id='$id_tr'>
+								  <tr class='$id_tr'>
 								  		<td style='padding:0; width:0'></td>
-								  		<td>login_one</td>
-								  		<td colspan='2'><input class='input' id='login_one' name='login_one' value='$row[5]'></td>
-								  		<td>login_two</td>
-								  		<td colspan='2'><input class='input' id='login_two' name='login_two' value='$row[6]'></td>
-								  		<td>login_three</td>
-								  		<td colspan='2'><input class='input' id='login_three' name='login_three' value='$row[7]'></td>";
+								  		<td colspan='2'>login_one</td>
+								  		<td colspan='2'><input class='input' id='login_one' name='login_one' value='$row[5]'></td>";
 							echo "<td rowspan='3' style='text-align:right'>";
 							echo "<button id='$id_button_save' type='submit' class='button10'>Сохранить</button>";
+
+						echo "<span id='$id_button_delet' class='button10 fixbtn'>Удалить</span>";
+
+							echo "</tr>
+								  <tr class='$id_tr'>
+								  		<td style='padding:0; width:0'></td>
+								  		<td colspan='2'>login_two</td>
+								  		<td colspan='2'><input class='input' id='login_two' name='login_two' value='$row[6]'></td>";
+							echo "</tr>
+								  <tr class='$id_tr'>
+								 		<td style='padding:0; width:0'></td>
+								  		<td colspan='2'>login_three</td>
+								  		<td colspan='2'><input class='input' id='login_three' name='login_three' value='$row[7]'></td>";
 							?>
 							<script>
 								$(document).ready(function() {
@@ -210,7 +220,6 @@ else {
 								});
 							</script>
 							<?php
-							echo "<span id='$id_button_delet' class='button10'>Удалить</span>";
 							?>
 							<script>
 								$(document).ready(function() {
@@ -234,8 +243,8 @@ else {
 													$().html(result);
 												},
 											});
-											$("#<?=$id_tr?>").empty();
-											$("#<?=$id_tr?>").stop().animate({
+											$(".<?=$id_tr?>").empty();
+											$(".<?=$id_tr?>").stop().animate({
 													height: "0px",
 													opacity: 0,
 												}, 800, function() {
@@ -278,17 +287,7 @@ else {
 		</div>
 	</div>
 		<div class="importb1">
-			<!--<a href="" class="add_message1" id="click_mes_form1">-->
 				<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Импорт таблицы баллов</h3>
-			<!--</a>-->
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$(".add_message1").click(function(){
-						$("#popup_message_form1").slideToggle("slow");
-						$(this).toggleClass("active"); return false;
-					});
-				});
-			</script>
 			<div class="importb2" id="popup_message_form1" style="display:block;">
 				<table class="table_import1">
 					<tr>

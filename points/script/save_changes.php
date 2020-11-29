@@ -1,11 +1,14 @@
 <?php
-if (isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['point_user']) && isset($_POST['history_user'])) {
+if (isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['point_user']) && isset($_POST['history_user']) && isset($_POST['login_one']) && isset($_POST['login_two']) && isset($_POST['login_three'])) {
 	include_once 'connect.php';
 	$id_user = $_POST['id_user'];
 	$nick_user = trim($_POST['nick_user']);
 	$point_user = trim($_POST['point_user']);
 	$history_user = $_POST['history_user'];
 	$ignor_user = $_POST['ignor_user'];
+	$login_one = strtolower(trim($_POST['login_one']));
+	$login_two = strtolower(trim($_POST['login_two']));
+	$login_three = strtolower(trim($_POST['login_three']));
 	$fwhistory = preg_replace("~\s*[\r\n]+~", '/ ', $history_user);
 	//------------------------------------------
 	session_start();
@@ -20,7 +23,7 @@ if (isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['poin
 if(($ignor_user == 1) || ($ignor_user == 0)) {
 	if($nick_user != "") {
 		if($point_user != "") {
-			$query = "UPDATE tablballs SET nickname='$nick_user', balls='$point_user', history='$history_user', exclude='$ignor_user' WHERE id='$id_user'";
+			$query = "UPDATE tablballs SET nickname='$nick_user', balls='$point_user', history='$history_user', exclude='$ignor_user', login_one ='$login_one', login_two ='$login_two', login_three='$login_three' WHERE id='$id_user'";
 			$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка save_changes.php(21): '.mysqli_error($link)."\n"));
 			if($result) {
 				fwrite($fw, $newdate.' save result=>true'."\r\n");
