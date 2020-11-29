@@ -11,10 +11,10 @@ include_once '../script/login.php';
 <head>
 	<meta charset="UTF-8">
 	<title>Управление баллами</title>
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<link href="../normalize.css" rel="stylesheet">
+	<link href="../css/normalize.css" rel="stylesheet">
 	<link href="../admin/Styleavtoriz.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

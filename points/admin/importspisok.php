@@ -24,10 +24,10 @@ else {
 <head>
 	<meta charset="UTF-8">
 	<title>Админка баллы</title>
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
 	<meta name="description" content="Описание страницы">
 	<meta name="keywords" content="Ключевые слова через запятую">
-	<link href="../normalize.css" rel="stylesheet">
+	<link href="../css/normalize.css" rel="stylesheet">
 	<link href="../admin/Styleimportspisok.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../jquery-3.4.1.min.js"></script>
@@ -54,17 +54,7 @@ else {
 	</div>
 	<br>
 	<div class="importb1">
-		<!--<a href="" class="add_message2" id="click_mes_form2">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Добавить/удалить/редактировать строки</h3>
-		<!--</a>-->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$(".add_message2").click(function(){
-					$("#popup_message_form2").slideToggle("slow");
-					$(this).toggleClass("active"); return false;
-				});
-			});
-		</script>
 		<div class="importb2" id="popup_message_form2" style="display:block;">
 			<table class="table_import1">
 				<tr>
@@ -297,17 +287,7 @@ else {
 	</div>
 	<br>
 	<div class="importb1">
-		<!--<a href="" class="add_message1" id="click_mes_form1">-->
 			<h3 class="heding" title="Жмякни, чтобы скрыть для удобства">Импорт таблицы обмена</h3>
-		<!--</a>-->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$(".add_message1").click(function(){
-					$("#popup_message_form1").slideToggle("slow");
-					$(this).toggleClass("active"); return false;
-				});
-			});
-		</script>
 		<div class="importb2" id="popup_message_form1" style="display:block;">
 			<table class="table_import1">
 				<tr>

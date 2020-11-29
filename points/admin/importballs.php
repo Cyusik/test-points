@@ -148,7 +148,6 @@ else {
 									<th style='width:10%'>Баллы</th>
 									<th style='width:50%'>История обмена баллов</th>
 									<th style='width:5%'>Игнор</th>
-								<!--	<th style='width:150px'>Действие</th> -->
 									</tr>";
 						for($i = 0; $i < $rows; ++$i) {
 						$row = mysqli_fetch_row($result);
@@ -158,9 +157,6 @@ else {
 							$hideME = 'hide_Me1'.$i;
 							$id_form = 'form'.$i;
 							$id_tr = 'tr1'.$i;
-						//	$id_log1 = 'log1'.$i;
-						//	$id_log2 = 'log2'.$i;
-						//	$id_log3 = 'log3'.$i;
 							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
 							fwrite($fw, $newdate.' '.$login.' Запись баллов=>'.$names.' id=>'.$row[0].' nick=>'.$row[1].' points=>'.$row[2].' true'."\r\n");
 						echo "<tr class='$id_tr'>";

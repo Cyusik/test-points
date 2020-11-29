@@ -29,13 +29,12 @@ if(isset($_POST['output1']) && !empty($_POST['monthFromAll']) && !empty($_POST['
 				fwrite($fw, $newdate.' result=>true'."\r\n");
 				echo "<div id='allapplications'>";
 				echo "<table class='table_dark2'><tr>
-		<!--	<th>id</th>-->
-			<th style='width:50px'>Дата заявки</th>
-			<th>Никнейм</th>
-			<th>Логин</th>
-			<th>Приз</th>
-			<th style='width:45px;'>Баллы</th>
-			<th>Статус</th>
+			<th style='width:20%'>Дата заявки</th>
+			<th style='width:15%'>Никнейм</th>
+			<th style='width:25%'>Логин</th>
+			<th style='width:25%'>Приз</th>
+			<th style='width:5%;'>Баллы</th>
+			<th style='width:10%'>Статус</th>
 				</tr>";
 				for($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result);

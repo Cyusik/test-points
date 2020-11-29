@@ -15,7 +15,7 @@ if(isset($_POST['nicknames']) && isset($_POST['login']) && isset($_POST['prizes'
 	$newdate = date('Y-m-d h:i:s A', strtotime($date));
 	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nicknames.'; login=>'.$login.' points=>'.$points.' prizes=>'.$new_prizes."\r\n");
 	//---------------------------------------
-	$query = "INSERT INTO zapisform (nickname, account, priz, points) VALUES ('$nicknames', '$login', '$prizes', '$points')";
+	$query = "INSERT INTO zapisform (nickname, account, priz, points, status) VALUES ('$nicknames', '$login', '$prizes', '$points', 'manually')";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка add_string_exchange.php(19): '.mysqli_error($link)."\n"));
 	if ($result) {
 		fwrite($fw, $newdate.' result=>true'."\r\n");

@@ -189,7 +189,7 @@ else {
 								<tr>
 									<th>От (дата)</th>
 									<th>До (дата)</th>
-									<th>Сортировка</th>
+									<th style="word-break:normal">Сортировка</th>
 									<th></th>
 								</tr>
 								<tr>

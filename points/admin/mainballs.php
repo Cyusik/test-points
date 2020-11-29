@@ -24,10 +24,10 @@ exit;
 <head>
 	<meta charset="UTF-8">
 	<title>Админка баллы</title>
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://mwogame.com/forum/favicon.ico" type="image/x-icon">
 	<meta name="description" content="Описание страницы">
 	<meta name="keywords" content="Ключевые слова через запятую">
-	<link href="../normalize.css" rel="stylesheet">
+	<link href="../css/normalize.css" rel="stylesheet">
 	<link href="../admin/Stylemainballs.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
