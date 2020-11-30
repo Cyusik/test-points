@@ -60,6 +60,49 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										$sum += $repl[$value];
 									}
 								}
+					//----------ищем одинаковое------------
+						/*		$unique_array = array();
+								$arrayfull = array($new_array);
+								foreach($arrayfull as $data) { // удалляем дубликаты, складываем значения
+									$hash = $data[0];
+									if (isset($unique_array[$hash])) {
+										$data[1] += $unique_array[$hash][1];
+									}
+									$unique_array[$hash] = $data;
+								} */
+								$otsev = array('Супер-Выстрел 50000 шт' => 50000, 'Усиленная мина 100 шт' => 1, 'Большая аптечка 100 шт' => 1, 'Усиленное поле 100 шт' => 1, 'Усиленный щит 100 шт' => 1, 'Двойной нитро 100 шт' => 1, 'Усиленный сканер 100 шт' => 1, 'Усиленные батареи 100 шт' => 1, 'Дымовой заслон 100 шт' => 1, 'Циклотрон IV+ 1 шт' => 1, 'Катушка V+ 1 шт' => 1, 'Накопитель IV+ 1 шт' => 1, 'Турбонаддув IV+ 1 шт' => 1, 'Обшивка IV+ 1 шт' => 1, 'Стабилизатор V+ 1 шт' => 1, 'Дальнометр V+ 1 шт' => 1, 'Целеуказатель V+ 1 шт' => 1, 'Усилитель руля V+ 1 шт' => 1, 'Подшипник V+ 1 шт' => 1, 'Локатор V+ 1 шт' => 1, 'Антирадар V+ 1 шт' => 1, 'Хищник на 30 дней' => 30, 'Борей на 30 дней' => 30, 'Титан на 30 дней' => 30, 'Тень на 30 дней' => 30, 'Левиафан на 30 дней' => 30, 'VIP-аккаунт на 30 дней' => 30);
+								$itog_arr = array();
+								foreach($new_array as $data) {
+								//	$hash = $data[0];
+									foreach($otsev as $k => $value) {
+										if (array_key_exists($key, $new_array)){
+											$itog_arr[$key] = $otsev[$key] + $value;
+										} else {
+											$itog_arr[$key] = $value;
+										}
+									//	if($k == $data) {
+											//$itog_arr[] += $value;
+											//$itog_arr[$summa] = $k;
+											//$itog_arr[] = $value;
+
+										//}
+										//$itog_arr[$hash] = $data;
+									}
+								/*	if (isset($unique_array[$hash])) {
+										$data[1] += $itog_arr[$hash][1];
+									}
+									$unique_array[$hash] = $data;
+									/*if(in_array($k, $new_array)) {
+										$test[] = $k;
+										$test[] += $data;
+									}*/
+								}
+					//------------
+								echo '<pre style="text-align:left">';
+								print_r($itog_arr);
+								echo '</pre>';
+								exit;
+
 								$priz5 = implode(", ", $new_array);
 								fwrite($fw, $newdate.' Список призов: '.$priz5."\n\t");
 								if($points_required == $sum) {
