@@ -1,6 +1,7 @@
 <?php
-include_once '../../script/connect.php';
-$file_login = "../../logfiles/exchange_log.log";
+include_once __DIR__ . '/../connect.php';
+$file_login = __DIR__ . "/../../logfiles/exchange_log.log";
+
 $fw = fopen($file_login, "a+");
 $date = date('Y-m-d h:i:s');
 $new_date = date('Y-m-d h:i:s A', strtotime($date));
