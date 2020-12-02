@@ -124,10 +124,11 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										}
 										$date_recording = date('d.m.Y h:i:s'); //---установить дату заявки
 										$write_date = date('d.m.y', strtotime($date_recording));
-										if (strpos($rowtb[2], $write_date) !==false) { // если такая дата уже есть, то дополняем
-											$addition_line = str_replace($write_date, $write_date.' '.$line_history.', ',$rowtb[2]);
-											$write_hisline = $addition_line;
-										} else {
+										if(strpos($rowtb[2], $write_date) !== false) { // если такая дата уже есть, то дополняем
+											$addition_line = str_replace($write_date, $write_date.' '.$line_history.', ', $rowtb[2]);
+											$write_hisline = $addition_line; //- итоговая строка для записи в бд
+										}
+										else {
 											$write_hisline = $write_date.' '.$line_history."\r\n".$rowtb[2]; //- итоговая строка для записи в бд
 										}
 										//----------end-подготовка истории----

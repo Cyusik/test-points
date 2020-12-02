@@ -34,7 +34,7 @@ if($search == false) {
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			if($rows > 0) {
-			echo "<table class='table_dark'>
+				echo "<table class='table_dark'>
 				<tr>
 					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span style='float:right'>Обновлена $dates</span></th>
 				</tr>
@@ -42,17 +42,18 @@ if($search == false) {
 					<th>Никнейм</th>
 					<th>Баллы</th>
 				</tr>";
-			for($i = 0; $i < $rows; ++$i) {
-				$row = mysqli_fetch_row($result);
-				echo "<tr>";
-				for($j = 1; $j < 3; ++$j)
-					if ($row[2] != "") { // если balls пусто то не выводим
-						echo "<td>$row[$j]</td>";
-					}
-				echo "</tr>";
+				for($i = 0; $i < $rows; ++$i) {
+					$row = mysqli_fetch_row($result);
+					echo "<tr>";
+					for($j = 1; $j < 3; ++$j)
+						if($row[2] != "") { // если balls пусто то не выводим
+							echo "<td>$row[$j]</td>";
+						}
+					echo "</tr>";
+				}
+				echo "</table>";
 			}
-			echo "</table>";
-		} else {
+			else {
 				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
 				echo "<table class='table_dark'>
 					<tr>
@@ -63,7 +64,7 @@ if($search == false) {
 					</tr>
 					</table>";
 			}
-	}
+		}
 	}
 	else {
 		fwrite($fw, $newdate." Ошибка условия poisk.php(35): ".$from.'>= 0'."\n");
@@ -120,7 +121,8 @@ if($search == false) {
 			<li>$nextpage</li>
 		</ul></div>";
 	}
-}else {
+}
+else {
 	$search = trim($search);
 	fwrite($fw, $newdate.' Запрос поиск баллов: '.$search."\n");
 	require_once 'script/connect.php';
@@ -131,7 +133,7 @@ if($search == false) {
 	if($result) {
 		$rows = mysqli_num_rows($result);
 		$row = mysqli_fetch_row($result);
-		if ($row[2] != "") {
+		if($row[2] != "") {
 			if($rows > 0) {
 				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
 				echo "<table class='table_dark'><tr>
@@ -144,16 +146,17 @@ if($search == false) {
 					//$row = mysqli_fetch_row($result);
 					echo "<tr>";
 					for($j = 1; $j < 3; ++$j)
-							echo nl2br("<td>$row[$j]</td>");
-							echo "</tr>";
-							echo "<th colspan='2'>История обмена баллов</th>";
-							echo "<tr>";
-							for($j = 3; $j < 4; ++$j)
-								echo nl2br("<td colspan='2' style='text-align:left'>$row[$j]</td>");
-							echo "</tr>";
+						echo nl2br("<td>$row[$j]</td>");
+					echo "</tr>";
+					echo "<th colspan='2'>История обмена баллов</th>";
+					echo "<tr>";
+					for($j = 3; $j < 4; ++$j)
+						echo nl2br("<td colspan='2' style='text-align:left'>$row[$j]</td>");
+					echo "</tr>";
 					echo "</table>";
 				}
-			} else {
+			}
+			else {
 				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
 				echo "<table class='table_dark'>
 					<tr>
