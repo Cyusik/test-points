@@ -1,5 +1,7 @@
 <?php
 $search = mb_strimwidth($_GET['search'], 0, 21);
+$search = mysqli_real_escape_string($link, $search);
+$search = htmlspecialchars($search);
 $fw = fopen('logfiles/search_log.log', "a+");
 date_default_timezone_set('Europe/Moscow');
 $date = date('Y-m-d h:i:s');
@@ -28,7 +30,7 @@ if($search == false) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			echo "<table id='range1' class='table_dark'>
 					<tr>
-						<th colspan='4' class='heding'>Итоги обмена баллов на призы</th>
+						<th colspan='4' class='heding'>История выдачи призов</th>
 					</tr>
 					<tr>
 					<th style='width:135px'>Дата выдачи приза</th>
@@ -39,8 +41,12 @@ if($search == false) {
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
-				for($j = 1; $j < 5; ++$j)
-					echo nl2br("<td>$row[$j]</td>");
+				//for($j = 1; $j < 5; ++$j)
+				//	echo nl2br("<td><a href='/points/index?search=$row[$j]'>$row[$j]</a></td>");
+				echo "<td>$row[1]</td>
+					  <td style='padding:0'><a class='results' href='/points/index?search=$row[2]'>$row[2]</a></td>
+					  <td>$row[3]</td>
+					  <td>$row[4]</td>";
 				echo "</tr>";
 			}
 		}
@@ -63,7 +69,7 @@ if($search == false) {
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
 	if($page > $pagesCount) {
-		echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с итогами обновляется или такой страницы не существует</b></td></tr></table>";
+		echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с историей выдачи обновляется или такой страницы не существует</b></td></tr></table>";
 	}
 	else {
 		if($page != 1) {
@@ -129,7 +135,7 @@ else {
 				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
 				echo "<table class='table_dark'>
 					<tr>
-						<th colspan='4' class='heding'>Итоги обмена баллов на призы игрока $search</th>
+						<th colspan='4' class='heding'>История выдачи призов игрока $search</th>
 					</tr>
 					<tr>
 					<th style='width:135px'>Дата выдачи приза</th>
@@ -140,8 +146,12 @@ else {
 				for($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result);
 					echo "<tr>";
-					for($j = 1; $j < 5; ++$j)
-						echo nl2br("<td>$row[$j]</td>");
+					//for($j = 1; $j < 5; ++$j)
+					//	echo nl2br("<td><a href='/points/index?search=$row[$j]'>$row[$j]</a></td>");
+					echo "<td>$row[1]</td>
+					  <td style=padding:0;'><a class='results' href='/points/index?search=$row[2]'>$row[2]</a></td>
+					  <td>$row[3]</td>
+					  <td>$row[4]</td>";
 					echo "</tr>";
 				}
 				echo "</table>";
@@ -153,7 +163,7 @@ else {
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
 					</tr>
 					<tr>
-						<td style='padding:15px 7px; font-size:14px'><b>Такого никнейма нет в таблице</b></td>
+						<td style='padding:15px 7px; font-size:14px'><b>Ничего не найдено</b></td>
 					</tr>
 					</table>";
 			}
@@ -176,7 +186,7 @@ else {
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
 	if($page > $pagesCount) {
-		echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с итогами обновляется или такой страницы не существует</b></td></tr></table>";
+		//ничего не найдено
 	}
 	else {
 		if($page != 1) {

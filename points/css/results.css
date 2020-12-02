@@ -85,3 +85,9 @@
 .table_dark td {
 	padding: 5px 10px;
 }
+.results {
+	font: 13px 'TeX Gyre Heros';
+	padding: 5px 12px;
+	text-decoration: none;
+	color: #000000;
+}

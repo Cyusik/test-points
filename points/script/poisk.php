@@ -33,6 +33,7 @@ if($search == false) {
 		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(37): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
+			if($rows > 0) {
 			echo "<table class='table_dark'>
 				<tr>
 					<th colspan='2' class='heding'><span style='float:left'>Общая таблица баллов</span><span style='float:right'>Обновлена $dates</span></th>
@@ -50,7 +51,19 @@ if($search == false) {
 					}
 				echo "</tr>";
 			}
-		}
+			echo "</table>";
+		} else {
+				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
+				echo "<table class='table_dark'>
+					<tr>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
+					</tr>
+					<tr>
+						<td style='padding:15px 7px; font-size:14px'><b>Ничего не найдено</b></td>
+					</tr>
+					</table>";
+			}
+	}
 	}
 	else {
 		fwrite($fw, $newdate." Ошибка условия poisk.php(35): ".$from.'>= 0'."\n");
@@ -63,14 +76,14 @@ if($search == false) {
 					</tr>
 					</table>";
 	}
-	echo "</table>";
+
 	$query = "SELECT COUNT(*) as count FROM tablballs";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(67): '.mysqli_error($link)."\n"));
 	$res = mysqli_fetch_assoc($result);
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
 	if($page > $pagesCount) {
-		echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с баллами обновляется или такой страницы не существует</b></td></tr></table>";
+		//echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с баллами обновляется или такой страницы не существует</b></td></tr></table>";
 	}
 	else {
 		if($page != 1) {

@@ -124,11 +124,17 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										}
 										$date_recording = date('d.m.Y h:i:s'); //---установить дату заявки
 										$write_date = date('d.m.y', strtotime($date_recording));
-										$write_hisline = $write_date.' '.$line_history."\r\n"; //- итоговая строка для записи в бд
+										if (strpos($rowtb[2], $write_date) !==false) { // если такая дата уже есть, то дополняем
+											$addition_line = str_replace($write_date, $write_date.' '.$line_history.', ',$rowtb[2]);
+											$write_hisline = $addition_line;
+										} else {
+											$write_hisline = $write_date.' '.$line_history."\r\n".$rowtb[2]; //- итоговая строка для записи в бд
+										}
 										//----------end-подготовка истории----
-										$subtract_points = "UPDATE tablballs SET balls=`balls`-'$points_required', history ='$write_hisline$rowtb[2]' WHERE nickname='$nicknames5'";
+										$subtract_points = "UPDATE tablballs SET balls=`balls`-'$points_required', history ='$write_hisline' WHERE nickname='$nicknames5'";
 										$result_subtract = mysqli_query($link, $subtract_points) or die(fwrite($fw, $newdate.' Ошибка swapform.php(85): '.mysqli_error($link)."\n"));
 										fwrite($fw, $newdate.' auto_write-off: '.$nicknames5.' points -'.$points_required.' line-history: '.$write_hisline."\n\t");
+										$priz5 = $line_history;
 									}
 									$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$priz5','$points_required','$status')";
 									$result = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));;
@@ -177,7 +183,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 						Заявка не отправлена</span>
 					<meta http-equiv=\"refresh\" content=\"5;url=swap.php\">";
 		}
-		$result_check->free();
+		//$result_check->free();
 		unset($quantity);
 		unset($reduction);
 		unset($ending);
