@@ -55,7 +55,7 @@ require_once 'script/connect.php';
 										<a href="/points/index">Таблица с баллами</a>
 									</li>
 									<li>
-										<a href="/points/results">Итоги обмена баллов на призы</a>
+										<a href="/points/results">Итоги выдачи призов</a>
 									</li>
 									<li>
 										<a href="/points/swap">Обмен баллов на призы</a>
