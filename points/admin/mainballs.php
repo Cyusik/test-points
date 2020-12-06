@@ -99,7 +99,12 @@ exit;
 					Это значит что:<br>
 					1. Экспортированный файл открываем при помощи Open Office, указываем кодировку UTF-8, разделитель - точка с запятой. Так он откроется в нормальном табличном виде. (при этом ещё и вносятся названия столбцов и id)<br>
 					2. Для формирования файла импорта - в Open Office создаем обычную электронную таблицу, вставляем ники, баллы и историю (как обычно в табличном виде выглядит). Далее сохранить как -> указываем файл csv -> использовать текущий формат -> кодировку UTF-8, разделитель точка с запятой -> Ок.<br>
-					Ну и смотрим <a href="https://youtu.be/UZ8TVolnadI" target="_blank">видео</a>, если не понятно.
+					Ну и смотрим видео ниже, если не понятно.
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/UZ8TVolnadI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</td>
 			</tr>
 		</table>
