@@ -72,6 +72,14 @@ else {
 						<div class="importb2" id="popup_message_form2" style="display:none;">
 							<br><br>
 							<?php
+							echo "<div class='mainwindow'>
+							<div class='openwindow'>
+							<h3 id='heading'></h3>
+							<span id='spanwidow'></span><br><br>
+							<div class='button10' id='closewidow'>Удалить</div>
+							<div class='button10' id='canceling'>Отмена</div>
+							</div>
+							</div>";
 								include_once '../script/connect.php';
 								mysqli_query($link, "SET NAMES 'utf8'");
 								$query = "SELECT * FROM users WHERE id > 0";
@@ -95,13 +103,14 @@ else {
 										$hideME = 'hide_Me1'.$i;
 										$id_form = 'form1'.$i;
 										$id_tr = 'tr1'.$i;
+										$nick_control = 'nick_control'.$i;
 										echo "<tr id='$id_tr'>";
 										echo "<form id='$id_form' name='form' method='POST' action=''>";
 										echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
 								<div id='$div_result' class='modal_div_external'></div>
 							</div></td>";
 										echo nl2br("<td style='width:30px'><input id='id_test' class='input' name='id_user' value='$row[0]' readonly='readonly'></td>");
-										echo nl2br("<td style='width:150px'><input id='login_test' class='input' name='login_user' value='$row[1]' readonly='readonly'></td>");
+										echo nl2br("<td style='width:150px'><input id='$nick_control' class='input' name='login_user' value='$row[1]' readonly='readonly'></td>");
 										echo nl2br("<td style='width:30px'><input id='password_test' class='input' name='password_user' placeholder='введите пароль'></td>");
 										echo nl2br("<td style='width:0'><input id='priority_user' name='priority_user' class='input' value='$row[3]'>");
 										echo "<td style='width: 150px;'>";
@@ -128,30 +137,44 @@ else {
 								});
 							</script>
 							<?php
-							echo "<button id='$id_button_delet' class='button10' type='submit'>Удалить</button>";
+							echo "<span id='$id_button_delet' class='button10'>Удалить</span>";
 							?>
 							<script>
 								$(document).ready(function() {
 									$('#<?=$id_button_delet?>').click(function () {
-										$(this).attr('disabled', true);
-										$('#<?=$hideME?>').fadeIn(800);
-										$.ajax({
-											type: "POST",
-											url: "../../points/script/delet_control.php",
-											data: $("#<?=$id_form?>").serialize(),
-											success: function (result) {
-												$().html(result);
-											},
+										$('.mainwindow').fadeIn();
+										$('.mainwindow').addClass('disabled');
+										$('#heading').html('Внимание');
+										$('#spanwidow').html('Удалить строку ' + $('#<?=$nick_control?>').val() + ' из БД ?');
+										$('#closewidow').click(function () {
+											$('.mainwindow').fadeOut();
+											$('#heading').html('');
+											$('#spanwidow').html('');
+											$(this).attr('disabled', true);
+											$('#<?=$hideME?>').fadeIn(800);
+											$.ajax({
+												type: "POST",
+												url: "../../points/script/delet_control.php",
+												data: $("#<?=$id_form?>").serialize(),
+												success: function (result) {
+													$().html(result);
+												},
+											});
+											$("#<?=$id_tr?>").empty();
+											$("#<?=$id_tr?>").stop().animate({
+													height: "0px",
+													opacity: 0,
+												}, 800, function () {
+													$(this).remove();
+												}
+											);
+											return false;
 										});
-										$("#<?=$id_tr?>").empty();
-										$("#<?=$id_tr?>").stop().animate({
-												height: "0px",
-												opacity: 0,
-											}, 800, function() {
-												$(this).remove();
-											}
-										);
-										return false;
+										$('#canceling').click(function () {
+											$('.mainwindow').fadeOut();
+											$('#heading').html('');
+											$('#spanwidow').html('');
+										});
 									});
 								});
 							</script>
