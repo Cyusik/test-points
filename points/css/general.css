@@ -8,7 +8,7 @@ body {
 	line-height: 18px;
 }
 .main {
-	width: 1168px;
+	width: 1169px;
 	margin: 0 auto;
 }
 #logos {
@@ -43,11 +43,14 @@ h1 {
 }
 #table {
 	background:url("/points/img/general/bg-main.gif") repeat-y;
+	margin: 0;
+    padding: 0;
 }
 .table-t {
 	background:url("/points/img/general/bg-main-snow.png") no-repeat;
 	min-height: 890px;
 	padding: 110px 125px 0;
+	margin: 0;
 }
 .right-content {
 	top: 2em;
