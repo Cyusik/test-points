@@ -11,8 +11,7 @@ if(isset($_POST['nicknames']) && isset($_POST['login']) && isset($_POST['prizes'
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/exchange_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nicknames.'; login=>'.$login.' points=>'.$points.' prizes=>'.$new_prizes."\r\n");
 	//---------------------------------------
 	$query = "INSERT INTO zapisform (nickname, account, priz, points, status) VALUES ('$nicknames', '$login', '$prizes', '$points', 'manually')";

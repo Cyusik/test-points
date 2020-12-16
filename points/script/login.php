@@ -7,8 +7,7 @@ if(isset($_POST['submit'])) {
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$file_login = "../logfiles/login_to_admin.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	fwrite($fw, $newdate.' Запрос на вход '.$ip."\r\n");
 	if(empty($_POST['login_user'])) {
 		$info_input = "<div class='login'><b>Вы не ввели логин</b></div>";

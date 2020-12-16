@@ -8,8 +8,7 @@ if (isset($_POST['id_user']) && isset($_POST['nick_user'])) {
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Удалил: '.'id=>'.$id_user.'; nick=>'.$nick_user."\r\n");
 	//-------------------------------------------
 	if($nick_user == true) {

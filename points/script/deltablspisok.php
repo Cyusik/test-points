@@ -6,8 +6,7 @@ if(isset($_POST['truncate1'])){
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/results_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	//-------------------------------
 	$query = "TRUNCATE TABLE itogobmen";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка delrablspisok.php(13): '.mysqli_error($link)."\n"));

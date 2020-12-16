@@ -11,8 +11,7 @@ if($_SESSION['login'] && $_SESSION['role'] == 1){
 	$role = $_SESSION['role'];
 	$file_login = "../logfiles/login_to_admin.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Вошел в control.php'.' Логин: '. $login."\r\n");
 	fclose($fw);
 }

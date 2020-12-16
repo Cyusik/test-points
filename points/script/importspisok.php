@@ -16,8 +16,7 @@ if(isset($_POST['but_import'])){
 		$login = $_SESSION['login'];
 		$file_login = "../logfiles/results_log.log";
 		$fw = fopen($file_login, "a+");
-		$date = date('Y-m-d h:i:s');
-		$newdate = date('Y-m-d h:i:s A', strtotime($date));
+		include_once '../script/datetime.php';
 		fwrite($fw, $newdate.' '.$login.' Импортировал таблицу results(itogobmen)'."\r\n");
 		fclose($fw);
 		//-------------------------------

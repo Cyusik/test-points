@@ -2,8 +2,7 @@
 if (isset($_POST['admin_clear_log'])) {
 	session_start();
 	$login = $_SESSION['login'];
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	file_put_contents('../logfiles/login_to_admin.log', null);
 	$fw = fopen("../logfiles/login_to_admin.log", "a+" );
 	fwrite($fw, $newdate.' '.$login.' =>clear_log...'."\r\n");

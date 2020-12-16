@@ -9,8 +9,7 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	//-------------------------------
 	$white_format = '.csv';
 	$white_type = array('text/csv', 'application/vnd.ms-excel', 'text/plain');

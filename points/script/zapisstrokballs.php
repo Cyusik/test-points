@@ -18,8 +18,7 @@ if(isset($_POST['nickname']) && isset($_POST['balls']) && isset($_POST['history'
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nickname.'; point=>'.$balls.'; history=>'.$fwhistory.' ignory=>'.$ignory."\r\n");
 	//---------------------------------------
 		if($nickname != "") {

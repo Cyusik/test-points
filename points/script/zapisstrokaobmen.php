@@ -11,8 +11,7 @@ if (isset($_POST['dates']) && isset($_POST['nickname'])  && isset($_POST['itog']
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/results_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nickname.'; result=>'.$itog.' cause=>'.$prichina."\r\n");
 	//---------------------------------------
 		if($nickname != "") {

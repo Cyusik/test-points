@@ -2,8 +2,7 @@
 $search = mb_strimwidth($_GET['search'], 0, 21);
 $fw = fopen('logfiles/search_log.log', "a+");
 date_default_timezone_set('Europe/Moscow');
-$date = date('Y-m-d h:i:s');
-$newdate = date('Y-m-d h:i:s A', strtotime($date));
+include_once 'script/datetime.php';
 if($search == false) {
 	require_once 'script/connect.php';
 	$id2 = 2;

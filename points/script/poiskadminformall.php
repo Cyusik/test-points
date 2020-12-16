@@ -6,8 +6,7 @@ if(isset($_POST['output1']) && !empty($_POST['monthFromAll']) && !empty($_POST['
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/exchange_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Вывод всех заявок'."\r\n");
 	//---------------------------------------------------
 	$sorting = $_POST['sorting'];

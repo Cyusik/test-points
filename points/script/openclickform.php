@@ -5,8 +5,7 @@ if(isset($_POST['open'])){
 	$login = $_SESSION['login'];
 	$file_login = $_SERVER["DOCUMENT_ROOT"] . "/points/logfiles/exchange_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	$zapis = 1;
 	$stroka = 1;
 	$query ="UPDATE formobmen SET `open`= '$zapis' WHERE id='$stroka'";

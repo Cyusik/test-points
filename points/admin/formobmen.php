@@ -9,8 +9,7 @@ if($_SESSION['login']){
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/login_to_admin.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Вошел formobmen.php'.' Логин: '. $login."\r\n");
 	fclose($fw);
 }

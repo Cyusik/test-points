@@ -6,8 +6,7 @@ if(isset($_POST['truncate'])){
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	//-------------------------------
 	$query = "TRUNCATE TABLE tablballs";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка deltablballs.php(13): '.mysqli_error($link)."\n"));

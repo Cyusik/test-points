@@ -15,8 +15,7 @@ if (isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['poin
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Отредактировал: '.'id=>'.$id_user.'; nick=>'.$nick_user.'; point=>'.$point_user.' history=>'.$fwhistory."\r\n");
 	fwrite($fw, $newdate.' save '.$ignor_user."\r\n");
 	//-------------------------------------------

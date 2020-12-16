@@ -4,8 +4,7 @@ $search = mysqli_real_escape_string($link, $search);
 $search = htmlspecialchars($search);
 $fw = fopen('logfiles/search_log.log', "a+");
 date_default_timezone_set('Europe/Moscow');
-$date = date('Y-m-d h:i:s');
-$newdate = date('Y-m-d h:i:s A', strtotime($date));
+include_once 'script/datetime.php';
 if($search == false) {
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");

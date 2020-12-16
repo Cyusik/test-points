@@ -4,8 +4,7 @@
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once 'datetime.php';
 	$query = "SELECT * FROM formobmen WHERE id=2";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.'Ошибка date.php(10): '.mysqli_error($link)."\n"));
 	$row = mysqli_fetch_row($result);

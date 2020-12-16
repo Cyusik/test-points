@@ -6,8 +6,7 @@ if(isset($_POST["export"])) {
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Экспортировал csv points'."\r\n");
 	fclose($fw);
 	//-------------------------------

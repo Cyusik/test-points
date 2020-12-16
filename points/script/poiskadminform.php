@@ -13,8 +13,7 @@ if(!empty($_POST['names2']) && !empty($_POST['monthFrom']) && !empty($_POST['mon
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/exchange_log.log";
 	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
+	include_once '../script/datetime.php';
 	fwrite($fw, $newdate.' '.$login.' Вывод заявок по нику: '.$names2."\r\n");
 	//---------------------------------------------------
 	if($monthFrom <= $monthTo) {

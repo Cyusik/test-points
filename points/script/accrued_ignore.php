@@ -7,8 +7,7 @@ if(isset($_POST['id_ignore'])) {
 		$login = $_SESSION['login'];
 		$file_login = "../logfiles/points_log.log";
 		$fw = fopen($file_login, "a+");
-		$date = date('Y-m-d h:i:s');
-		$newdate = date('Y-m-d h:i:s A', strtotime($date));
+		include_once 'datetime.php';
 		//--------------------------
 		$select_idIg = "SELECT id,nickname,points,accrued FROM ignoresstory WHERE id ='$id_ignore'";
 		$result = mysqli_query($link, $select_idIg) or die(fwrite($fw, $newdate.' Ошибка accrued_ignore.php (16): '.mysqli_error($link)."\n"));
