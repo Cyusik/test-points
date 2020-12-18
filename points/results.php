@@ -71,7 +71,7 @@ require_once 'script/connect.php';
 								<form class="form-search" method="get" action="results.php">
 									<div class="form-row">
 										<input class="user-search" id="user-search" type="text" name="search"
-											   minlength="3" maxlength="21" required autocomplete="off">
+											   minlength="3" maxlength="21" required>
 										<label for="user-search">Введите никнейм...</label>
 									</div>
 									<button class="searhpoisk" type="submit">НАЙТИ</button>
