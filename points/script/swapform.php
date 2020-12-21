@@ -59,10 +59,6 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 								}
 							}
 							//---возьмем строку за дату и внесем в массив----
-							$date_recording = date('d.m.Y h:i:s'); //---установить дату заявки
-							$write_date = date('d.m.y', strtotime($date_recording));
-
-
 							$priz5 = implode(", ", $new_array);
 							fwrite($fw, $newdate.' Список призов: '.$priz5."\n\t");
 							if($points_required == $sum) {
@@ -84,25 +80,8 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 									else {
 										$status = 'success';// - совпадения есть, списываем баллы, заносим историю
 										//----------- подготовка истории обмена для записи--------
-										//----ищем есть ли текущая дата в истории----
-										$date_recording = date('d.m.Y h:i:s'); //---установить дату заявки
-										$write_date = date('d.m.y', strtotime($date_recording));
-										if(strpos($rowtb[2], $write_date) !== false) { // если такая дата уже есть, то дополняем
-											$masshist = array();
-											$stroka = strtok($rowtb[2], "\n"); // извлекаем первую строку (она не может быть иной!!!)
-											$stroka = str_replace($write_date, '', $stroka);
-											$masshist = explode(',', $stroka);
-										/*	$addition_line = str_replace($write_date, $write_date.' '.$line_history.', ', $rowtb[2]);
-											$write_hisline = $addition_line; //- итоговая строка для записи в бд */
-										} else {
-											$stroka = 'нет такой даты';
-										}
-										echo '<pre style="text-align:left">';
-										print_r($masshist);
-										echo '</pre>';
-										exit();
 										//---массив количества---
-										$quantity = array('Супер-Выстрел' => 50000, 'Усиленная мина 100 шт' => 100, 'Большая аптечка 100 шт' => 100, 'Усиленное поле 100 шт' => 100, 'Усиленный щит 100 шт' => 100, 'Двойной нитро 100 шт' => 100, 'Усиленный сканер 100 шт' => 100, 'Усиленные батареи 100 шт' => 100, 'Дымовой заслон 100 шт' => 100, 'Циклотрон IV+ 1 шт' => 1, 'Катушка V+ 1 шт' => 1, 'Накопитель IV+ 1 шт' => 1, 'Турбонаддув IV+ 1 шт' => 1, 'Обшивка IV+ 1 шт' => 1, 'Стабилизатор V+ 1 шт' => 1, 'Дальнометр V+ 1 шт' => 1, 'Целеуказатель V+ 1 шт' => 1, 'Усилитель руля V+ 1 шт' => 1, 'Подшипник V+ 1 шт' => 1, 'Локатор V+ 1 шт' => 1, 'Антирадар V+ 1 шт' => 1, 'Хищник на 30 дней' => 30, 'Борей на 30 дней' => 30, 'Титан на 30 дней' => 30, 'Тень на 30 дней' => 30, 'Левиафан на 30 дней' => 30, 'VIP-аккаунт на 30 дней' => 30);
+										$quantity = array('Супер-Выстрел' => 50000, 'Усиленная мина' => 100, 'Большая аптечка' => 100, 'Усиленное поле' => 100, 'Усиленный щит' => 100, 'Двойной нитро' => 100, 'Усиленный сканер' => 100, 'Усиленные батареи' => 100, 'Дымовой заслон' => 100, 'Циклотрон IV+' => 1, 'Катушка V+' => 1, 'Накопитель IV+' => 1, 'Турбонаддув IV+' => 1, 'Обшивка IV+' => 1, 'Стабилизатор V+' => 1, 'Дальнометр V+' => 1, 'Целеуказатель V+' => 1, 'Усилитель руля V+' => 1, 'Подшипник V+' => 1, 'Локатор V+' => 1, 'Антирадар V+' => 1, 'Хищник' => 30, 'Борей' => 30, 'Титан' => 30, 'Тень' => 30, 'Левиафан' => 30, 'VIP-аккаунт' => 30);
 										$itog_arr = array();
 										foreach($new_array as $data) { // велосипед для сложения кол-ва призов strripos()
 											foreach($quantity as $k => $value) {
@@ -110,24 +89,32 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 													$itog_arr[] = $k;
 													$itog_arr[] = $value;
 												}
-											/*
-												if($data == $k) {
-													$itog_arr[] = $k;
-													$itog_arr[] = $value;
-												}
-											*/
 											}
 										}
-										echo '<pre style="text-align:left">';
-										print_r($itog_arr);
-										echo '</pre>';
-										exit();
 										//-----вот тут надо разобрать строки на составные части массива-------
-										foreach($masshist as $data) {
-											if
+										//----ищем есть ли текущая дата в истории----
+										$date_recording = date('d.m.Y h:i:s'); //---установить дату заявки
+										$write_date = date('d.m.y', strtotime($date_recording));
+										if(strpos($rowtb[2], $write_date) !== false) { // если такая дата уже есть, то дополняем
+											$true_date = $write_date;
+											$masshist = array();
+											$stdateline = strtok($rowtb[2], "\n"); // извлекаем первую строку (она не может быть иной!!!)
+											$stdateline = str_replace($write_date, '', $stdateline);//удаляем дату
+											$masshist = explode(',', $stdateline);//формируем в массив
+											foreach($masshist as $dt) { //разбираем массив из истории
+												foreach($quantity as $khis => $valuet) {
+													if(strpos($dt, $khis) !== false) {
+														$arr_rowtb[] = $khis;
+														$arr_rowtb[] = preg_replace('/[^0-9]/', '', $dt);//оставляем только цифры
+													}
+												}
 											}
-										//-------конец разбора и объединение массивов----------
-										$separation = array_chunk($itog_arr, 2);
+											$unite_mass = array_merge($itog_arr, $arr_rowtb); //объединяем заказы и то что уже есть
+											//-------конец разбора и объединение массивов----------
+											$separation = array_chunk($unite_mass, 2);
+										} else {
+											$separation = array_chunk($itog_arr, 2); //если нет даты, то только заказанное берем
+										}
 										$unique_array = array();
 										foreach($separation as $data) { // удалляем дубликаты, складываем значения
 											$hash = $data[0];
@@ -136,20 +123,8 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 											}
 											$unique_array[$hash] = $data;
 										}
-										// --- массив сокращенных призов---
-										$reduction = array('Супер-Выстрел', 'Усиленная мина', 'Большая аптечка', 'Усиленное поле', 'Усиленный щит', 'Двойной нитро', 'Усиленный сканер', 'Усиленные батареи', 'Дымовой заслон', 'Циклотрон IV+', 'Катушка V+', 'Накопитель IV+', 'Турбонаддув IV+', 'Обшивка IV+', 'Стабилизатор V+', 'Дальнометр V+', 'Целеуказатель V+', 'Усилитель руля V+', 'Подшипник V+', 'Локатор V+', 'Антирадар V+', 'Хищник', 'Борей', 'Титан', 'Тень', 'Левиафан', 'VIP-аккаунт');
-										$arr_itog = array();
-										foreach($unique_array as $k => $value) { // -- ищем совпадения
-											foreach($reduction as $data) {
-												if(strpos($value[0], $data) !== false) {
-													$arr_reduction[] = $data;
-													$arr_reduction[] = $value[1];
-												}
-											}
-										}
 										$ending = array('Хищник', 'Борей', 'Титан', 'Тень', 'Левиафан', 'VIP-аккаунт'); // - отсеить похожее
-										$separation_final = array_chunk($arr_reduction, 2);
-										foreach($separation_final as $luck => $mass) { // --- необходимо для записи элементов через запятую
+										foreach($unique_array as $luck => $mass) { // --- необходимо для записи элементов через запятую
 											if(in_array($mass[0], $ending) !== false) {
 												$line[] = implode(' ', $mass).' дней'; //---определяем окончание
 											}
@@ -158,24 +133,33 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 											}
 											$line_history = implode(', ', $line); //---запись через дапятую
 										}
-										$date_recording = date('d.m.Y h:i:s'); //---установить дату заявки
-										$write_date = date('d.m.y', strtotime($date_recording));
-										if(strpos($rowtb[2], $write_date) !== false) { // если такая дата уже есть, то дополняем
-											$addition_line = str_replace($write_date, $write_date.' '.$line_history.', ', $rowtb[2]);
-											$write_hisline = $addition_line; //- итоговая строка для записи в бд
+										if(!empty($true_date)) { // если такая дата уже есть, то дополняем
+											$rowtb[2] = preg_replace('/^.+\n/', '', $rowtb[2]);//удаляем первую строку
+											$write_hisline = $write_date.' '.$line_history."\r\n".$rowtb[2]; //- итоговая строка для записи в бд
 										}
-										else {
+										else { //если текущей даты нет, то записываем только заказанное
 											$write_hisline = $write_date.' '.$line_history."\r\n".$rowtb[2]; //- итоговая строка для записи в бд
 										}
 										//----------end-подготовка истории----
 										$subtract_points = "UPDATE tablballs SET balls=`balls`-'$points_required', history ='$write_hisline' WHERE nickname='$nicknames5'";
 										$result_subtract = mysqli_query($link, $subtract_points) or die(fwrite($fw, $newdate.' Ошибка swapform.php(85): '.mysqli_error($link)."\n"));
 										fwrite($fw, $newdate.' auto_write-off: '.$nicknames5.' points -'.$points_required.' line-history: '.$write_hisline."\n\t");
-										$priz5 = $line_history;
 									}
-									$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$priz5','$points_required','$status')";
-									$result = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));;
-									if($result) {
+									if(!empty($true_date)) {
+										$date_format = date('Y-m-d', strtotime(date('Y-m-d h:i:s')));
+										$points_nickname = strtolower($points_nickname);
+										$select_date = "SELECT id,dates,nickname,status FROM zapisform WHERE dates LIKE '$date_format%' AND nickname = '$points_nickname' AND status = 'success'";
+										$result_date = mysqli_query($link, $select_date) or die ('Error: '.mysqli_error($link));
+										$select_row = mysqli_fetch_row($result_date);
+										$wrrite_request = "UPDATE zapisform SET dates=current_time(), priz='$line_history', points=`points`+'$sum' WHERE id='$select_row[0]'";
+										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));
+										fwrite($fw, $newdate.' Призы добавлены'."\n\t");
+
+									} else {
+										$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$line_history','$points_required','$status')";
+										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));;
+									}
+									if($result_request) {
 										fwrite($fw, $newdate.' Результат: '.'true'."\n\t");
 										echo "<span style='text-align:center;'>Заявка успешно отправлена!<br><br>Призы будут выданы в течении 3-х дней после закрытия опроса</span>";
 									}
@@ -222,7 +206,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 		}
 		//$result_check->free();
 		unset($quantity);
-		unset($reduction);
+		unset($separation);
 		unset($ending);
 	}
 }
