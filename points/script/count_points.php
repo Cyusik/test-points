@@ -2,7 +2,7 @@
 set_time_limit(380);
 ini_set('memory_limit', '128M');
 
-if (!empty($_FILES['countfile']['tmp_name']) && isset($_POST['date_check'])) {
+if (!empty($_FILES['countfile']['tmp_name'])) {
 	include_once '../script/connect.php';
 	//------------------------------
 	session_start();
