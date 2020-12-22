@@ -427,4 +427,9 @@ h3 {
 	width: 65px;
 	text-align: center;
 }
+.date_check {
+	margin-top: -2px;
+	margin-left: -5px;
+	margin-right: 2px;
+}
 /*----end----------*/

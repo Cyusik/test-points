@@ -337,6 +337,7 @@ else {
 									?>
 								</div>
 								<form method="POST" action="../script/count_points.php" id="count_points">
+									<label for="date_check" class="button10"><input type="checkbox" name="date_check" id="date_check" class="date_check"> Обновить дату</label>
 									<input type="file" name="countfile" id="countfile" class="countfile">
 									<label id="countfileON" for="countfile" class="button10">Выберите файл</label>
 									<button id="buttonfile" class="button10" type="submit">Отправить</button>

@@ -2,7 +2,7 @@
 set_time_limit(380);
 ini_set('memory_limit', '128M');
 
-if (!empty($_FILES['countfile']['tmp_name'])) {
+if (!empty($_FILES['countfile']['tmp_name']) && isset($_POST['date_check'])) {
 	include_once '../script/connect.php';
 	//------------------------------
 	session_start();
@@ -136,6 +136,11 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 					unlink($delet_files);
 					echo '<div class="modal_div_external count_result">Загрузка завершена. '.$emptyignore.' '.$emptynicknames.'</div>';
 					fwrite($fw, $newdate.' '.$login.' Баллы подсчитаны, файл удален.'."\r\n");
+					if($_POST['date_check']) {
+						$date_points = date('d.m.y', strtotime(date('d.m.Y H:i:s')));
+						$update_date = "UPDATE formobmen SET `open`='$date_points' WHERE id=2";
+						$result_update_date = mysqli_query($link, $update_date) or die('Error '.mysqli_error($link));
+					}
 				}
 			} else {
 				echo '<div class="modal_div_external count_result">Error, countfile.csv is not moved to uploads..</div>';
