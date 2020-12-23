@@ -48,11 +48,11 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 				}
 				fclose($file);
 				foreach($importData_arr as $k => $array) {
-					if ($array[0] == '' || NULL || false) { //удаляем пустые строки
-						unset($importData_arr[$k]);
-					}
 					if (stripos($array[1], 'Boss') !== false) { // поиск содержания boss
 						$importData_arr[$k][1] = '20';
+					}
+					if ($array[0] == '' || NULL || false) { //удаляем пустые строки
+						unset($importData_arr[$k]);
 					}
 				}
 				foreach($importData_arr as $k => $array) {
