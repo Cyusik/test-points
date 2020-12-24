@@ -1,1 +1,3 @@
-Options -Indexes
+RewriteEngine On
+    RewriteCond %{HTTP_REFERER} ^http://test-point/points/logfiles/.* [NC]
+    RewriteRule .* - [F]
