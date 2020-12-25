@@ -1,4 +1,7 @@
 <?php
+ini_set('session.cookie_secure',1);
+ini_set('session.cookie_httponly',1); // посмотреть позже
+ini_set('session.use_only_cookies',1);
 include_once '../script/login.php';
 session_start();
 if($_GET['do'] == 'logout'){
