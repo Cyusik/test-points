@@ -97,10 +97,11 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 							fwrite($fw, $newdate.' '.$login.' $blackForSql => true, insert'."\r\n");
 							$emptyignore = 'Игнор лист сформирован.';
 						} else {
-							fwrite($fw, $newdate.' '.$login.' Ошибка формирования листа игнора, 94 строка'."\r\n");
+							fwrite($fw, $newdate.' '.$login.' В csv не найдены никнеймы для игнора'."\r\n");
 						}
 					} else {
 						$emptyignore = 'Игнор лист пуст.';
+						fwrite($fw, $newdate.' '.$login.' В таблице баллов нет ников для игнора'."\r\n");
 						$white_array = $unique_array; // если игнор лист пуст
 					}
 				} else {
