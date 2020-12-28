@@ -154,9 +154,8 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										$wrrite_request = "UPDATE zapisform SET priz='$line_history', points=`points`+'$sum' WHERE id='$select_row[0]'";
 										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));
 										fwrite($fw, $newdate.' Призы добавлены'."\n\t");
-
 									} else {
-										$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$line_history','$points_required','$status')";
+										$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$priz5','$points_required','$status')";
 										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));;
 									}
 									if($result_request) {
@@ -208,6 +207,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 		unset($quantity);
 		unset($separation);
 		unset($ending);
+		unset($sum);
 	}
 }
 else {
