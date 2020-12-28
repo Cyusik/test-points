@@ -151,7 +151,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										$select_date = "SELECT id,dates,nickname,status FROM zapisform WHERE dates LIKE '$date_format%' AND nickname = '$points_nickname' AND status = 'success'";
 										$result_date = mysqli_query($link, $select_date) or die ('Error: '.mysqli_error($link));
 										$select_row = mysqli_fetch_row($result_date);
-										$wrrite_request = "UPDATE zapisform SET dates=current_time(), priz='$line_history', points=`points`+'$sum' WHERE id='$select_row[0]'";
+										$wrrite_request = "UPDATE zapisform SET priz='$line_history', points=`points`+'$sum' WHERE id='$select_row[0]'";
 										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));
 										fwrite($fw, $newdate.' Призы добавлены'."\n\t");
 
