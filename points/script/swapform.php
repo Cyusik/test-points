@@ -7,23 +7,19 @@ include_once 'datetime.php';
 $query = "SELECT * FROM formobmen WHERE `open`";
 $link->set_charset("utf8");
 $result_link = mysqli_query($link, $query) or die(fwrite($fw, $newdate.'Ошибка swapform.php(5): '.mysqli_error($link)."\n"));
+$logSwapValues = array();
 if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz5']) && isset($_POST['points_search']) && isset($_POST['points_required'])) {
-	fwrite($fw, $newdate.' '.'Запрос в форму: '."\n\t");
 	while($row = mysqli_fetch_assoc($result_link)) {
 		$open = $row['open'];
 		if($open == '1') {
 			//-----------фильтрация баллов игрока--------------------
 			$points_search = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['points_search']))));
-			fwrite($fw, $newdate.' На счету баллов: '.$points_search."\n\t");
 			//--------------фильтрация баллов призов--------------------------
 			$points_required = intval($_POST['points_required']);
-			fwrite($fw, $newdate.' Необходимо баллов: '.$points_required."\n\t");
 			//-------------фильтрация ника и логина----------------------
 			$nicknames5 = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['nicknames5']))));
-			fwrite($fw, $newdate.' Никнейм: '.$nicknames5."\n\t");
 			$login5 = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['login5']))));
 			$login5 = strtolower($login5);
-			fwrite($fw, $newdate.' Логин: '.$login5."\n\t");
 			//-----------разница баллы игрока и призы------------------------
 			if(strpos($points_search, 'Никнейм не найден') !== false) {
 				//echo 'не найден - результат нет'; вот тут окно с тем что ника нет в таблице или введен не корректно
@@ -60,7 +56,6 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 							}
 							//---возьмем строку за дату и внесем в массив----
 							$priz5 = implode(", ", $new_array);
-							fwrite($fw, $newdate.' Список призов: '.$priz5."\n\t");
 							if($points_required == $sum) {
 								if($points_search >= $points_required) { // -------если баллов больше или равно то одобрено------
 									//----проверяем логин---
@@ -70,12 +65,12 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										$status = 'new_login';
 										$write_login_one = "UPDATE tablballs SET login_one='$login5' WHERE nickname='$nicknames5'";
 										$result = mysqli_query($link, $write_login_one) or die ('Error: '.mysqli_error($link));
-										fwrite($fw, $newdate.' Логинов нет: '.$nicknames5.' => логин 1 записан заявкой: '.$login5."\n\t");
+										$logSwapAct = 'Логинов нет: '.$nicknames5.' => логин 1 записан заявкой: '.$login5;
 									}
 									else if(in_array($login5, $arr_login) == false) // строгий поиск совпадений
 									{
 										$status = 'no matches'; // - нет совпадений
-										fwrite($fw, $newdate.' Нет совпадений: '.$nicknames5.' => логин указанный: '.$login5."\n\t");
+										$logSwapAct = ' Нет совпадений по логинам: '.$nicknames5.' => логин указанный: '.$login5;
 									}
 									else {
 										$status = 'success';// - совпадения есть, списываем баллы, заносим историю
@@ -143,7 +138,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										//----------end-подготовка истории----
 										$subtract_points = "UPDATE tablballs SET balls=`balls`-'$points_required', history ='$write_hisline' WHERE nickname='$nicknames5'";
 										$result_subtract = mysqli_query($link, $subtract_points) or die(fwrite($fw, $newdate.' Ошибка swapform.php(85): '.mysqli_error($link)."\n"));
-										fwrite($fw, $newdate.' auto_write-off: '.$nicknames5.' points -'.$points_required.' line-history: '.$write_hisline."\n\t");
+										$logSwapAct = 'Списание: '.$nicknames5.' points -'.$points_required.' line-history: '.$write_hisline;
 									}
 									if(!empty($true_date)) {
 										$date_format = date('Y-m-d', strtotime(date('Y-m-d h:i:s')));
@@ -153,37 +148,37 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										$select_row = mysqli_fetch_row($result_date);
 										$wrrite_request = "UPDATE zapisform SET priz='$line_history', points=`points`+'$sum' WHERE id='$select_row[0]'";
 										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));
-										fwrite($fw, $newdate.' Призы добавлены'."\n\t");
 									} else {
 										$wrrite_request = "INSERT INTO zapisform (nickname,account,priz,points,status) VALUES ('$nicknames5','$login5','$priz5','$points_required','$status')";
 										$result_request = mysqli_query($link, $wrrite_request) or die ('Error: '.mysqli_error($link));;
 									}
 									if($result_request) {
-										fwrite($fw, $newdate.' Результат: '.'true'."\n\t");
+										$logSwapResult = 'Заявка записана';
 										echo "<span style='text-align:center;'>Заявка успешно отправлена!<br><br>Призы будут выданы в течении 3-х дней после закрытия опроса</span>";
 									}
 									else {
-										fwrite($fw, $newdate.' Результат: '.'опрос закрыт'."\n\t");
+										$logSwapResult = 'Нет результата от таблицы zapisform';
+										fwrite($fw, $newdate.' Результат: '.'Нет результата от таблицы zapisform'."\n\t");
 										echo "<span style='text-align:center;'>Упс! К сожалению опрос уже закрыт.</span>";
 									}
 								}
 								else {
-									fwrite($fw, $newdate.' Результат: '.'Недостаточно баллов'."\n\t");
+									$logSwapResult = 'Недостаточно баллов';
 									echo "<span style='text-align:center;'>Недостаточно баллов для обмена на призы</span>";
 								}
 							}
 							else {
-								fwrite($fw, $newdate.' Результат: '.'Баллы необходимые на призы не равны сумме проверки'."\n\t");
+								$logSwapResult = 'Баллы необходимые на призы не равны сумме проверки';
 								echo "Error(4)...<br>Обратитесь к Администратору";//----баллы необходимые на призы не равны сумме проверки----
 							}
 						}
 						else {
-							fwrite($fw, $newdate.' Результат: '.'Баллы из бд не совпадают с баллами в таблице'."\n\t");
+							$logSwapResult = 'Баллы из бд не совпадают с баллами в таблице';
 							echo 'Error(1)...<br>Обратитесь к Администратору'; //------баллы из бд не совпадают с баллами в таблице--------
 						}
 					}
 					else {
-						fwrite($fw, $newdate.' Результат: '.'Изменил ник и баллы'."\n\t");
+						$logSwapResult = 'Изменил ник и баллы вручную';
 						echo "Error(2)...<br>Обратитесь к Администратору";//-------изменил ник и баллы---------
 					}
 				}
@@ -193,17 +188,16 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 				}
 			}
 			else {
-				fwrite($fw, $newdate.' Результат: '.'"не найдено" изменено на муть'."\n\t");
+				$logSwapResult = 'поле "не найдено" изменено';
 				echo "Error(3)...<br>Обратитесь к Администратору";// ---"не найдено" изменено на муть---------
 			}
 		}
 		else if($open == '2') {
-			fwrite($fw, $newdate.' Результат: '.'Опрос закрыт на момент отправки'."\n\t");
+			$logSwapResult = 'Опрос закрыт на момент отправки';
 			echo "<span style='text-align:center;'>К сожалению, на момент отправки, опрос был закрыт.<br>
 						Заявка не отправлена</span>
 					<meta http-equiv=\"refresh\" content=\"5;url=swap.php\">";
 		}
-		//$result_check->free();
 		unset($quantity);
 		unset($separation);
 		unset($ending);
@@ -211,12 +205,17 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 	}
 }
 else {
-	ini_alter('date.timezone', 'Europe/Moscow');
-	$date = date('Y-m-d h:i:s');
-	fwrite($fw, $newdate.' Результат: '.'Заполнил не все поля'."\n");
-	fwrite($fw, $newdate.' Содержимое: '.json_encode($_POST)."\n");
+	$nicknames5 = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['nicknames5']))));
+	$points_search = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['points_search']))));
+	$login5 = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['login5']))));
+	$points_required = trim(strip_tags(htmlspecialchars(mysqli_real_escape_string($link, $_POST['points_required']))));
+	$points_required = intval($points_required);
+	$logSwapAct = 'Заполнены не все поля ввода';
+	$logSwapResult = 'false';
 	echo "<span style='text-align:center;'>Необходимо заполнить все данные!</span>";
 }
-fwrite($fw, $newdate.' end--'."\n\n");
+$logSwapValues[] = "('". $newdate ."','" . $nicknames5 . "','" . $login5 . "','" . $points_search . "','" . $points_required . "','" . $logSwapAct . "','" . $logSwapResult . "')";
+$logSwapRecording = "INSERT INTO logswap (dates,nickname,login,pointsSearch,pointsRequired,act,result) VALUES " . implode(",", $logSwapValues);
+$logRecordingResult = mysqli_query($link, $logSwapRecording) or die(mysqli_error($link));
 fclose($fw);
 ?>
