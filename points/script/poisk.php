@@ -4,6 +4,7 @@ $fw = fopen('logfiles/search_log.log', "a+");
 date_default_timezone_set('Europe/Moscow');
 include_once 'script/datetime.php';
 if($search == false) {
+	$logsearch = 'generalTable';
 	require_once 'script/connect.php';
 	$id2 = 2;
 	$sql = "SELECT * FROM formobmen WHERE id=%d";
@@ -53,7 +54,7 @@ if($search == false) {
 				echo "</table>";
 			}
 			else {
-				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
+				$logresult = 'there are no rows in the table';
 				echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -66,7 +67,7 @@ if($search == false) {
 		}
 	}
 	else {
-		fwrite($fw, $newdate." Ошибка условия poisk.php(35): ".$from.'>= 0'."\n");
+		$logresult = 'Ошибка условия poiskitog.php(35)'.$from.' >=0';
 		echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -83,7 +84,7 @@ if($search == false) {
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
 	if($page > $pagesCount) {
-		//echo "<table class='table_dark'><tr><td colspan='2' style='padding:15px 7px'><b>Таблица с баллами обновляется или такой страницы не существует</b></td></tr></table>";
+		//пусто
 	}
 	else {
 		if($page != 1) {
@@ -123,7 +124,7 @@ if($search == false) {
 }
 else {
 	$search = trim($search);
-	fwrite($fw, $newdate.' Запрос поиск баллов: '.$search."\n");
+	$logsearch = $search;
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	$sql = "SELECT * FROM tablballs WHERE nickname='%s' ORDER BY nickname";
@@ -134,7 +135,7 @@ else {
 		$row = mysqli_fetch_row($result);
 		if($row[2] != "") {
 			if($rows > 0) {
-				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
+				$logresult = 'true';
 				echo "<table class='table_dark'><tr>
 					<tr>
 					<th colspan='2' class='heding'>&nbsp;</th></tr>
@@ -142,7 +143,6 @@ else {
 					<th>Баллы</th>
 				</tr>";
 				for($i = 0; $i < $rows; ++$i) {
-					//$row = mysqli_fetch_row($result);
 					echo "<tr>";
 					for($j = 1; $j < 3; ++$j)
 						echo nl2br("<td>$row[$j]</td>");
@@ -156,7 +156,7 @@ else {
 				}
 			}
 			else {
-				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
+				$logresult = 'false';
 				echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -168,7 +168,7 @@ else {
 			}
 		}
 		else {
-			fwrite($fw, $newdate.' Запрос: '.'false'."\n");
+			$logresult = 'false';
 			echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -180,5 +180,7 @@ else {
 		}
 	}
 }
+$table = 'points';
+require_once 'logsearch.php';
 fclose($fw);
 ?>

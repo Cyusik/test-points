@@ -7,11 +7,6 @@ if($_GET['do'] == 'logout'){
 }
 if($_SESSION['login']){
 	$login = $_SESSION['login'];
-	$file_login = "../logfiles/login_to_admin.log";
-	$fw = fopen($file_login, "a+");
-	include_once '../script/datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Вошел importballs.php'.' Логин: '. $login."\r\n");
-	fclose($fw);
 }
 else {
 	header("Location: ../admin/index.php");
@@ -27,7 +22,7 @@ else {
 	<meta name="description" content="Описание страницы">
 	<meta name="keywords" content="Ключевые слова через запятую">
 	<link href="../css/normalize.css" rel="stylesheet">
-	<link href="../admin/Styleimportballs.css" rel="stylesheet">
+	<link href="../admin/css/general-ad.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="jsadmin/forrmadmin.js"></script>
@@ -130,6 +125,7 @@ else {
 												</table>";
 							}
 							else {
+								//$logarr = array('points', 'search nickname', $login);
 								$file_login = "../logfiles/points_log.log";
 								$fw = fopen($file_login, "a+");
 								$date = date('Y-m-d h:i:s');
@@ -156,8 +152,6 @@ else {
 							$hideME = 'hide_Me1'.$i;
 							$id_form = 'form'.$i;
 							$id_tr = 'tr1'.$i;
-							fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' id=>'.$row[0].' true'."\r\n");
-							fwrite($fw, $newdate.' '.$login.' Запись баллов=>'.$names.' id=>'.$row[0].' nick=>'.$row[1].' points=>'.$row[2].' true'."\r\n");
 						echo "<tr class='$id_tr'>";
 							echo "<form id='$id_form' name='form' method='POST' action=''>";
 							echo "<td style='padding:0; width:0'><div id='$hideME' class='modal_div_interior' style='display:none'>
@@ -261,7 +255,6 @@ else {
 						echo "</tr>";}
 						echo "</table><br>";
 								} else {
-										fwrite($fw, $newdate.' '.$login.' Поиск ника=>'.$names.' false'."\r\n");
 										echo "<table class='table_dark2'>
 												<tr>
 													<th>Ошибка</th>
@@ -390,7 +383,6 @@ else {
 									$fw = fopen($file_login, "a+");
 									$date = date('Y-m-d h:i:s');
 									$newdate = date('Y-m-d h:i:s A', strtotime($date));
-									fwrite($fw, $newdate.' '.$login.' Вывод истории игнор листа. Период '.$datesfrom.' - '.$datesbefore."\r\n");
 									mysqli_query($link, "SET NAMES 'utf8'");
 									$get_ignory = "SELECT * FROM ignoresstory WHERE date BETWEEN '$datesfrom' AND '$datesbefore' ORDER BY `date` DESC LIMIT 100";
 									$result = mysqli_query($link, $get_ignory) or die(fwrite($fw, $newdate.' Ошибка importballs.php (374): '.mysqli_error($link)."\n"));

@@ -6,6 +6,7 @@ $fw = fopen('logfiles/search_log.log', "a+");
 date_default_timezone_set('Europe/Moscow');
 include_once 'script/datetime.php';
 if($search == false) {
+	$logsearch = 'generalTable';
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -27,6 +28,7 @@ if($search == false) {
 		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(24): '.mysqli_error($link)."\n"));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
+			if($rows > 0) {
 			echo "<table id='range1' class='table_dark'>
 					<tr>
 						<th colspan='4' class='heding'>История выдачи призов</th>
@@ -40,18 +42,29 @@ if($search == false) {
 			for($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result);
 				echo "<tr>";
-				//for($j = 1; $j < 5; ++$j)
-				//	echo nl2br("<td><a href='/points/index?search=$row[$j]'>$row[$j]</a></td>");
 				echo "<td>$row[1]</td>
 					  <td style='padding:0'><a class='results' href='/points/index?search=$row[2]'>$row[2]</a></td>
 					  <td>$row[3]</td>
 					  <td>$row[4]</td>";
 				echo "</tr>";
 			}
+				echo "</table>";
+			}
+			else {
+				$logresult = 'there are no rows in the table';
+				echo "<table class='table_dark'>
+					<tr>
+						<th class='heding' style='text-align:center'>Ошибка поиска</th>
+					</tr>
+					<tr>
+						<td style='padding:15px 7px; font-size:14px'><b>Ничего не найдено</b></td>
+					</tr>
+					</table>";
+			}
 		}
 	}
 	else {
-		fwrite($fw, $newdate." Ошибка условия poiskitog.php(21) ".$from.' >=0'."\n");
+		$logresult = 'Ошибка условия poiskitog.php(21)'.$from.' >=0';
 		echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -61,7 +74,6 @@ if($search == false) {
 					</tr>
 					</table>";
 	}
-	echo "</table>";
 	$query = "SELECT COUNT(*) as count FROM itogobmen";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(52): '.mysqli_error($link)."\n"));
 	$res = mysqli_fetch_assoc($result);
@@ -108,7 +120,7 @@ if($search == false) {
 }
 else {
 	$search = trim($search);
-	fwrite($fw, $newdate.' Запрос поиск итогов: '.$search."\n");
+	$logsearch = $search;
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -131,7 +143,7 @@ else {
 		if($result) {
 			$rows = mysqli_num_rows($result);
 			if($rows > 0) {
-				fwrite($fw, $newdate.' Запрос: '.'true'."\n");
+				$logresult = 'true';
 				echo "<table class='table_dark'>
 					<tr>
 						<th colspan='4' class='heding'>История выдачи призов игрока $search</th>
@@ -145,8 +157,6 @@ else {
 				for($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result);
 					echo "<tr>";
-					//for($j = 1; $j < 5; ++$j)
-					//	echo nl2br("<td><a href='/points/index?search=$row[$j]'>$row[$j]</a></td>");
 					echo "<td>$row[1]</td>
 					  <td style=padding:0;'><a class='results' href='/points/index?search=$row[2]'>$row[2]</a></td>
 					  <td>$row[3]</td>
@@ -156,7 +166,7 @@ else {
 				echo "</table>";
 			}
 			else {
-				fwrite($fw, $newdate.' Запрос: '.'false'."\n");
+				$logresult = 'false';
 				echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -169,7 +179,7 @@ else {
 		}
 	}
 	else {
-		fwrite($fw, $newdate." Ошибка условия poiskitog.php(163) ".$from.' >=0'."\n");
+		$logresult = 'Ошибка условия poiskitog.php(163)'.$from.' >=0';
 		echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -223,5 +233,7 @@ else {
 		</ul></div>";
 	}
 }
+$table = 'results';
+require_once 'logsearch.php';
 fclose($fw);
 ?>

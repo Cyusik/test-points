@@ -15,7 +15,7 @@ include_once '../script/login.php';
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link href="../css/normalize.css" rel="stylesheet">
-	<link href="../admin/Styleavtoriz.css" rel="stylesheet">
+	<link href="../admin/css/authorization.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>

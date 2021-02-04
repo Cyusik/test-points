@@ -60,29 +60,22 @@ a.button15:active {
 	background:rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
 	box-shadow:0 1px 2px rgba(0, 0, 0, .1) inset;
 }
-
-.text {
-	margin-top:10px;
-	padding-top:10px;
-	height:500px;
-	margin-left:150px;
-}
-.info_player {
-
-}
-
 .importb1 {
 	margin-right:10px;
 	width: auto;
 	margin-left: 200px;
 }
 /*--------стили ввода------------*/
+input[type='text']{
+	height:100%;
+	box-sizing:border-box;
+}
 .input {
+	width:98%;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	border: none;
 	background:#f1f1f1;
-	width: 99%;
-	height: 99%;
-	padding: 6px 0;
 	text-align: center;
 	font-size: 13px;
 }
@@ -138,17 +131,6 @@ a.button15:active {
 	border:1px solid rgb(204, 204, 204);
 	background:rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
 	box-shadow:0 1px 2px rgba(0, 0, 0, .1) inset;
-}
-
-/*--------стили ввода------------*/
-.add_message1  {
-	text-decoration: none;
-}
-.add_message2 {
-	text-decoration: none;
-}
-.add_message3 {
-	text-decoration: none;
 }
 /* -------------чет не красится таблица--------------*/
 .table_import1 {
@@ -210,17 +192,14 @@ h3 {
 	margin-right:3px;
 	border-collapse:collapse;
 }
+.table_dark2 td {
+
+}
 .table_dark2 td, th {
 	padding:3px;
 	background:#f1f1f1;
 	text-align:center;
 	color:black;
-}
-.table_dark2 th:nth-child(3), td:nth-child(3) {
-	word-break: break-all;
-}
-.table_dark2 th:nth-child(5), td:nth-child(5) {
-	width: 180px;
 }
 .modal {
 	display:none;
@@ -288,7 +267,6 @@ h3 {
 	color: #f00;
 	border-radius:10px;
 }
-
 .close-popup {
 	position: absolute;
 	top: 10px;
@@ -297,7 +275,6 @@ h3 {
 	height: 20px;
 	cursor: pointer;
 }
-
 .close-popup:before {
 	content: '';
 	background-color: #fff;
@@ -308,7 +285,6 @@ h3 {
 	left: -4px;
 	transform: rotate(-45deg);
 }
-
 .close-popup:after {
 	content: '';
 	background-color: #fff;
@@ -319,16 +295,13 @@ h3 {
 	transform: rotate(45deg);
 	left: -4px;
 }
-
 @media screen and (max-width: 768px) {
-
 	.popup {
 		width: 100%;
 		height: 100vh;
 		font-size: 15px;
 	}
 }
-
 /*-----test modal windows--------*/
 .modal_div_interior {
 	position:absolute;
@@ -338,11 +311,6 @@ h3 {
 #hideMe {
 	display:none;
 }
-/*#hideMetwo {
-	display:none;
-}*/
-/*--end js---------*/
-
 .modal_div_content::after {
 	content:attr(data-title);
 }
@@ -357,5 +325,93 @@ h3 {
 	padding: 7px 60px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.25), 0 6px 5px rgba(0,0,0,0.22);
 }
-
+.load_gif {
+	position:absolute;
+	margin-left: 15px;
+	width: 28px;
+	height: 28px;
+	display: initial;
+	margin-top: 2px;
+}
+.countfile[type=file] {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	position: absolute;
+	z-index: -10;
+}
+.count_result {
+	position:initial;
+	z-index:0;
+	margin-top:20px;
+	width:40%;
+	background: #f1f1f1;
+}
+.mainwindow {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .8);
+	display: none;
+	z-index:3;
+}
+.openwindow {
+	position: absolute;
+	width: 350px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding-bottom:10px;
+	text-align:center;
+	box-sizing: border-box;
+	background: linear-gradient(90deg, #ffd877, #fbffdf);
+	color: black;
+	border-radius:10px;
+}
+.closewidow {
+	cursor: pointer;
+	float: none;
+	display: block;
+	width: 100px;
+	margin: auto;
+	margin-top: 10px;
+}
+.disable {
+	outline:none;
+}
+.disable:hover {
+	cursor:auto;
+}
+.butnone {
+	color: #cdcdcd;
+	cursor:auto;
+}
+.butnone:hover {
+	cursor:auto;
+	color: #cdcdcd;
+	border: 1px solid rgba(0,0,0,.1);
+	box-shadow:none;
+	background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+}
+.listIg {
+	text-align:left;
+	padding:5px;
+	border:solid 1px #cdcdcd;
+	line-height: 1.5;
+}
+.widthIg th:nth-child(4), td:nth-child(4) {
+	width:50px;
+}
+.fixbtn {
+	margin-top: 5px;
+	width: 65px;
+	text-align: center;
+}
+.date_check {
+	margin-top: -2px;
+	margin-left: -5px;
+	margin-right: 2px;
+}
 /*----end----------*/

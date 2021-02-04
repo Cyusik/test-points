@@ -15,11 +15,7 @@ ini_set('memory_limit', '128M');
             if ($uploadOk != 0) {
 				//------------------------------
 				$login = $_SESSION['login'];
-				$file_login = "../logfiles/points_log.log";
-				$fw = fopen($file_login, "a+");
-				include_once '../script/datetime.php';
-				fwrite($fw, $newdate.' '.$login.' Импортировал таблицу points(tablballs)'."\r\n");
-				fclose($fw);
+				$logarr = array('points', 'import csv points', $login);
 				//-------------------------------
                 if (move_uploaded_file($_FILES["importfile"]["tmp_name"], $target_dir.'importfile.csv')) {
                     $target_file = $target_dir . 'importfile.csv';
@@ -52,9 +48,11 @@ ini_set('memory_limit', '128M');
                         $newtargetfile = $target_file;
                         if (file_exists($newtargetfile)) {
                             unlink($newtargetfile);
+                            $logarr[] = 'import -> true';
                             echo "<b style='color:red'>Загрузка завершена</b>";
                         }
                     }
+                    require_once '../script/LogAdminAction.php';
 					$link->close();
                 }
             }

@@ -9,14 +9,17 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 	$login = $_SESSION['login'];
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
+	$logarr = array('points', 'count points', $login);
 	include_once 'datetime.php';
 	//-------------------------------
 	$white_format = '.csv';
 	$white_type = array('text/csv', 'application/vnd.ms-excel', 'text/plain');
 	if (preg_match("/$white_format\$/i", $_FILES['countfile']['name']) == false) {
 		echo '<div class="modal_div_external count_result">Please upload only .csv format</div>';
-		fwrite($fw, $newdate.' '.$login.' Нельзя использовать такой тип => '.$_FILES['countfile']['name']."\r\n");
+		//fwrite($fw, $newdate.' '.$login.' Нельзя использовать такой тип => '.$_FILES['countfile']['name']."\r\n");
 		fclose($fw);
+		$logarr[] = 'Недопустимый тип файла'.$_FILES['countfile']['name'];
+		require_once 'LogAdminAction.php';
 		exit;
 	}
 	$fileinfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -34,8 +37,10 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 					$num = count($data);
 					if ($num != 8) {
 						echo '<div class="modal_div_external count_result">Error, the file is not correct..</div>';
-						fwrite($fw, $newdate.' '.$login.' В файле '.$count_files.' '.$num.' столбцов '."\r\n");
+						//fwrite($fw, $newdate.' '.$login.' В файле '.$count_files.' '.$num.' столбцов '."\r\n");
 						fclose($fw);
+						$logarr[] = 'В файле '.$count_files.' '.$num.' столбцов';
+						require_once 'LogAdminAction.php';
 						exit;
 					}
 					for ($c=4; $c < 5; $c++) {  //берем только 5 столбец
@@ -94,20 +99,25 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 						if(!empty($blackForSql)) {
 							$black_query = " insert into ignoresstory (nickname, points, accrued) values " . implode(",", $blackForSql);
 							$result = mysqli_query($link, $black_query) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
-							fwrite($fw, $newdate.' '.$login.' $blackForSql => true, insert'."\r\n");
+							//fwrite($fw, $newdate.' '.$login.' $blackForSql => true, insert'."\r\n");
+							$logarr[] = 'Игнор лист сформирован';
 							$emptyignore = 'Игнор лист сформирован.';
 						} else {
-							fwrite($fw, $newdate.' '.$login.' В csv не найдены никнеймы для игнора'."\r\n");
+						//	fwrite($fw, $newdate.' '.$login.' В csv не найдены никнеймы для игнора'."\r\n");
+							$logarr[]= 'В csv не найдены никнеймы для игнора';
 						}
 					} else {
 						$emptyignore = 'Игнор лист пуст.';
-						fwrite($fw, $newdate.' '.$login.' В таблице баллов нет ников для игнора'."\r\n");
+						//fwrite($fw, $newdate.' '.$login.' В таблице баллов нет ников для игнора'."\r\n");
+						$logarr[] = 'В таблице баллов нет ников для игнора';
 						$white_array = $unique_array; // если игнор лист пуст
 					}
 				} else {
 					echo '<div class="modal_div_external count_result">Error, array is empty..</div>';
-					fwrite($fw, $newdate.' '.$login.' Ошибка формирования консолидации баллов'."\r\n");
+					//fwrite($fw, $newdate.' '.$login.' Ошибка формирования консолидации баллов'."\r\n");
+					$logarr[] = 'Ошибка формирования консолидации баллов 118';
 					fclose($fw);
+					require_once 'LogAdminAction.php';
 					exit;
 				}
 		//--END--------------инор лист-------------------------------------------
@@ -129,14 +139,18 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 				if(!empty($false_update)) { // добавляем, если update false----------
 					$false_query = " insert into tablballs (nickname, balls, history, exclude) values " . implode(",", $false_update);
 					$result = mysqli_query($link, $false_query) or die (fwrite($fw, $newdate.' '.$login.' Error: '.mysqli_error($link)."\r\n"));
-					fwrite($fw, $newdate.' '.$login.' $false_update => true, insert'."\r\n");
-					$emptynicknames = 'Новые никнеймы добавлены.';
+					if($result) {
+						$logarr[]= 'Отсутствующие никнеймы в таблице добавлены';
+						$emptynicknames = 'Новые никнеймы добавлены.';
+					}
+					//fwrite($fw, $newdate.' '.$login.' $false_update => true, insert'."\r\n");
 				}
 				$delet_files = $count_files;
 				if (file_exists($delet_files)) {
 					unlink($delet_files);
 					echo '<div class="modal_div_external count_result">Загрузка завершена. '.$emptyignore.' '.$emptynicknames.'</div>';
-					fwrite($fw, $newdate.' '.$login.' Баллы подсчитаны, файл удален.'."\r\n");
+					//fwrite($fw, $newdate.' '.$login.' Баллы подсчитаны, файл удален.'."\r\n");
+					$logarr[] = 'Баллы подсчитаны, файл удален';
 					if($_POST['date_check']) {
 						$date_points = date('d.m.y', strtotime(date('d.m.Y H:i:s')));
 						$update_date = "UPDATE formobmen SET `open`='$date_points' WHERE id=2";
@@ -145,7 +159,8 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 				}
 			} else {
 				echo '<div class="modal_div_external count_result">Error, countfile.csv is not moved to uploads..</div>';
-				fwrite($fw, $newdate.' '.$login.' Невозможно переместить '.$_FILES['countfile']['tmp_name'].' => '.$count_dir.'countfile.csv'."\r\n");
+				//fwrite($fw, $newdate.' '.$login.' Невозможно переместить '.$_FILES['countfile']['tmp_name'].' => '.$count_dir.'countfile.csv'."\r\n");
+				$logarr[] = 'Невозможно переместить '.$_FILES['countfile']['tmp_name'].' => '.$count_dir.'countfile.csv';
 			}
 		}
 		$link->close();
@@ -158,9 +173,11 @@ if (!empty($_FILES['countfile']['tmp_name'])) {
 	else
 	{
 		echo '<div class="modal_div_external count_result">Please upload only .csv format</div>';
-		fwrite($fw, $newdate.' '.$login.' Нельзя использовать такой тип '.$fileinfo.' => '.$detected_type."\r\n");
+		//fwrite($fw, $newdate.' '.$login.' Нельзя использовать такой тип '.$fileinfo.' => '.$detected_type."\r\n");
+		$logarr[] = 'Нельзя использовать такой тип файла '.$fileinfo.' => '.$detected_type;
 	}
 	fclose($fw);
+	require_once 'LogAdminAction.php';
 } else
 {
 	echo '<div class="modal_div_external count_result">File selected?</div>';

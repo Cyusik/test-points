@@ -16,16 +16,18 @@ if(isset($_POST['nickname']) && isset($_POST['balls']) && isset($_POST['history'
 	//---------------------------------------
 	session_start();
 	$login = $_SESSION['login'];
+	$logarr = array('points', 'add nickname', $login);
+	$valueslog = array($nickname, $balls, $history, $ignory);
+	$logarr = array_merge($logarr, $valueslog);
 	$file_login = "../logfiles/points_log.log";
 	$fw = fopen($file_login, "a+");
 	include_once '../script/datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nickname.'; point=>'.$balls.'; history=>'.$fwhistory.' ignory=>'.$ignory."\r\n");
 	//---------------------------------------
 		if($nickname != "") {
 				$write_player = "INSERT INTO tablballs (nickname,balls,history,exclude,login_one,login_two,login_three) VALUES ('$nickname','$balls','$history','$ignory', '', '', '')";
 				$result = mysqli_query($link, $write_player) or die(fwrite($fw, $newdate.' add nickname => '.$nickname.' = Error: '.mysqli_error($link)."\r\n"));
 				if($result) {
-					fwrite($fw, $newdate.' result=>true'."\r\n");
+					$logarr[] = 'true';
 					echo "<div class='modal_div_content' data-title='Строка добавлена...'></div>";
 				}
 				else {
@@ -36,6 +38,7 @@ if(isset($_POST['nickname']) && isset($_POST['balls']) && isset($_POST['history'
 		else {
 			echo "<div class='modal_div_content' data-title='Никнейм обязателен'></div>";
 		}
+		require_once 'LogAdminAction.php';
 		fclose($fw);
 		$link->close();
 }

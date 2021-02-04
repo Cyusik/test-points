@@ -29,7 +29,8 @@ else {
 	<meta name="description" content="Описание страницы">
 	<meta name="keywords" content="Ключевые слова через запятую">
 	<link href="../css/normalize.css" rel="stylesheet">
-	<link href="../admin/Stylecontrol.css" rel="stylesheet">
+	<link href="../admin/css/general-ad.css" rel="stylesheet">
+	<link href="../admin/css/control-ad.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="jsadmin/control.js"></script>
