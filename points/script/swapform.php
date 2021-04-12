@@ -25,7 +25,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 				//--------даем запрос в бд на поиск по нику-------------------
 				$sql = "SELECT nickname,balls,history,login_one,login_two,login_three FROM tablballs WHERE nickname='%s'";
 				$query = sprintf($sql, mysqli_real_escape_string($link, $nicknames5));
-				$result_check = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка swapform.php(35): '.mysqli_error($link)."\n"));
+				$result_check = mysqli_query($link, $query) or die('Ошибка swapform.php(35): '.mysqli_error($link));
 				if($result_check) {
 					$rows = mysqli_num_rows($result_check);
 					if($rows > 0) {
@@ -132,7 +132,7 @@ if(isset($_POST['nicknames5']) && !empty($_POST['login5']) && isset($_POST['priz
 										}
 										//----------end-подготовка истории----
 										$subtract_points = "UPDATE tablballs SET balls=`balls`-'$points_required', history ='$write_hisline' WHERE nickname='$nicknames5'";
-										$result_subtract = mysqli_query($link, $subtract_points) or die(fwrite($fw, $newdate.' Ошибка swapform.php(85): '.mysqli_error($link)."\n"));
+										$result_subtract = mysqli_query($link, $subtract_points) or die('Ошибка swapform.php(85): '.mysqli_error($link));
 										$logSwapAct = 'Списание: '.$nicknames5.' points -'.$points_required;
 									}
 									if(!empty($true_date)) {

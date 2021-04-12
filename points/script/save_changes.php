@@ -1,9 +1,9 @@
 <?php
 if(isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['point_user']) && isset($_POST['history_user']) && isset($_POST['login_one']) && isset($_POST['login_two']) && isset($_POST['login_three'])) {
-	include_once 'connect.php';
-	$id_user = $_POST['id_user'];
-	$nick_user = trim($_POST['nick_user']);
-	$point_user = trim($_POST['point_user']);
+	include_once '../script/connect.php';
+	$id_user = intval($_POST['id_user']);
+	$nick_user = trim(htmlspecialchars(mysqli_real_escape_string($link, $_POST['nick_user'])));
+	$point_user = trim(htmlspecialchars(mysqli_real_escape_string($link, $_POST['point_user'])));
 	$history_user = $_POST['history_user'];
 	$history_user = str_replace("\r", "", $history_user);
 	$login_one = strtolower(trim($_POST['login_one']));
