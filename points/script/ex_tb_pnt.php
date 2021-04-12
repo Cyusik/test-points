@@ -3,12 +3,7 @@ if(isset($_POST["export"])) {
 	include_once '../script/connect.php';
 	//------------------------------
 	session_start();
-	$login = $_SESSION['login'];
-	$file_login = "../logfiles/points_log.log";
-	$fw = fopen($file_login, "a+");
-	include_once '../script/datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Экспортировал csv points'."\r\n");
-	fclose($fw);
+	$names = $_SESSION['names'];
 	//-------------------------------
 	header('Content-Type: text/csv; charset=utf-8');
 	header('Content-Disposition: attachment; filename=data.csv');
@@ -17,11 +12,15 @@ if(isset($_POST["export"])) {
 	fputcsv($output, array('id','nickname','balls','history', 'exclude', 'login_one', 'login_two', 'login_three'), ";");
 	$query = "SELECT  * FROM tablballs ORDER BY id";
 	$result = mysqli_query($link, $query);
-	while($row = mysqli_fetch_assoc($result))
-	{
-		fputcsv($output, $row, ";");
+	if($result) {
+		while($row = mysqli_fetch_assoc($result))
+		{
+			fputcsv($output, $row, ";");
+		}
+		fclose($output);
+		$ex_tb_pn = "INSERT INTO tbl_exim_log(login_ad,section,field_one,field_two,field_three) VALUES ('$names', 'points', 'Экспорт таблицы', '', '')";
+		$res_ex = mysqli_query($link, $ex_tb_pn) or die ('Error '.mysqli_error($link));
 	}
-	fclose($output);
 	$link->close();
 }
 ?>

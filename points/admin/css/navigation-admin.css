@@ -1,0 +1,129 @@
+.navigation {
+	width:18%;
+	float:left;
+	letter-spacing:1px;
+}
+ul {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+}
+/*Contenedor Principal*/
+.accordion {
+	padding:0;
+	max-width: 230px;
+	margin: 0;
+}
+.accordion .link {
+	cursor: pointer;
+	display: block;
+	padding: 10px 15px 10px 10px;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: 600;
+	border-bottom: 2px solid #f7f7f7;
+	position: relative;
+	background:#3a3a3a;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.accordion .no-li {
+	cursor:default;
+}
+.accordion .link a {
+	display: block;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+.accordion li:last-child .link {
+	border-bottom: 0;
+}
+.accordion li i {
+	position: absolute;
+	top: 16px;
+	left: 12px;
+	font-size: 18px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.accordion li i.fa-chevron-down {
+	right: 12px;
+	left: auto;
+	font-size: 14px;
+	margin-top: -5px;
+}
+.accordion li i.fa-user {
+	right: 12px;
+	left: auto;
+	font-size: 14px;
+	margin-top: -5px;
+}
+.accordion li i.fa-clipboard {
+	right: 12px;
+	left: auto;
+	font-size: 14px;
+	margin-top: -5px;
+}
+.button i.fa-download {
+	padding-right: 5px;
+	margin-left: -10px;
+	right: 12px;
+	left: auto;
+	font-size: 14px;
+	margin-top: -5px;
+}
+.button i.fa-upload {
+	padding-right: 5px;
+	margin-left: -10px;
+	right: 12px;
+	left: auto;
+	font-size: 14px;
+	margin-top: -5px;
+}
+span i.fa-eraser {
+	padding-right: 5px;
+	margin-left: -10px;
+	right: 12px;
+	left: auto;
+	font-size: 14px;
+	margin-top: -5px;
+}
+.accordion li.open i {
+	color: #FFFFFF;
+}
+.accordion li.open i.fa-chevron-down {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+/*Submenu----------------------------*/
+.submenu {
+	padding:0px;
+	display: none;
+	font-size: 14px;
+}
+.submenu li {
+	border-bottom: 2px solid #f7f7f7;
+}
+.submenu a {
+	background: #8a8a8a;
+	display: block;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: 600;
+	padding: 10px;
+	padding-left: 25px;
+	-webkit-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+.submenu a:hover {
+	background:#343434;
+	color: #FFF;
+}

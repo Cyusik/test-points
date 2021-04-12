@@ -1,10 +1,6 @@
 <?php
-if ($table == 'points' && $logresult != '') {
-	$logsearchinsert = "INSERT INTO logtablesearch (nickname, usertable, result) VALUES ('$logsearch', '$table', '$logresult')";
+if ($table != '' && $logresult != '') {
+	$logsearchinsert = "INSERT INTO srh_usr_log (nickname, ip_user, usertable, result) VALUES ('$logsearch','$ip_search', '$table', '$logresult')";
 	$logresultsearch = mysqli_query($link, $logsearchinsert) or die ('Error ' .mysqli_error($link));
-}
-if ($table == 'results' && $logresult != '') {
-	$logresultsinsert = "INSERT INTO logtablesearch (nickname, usertable, result) VALUES ('$logsearch', '$table', '$logresult')";
-	$logresultres = mysqli_query($link, $logresultsinsert) or die ('Error ' .mysqli_error($link));
 }
 ?>

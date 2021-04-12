@@ -1,25 +1,23 @@
 <?php
-	include_once 'connect.php';
+if(isset($_POST['date_pnt'])) {
+	include_once '../script/connect.php';
+	//---------------------------------
 	session_start();
-	$login = $_SESSION['login'];
-	$file_login = "../logfiles/points_log.log";
-	$fw = fopen($file_login, "a+");
-	include_once 'datetime.php';
-	$query = "SELECT * FROM formobmen WHERE id=2";
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.'Ошибка date.php(10): '.mysqli_error($link)."\n"));
-	$row = mysqli_fetch_row($result);
-	$date = $row[0];
-	if ($date == false){
-		if (isset($_POST['update_date'])) {
-			$update_date =$_POST['update_date'];
-			$result = $link->query("INSERT INTO formobmen (`open`) VALUES ('$update_date')");
-			echo "Строка добавлена, перезапусти страницу";
+	$names = $_SESSION['names'];
+	//---------------------------------
+	$dates = trim(htmlspecialchars(mysqli_real_escape_string($link, $_POST['date_pnt'])));
+	$update_dt_pn = "UPDATE formobmen SET `open`='$dates' WHERE id=2";
+	$res_up_dt = mysqli_query($link, $update_dt_pn) or die('Error :'.mysqli_error($link));
+	if($res_up_dt) {
+		$log_date = "INSERT INTO tbl_exim_log(login_ad,section,field_one,field_two,field_three) VALUES ('$names', 'points', 'Смена поля даты на', '$dates', '')";
+		$res_dt_log = mysqli_query($link, $log_date) or die ('Error :'.mysqli_error($link));
+		if($res_dt_log) {
+			$echo = 'Запись добавлена. ';
 		}
-	} else {
-		$update_date =$_POST['update_date'];
-		$result = $link->query("UPDATE formobmen SET `open`='$update_date' WHERE id=2");
-		fwrite($fw, $newdate.' '.$login.' Изменил дату на: '.$update_date."\r\n");
-		echo "<b style='color:red'>Дата изменена на $update_date</b>";
+		echo "<b style='color:red'>".$echo."Дата изменена на $dates</b>";
 	}
-fclose($fw);
+	$link->close();
+} else {
+	echo "не все данные в _POST";
+}
 ?>

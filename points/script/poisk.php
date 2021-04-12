@@ -1,15 +1,12 @@
 <?php
 $search = mb_strimwidth($_GET['search'], 0, 21);
-$fw = fopen('logfiles/search_log.log', "a+");
-date_default_timezone_set('Europe/Moscow');
-include_once 'script/datetime.php';
+$search = htmlspecialchars($search);
 if($search == false) {
-	$logsearch = 'generalTable';
 	require_once 'script/connect.php';
 	$id2 = 2;
 	$sql = "SELECT * FROM formobmen WHERE id=%d";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $id2));
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(14): '.mysqli_error($link)."\n"));
+	$result = mysqli_query($link, $query) or die('Error: '.mysqli_error($link));
 	$row = mysqli_fetch_row($result);
 	$dates = $row [1];
 	$result->free();
@@ -30,7 +27,7 @@ if($search == false) {
 	if($from >= 0) {
 		$sql = "SELECT * FROM tablballs WHERE id > %d ORDER BY nickname LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $id), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(37): '.mysqli_error($link)."\n"));
+		$result = mysqli_query($link, $query) or die(' Ошибка poisk.php(37): '.mysqli_error($link));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			if($rows > 0) {
@@ -67,7 +64,7 @@ if($search == false) {
 		}
 	}
 	else {
-		$logresult = 'Ошибка условия poiskitog.php(35)'.$from.' >=0';
+		$logresult = 'Ошибка условия poisk.php(35)'.$from.' >=0';
 		echo "<table class='table_dark'>
 					<tr>
 						<th class='heding' style='text-align:center'>Ошибка поиска</th>
@@ -79,7 +76,7 @@ if($search == false) {
 	}
 
 	$query = "SELECT COUNT(*) as count FROM tablballs";
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(67): '.mysqli_error($link)."\n"));
+	$result = mysqli_query($link, $query) or die(' Ошибка poisk.php(67): '.mysqli_error($link));
 	$res = mysqli_fetch_assoc($result);
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
@@ -125,11 +122,12 @@ if($search == false) {
 else {
 	$search = trim($search);
 	$logsearch = $search;
+	$ip_search = $_SERVER['REMOTE_ADDR'];
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	$sql = "SELECT * FROM tablballs WHERE nickname='%s' ORDER BY nickname";
 	$query = sprintf($sql, mysqli_real_escape_string($link, $search));
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poisk.php(124): '.mysqli_error($link)."\n"));
+	$result = mysqli_query($link, $query) or die(' Ошибка poisk.php(124): '.mysqli_error($link));
 	if($result) {
 		$rows = mysqli_num_rows($result);
 		$row = mysqli_fetch_row($result);
@@ -182,5 +180,4 @@ else {
 }
 $table = 'points';
 require_once 'logsearch.php';
-fclose($fw);
 ?>

@@ -20,6 +20,9 @@ if (!empty($logarr)) {
 		}
 	}
 	$insertlogarr = implode(", ", $insertlogarr);
+	//echo '<pre>';
+	//print_r($insertlogarr);
+	//echo '</pre>';
 	$logadmininsert = "INSERT INTO logactionadmin(sections,function,login_admin,column_one,column_two,column_three,column_four,column_five,column_six,column_seven,column_eight) VALUES ($insertlogarr)";
 	$logresult = mysqli_query($link, $logadmininsert) or die ('Error ' .mysqli_error($link));
 	if ($logresult) {

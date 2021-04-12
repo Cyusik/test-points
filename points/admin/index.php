@@ -1,7 +1,7 @@
 <?php
 session_start();
-if($_SESSION['login']){
-	header("Location:../admin/mainballs.php");
+if($_SESSION['names']){
+	header("Location:../admin/description.php");
 	exit;
 }
 include_once '../script/login.php';

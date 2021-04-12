@@ -1,3 +1,3 @@
 <?php
-$newdate = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s')));
+$newdate = date('d-m-Y', strtotime(date('Y-m-d H:i:s')));
 ?>

@@ -1,0 +1,65 @@
+.table_history {
+	margin:7px 0 7px 0;
+	font-weight:600;
+	font:14px 'Ubuntu';
+	border-collapse:collapse;
+	width:100%;
+}
+.table_history th, td{
+	font: 14px 'Ubuntu';
+	padding: 3px 3px 3px 3px;
+}
+.points_his td {
+	font: 13px 'Ubuntu';
+}
+.table_history th {
+	text-align: left;
+	padding: 8px 5px 8px 5px;
+	font-weight: 600;
+	color: #FFFFFF;
+	background: #3a3a3a;
+}
+.table_history tr:nth-child(odd) {
+	background: white;
+}
+.table_history tr:nth-child(even) {
+	background:#cfcfcf;
+}
+.pagination {
+	padding: 8px;
+	display:block;
+	text-align:left;
+	margin-left:-30px;
+	list-style-type:none;
+}
+.pagination li {
+	font:16px 'Ubuntu';
+}
+.pagination li a {
+	text-decoration:none;
+	color:#FFFFFF;
+	padding:7px;
+}
+.pagination li:active {
+
+}
+.pagination li a.disabled {
+	text-decoration:none;
+	pointer-events:none;
+	cursor:not-allowed;
+	color:#888888;
+}
+.ul-pagination {
+	color:#FFFFFF;
+	background: #3a3a3a;
+	text-align: center;
+}
+.ul-pagination .pagination {
+	display: inline-block;
+}
+.ul-pagination .pagination li {
+	display:inline;
+}
+.currentpage {
+	padding:5px;
+}

@@ -14,11 +14,19 @@ h3 {
 	text-align:center;
 }
 .fon {
+	min-height:890px;
 	background: white;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	border-radius:10px;
 	padding-left:15px;
 	margin-top:20px;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 nav {
 	width: 175px;

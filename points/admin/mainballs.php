@@ -10,11 +10,11 @@ session_destroy();
 }
 if($_SESSION['login']){
 	$login = $_SESSION['login'];
-	$file_login = "../logfiles/login_to_admin.log";
-	$fw = fopen($file_login, "a+");
-	include_once '../script/datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Вошел mainballs.php'.' Логин: '. $login."\r\n");
-	fclose($fw);
+	//$file_login = "../logfiles/login_to_admin.log";
+	//$fw = fopen($file_login, "a+");
+	//include_once '../script/datetime.php';
+	//fwrite($fw, $newdate.' '.$login.' Вошел mainballs.php'.' Логин: '. $login."\r\n");
+	//fclose($fw);
 }
 else {
 header("Location: ../admin/index.php");

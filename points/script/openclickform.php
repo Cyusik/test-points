@@ -2,38 +2,31 @@
 if(isset($_POST['open'])){
 	include_once '../script/connect.php';
 	session_start();
-	$login = $_SESSION['login'];
-	$file_login = $_SERVER["DOCUMENT_ROOT"] . "/points/logfiles/exchange_log.log";
-	$fw = fopen($file_login, "a+");
-	include_once '../script/datetime.php';
-	$zapis = 1;
-	$stroka = 1;
-	$query ="UPDATE formobmen SET `open`= '$zapis' WHERE id='$stroka'";
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка openclickform.php(12): '.mysqli_error($link)."\n"));
+	$names = $_SESSION['names'];
+	$stat = 1;
+	$id = 1;
+	$query ="UPDATE formobmen SET `open`= '$stat' WHERE id='$id'";
+	$result = mysqli_query($link, $query) or die('Error: '.mysqli_error($link));
 	if($result){
-		fwrite($fw, $newdate.' '.$login.' Открыл опрос=>true'."\r\n");
+		$ex_tb_pn = "INSERT INTO tbl_exim_log(login_ad,section,field_one,field_two,field_three) VALUES ('$names', 'exchanging', 'Открыл опрос', '', '')";
+		$res_ex = mysqli_query($link, $ex_tb_pn) or die ('Error '.mysqli_error($link));
 	}
 	$link ->close();
-	fclose($fw);
-	header('location: ../admin/formobmen.php');
+	header('location: ../admin/description.php?action=ex_im_exch.php');
 }
 if(isset($_POST['close'])){
 	include_once '../script/connect.php';
 	session_start();
-	$login = $_SESSION['login'];
-	$file_login = "../logfiles/exchange_log.log";
-	$fw = fopen($file_login, "a+");
-	$date = date('Y-m-d h:i:s');
-	$newdate = date('Y-m-d h:i:s A', strtotime($date));
-	$zapis = 2;
-	$stroka = 1;
-	$query ="UPDATE formobmen SET `open`= '$zapis' WHERE id='$stroka'";
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка openclickform.php(26): '.mysqli_error($link)."\n"));
+	$names = $_SESSION['names'];
+	$stat = 2;
+	$id = 1;
+	$query ="UPDATE formobmen SET `open`= '$stat' WHERE id='$id'";
+	$result = mysqli_query($link, $query) or die('Error: '.mysqli_error($link));
 	if($result){
-		fwrite($fw, $newdate.' '.$login.' Закрыл опрос=>true'."\r\n");
+		$ex_tb_pn = "INSERT INTO tbl_exim_log(login_ad,section,field_one,field_two,field_three) VALUES ('$names', 'exchanging', 'Закрыл опрос', '', '')";
+		$res_ex = mysqli_query($link, $ex_tb_pn) or die ('Error '.mysqli_error($link));
 	}
 	$link ->close();
-	fclose($fw);
-	header('location: ../admin/formobmen.php');
+	header('location: ../admin/description.php?action=ex_im_exch.php');
 }
 ?>

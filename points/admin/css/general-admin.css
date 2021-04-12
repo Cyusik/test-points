@@ -1,0 +1,195 @@
+@font-face{
+	font-family: 'Ubuntu';
+	src: url("/points/fonts/ubuntu.woff") format("woff");
+	font-style: normal;
+	font-weight: normal;
+}
+* {
+	font: 14px 'Ubuntu';
+	margin:0;
+	padding: 0;
+}
+body {
+	background:#FFFFFF url("/points/admin/img/bg-lightl-892.jpg") repeat;
+	font-weight: normal;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.main {
+	width:auto;
+}
+.content {
+	float:right;
+	width:82%;
+}
+.content-heading {
+	background:#3a3a3a;
+	clip-path: polygon(0 50%, 4% 0, 100% 0%, 100% 100%, 0% 100%);
+	text-transform:uppercase;
+	font-weight:600;
+	text-align:center;
+	color:#FFFFFF;
+	letter-spacing:2px;
+}
+.inner-content {
+	padding:10px;
+	min-height:890px;
+	background:#FFFFFF;
+	width:auto;
+	text-align: justify;
+	font-size:16px;
+}
+.space {
+	height:100px;
+}
+p {
+	text-indent: 1.5em;
+	font-size:15px;
+	margin-bottom:5px;
+}
+.span-image {
+	display:block;
+	text-align:center;
+}
+h1 {
+	padding-top:10px;
+	padding-bottom:10px;
+	margin:0;
+}
+h3 {
+	font: 17px 'Ubuntu';
+	text-align: center;
+	background: #3a3a3a;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	color: white;
+}
+.modal {
+	background:none;
+	color:black;
+}
+.fixed-div {
+	height:auto;
+}
+.fixed {
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+}
+.end {
+	margin:0;
+	padding:0;
+}
+.content-foot {
+	background:#3a3a3a;
+	clip-path: polygon(0 50%, 0 0, 100% 0%, 100% 100%, 4% 100%);
+	float:right;
+	width:82%;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	max-height:40px;
+	text-align:center;
+	color:white;
+}
+.content-foot a{
+	color:#afc3ff;
+}
+.image_status {
+	float:left;
+	margin-top:5px;
+}
+.stat_img {
+	width: 30px;
+}
+.input {
+	letter-spacing: 0.05em;
+	font: 14px 'Ubuntu';
+	border: none;
+	background: #3a3a3a;
+	vertical-align: middle;
+	padding: 8px 12px;
+	outline: none;
+	font-weight: 600;
+	margin: 3px 0 3px 0;
+	color: #FFFFFF;
+}
+.editing {
+	width:13%;
+	margin-right:3px;
+}
+.button {
+	display:inline-block;
+	cursor:pointer;
+	outline:none;
+	text-decoration:none;
+	text-align:center;
+	padding: 8px 32px;
+	color:#FFFFFF;
+	font: 14px 'Ubuntu';
+	font-weight: 600;
+	letter-spacing:1px;
+	border:none;
+	background: linear-gradient(180deg, #616161 0% ,#212121 100%);
+}
+.btn-fadeIn {
+	display:none;
+}
+.div-result {
+	letter-spacing: 1px;
+	width: max-content;
+	margin: auto;
+	padding: 5px 30px 5px 30px;
+	color: #ffffff;
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center;
+	background: #3a3a3a;
+}
+.textarea {
+	resize:vertical;
+}
+.no-nick {
+	margin-left: 36px;
+}
+.no-click {
+	margin-left: 13px;
+}
+.no_bd {
+	margin-left: 8px;
+}
+.in-dates {
+	height:16px;
+	width: 210px;
+}
+.in-select {
+	cursor:pointer;
+	height: 32px;
+}
+.disable {
+	outline:none;
+}
+.disable:hover {
+	cursor:auto;
+}
+.butnone {
+	color: #909090;
+	cursor:auto;
+}
+.butnone:hover {
+	cursor:auto;
+}
+/*------test label img input--------------*/
+.fa-position {
+	vertical-align: middle;
+	margin-left:-35px;
+}

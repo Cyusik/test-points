@@ -1,4 +1,5 @@
 <?php
+// DELET!!!
 if(isset($_POST['nicknames']) && isset($_POST['login']) && isset($_POST['prizes']) && isset($_POST['points'])){
 	include_once '../script/connect.php';
 	$nicknames = trim(mysqli_real_escape_string($link, $_POST['nicknames']));
@@ -12,16 +13,19 @@ if(isset($_POST['nicknames']) && isset($_POST['login']) && isset($_POST['prizes'
 	$file_login = "../logfiles/exchange_log.log";
 	$fw = fopen($file_login, "a+");
 	include_once 'datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nicknames.'; login=>'.$login.' points=>'.$points.' prizes=>'.$new_prizes."\r\n");
+	$logarr = array('swap', 'add nickname', $login, $nicknames, $login, $prizes, $points, 'manually');
+	//fwrite($fw, $newdate.' '.$login.' Добавил: '.'nick=>'.$nicknames.'; login=>'.$login.' points=>'.$points.' prizes=>'.$new_prizes."\r\n");
 	//---------------------------------------
 	$query = "INSERT INTO zapisform (nickname, account, priz, points, status) VALUES ('$nicknames', '$login', '$prizes', '$points', 'manually')";
 	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка add_string_exchange.php(19): '.mysqli_error($link)."\n"));
 	if ($result) {
-		fwrite($fw, $newdate.' result=>true'."\r\n");
+		$logarr[] = 'true';
+		//fwrite($fw, $newdate.' result=>true'."\r\n");
 		echo "<div class='modal_div_content' data-title='Строка добавлена...'></div>";
 	} else {
 		echo "<div class='modal_div_content' data-title='Ошибка добавления...'></div>";
 	}
+	require_once 'LogAdminAction.php';
 	fclose($fw);
 	$link->close();
 } else {

@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['search'])) {
-	include_once 'connect.php';
+	include_once '../script/connect.php';
 	$search = trim(strip_tags(stripcslashes(htmlspecialchars($_POST['search']))));
 	$mb_str_len = mb_strlen($search, 'utf-8');
 	if($mb_str_len < 3) {

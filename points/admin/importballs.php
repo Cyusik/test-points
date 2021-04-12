@@ -525,9 +525,9 @@ else {
 						<td>
 							<b>Экспорт таблицы</b>
 							<?php
-							include_once '../script/exporttablballs.php';
+						//	include_once '../script/ex_tb_pnt.php';
 							?>
-							<form method="POST" action="../script/exporttablballs.php">
+							<form method="POST" action="../script/ex_tb_pnt.php">
 								<button class="button10" type="submit" name="export">CVS Экспорт</button>
 							</form>
 						</td>
@@ -540,7 +540,7 @@ else {
 									<h2>Внимание!</h2>
 									Очистить таблицу?<br>
 									Данные нельзя будет восстановить. Экспортируйте таблицу перед очисткой.
-							<br><form id="delpoints"  action="../script/deltablballs.php" method="POST">
+							<br><form id="delpoints" action="../script/truncate_table.php" method="POST">
 										<input class="button10" type="hidden" name="truncate" value="1">
 						<input class="button10" type="submit" value="ОЧИСТИТЬ">
 						</form>
@@ -561,7 +561,7 @@ else {
 								echo 'Строк в таблице баллов: <b style="color:green">'.$nb.'</b>';
 								echo '<br><br>';
 							}
-							include_once '../script/importtabl.php';
+							include_once '../script/imp_tb_pn.php';
 							?>
 							<b>Выбираем файл импорта:</b>
 							<div class="popup_import">

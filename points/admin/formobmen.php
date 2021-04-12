@@ -89,7 +89,7 @@ else {
 						<b>Открытие и закрытие опроса.</b><br>
 						После открытия убедиться что опрос открыт, посмотрев на сайте.<br><br>
 						<?php
-						include_once '../script/statusform.php'
+						include_once '../script/stat_swap.php'
 						?>
 						<form method="POST" action="../script/openclickform.php">
 							<input class="button10" type="submit" name="open" value="Открыть опрос">
@@ -102,9 +102,9 @@ else {
 					<td>
 						<b>Экспорт заявок<b>
 								<?php
-								include_once '../script/exportformopros.php';
+								include_once '../script/ex_tb_exch.php';
 								?>
-								<form method="POST" action="../script/exportformopros.php">
+								<form method="POST" action="../script/ex_tb_exch.php">
 									<input class="button10" type="submit" name="export2" value="CSV Экспорт">
 								</form>
 					</td>
@@ -141,7 +141,7 @@ else {
 					<td>
 						<b>Поиск заявок по никнейму</b><br>
 						Лимит 500 заявок. Сортировка по дате.<br><br>
-						<form id="poiskobmennick" method="POST" action="../script/poiskadminform.php">
+						<form id="poiskobmennick" method="POST" action="../script/search_exchanging.php">
 							<table class="table_dark2" style="width:250px">
 								<tr>
 									<th>От (дата)</th>

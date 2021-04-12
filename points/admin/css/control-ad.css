@@ -14,3 +14,81 @@ a {
 li {
 	padding:2px;
 }
+.pagination {
+	display:block;
+	text-align:left;
+	margin-top:10px;
+	margin-left:-30px;
+	list-style-type:none;
+	color:black;
+}
+.pagination li {
+	float:left;
+	margin-left:3px;
+	margin-right:3px;
+	color:black;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	border-radius:3px;
+	text-decoration:none;
+}
+.pagination li a {
+	text-decoration:none;
+	color:black;
+	padding:7px;
+}
+.pagination li a.disabled {
+	text-decoration:none;
+	pointer-events:none;
+	cursor:not-allowed;
+	color:#888888;
+}
+.pagination li:hover {
+	background:#e7e4e4;
+}
+.pagination li:active {
+	background:#a5c3cd;
+}
+.ul-pagination {
+	text-align: center;
+}
+.ul-pagination .pagination {
+	display: inline-block;
+}
+.ul-pagination .pagination li {
+	display:inline;
+}
+.currentpage {
+	padding:5px;
+}
+.log-table {
+	font-size:13px;
+	text-align:left;
+	background: #f1f1f1;
+	border-collapse:collapse;
+	width:99%;
+}
+.log-table td {
+	padding:1px;
+	padding-top:2px;
+	padding-bottom:2px;
+	margin:0;
+	width:auto;
+}
+.log-table th {
+	padding:3px;
+	text-align:left;
+	width:auto;
+}
+.log-table tr:nth-child(odd) {
+	background: white;
+}
+.log-table tr:nth-child(even) {
+	background:#f1f1f1;
+}
+/*td:nth-child(5) {
+	width:auto;
+}
+td:nth-child(1) {
+	width:125px;
+}*/

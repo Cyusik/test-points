@@ -2,38 +2,33 @@
 if(isset($_POST['id_ignore'])) {
 	$id_ignore = trim(intval($_POST['id_ignore']));
 	if ($id_ignore != ""){
-		include_once 'connect.php';
+		include_once '../script/connect.php';
 		//--------------------------
 		session_start();
-		$login = $_SESSION['login'];
-		$file_login = "../logfiles/points_log.log";
-		$fw = fopen($file_login, "a+");
-		$logarr = array('points', 'accured ignore', $login);
-		include_once 'datetime.php';
+		$names = $_SESSION['names'];
 		//--------------------------
 		$select_idIg = "SELECT id,date,nickname,points,accrued FROM ignoresstory WHERE id ='$id_ignore'";
-		$result = mysqli_query($link, $select_idIg) or die(fwrite($fw, $newdate.' Ошибка accrued_ignore.php (16): '.mysqli_error($link)."\n"));
-		$row = mysqli_fetch_row($result);
+		$result_idIg = mysqli_query($link, $select_idIg) or die('Error: '.mysqli_error($link));
+		$row = mysqli_fetch_row($result_idIg);
 		if (!empty($row)) {
 			$id = $row[0];
 			$dates = $row[1];
 			$nickname = $row[2];
 			$points = $row[3];
 			$update_ignore = "UPDATE tablballs TB, ignoresstory IG SET TB.balls = `balls`+'$points' WHERE TB.nickname = '$nickname'";
-			$result = mysqli_query($link, $update_ignore) or die(fwrite($fw, $newdate.' Ошибка accrued_ignore.php (22): '.mysqli_error($link)."\n"));
-			if ($result) {
-				echo 'Игроку '.$nickname.' начислено '.$points.' баллов';
-				fwrite($fw, $newdate.' '.$login.' add points => '.$points.' ignore => '.$nickname."\r\n");
+			$result_update = mysqli_query($link, $update_ignore) or die('Error: '.mysqli_error($link));
+			if ($result_update) {
 				$accrued = "UPDATE ignoresstory SET accrued = '1' WHERE id = '$id'";
-				$result = mysqli_query($link, $accrued) or die(fwrite($fw, $newdate.' Ошибка accrued_ignore.php (22): '.mysqli_error($link)."\n"));
-				$logResult = array($dates, $nickname, $points, 'начислено');
+				$result_acc = mysqli_query($link, $accrued) or die('Error: '.mysqli_error($link));
+				if($result_acc) {
+					$ins_ig_log = "INSERT INTO ign_log(login_ad,action,ig_nickname,f_time) VALUES ('$names', 'add $points points', '$nickname', '$dates')";
+					$res_ig_log = mysqli_query($link, $ins_ig_log) or die ('Error: '.mysqli_error($link));
+					echo '<div>'.$nickname.' начислено '.$points.' баллов</div>';
+				}
 			}
 		} else {
-			echo '<div class="modal_div_external count_result">Error, not found id..</div>';
+			echo '<div>Error, not found id..</div>';
 		}
-		$logarr = array_merge($logarr, $logResult);
-		require_once 'LogAdminAction.php';
-		fclose($fw);
 		$link->close();
 	}
 }

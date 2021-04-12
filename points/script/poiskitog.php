@@ -2,11 +2,7 @@
 $search = mb_strimwidth($_GET['search'], 0, 21);
 $search = mysqli_real_escape_string($link, $search);
 $search = htmlspecialchars($search);
-$fw = fopen('logfiles/search_log.log', "a+");
-date_default_timezone_set('Europe/Moscow');
-include_once 'script/datetime.php';
 if($search == false) {
-	$logsearch = 'generalTable';
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -25,7 +21,7 @@ if($search == false) {
 	if($from >= 0) {
 		$sql = "SELECT * FROM itogobmen WHERE id > %d ORDER BY dates DESC LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $id), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(24): '.mysqli_error($link)."\n"));
+		$result = mysqli_query($link, $query) or die(' Ошибка poiskitog.php(24): '.mysqli_error($link));
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			if($rows > 0) {
@@ -75,7 +71,7 @@ if($search == false) {
 					</table>";
 	}
 	$query = "SELECT COUNT(*) as count FROM itogobmen";
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(52): '.mysqli_error($link)."\n"));
+	$result = mysqli_query($link, $query) or die(' Ошибка poiskitog.php(52): '.mysqli_error($link));
 	$res = mysqli_fetch_assoc($result);
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
@@ -121,6 +117,7 @@ if($search == false) {
 else {
 	$search = trim($search);
 	$logsearch = $search;
+	$ip_search = $_SERVER['REMOTE_ADDR'];
 	require_once 'script/connect.php';
 	mysqli_query($link, "SET NAMES 'utf8'");
 	if(isset($_GET['page'])) {
@@ -139,7 +136,7 @@ else {
 	if($from >= 0) {
 		$sql = "SELECT * FROM itogobmen WHERE nickname='%s' ORDER BY dates DESC LIMIT %s,%s";
 		$query = sprintf($sql, mysqli_real_escape_string($link, $search), mysqli_real_escape_string($link, $from), mysqli_real_escape_string($link, $notesOnPage));
-		$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(111): '.mysqli_error($link)."\n"));
+		$result = mysqli_query($link, $query) or die(' Ошибка poiskitog.php(111): '.mysqli_error($link));
 		if($result) {
 			$rows = mysqli_num_rows($result);
 			if($rows > 0) {
@@ -190,7 +187,7 @@ else {
 					</table>";
 	}
 	$query = "SELECT COUNT(*) as count FROM itogobmen WHERE nickname='$search'";
-	$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка poiskitog.php(174): '.mysqli_error($link)."\n"));
+	$result = mysqli_query($link, $query) or die(' Ошибка poiskitog.php(174): '.mysqli_error($link));
 	$res = mysqli_fetch_assoc($result);
 	$count = $res['count'];
 	$pagesCount = ceil($count / $notesOnPage);
@@ -235,5 +232,4 @@ else {
 }
 $table = 'results';
 require_once 'logsearch.php';
-fclose($fw);
 ?>

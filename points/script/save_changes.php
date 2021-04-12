@@ -5,52 +5,74 @@ if(isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['point
 	$nick_user = trim($_POST['nick_user']);
 	$point_user = trim($_POST['point_user']);
 	$history_user = $_POST['history_user'];
-	$ignor_user = $_POST['ignor_user'];
+	$history_user = str_replace("\r", "", $history_user);
 	$login_one = strtolower(trim($_POST['login_one']));
 	$login_two = strtolower(trim($_POST['login_two']));
 	$login_three = strtolower(trim($_POST['login_three']));
-	$update_array = array('id' => $id_user, 'nickname' => $nick_user, 'balls' => $point_user, 'history' => $history_user, 'exclude' => $ignor_user, 'login_one' => $login_one, 'login_two' => $login_two, 'login_three' => $login_three);
+	$update_array = array('id' => $id_user, 'nickname' => $nick_user, 'balls' => $point_user, 'history' => $history_user, 'login_one' => $login_one, 'login_two' => $login_two, 'login_three' => $login_three);
 	//------------------------------------------
 	session_start();
-	$login = $_SESSION['login'];
-	$file_login = "../logfiles/points_log.log";
-	$fw = fopen($file_login, "a+");
-	include_once 'datetime.php';
+	$names = $_SESSION['names'];
+	$logarr = array($names, 'points');
 	//-------------------------------------------
-	if(($ignor_user == 1) || ($ignor_user == 0)) {
-		if($nick_user != "") {
-			$select_user = "SELECT * FROM tablballs WHERE id = '$id_user'";
+		if($nick_user != "" && $id_user != "") {
+			$select_user = "SELECT id,nickname,balls,history,login_one,login_two,login_three FROM tablballs WHERE id = '$id_user'";
 			$resultSelect = mysqli_query($link, $select_user) or die('Error '.mysqli_error($link));
 			$logarrres = mysqli_fetch_assoc($resultSelect);
-			//---------для лога истории
-				$history_user_admin = explode("\n", $history_user);
-				$history_log = explode("\n", $logarrres['history']);
-				$addhist = array_diff($history_user_admin, $history_log);
-				$delhist = array_diff($history_log, $history_user_admin);
-				if(!empty($addhist)) {
-					$addhist = 'new-> '.implode("new-> ", $addhist);
-				} else {
-					unset($addhist);
-				}
-				if(!empty($delhist)) {
-					$delhist = 'del-> '.implode("del-> ", $delhist); // Пишет в лог ArrayArray... исправить
-				} else {
-					unset($delhist);
-				}
-				$history_log = $addhist.$delhist;
-			//-----------------
-			//--------для лога баллов
-				if($point_user != $logarrres['balls']) {
-					$points_log = 'before-> '.$logarrres['balls']."\n".'after-> '.$point_user."\n";
-				}
-			//-----------------------
 			//--------для лога ников
 				if($nick_user != $logarrres['nickname']) {
-					$nickname_log = 'before-> '.$logarrres['nickname']."\n".'after-> '.$nick_user."\n";
+					$nickname_log = 'old-> '.$logarrres['nickname']."\n".'new-> '.$nick_user;
+					$logarr[] = $nickname_log;
 				} else {
 					$nickname_log = $logarrres['nickname'];
+					$logarr[] = $logarrres['nickname'];
 				}
 			//----------------------
+			//--------для лога баллов
+			if($point_user != $logarrres['balls']) {
+				$points_log = 'old-> '.$logarrres['balls']."\n".'new-> '.$point_user;
+				$logarr[] = $points_log;
+			}
+			//-----------------------
+			//---------для лога истории
+			$history_user_admin = explode("\n", $history_user);
+			$history_log = explode("\n", $logarrres['history']);
+			$addhist = array_diff($history_user_admin, $history_log);
+			$delhist = array_diff($history_log, $history_user_admin);
+			if(!empty($addhist)) {
+				$addhist = 'new-> '.implode("\n", $addhist);
+			} else {
+				unset($addhist);
+			}
+			if(!empty($delhist)) {
+				$delhist = 'old-> '.implode("\n", $delhist);
+			} else {
+				unset($delhist);
+			}
+			if(($addhist != "") && ($delhist != "")) {
+				$history_log = $addhist."\n".$delhist;
+			} else {
+				$history_log = $addhist.$delhist;
+			}
+			if($history_log) {
+				$logarr[] = $history_log;
+			}
+			//-----------------
+			//---------для лога логинов------------
+			$arr_login = array();
+				if($login_one != $logarrres['login_one']) {
+					$arr_login[] = 'old-> '.$logarrres['login_one']."\n".'new-> '.$login_one;
+				}
+				if($login_two != $logarrres['login_two']) {
+					$arr_login[] = 'old-> '.$logarrres['login_two']."\n".'new-> '.$login_two;
+				}
+			if($login_three != $logarrres['login_three']) {
+				$arr_login[] = 'old-> '.$logarrres['login_three']."\n".'new-> '.$login_three;
+			}
+			if($arr_login) {
+				$logarr[] = implode("\n", $arr_login);
+			}
+			//-------------------------------------
 			$itogarr = array_diff_assoc($update_array, $logarrres);
 			if(!empty($itogarr)) {
 				foreach($itogarr as $tbcolumn => $data) {
@@ -63,34 +85,30 @@ if(isset($_POST['id_user']) && isset($_POST['nick_user']) && isset($_POST['point
 			}
 			$update_sql = implode(", ", $update_sql);
 			$query = "UPDATE tablballs SET $update_sql WHERE id='$id_user'";
-			$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка save_changes.php(21): '.mysqli_error($link)."\n"));
+			$result = mysqli_query($link, $query) or die('Error: '.mysqli_error($link));
 			if($result) {
-				$logarr = array('points', 'save changes', $login, $logarrres['id'], $nickname_log);
-				unset($itogarr['nickname']);
-				$itogarr['balls'] = $points_log;
-				$itogarr['history'] = $history_log;
-				if (empty($itogarr['history'])) {
-					unset($itogarr['history']);
+				$insertlogarr = array();
+				foreach($logarr as $data) {
+					$insertlogarr[] = "'".$data."'";
 				}
-				if(empty($itogarr['balls'])) {
-					unset($itogarr['balls']);
+				$countarr = count($insertlogarr);
+				if ($countarr < 6) {
+					for($i = $countarr;$i < 6; $i++) {
+						$insertlogarr[] = "'".''."'";
+					}
 				}
-				$logarr = array_merge($logarr, $itogarr);
-				echo '<pre>';
-				print_r($logarr);
-				echo '</pre>';
-				echo "<div class='modal_div_content' data-title='Данные игрока $nick_user ($id_user) обновлены...'></div>";
+				$insertlogarr = implode(", ", $insertlogarr);
+				$save_pnt_sql = "INSERT INTO changes_log(login_ad,section,field_one,field_two,field_three,field_four) VALUES ($insertlogarr)";
+				$res_sql = mysqli_query($link, $save_pnt_sql) or die('Error :'.mysqli_error($link));
+				if($res_sql) {
+					$echo = 'Запись добавлена. ';
+				}
+				echo "<div class='modal_div_content' data-title='".$echo."Данные $nick_user обновлены.'></div>";
 			}
 		}
 		else {
-			echo "<div style='color:#ff0505' class='modal_div_content' data-title='Никнейм нельзя оставлять пустым!'></div>";
+			echo "<div style='color:#ff0505' class='modal_div_content' data-title='Неверные данные'></div>";
 		}
-	}
-	else {
-		echo "<div style='color:#ff0505' class='modal_div_content' data-title='Игнор только 0 или 1'></div>";
-	}
-	require_once 'LogAdminAction.php';
-	fclose($fw);
 	unset($update_array);
 	unset($logarrres);
 	unset($itogarr);

@@ -1,15 +1,9 @@
 <?php
 include_once __DIR__ . '/../connect.php';
-include_once __DIR__ . '/../datetime.php';
-$file_login = __DIR__ . "/../../logfiles/exchange_log.log";
-
-$fw = fopen($file_login, "a+");
-
 $query ="UPDATE `formobmen` SET `open`= 1 WHERE `id`=1";
 $result = mysqli_query($link, $query) or die('Error: '.mysqli_error($link));
-
 if($result){
-	fwrite($fw, $newdate.' CRON open swap => true'."\r\n");
+	$cron_sw = "INSERT INTO tbl_exim_log(login_ad,section,field_one,field_two,field_three) VALUES ('CRON', 'exchanging', 'CRON', 'Открыл опрос', '')";
+	$res_cron = mysqli_query($link, $cron_sw) or die ('Error '.mysqli_error($link));
 }
 $link ->close();
-fclose($fw);

@@ -10,7 +10,7 @@ if($_SESSION['login']){
 	$file_login = "../logfiles/login_to_admin.log";
 	$fw = fopen($file_login, "a+");
 	include_once '../script/datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Вошел importspisok.php'.' Логин: '. $login."\r\n");
+	fwrite($fw, $newdate.' '.$login.' Вошел imp_tb_rs.php'.' Логин: '. $login."\r\n");
 	fclose($fw);
 }
 else {
@@ -161,7 +161,7 @@ else {
 								$newdate = date('Y-m-d h:i:s A', strtotime($date));
 								mysqli_query($link, "SET NAMES 'utf8'");
 								$query = "SELECT * FROM itogobmen WHERE dates LIKE'$month%' AND nickname='$names' ORDER by dates DESC LIMIT 50";
-								$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка importspisok.php(167): '.mysqli_error($link)."\n"));
+								$result = mysqli_query($link, $query) or die(fwrite($fw, $newdate.' Ошибка imp_tb_rs.php(167): '.mysqli_error($link)."\n"));
 								if($result) {
 						$rows = mysqli_num_rows($result);
 						if($rows > 0) {
@@ -302,9 +302,9 @@ else {
 					<td>
 						Экспорт таблицы
 						<?php
-						include_once '../script/exporttablspisok.php';
+						include_once '../script/ex_tb_rsl.php';
 						?>
-						<form method="POST" action="../script/exporttablspisok.php">
+						<form method="POST" action="../script/ex_tb_rsl.php">
 							<input class="button10" type="submit" name="export1" value="CSV Export">
 						</form>
 					</td>
@@ -339,7 +339,7 @@ else {
 							echo 'Строк в таблице итогов: <b style="color:green">'.$ni.'</b>';
 							echo '<br><br>';
 						}
-						include_once '../script/importspisok.php';
+						include_once '../script/imp_tb_rs.php';
 						?>
 						<b>Выбираем файл импорта:</b>
 						<div class="popup_import">

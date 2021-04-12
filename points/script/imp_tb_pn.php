@@ -2,10 +2,10 @@
 set_time_limit(380);
 ini_set('memory_limit', '128M');
 
-        include_once "../script/connect.php";
-        if(isset($_POST['but_import'])){
+        if(!empty($_FILES['imp_file']['tmp_name'])){
+			include_once "../script/connect.php";
             $target_dir = '../script/uploads/';
-            $target_file = $target_dir . basename($_FILES['importfile']['name']);
+            $target_file = $target_dir . basename($_FILES['imp_file']['name']);
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
             $uploadOk = 1;
             if($imageFileType != "csv" ) {
@@ -14,11 +14,11 @@ ini_set('memory_limit', '128M');
 //            var_dump($uploadOk, $target_file); die;
             if ($uploadOk != 0) {
 				//------------------------------
-				$login = $_SESSION['login'];
-				$logarr = array('points', 'import csv points', $login);
+				session_start();
+				$names = $_SESSION['names'];
 				//-------------------------------
-                if (move_uploaded_file($_FILES["importfile"]["tmp_name"], $target_dir.'importfile.csv')) {
-                    $target_file = $target_dir . 'importfile.csv';
+                if (move_uploaded_file($_FILES["imp_file"]["tmp_name"], $target_dir.'imp_file.csv')) {
+                    $target_file = $target_dir . 'imp_file.csv';
                     $fileexists = 0;
                     if (file_exists($target_file)) {
                         $fileexists = 1;
@@ -48,11 +48,13 @@ ini_set('memory_limit', '128M');
                         $newtargetfile = $target_file;
                         if (file_exists($newtargetfile)) {
                             unlink($newtargetfile);
-                            $logarr[] = 'import -> true';
-                            echo "<b style='color:red'>Загрузка завершена</b>";
+                            $imp_table = "INSERT INTO tbl_exim_log(login_ad,section,field_one,field_two,field_three) VALUES ('$names', 'points', 'Импорт таблицы', '', '')";
+                            $res_imp = mysqli_query($link, $imp_table);
+                            if($res_imp) {
+								echo "<b style='color:red'>Загрузка завершена</b>";
+							}
                         }
                     }
-                    require_once '../script/LogAdminAction.php';
 					$link->close();
                 }
             }

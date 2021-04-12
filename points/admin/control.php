@@ -9,11 +9,6 @@ if($_GET['do'] == 'logout'){
 if($_SESSION['login'] && $_SESSION['role'] == 1){
 	$login = $_SESSION['login'];
 	$role = $_SESSION['role'];
-	$file_login = "../logfiles/login_to_admin.log";
-	$fw = fopen($file_login, "a+");
-	include_once '../script/datetime.php';
-	fwrite($fw, $newdate.' '.$login.' Вошел в control.php'.' Логин: '. $login."\r\n");
-	fclose($fw);
 }
 else {
 	header("Location: ../admin/index.php");
@@ -46,6 +41,7 @@ else {
 	<div>
 		<nav>
 			<ul class="menu">
+				<li><a href="../admin/log_db.php" class="button15">Log_DB</a></li>
 				<li><a href="../admin/mainballs.php" class="button15">Назад</a></li>
 				<li><a href="../admin/importballs.php?do=logout" class="button15">Выйти</a></li>
 			</ul>
