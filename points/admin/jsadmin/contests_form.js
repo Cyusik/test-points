@@ -12,7 +12,6 @@ $(document).ready(function() {
 				var result = $('#result_contests');
 				result.html(data);
 				result.fadeIn();
-				$('input').val('');
 			},
 		});
 	});
