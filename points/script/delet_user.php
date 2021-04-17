@@ -14,7 +14,7 @@ if (isset($_POST['id_user']) && isset($_POST['nick_user'])) {
 			$res_nick = mysqli_fetch_assoc($rs_sl_nck);
 			if($res_nick) {
 				if((($res_nick['id'] == $id_user) && ($res_nick['nickname'] == $nick_user)) == false) {
-					echo "id или ник не совпадают. Запроси никнейм ещё раз.";
+					echo "<div class='modal_div_content' data-title='id или ник не совпадают. Запроси никнейм ещё раз.'></div>";
 					$link->close();
 					exit();
 				}
