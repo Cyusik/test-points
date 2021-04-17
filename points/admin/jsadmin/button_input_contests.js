@@ -58,7 +58,6 @@ $(document).ready(function() {
 									if (points) {
 										image.removeClass('fa fa-times').addClass('fa fa-check');
 										num_points.addClass('no_bd');
-										//cause.addClass('in-info');
 										num_points.fadeIn(100);
 										cause.fadeIn(100);
 									} else {
@@ -91,5 +90,33 @@ $(document).ready(function() {
 				$('#send').fadeOut(200);
 			}
 		}
+	});
+	$('#contests_form').submit(function(event) {
+		event.preventDefault();
+		$('#hideME').fadeIn(800);
+		function Out() {
+			$('#hideME').fadeOut(800);
+		}
+		setTimeout(Out, 5000);
+		$.ajax({
+			type: $(this).attr('method'),
+			url: $(this).attr('action'),
+			data: new FormData(this),
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function(data) {
+				$('#div_result').html(data);
+				x = 0;
+				y = 0;
+				$("#contests_form").stop().animate({
+					height: y + "px",
+					opacity: 1,
+				}, 500, function() {
+					$('#contests_form div').remove();
+					$('#send').fadeOut(200);
+				});
+			},
+		});
 	});
 });

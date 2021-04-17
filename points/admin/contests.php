@@ -22,8 +22,11 @@ if($_SESSION['names']) {
 		<p>1. Для Vk - ссылку на пост и ссылку на результаты (ссылка_1; ссылка_2)</p>
 		<p>1. Для Эрудита - ссылка скрин на результаты ответов в гугл доке и ссылка  скрин результат конкурса на форуме (ссылка_1; ссылка_2)</p>
 		<br>
-		<script type="text/javascript" src="jsadmin/contests_form.js"></script>
-		<div id="result_contests" class="div-result" style="display:none"></div>
+		<div id="result_contests">
+			<div id='hideME' class='modal_div_interior' style='display:none'>
+				<div id='div_result' class='modal_div_external' style='margin-top:40px;'></div>
+			</div>
+		</div>
 		<form id="contests_form" method="POST" action="../script/contests_points.php">
 		</form>
 		<div id="add" class="button" style="width:80px">Добавить</div>

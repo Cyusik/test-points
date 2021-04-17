@@ -17,12 +17,12 @@ if(isset($_POST['search_contests']) && $_POST['add_points'] && $_POST['cause']) 
 	}
 	$cause = $_POST['cause'];
 	if(empty($cause)) {
-		echo "Необходимо указать причину";
+		echo "<div class='modal_div_content' data-title='Не начислено: Необходимо указать причину'></div>";
 		$link->close();
 		exit();
 	}
 	if($result) {
-		echo $result;
+		echo "<div class='modal_div_content' data-title='Не начислено: $result'></div>";
 		$link->close();
 		exit();
 	} else {
@@ -39,7 +39,7 @@ if(isset($_POST['search_contests']) && $_POST['add_points'] && $_POST['cause']) 
 		mysqli_stmt_close($stmt);
 		if(!empty($false_update)) {
 			$false_update = implode(", ", $false_update);
-			echo "Не начислено: ".$false_update;
+			echo "<div class='modal_div_content' data-title='Не начислено: $false_update'></div>";
 			$link->close();
 			exit();
 		}
@@ -67,10 +67,10 @@ if(isset($_POST['search_contests']) && $_POST['add_points'] && $_POST['cause']) 
 		}
 		//------------конец записи--------------------------------
 		if($num_insert != 0) {
-			echo "Начислено. "."Записей добавлено = ".$num_insert;
+			echo "<div class='modal_div_content' data-title='Начислено. Записей добавлено = $num_insert'></div>";
 		}
 	}
 } else {
-	echo 'Не все поля получены..';
+	echo "<div class='modal_div_content' data-title='Не все поля получены..'></div>";
 }
 ?>
