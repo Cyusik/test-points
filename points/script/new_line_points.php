@@ -10,6 +10,16 @@ if(isset($_POST['nickname']) && isset($_POST['points']) && isset($_POST['history
 	$names = $_SESSION['names'];
 	//---------------------------------------
 	if($nickname != "") {
+		$select_nickname = "SELECT nickname FROM tablballs WHERE nickname = '$nickname'";
+		$rs_sl_nck = mysqli_query($link, $select_nickname) or die ('Error: '.mysqli_error($link));
+		if($rs_sl_nck){
+			$res_nick = mysqli_fetch_assoc($rs_sl_nck);
+			if($res_nick) {
+				echo "Такой никнейм есть в таблице";
+				$link->close();
+				exit();
+			}
+		}
 		$write_player = "INSERT INTO tablballs (nickname,balls,history,exclude,login_one,login_two,login_three) VALUES ('$nickname','$balls','$history','0', '', '', '')";
 		$result_write_player = mysqli_query($link, $write_player) or die('Error: '.mysqli_error($link));
 		if($result_write_player) {

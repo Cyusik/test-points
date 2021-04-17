@@ -36,12 +36,15 @@ foreach($lg_srh as $k=>$data) {
 }
 $wereDB = implode(" AND", $wereDB);
 $line_page = implode("&", $line_page);
+if($wereDB == "") {
+	$tableBD = str_replace("WHERE", " ", $tableBD);
+}
 $notesOnPage = 50;
 $id = 0;
 $from = ($page - 1) * $notesOnPage;
 if($from >= 0) {
 	$sql_line_log = "SELECT * FROM $tableBD $wereDB ORDER BY dates DESC LIMIT $from, $notesOnPage";
-	$result_log = mysqli_query($link, $sql_line_log) or die ('Error '.mysqli_error($link));
+	$result_log = mysqli_query($link, $sql_line_log) or die ('Error(log_line_history 46) '.mysqli_error($link));
 	if($result_log) {
 		$rows = mysqli_num_rows($result_log);
 		if($rows > 0) {

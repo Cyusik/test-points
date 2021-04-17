@@ -6,10 +6,10 @@ $div_result = 'result_div1'.$i;
 $hideME = 'hide_Me1'.$i;
 $id_form = 'form'.$i;
 $id_tr = 'tr1'.$i;
-echo	"<div id='$id_tr'>
-						<form id='$id_form' action='' method='POST'>
-						<div id='$hideME' class='modal_div_interior' style='display:none'>
-						<div id='$div_result' class='modal_div_external'></div></div>";
+echo	"<div id='$hideME' class='modal_div_interior' style='display:none'>
+						<div id='$div_result' class='modal_div_external'></div></div>
+						<div id='$id_tr'>
+						<form id='$id_form' action='' method='POST'>";
 echo nl2br("<input style='display:none' id='id_test' class='input' name='id_user' value='$row[0]' readonly='readonly'>");
 echo nl2br("<input id='nick_test' class='input editing' name='nick_user' value='$row[1]' required placeholder='Никнейм'>");
 echo nl2br("<input id='point_test' class='input editing' name='point_user' value='$row[2]' placeholder='Баллы'>");
@@ -56,16 +56,20 @@ echo "<script>
 											$('body').removeClass('overflow');
 											$(this).attr('disabled', true);
 											$('#$hideME').fadeIn(800);
+											function Out() {
+											$('#$hideME').fadeOut(800);
+										}
+										setTimeout(Out, 5000);
 											$.ajax({
 												type: \"POST\",
 												url: \"../../points/script/delet_user.php\",
 												data: $(\"#$id_form\").serialize(),
 												success: function (result) {
-													$().html(result);
+													$(\"#$div_result\").html(result);
 												},
 											});
-											$(\".$id_tr\").empty();
-											$(\".$id_tr\").stop().animate({
+											$(\"#$id_tr\").empty();
+											$(\"#$id_tr\").stop().animate({
 													height: \"0px\",
 													opacity: 0,
 												}, 800, function() {
