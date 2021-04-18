@@ -25,6 +25,11 @@ if(isset($_POST['del_login'])) {
 		$res_name = mysqli_query($link, $ch_name) or die("Error: ".mysqli_error($link));
 		if($res_name) {
 			$check_n = mysqli_fetch_assoc($res_name);
+			if($check_n == false) {
+				echo "Такого юзера нет";
+				$link->close();
+				exit();
+			}
 			if($check_n['name_user'] == $names) {
 				echo "Чтобы удалить себя, зайди с другого юзера";
 				$link->close();

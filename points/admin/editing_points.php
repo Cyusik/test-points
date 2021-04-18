@@ -22,7 +22,7 @@ else {
 		<br>
 		<script type="text/javascript" src="jsadmin/contests_form.js"></script>
 		<form id="contests_form" method="POST" action="../script/edit_search.php">
-			<input minlength="3" maxlength="21" placeholder="Введите никнейм" class="input" type="text" name="nickname" id="nickname" required>
+			<input minlength="3" maxlength="21" placeholder="Введите никнейм" class="input" type="text" name="nickname" id="nickname_editing_table" required>
 			<button type="submit" form="contests_form" id="send" class="button" style="vertical-align:middle">Найти</button>
 		</form>
 		<div id="result_contests"></div>

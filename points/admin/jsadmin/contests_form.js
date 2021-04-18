@@ -12,6 +12,8 @@ $(document).ready(function() {
 				var result = $('#result_contests');
 				result.html(data);
 				result.fadeIn();
+				$('#nickname_editing_table').val('');
+				$('#dates_editing_table').val('');
 			},
 		});
 	});
@@ -114,6 +116,7 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				$('#res_del').html(data).fadeIn();
+				$('#del_login').val('');
 			},
 		});
 	});

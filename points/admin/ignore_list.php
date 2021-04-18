@@ -24,8 +24,8 @@ else {
 		<h3>- Добавить или убрать с игнор листа -</h3>
 		<script type="text/javascript" src="jsadmin/contests_form.js"></script>
 		<p style="text-indent:0">Галочка есть - значит есть ник такой.</p>
-		<div id="result_contests" class="div-result" style="display:none"></div>
-		<form id="contests_form" method="POST" action="../script/ignore_change.php">
+		<div id="result_ignore" class="div-result" style="display:none"></div>
+		<form id="ignore_form" method="POST" action="../script/ignore_change.php">
 			<input minlength="3" maxlength="21" placeholder="Введите никнейм" class="input" type="text" name="search_ignore" id="search_ignore" required>
 			<i class="fa-position" id="image_status" style="font-size:25px; color:white"></i>
 			<span style="display:none" id="stat_ignore"></span>
