@@ -15,6 +15,7 @@ var menu = function() {
 				height: "38px",
 				opacity: 1,
 			}, 500, function() {
+				$("#accordion li.hide").css('height', 'auto');
 			});
 		}
 	});
