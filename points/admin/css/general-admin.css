@@ -74,6 +74,16 @@ h3 {
 	letter-spacing: 1px;
 	color: white;
 }
+h5 {
+	font: 14px 'Ubuntu';
+	text-align: center;
+	background: #3a3a3a;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	color: white;
+}
 .modal {
 	background:none;
 	color:black;
@@ -122,6 +132,9 @@ h3 {
 	font-weight: 600;
 	margin: 3px 0 3px 0;
 	color: #FFFFFF;
+}
+.hide_menu {
+	display:none;
 }
 .editing {
 	width:13%;

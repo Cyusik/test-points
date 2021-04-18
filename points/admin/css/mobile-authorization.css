@@ -1,0 +1,19 @@
+@media (max-width:425px)  {
+	.avtoriz {
+		width:auto;
+		border-radius:0;
+	}
+	form {
+		margin:0px;
+	}
+	table {
+		text-align:center;
+		width:100%;
+		margin:auto;
+	}
+	.button {
+		display:block;
+		margin:auto;
+		margin-top:10px;
+	}
+}

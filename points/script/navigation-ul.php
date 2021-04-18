@@ -1,18 +1,19 @@
 <?php
 if($_SESSION['names'] && $_SESSION['role']) {
 	echo '
+<div class="hide_menu"><h3>Menu</h3></div>
 <ul id="accordion" class="accordion">';
 	if(($_SESSION['role'] == 1) || ($_SESSION['role'] == 2) || ($_SESSION['role'] == 3)) {
-		echo '<li>
+		echo '<li class="hide">
 		<div class="link no-li">'.$names.'<i class="fa fa-user"></i></div>
 	</li>
-	<li>
+	<li class="hide">
 		<div class="link"><a href="../admin/description.php">Описание</a><i class="fa fa-clipboard"></i></div>
 	</li>
-	<li>
+	<li class="hide">
 		<div class="link"><a href="../admin/description.php?action=contests.php">Конурсы</a></div>
 	</li>
-	<li>
+	<li class="hide">
 		<div class="link">Таблицы<i class="fa fa-chevron-down"></i></div>
 		<ul class="submenu">
 			<li><a href="../index.php" target="_blank">Таблица с баллами</a></li>
@@ -21,7 +22,7 @@ if($_SESSION['names'] && $_SESSION['role']) {
 	</li>';
 	}
 	if(($_SESSION['role'] == 1) || ($_SESSION['role'] == 2)) {
-		echo '<li>
+		echo '<li class="hide">
 		<div class="link">Добавление<i class="fa fa-chevron-down"></i></div>
 		<ul class="submenu">
 			<li><a href="../admin/description.php?action=add_line_points.php">Строка в баллы</a></li>
@@ -29,14 +30,14 @@ if($_SESSION['names'] && $_SESSION['role']) {
 			<li><a href="../admin/description.php?action=add_line_swap.php">Строка в заявки</a></li>
 		</ul>
 	</li>
-	<li>
+	<li class="hide">
 		<div class="link">Редактирование<i class="fa fa-chevron-down"></i></div>
 		<ul class="submenu">
 			<li><a href="../admin/description.php?action=editing_points.php">Таблица баллов</a></li>
 			<li><a href="../admin/description.php?action=editing_results.php"">Таблица итогов</a></li>
 		</ul>
 	</li>
-	<li>
+	<li class="hide">
 		<div class="link">Экс&Имп/подсчет/обмен<i class="fa fa-chevron-down"></i></div>
 		<ul class="submenu">
 			<li><a href="../admin/description.php?action=ex_im_points.php">Баллы</a></li>
@@ -44,7 +45,7 @@ if($_SESSION['names'] && $_SESSION['role']) {
 			<li><a href="../admin/description.php?action=ex_im_exch.php">Опрос и обмен</a></li>
 		</ul>
 	</li>
-	<li>
+	<li class="hide">
 		<div class="link"><a href="../admin/description.php?action=ignore_list.php">Игнор лист</a></div>
 	</li>';
 	}
@@ -58,7 +59,7 @@ if($_SESSION['names'] && $_SESSION['role']) {
 	</li>';
 	}
 	echo '
-	<li>
+	<li class="hide">
 		<div class="link"><a href="../admin/description.php?action=logout">Выйти</a></div>
 	</li>
 </ul>';

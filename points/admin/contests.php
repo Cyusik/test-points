@@ -32,7 +32,21 @@ if($_SESSION['names']) {
 		<div id="add" class="button" style="width:80px">Добавить</div>
 		<div id="del" class="button" style="width:80px">Удалить</div>
 		<button type="submit" form="contests_form" id="send" class="button" style="display:none">Начислить</button>
-	<script type="text/javascript" src="jsadmin/button_input_contests.js"></script>
+		<script type="text/javascript">
+			var isMobile = false;
+			// проверка на размер экрана
+			$(document).ready( function() {
+				if ($('body').width() <= 460) {
+					isMobile = true; //mobile
+				}
+				if (!isMobile) { //desctop
+					$('body').append('<script type="text/javascript" src="jsadmin/button_input_contests.js"></scr' + 'ipt>');
+				} else {
+					$('body').append('<script type="text/javascript" src="jsadmin/button_input_contests_mb.js"></scr' + 'ipt>');
+				}
+			});
+		</script>
+<!--	<script type="text/javascript" src="jsadmin/button_input_contests.js"></script>-->
 	</div>
 	<div class="space"></div>
 	<h3>- История начислений -</h3>

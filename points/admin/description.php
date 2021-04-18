@@ -37,6 +37,21 @@ else {
 	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="../admin/jsadmin/navigation-admin.js"></script>
+	<script type="text/javascript">
+		var isMobile = false;
+		// проверка на размер экрана
+		$(document).ready( function() {
+			if ($('body').width() <= 460) {
+				isMobile = true;
+			}
+			if (!isMobile) {
+				//alert(isMobile);
+				$('body').append('<script type="text/javascript" src="../jsjq/fixed-div.js"></scr' + 'ipt>');
+			} else {
+				$('body').append('<script type="text/javascript" src="jsadmin/menu_mob.js"></scr' + 'ipt>');
+			}
+		});
+	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -62,18 +77,5 @@ else {
 			Copyright (c) GDT Limited. <a href="http://gdteam.com">http://gdteam.com</a>
 		</div>
 		</div>
-	<script type="text/javascript">
-		var isMobile = false;
-		// проверка на размер экрана
-		$(document).ready( function() {
-			if ($('body').width() <= 460) {
-				isMobile = true;
-			}
-			if (!isMobile) {
-				//alert(isMobile);
-				$('body').append('<script type="text/javascript" src="../jsjq/fixed-div.js"></scr' + 'ipt>');
-			}
-		});
-	</script>
 </body>
 </html>
