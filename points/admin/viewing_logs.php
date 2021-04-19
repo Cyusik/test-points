@@ -62,7 +62,7 @@ else {
 				<option value="srh_usr_log">Лог запросов от юзеров</option>
 			</select>
 			<button id="ex_log" class="button" type="submit" style="vertical-align:middle">Экспорт</button>
-			<span id="trn_log" class="button" type="submit" style="vertical-align:middle">Очистить</span>
+			<span id="trn_log" class="button btn-span" type="submit" style="vertical-align:middle">Очистить</span>
 		</form>
 		<?php
 		include_once '../script/exp_lg.php';
