@@ -1,6 +1,6 @@
 <?php
 $addLine_page = "SELECT COUNT(*) as count FROM $tableBD $wereDB";
-$result_line_page = mysqli_query($link, $addLine_page) or die ('Error(3) '.mysqli_error($link));
+$result_line_page = mysqli_query($link, $addLine_page) or die ('Error '.mysqli_error($link));
 $result_line_page = mysqli_fetch_assoc($result_line_page);
 $count = $result_line_page['count'];
 $pagesCount = ceil($count / $notesOnPage);
