@@ -50,7 +50,7 @@ if($_SESSION['names'] && $_SESSION['role']) {
 	</li>';
 	}
 	if($_SESSION['role'] == 1) {
-		echo '<li>
+		echo '<li class="hide">
 		<div class="link">Управление<i class="fa fa-chevron-down"></i></div>
 		<ul class="submenu">
 			<li><a href="../admin/description.php?action=control_user.php">Управление доступом</a></li>

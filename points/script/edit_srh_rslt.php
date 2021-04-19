@@ -37,7 +37,7 @@ echo "<script>
 								});
 							});
 						</script>";
-echo "<span id='$id_button_delet' class='button' style='vertical-align:middle; width:7%;'>Удалить</span>";
+echo "<span id='$id_button_delet' class='button btn-span' style='vertical-align:middle;'>Удалить</span>";
 echo "<script>
 							$(document).ready(function () {
 								$('#$id_button_delet').click(function () {

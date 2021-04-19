@@ -13,11 +13,11 @@ echo	"<div id='$hideME' class='modal_div_interior' style='display:none'>
 echo nl2br("<input style='display:none' id='id_test' class='input' name='id_user' value='$row[0]' readonly='readonly'>");
 echo nl2br("<input id='nick_test' class='input editing' name='nick_user' value='$row[1]' required placeholder='Никнейм'>");
 echo nl2br("<input id='point_test' class='input editing' name='point_user' value='$row[2]' placeholder='Баллы'>");
-echo "<textarea style='width: 50%;' id='history_test' class='input textarea editing' name='history_user' placeholder='История обмена'>$row[3]</textarea>";
+echo "<textarea id='history_test' class='input desctop textarea editing' name='history_user' placeholder='История обмена'>$row[3]</textarea>";
 echo nl2br("<input style='display:none' id='ignor_test' class='input editing' name='ignor_user' value='$row[4]' readonly='readonly'>");
-echo nl2br("<input style='width: 50%;' class='input editing' id='login_one' name='login_one' value='$row[5]' placeholder='Логин 1'>");
-echo nl2br("<input style='width: 50%;' class='input editing' id='login_two' name='login_two' value='$row[6]' placeholder='Логин 2'>");
-echo nl2br("<input style='width: 50%;' class='input editing' id='login_three' name='login_three' value='$row[7]' placeholder='Логин 3'>");
+echo nl2br("<input class='input desctop editing' id='login_one' name='login_one' value='$row[5]' placeholder='Логин 1'>");
+echo nl2br("<input class='input desctop editing' id='login_two' name='login_two' value='$row[6]' placeholder='Логин 2'>");
+echo nl2br("<input class='input desctop editing' id='login_three' name='login_three' value='$row[7]' placeholder='Логин 3'>");
 echo "<br><button id='$id_button_save' type='submit' class='button editing' style='vertical-align:middle'>Сохранить</button>";
 echo "<script>
 							$(document).ready(function() {
@@ -39,7 +39,7 @@ echo "<script>
 									});
 								});
 						</script>";
-echo "<span id='$id_button_delet' class='button' style='vertical-align:middle; width:7%;'>Удалить</span>";
+echo "<span id='$id_button_delet' class='button btn-span' style='vertical-align:middle;'>Удалить</span>";
 echo "<script>
 							$(document).ready(function() {
 									$('#$id_button_delet').click(function () {

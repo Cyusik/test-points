@@ -59,6 +59,9 @@ p {
 	display:block;
 	text-align:center;
 }
+.btn-span {
+	width:7%;
+}
 h1 {
 	padding-top:10px;
 	padding-bottom:10px;
@@ -200,6 +203,9 @@ h5 {
 }
 .butnone:hover {
 	cursor:auto;
+}
+.desctop {
+	width:50%;
 }
 /*------test label img input--------------*/
 .fa-position {

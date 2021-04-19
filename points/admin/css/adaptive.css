@@ -50,6 +50,8 @@
 		width:100%;
 	}
 	.button {
+		width:auto;
+		margin-top: 2px;
 		margin-bottom:5px;
 		display:block;
 	}
@@ -78,5 +80,22 @@
 	}
 	h1 {
 		font: 25px 'Ubuntu';
+	}
+	.textarea {
+		width:93%;
+	}
+	.btn-span {
+		width:79px;
+	}
+	.btn-div {
+		width:79px;
+		margin:auto;
+		margin-top:2px;
+	}
+	.no_bd {
+		margin-left:0px;
+	}
+	.in-select {
+		width:100%;
 	}
 }

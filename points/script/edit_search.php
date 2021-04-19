@@ -26,8 +26,8 @@ if(!empty($_POST)) {
 						<div class='openwindow'>
 						<h3 class='modal' id='heading'></h3>
 						<span id='spanwidow'></span><br><br>
-						<div class='button' id='closewidow'>Удалить</div>
-						<div class='button' id='canceling'>Отмена</div></div></div>";
+						<div class='button btn-div' id='closewidow'>Удалить</div>
+						<div class='button btn-div' id='canceling'>Отмена</div></div></div>";
 				if($num == 2) {
 					for($i = 0; $i < $assoc; ++$i) {
 						include '../script/edit_srh_rslt.php';

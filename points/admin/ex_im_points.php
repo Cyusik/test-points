@@ -89,7 +89,7 @@ else {
 		<?php
 		$tableBD = 'tbl_exim_log';
 		$section = 'points';
-		$th = 'ex_im_points';
+		$th = 'ex_im';
 		$line_page = 'action=ex_im_points.php';
 		include_once '../script/line_history.php'
 		?>

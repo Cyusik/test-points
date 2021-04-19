@@ -40,5 +40,23 @@ else {
 		$line_page = 'action=editing_points.php';
 		include_once '../script/line_history.php'
 		?>
+		<script type="text/javascript">
+			var isMobile = false;
+			$(document).ready( function() {
+				if ($('body').width() <= 460) {
+					isMobile = true;
+				}
+				if (!isMobile) {//desctop
+					$('body').append('<script type="text/javascript" src="../jsjq/fixed-div.js"></scr' + 'ipt>');
+				} else {//mobile
+					var content = $(".history-content");
+					content.empty();
+					content.append('<table class="table_history">' +
+						'<tr><th>Мобильная версия</th></tr>' +
+						'<tr><td>В мобильной версии таблица не доступна</td></tr>' +
+						'</table>');
+				}
+			});
+		</script>
 	</div>
 </div>

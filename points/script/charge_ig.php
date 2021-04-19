@@ -69,10 +69,16 @@ if(isset($_POST['period_time'])) {
 	//----------------------------------------------------------------------
 			}
 		} else {
-			echo 'Нет записей';
+			echo '<table class="table_history">
+					<tr><th>Ошибка</th></tr>
+					<tr><td>Нет записей за этот период</td></tr>
+					</table>';
 		}
 	} else {
-		echo 'empty result';
+		echo '<table class="table_history">
+					<tr><th>Ошибка</th></tr>
+					<tr><td>empty result</td></tr>
+					</table>';
 	}
 	$link->close();
 }

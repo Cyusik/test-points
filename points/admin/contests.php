@@ -34,7 +34,6 @@ if($_SESSION['names']) {
 		<button type="submit" form="contests_form" id="send" class="button" style="display:none">Начислить</button>
 		<script type="text/javascript">
 			var isMobile = false;
-			// проверка на размер экрана
 			$(document).ready( function() {
 				if ($('body').width() <= 460) {
 					isMobile = true; //mobile
@@ -46,7 +45,6 @@ if($_SESSION['names']) {
 				}
 			});
 		</script>
-<!--	<script type="text/javascript" src="jsadmin/button_input_contests.js"></script>-->
 	</div>
 	<div class="space"></div>
 	<h3>- История начислений -</h3>

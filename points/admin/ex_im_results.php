@@ -65,7 +65,7 @@ else {
 		<?php
 		$tableBD = 'tbl_exim_log';
 		$section = 'results';
-		$th = 'ex_im_results';
+		$th = 'ex_im';
 		$line_page = 'action=ex_im_results.php';
 		include_once '../script/line_history.php'
 		?>
