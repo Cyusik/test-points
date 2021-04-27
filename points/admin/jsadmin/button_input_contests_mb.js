@@ -54,7 +54,7 @@ $(document).ready(function() {
 										var points = parseInt(span.val());
 										if (points) {
 											image.removeClass('fa fa-times').addClass('fa fa-check');
-											num_points.addClass('no_bd');
+											//num_points.addClass('no_bd');
 										} else {
 											image.removeClass('fa fa-check').addClass('fa fa-times');
 										}

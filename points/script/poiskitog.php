@@ -25,7 +25,7 @@ if($search == false) {
 		if($result) {
 			$rows = mysqli_num_rows($result);// количество полученных строк
 			if($rows > 0) {
-			echo "<table id='range1' class='table_dark'>
+			echo "<table id='range1' class='table_dark results_mobile'>
 					<tr>
 						<th colspan='4' class='heding'>История выдачи призов</th>
 					</tr>
@@ -141,7 +141,7 @@ else {
 			$rows = mysqli_num_rows($result);
 			if($rows > 0) {
 				$logresult = 'true';
-				echo "<table class='table_dark'>
+				echo "<table class='table_dark results_mobile'>
 					<tr>
 						<th colspan='4' class='heding'>История выдачи призов игрока $search</th>
 					</tr>

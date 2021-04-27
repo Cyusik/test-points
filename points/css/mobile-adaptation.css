@@ -1,0 +1,170 @@
+@media (max-width:425px)  {
+	.main {
+		width:100%;
+	}
+	.table-t {
+		padding:0px;
+		padding-top: 100px;
+		background: url("/points/img/general/bg-main-mobile.png") no-repeat;
+	}
+	#logos {
+		padding:0px;
+		padding-top: 30px;
+		position:unset;
+	}
+	.logomwo {
+		top: 0;
+		left:0;
+		margin:auto;
+		position:unset;
+	}
+	.nav-search {
+		width:100%;
+		margin-top:0;
+	}
+	.table_dark {
+		font:13px 'TeX Gyre Heros';
+		width:100%;
+		box-shadow:none;
+	}
+	.table_dark th.heding {
+		font: 12px/45px "Fulbo-Argenta";
+		background:url("/points/img/general/h3head-mobile.png") no-repeat;
+	}
+	#table {
+		background:#a5c3ce;;
+	}
+	.right-content {
+		float:none;
+		height:auto;
+		margin-bottom: 35px;
+	}
+	.fixed-div {
+		height:auto;
+	}
+	.left-content {
+		float:none;
+		margin-left:0;
+	}
+	.nav-points {
+		width:100%;
+		margin:auto;
+		margin-bottom: 10px;
+	}
+	.nav-heding {
+		margin-bottom: 2px;
+		background:url("/points/img/general/h3head-mobile.png") no-repeat;
+	}
+	.nav-bottom ul {
+		padding:1px;
+		width:99%;
+		margin:auto;
+	}
+	.nav-bottom ul li {
+		margin: 6px 0px;
+	}
+	.form-row input {
+		width: 98%;
+		margin: auto;
+	}
+	.nav-bottom ul li.active a {
+		margin-bottom: -3px;
+		background: url("/points/img/general/btn-nav-1-mobile.png"), rgb(245,245,245) linear-gradient(#ec5926, #771a03);
+	}
+	.nav-bottom ul li a:active {
+		background: url("/points/img/general/btn-nav-1-mobile.png"), rgb(245,245,245) linear-gradient(#ec5926, #771a03);
+	}
+	.nav-heding i {
+		position: absolute;
+		top: 16px;
+		left: 12px;
+		font-size: 18px;
+		-webkit-transition: all 0.4s ease;
+		-o-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.nav-heding i.fa-bars {
+		right: 12px;
+		left: auto;
+		font-size: 21px;
+		margin-top: -12px;
+	}
+	.nav-bottom {
+		height: 0px;
+		display: none;
+	}
+	#hide_menu {
+		display:block;
+		padding: 7px 7px 7px 7px;
+	}
+	.form-row {
+		padding:0;
+	}
+	.searhpoisk {
+		position: absolute;
+		margin-top: -35px;
+		margin-right: 1px;
+		border-radius: 0;
+		box-shadow: none;
+		height: 32px;
+	}
+	.searhpoisk:hover {
+		box-shadow:none;
+	}
+	.searhpoisk:active {
+		box-shadow:none;
+	}
+	.foot {
+		background: url("/points/img/general/footer-main-mobile.png") no-repeat scroll 0 0;
+	}
+	.ulfoot {
+		font: 10px 'TeX Gyre Heros';
+	}
+	#button-up {
+		margin-left:0;
+		margin-bottom: 10px;
+	}
+	#button-up img {
+		float:none;
+		display:block;
+		margin:auto;
+	}
+	.mobile_table td{
+		padding:0;
+	}
+	.mob-marg-content {
+		margin-bottom: 0px;
+	}
+	.results_mobile th{
+		padding:0;
+	}
+	.results_mobile td{
+		padding:0;
+	}
+	.results_mobile td:nth-child(4){
+		word-break:break-all;
+	}
+	.pagination li {
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+	.ul-pagination .pagination {
+		font-size: 12px;
+	}
+	.swap_content td{
+		padding: 5px 10px;
+	}
+	.swap_button {
+		position:unset;
+		margin-top:0;
+		margin-bottom:0;
+	}
+	.results {
+		padding: 2px 2px;
+	}
+}
+@media (max-width:320px) {
+	.table_dark th.heding {
+		font: 10px/45px "Fulbo-Argenta";
+	}
+}

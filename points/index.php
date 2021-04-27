@@ -20,10 +20,26 @@ require_once 'script/connect.php';
 	<link href="/points/css/points.css" rel="stylesheet">
 	<link href="/points/css/pagination.css" rel="stylesheet">
 	<link href="/points/css/fonts.css" rel="stylesheet">
+	<link href="/points/css/mobile-adaptation.css" rel="stylesheet">
 	<link href="/points/css/snow.css" rel="stylesheet">
 	<link href="/points/css/cross-browser.css" rel="stylesheet">
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+		var isMobile = false;
+		$(document).ready( function() {
+			if ($('body').width() <= 460) {
+				isMobile = true;
+			}
+			if (!isMobile) {
+				$('body').append('<script type="text/javascript" src="jsjq/fixed-div.js"></scr' + 'ipt>');
+			} else {
+				$('body').append('<script type="text/javascript" src="jsjq/nav-mobile.js"></scr' + 'ipt>');
+				$('head').append('<script type="text/javascript" src="jsjq/mobile_replace_div.js"></scr' + 'ipt>');
+			}
+		});
+	</script>
 </head>
 <body>
 <div class="snow">
@@ -35,16 +51,16 @@ require_once 'script/connect.php';
 		</div>
 		<div id="table" class="clearfix">
 			<div class="table-t">
-				<div class="left-content clearfix">
+				<div id="left" class="left-content clearfix">
 					<?php
 					include_once 'script/poisk.php';
 					?>
 				</div>
-				<div class="right-content clearfix">
+				<div id="right" class="right-content clearfix">
 					<div class="fixed-div">
 						<div class="nav-points clearfix">
 							<div class="nav-heding clearfix">
-								<span>Навигация</span>
+								<span>Навигация</span><i id="hide_menu" class="fa fa-bars"></i>
 							</div>
 							<div class="nav-bottom clearfix">
 								<ul id="navigation">
@@ -100,6 +116,5 @@ require_once 'script/connect.php';
 		<img src="/points/img/general/top.png" alt="no" title="Вжух!">
 	</div>
 </div>
-<script type="text/javascript" src="jsjq/fixed-div.js"></script>
 </body>
 </html>

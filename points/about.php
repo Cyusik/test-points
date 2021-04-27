@@ -16,6 +16,7 @@
 	<link href="/points/css/general.css" rel="stylesheet">
 	<link href="/points/css/about.css" rel="stylesheet">
 	<link href="/points/css/fonts.css" rel="stylesheet">
+	<link href="/points/css/mobile-adaptation.css" rel="stylesheet">
 	<link href="/points/css/snow.css" rel="stylesheet">
 	<link href="/points/css/cross-browser.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

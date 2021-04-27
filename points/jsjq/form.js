@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#forms').submit(function(event) {
+	$(document).on('submit','#forms',function(event) {
 			event.preventDefault();
 			var pointsnick = document.getElementById('resultdiv_search').value;
 			var pointsnecessary = document.getElementById('resultdiv10').value;

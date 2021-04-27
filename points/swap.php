@@ -16,11 +16,27 @@
 	<link href="/points/css/general.css" rel="stylesheet">
 	<link href="/points/css/swap.css" rel="stylesheet">
 	<link href="/points/css/fonts.css" rel="stylesheet">
+	<link href="/points/css/mobile-adaptation.css" rel="stylesheet">
 	<link href="/points/css/snow.css" rel="stylesheet">
 	<link href="/points/css/cross-browser.css" rel="stylesheet">
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/points/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="jsjq/form.js"></script>
+	<script type="text/javascript">
+		var isMobile = false;
+		$(document).ready( function() {
+			if ($('body').width() <= 460) {
+				isMobile = true;
+			}
+			if (!isMobile) {
+				$('body').append('<script type="text/javascript" src="jsjq/fixed-div.js"></scr' + 'ipt>');
+			} else {
+				$('body').append('<script type="text/javascript" src="jsjq/nav-mobile.js"></scr' + 'ipt>');
+				$('head').append('<script type="text/javascript" src="jsjq/mobile_replace_div.js"></scr' + 'ipt>');
+			}
+		});
+	</script>
 </head>
 <body>
 <div class="snow">
@@ -32,7 +48,7 @@
 	</div>
 	<div id="table" class="clearfix">
 		<div class="table-t">
-			<div class="left-content clearfix">
+			<div id="left" class="left-content clearfix">
 				<?php
 				include_once 'script/connect.php';
 				$query = "SELECT * FROM formobmen WHERE `open`";
@@ -43,7 +59,7 @@
 					if( $open == '1')
 					{
 						echo "<form id='forms' method='POST' action='/points/script/swapform.php'>
-						<table class='table_dark'>
+						<table class='table_dark swap_content'>
 						<tr><th class='heding'>Форма для обмена баллов на призы</th></tr>";
 							echo "<tr>
 				<th>Выдача наград будет производиться в течении 3-х дней после закрытия опроса</th>
@@ -92,7 +108,7 @@
 					</tr>
 					<tr>
 					<td>
-					<input  class='searhpoisk' type='submit' id='submit' value='Отправить'>
+					<input  class='searhpoisk swap_button' type='submit' id='submit' value='Отправить'>
 					</td>
 					</tr>";
 						?>
@@ -127,11 +143,11 @@
 				?>
 				<div id="resultdiv"></div>
 			</div>
-			<div class="right-content clearfix">
+			<div id="right" class="right-content mob-marg-content clearfix">
 				<div class="fixed-div">
 					<div class="nav-points clearfix">
 						<div class="nav-heding clearfix">
-							<span>Навигация</span>
+							<span>Навигация</span><i id="hide_menu" class="fa fa-bars"></i>
 						</div>
 						<div class="nav-bottom clearfix">
 							<ul>
@@ -172,6 +188,6 @@
 	<img src="/points/img/general/top.png" alt="no" title="Вжух!">
 </div>
 </div>
-<script type="text/javascript" src="jsjq/fixed-div.js"></script>
+<!--<script type="text/javascript" src="jsjq/fixed-div.js"></script>-->
 </body>
 </html>
